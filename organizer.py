@@ -4,6 +4,9 @@ import os
 # dicionario para traduzir o código da rodovia para o seu local (início - fim)
 road_translation = {}
 
+# dicionario para as velocidades
+speeds = {}
+
 # flag para sair do programa
 quit_requested = 0
 
@@ -17,13 +20,21 @@ def quit():
     quit_requested = 1
     return 
 
-# preenche a tabela de mapeamento do código da rodovia para o local
+# preenche a tabela de mapeamento do código da rodovia para o local, e a tabela de velocidades
 def populate():
     global road_translation
     with open("Roads.csv", encoding='utf-8-sig') as map:
         reader = csv.DictReader(map)
         for line in reader:
             road_translation[line['CÓDIGO-DO-TRECHO']] = f"{line['TRECHO-INÍCIO']} até {line['TRECHO-FINAL']}"
+
+    global speeds
+    with open("Speeds.csv", encoding='utf-8-sig') as speed:
+        reader = csv.DictReader(speed)
+        for line in reader:
+            if line['RODOVIA'] not in speeds:
+                speeds[line['RODOVIA']] = set()
+            speeds[line['RODOVIA']].add(line['VELOCIDADE'])
     
 
 def parser(file, cat):
@@ -82,7 +93,13 @@ def calculate(road):
 
             if not found:
                 print("Rodovia não localizada!")
-
+        print("\nVelocidades permitidas: ")
+        for v in speeds:
+            if v in road_translation[road]:
+                for s in speeds[v]:
+                    print(f"{s}", end=",")
+                print()
+        
     elif option == 2:
         # TODO - precisa desenvolver função de cálculo do N
         print("Função ainda não implementada :P")
@@ -91,6 +108,15 @@ def calculate(road):
 
     return
 
+def visualize_speeds():
+    # TODO - Visualizar as velocidades permitidas para cada rodovia
+    clear_screen()
+    print("Velocidades permitidas por rodovia:\n")
+    for road in speeds:
+        print(f"Rodovia: {road} :", end="\t")
+        for s in speeds[road]:
+            print(f"{s}", end=",")
+        print()
     return
 
 def interface():
@@ -98,7 +124,7 @@ def interface():
     clear_screen()
 
     # captura a operação desejada pelo usuário e checa validade do input
-    option = int(input("Informe a operação desejada:\n1-Visualizar dados viários\n2-Ver mapa de códigos e nomes de rodovias\n3-Operações sobre uma rodovia\n4-Sair\n"))
+    option = int(input("Informe a operação desejada:\n1-Visualizar dados viários\n2-Ver mapa de códigos e nomes de rodovias\n3-Operações sobre uma rodovia\n4-Ver mapeamento das velocidades\n5-Sair\n"))
 
     if option == 1:
         category = -1
@@ -132,6 +158,10 @@ def interface():
         calculate(road)
 
     elif option == 4:
+        # chama a função de visualização das velocidades permitidas
+        visualize_speeds()
+
+    elif option == 5:
         quit()
         return
 
