@@ -33,8 +33,8 @@ def populate():
         reader = csv.DictReader(speed)
         for line in reader:
             if line['RODOVIA'] not in speeds:
-                speeds[line['RODOVIA']] = set()
-            speeds[line['RODOVIA']].add(line['VELOCIDADE'])
+                speeds[line['RODOVIA']] = []
+            speeds[line['RODOVIA']].append((line['SENTIDO'], line['VELOCIDADE']))
     
 
 def parser(file, cat):
@@ -97,7 +97,7 @@ def calculate(road):
         for v in speeds:
             if v in road_translation[road]:
                 for s in speeds[v]:
-                    print(f"{s}", end=",")
+                    print(f"\t-{s[0]} : {s[1]}")
                 print()
         
     elif option == 2:
@@ -113,9 +113,9 @@ def visualize_speeds():
     clear_screen()
     print("Velocidades permitidas por rodovia:\n")
     for road in speeds:
-        print(f"Rodovia: {road} :", end="\t")
+        print(f"Rodovia: {road} :")
         for s in speeds[road]:
-            print(f"{s}", end=",")
+            print(f"\t-{s[0]} : {s[1]}")
         print()
     return
 
