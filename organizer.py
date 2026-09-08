@@ -69,6 +69,7 @@ def calculate(road):
     # e das informações das rodovias do DETRAN
     clear_screen()
     global road_translation
+    global speeds
     print(f"Analisando rodovia: {road} : {road_translation[road]}\n")
 
     # captura a opção desejada e valida o input
@@ -102,7 +103,21 @@ def calculate(road):
         
     elif option == 2:
         # TODO - precisa desenvolver função de cálculo do N
-        print("Função ainda não implementada :P")
+        values = []
+        for v in speeds:
+            if v in road_translation[road]:
+                for s in speeds[v]:
+                    kilometers = s[1].split(" ")[0]
+                    values.append(float(kilometers))
+        avg_speed = sum(values)/len(values)
+        
+        with open("tomtom_flow_consolidado.csv", encoding='utf-8-sig') as file:
+            reader = csv.DictReader(file)
+            for line in reader:
+                if line['CÓDIGO-DO-TRECHO'] == road:
+                    cur_speed = float(line['tomtom_currentSpeed'])
+                    print(f"Velocidade atual: {cur_speed}; Velocidade máxima ponderada: {avg_speed} K aproximado: {cur_speed/avg_speed}")
+
     else:
         interface()
 
