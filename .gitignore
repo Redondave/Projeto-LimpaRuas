@@ -1,1 +1,5 @@
 Flow.csv
+# saidas e cache do OSMnx (arquivos grandes, reprodutiveis)
+grafo_brasilia/saida/
+grafo_brasilia/cache_osm/
+__pycache__/
