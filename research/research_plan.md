@@ -1,17 +1,21 @@
 # Plano de Pesquisa — Otimização do Coeficiente de Congestionamento na Malha Viária de Brasília
 
+## Pergunta de Pesquisa (RQ)
+
+Dado um conjunto de vias representado como grafo, quais intervenções na infraestrutura conseguem aumentar o índice de desempenho de velocidade ($K = \text{SPI} = V_{med}/V_{max}$) em uma determinada via crítica, e como essas intervenções afetam o Tempo Total de Viagem (TSTT) e a redistribuição de tráfego na rede sistêmica (efeito Braess/propagação)?
+
 ## Objetivos de pesquisa
 
 ### Objetivo geral
 
-1. Desenvolver um modelo de otimização baseado em grafos para identificar intervenções capazes de reduzir o coeficiente de entrave de vias críticas de uma região de Brasília-DF, minimizando simultaneamente impactos negativos sobre as demais vias da rede.
+1. Desenvolver um modelo de otimização baseado em grafos para identificar intervenções capazes de aumentar o índice de desempenho (K) de vias críticas de uma região de Brasília-DF, minimizando simultaneamente o Tempo Total de Viagem (TSTT) sobre as demais vias da rede e avaliando o trade-off entre a métrica local e a eficiência sistêmica.
 
 ### Objetivos específicos
 
-1. Identificar os principais fatores físicos, operacionais e topológicos que influenciam o desempenho das vias e o coeficiente de entrave.
-2. Avaliar a adequação do SPI ($K = V_{med}/V_{max}$) como métrica de desempenho de vias e sua relação com outras métricas de tráfego.
-3. Modelar a região de estudo em Brasília como um grafo, representando vias, interseções e suas respectivas características por meio de atributos e pesos.
-4. Analisar os efeitos de intervenções realizadas em uma via sobre as demais vias da rede, considerando redistribuição de fluxo e possíveis efeitos de propagação do congestionamento.
+1. Identificar os principais fatores físicos, operacionais e topológicos que influenciam o desempenho das vias e o SPI.
+2. Avaliar a adequação do índice de desempenho de velocidade ($K = V_{med}/V_{max}$) como métrica de fluidez de vias e sua relação com outras métricas de tráfego sistêmicas.
+3. Modelar a região de estudo em Brasília como um grafo, adotando o OpenStreetMap (OSMnx) como fonte topológica primária e integrando atributos de fluxo e capacidade via junção espacial (spatial join) com os dados do DER-DF.
+4. Analisar os efeitos de intervenções realizadas em uma via sobre as demais vias da rede, considerando redistribuição de fluxo e possíveis efeitos de propagação do congestionamento (avaliação do Paradoxo de Braess).
 
 ### Fatores de influência na via que podemos (ou não) considerar
 
@@ -75,7 +79,7 @@ t = t0 [1 + a*(v/c)^b]
 
 A VDF é calculada para todas as arestas, de forma que o peso de cada uma corresponda a esse valor (tempo de viagem dada a congestão atual). Isso é útil para pesos dinâmicos em algoritmos de alocação de tráfego, até que a rede atinja o Equilíbrio de Wardrop (VDF estável em todas as arestas).
 
-Como o Equilíbrio de Wardrop exige o recálculo dos custos, a VDF é necessária. No entanto, os seus artigos trazem atalhos excelentes para o prazo de 3 meses: a variação da capacidade da via tem um impacto muito maior na incerteza do modelo final do que a calibração precisa dos parâmetros empíricos 'a' e 'b' da VDF. Você pode utilizar valores de referência iniciais, como a = 0.8 e b = 4.7 (utilizados para arteriais urbanas, ver melhor forma de ajuste depois), e focar seu esforço em extrair a capacidade correta das vias — artigo: *A Influência da Função Volume-Atraso na Avaliação de Incerteza para um Modelo de Quatro Etapas*.
+Como o Equilíbrio de Wardrop exige o recálculo dos custos, a VDF é necessária. No entanto, a literatura traz atalhos excelentes para o prazo de 3 meses: a variação da capacidade da via tem um impacto muito maior na incerteza do modelo final do que a calibração precisa dos parâmetros empíricos 'a' e 'b' da VDF (conforme demonstrado no artigo *A Influência da Função Volume-Atraso na Avaliação de Incerteza para um Modelo de Quatro Etapas*). Assim, você pode focar seu esforço em extrair a capacidade correta das vias e utilizar valores de referência iniciais. Por exemplo, o estudo *Modified Volume-Delay Function Based on Traffic Fundamental Diagram* calibrou a = 0.8 e b = 4.7 para arteriais urbanas em Bagdá. Alternativamente, os valores clássicos sugeridos pelo BPR (1964) são a = 0.15 e b = 4.0.
 
 ### TSTT
 
@@ -109,60 +113,59 @@ O algoritmo de Wardrop (Frank-Wolfe) resolve o trânsito Par OD por Par OD. Por 
 
 ## Ideia de próximos passos
 
-### O que corrigir
+### O que corrigir (e o que deve ser deprecado no repositório)
 
-1. **Tabela TomTom**: Rodar a API da TomTom 3-5 dias úteis no horário de pico (ex: 7h ou 18h), ou pegar Traffic Stats (mais defensável em artigo do que "seis chamadas que fizemos numa terça") para capturar o trânsito real médio, e não ruas vazias. O api-caller.py precisa retornar sucesso para o máximo de coordenadas possíveis nos horários de pico.
-2. **Tabela Ks**: Filtrar o Speeds.csv corretamente (descartando limites de vias marginais locais, Pegar Vmax do próprio OSMnx) para usar a velocidade real de projeto da rodovia, como o novo script já começou a fazer. O cruzamento entre os trechos e o Speeds.csv precisa ser bem feito para que uma via não fique sem limite de velocidade (e consequentemente sem K) apenas por uma diferença sutil na nomenclatura do DER.
-3. **Grafo definitivo**: Refazer o grafo que vamos usar, considerando todos os dados a serem obtidos (listados abaixo). A rede "perfeita" no final será composta pelas arestas que possuem o K e a contagem do Flow.csv (que, como a análise mostrou, tem forte presença no núcleo de rodovias duplicadas), e todos os outros dados necessários. Vamos tentar obter os dados para o maior número de arestas possível.
-
-   Também temos que tentar, em vez de só usar rodovias, pegar uma região menor do DF (tipo ligação Águas Claras, Taguatinga e EPTG, ou outra, decida pelos Ks), tipo com 30 nós ou um pouco mais. Essa sugestão é pq o wardrop é demorado e por causa das limitações que surgem se modelarmos só com rodovias (pontuado no último trecho do documento, tópico 2.)
-
-   - organizer.py, que vocês mesmos descrevem como quebrado, deveria ser apagado ou marcado como deprecated no repo.
-4. **DETRAN Flow.csv** — granularidade boa (15 min), mas só cobre rodovias, e é de abril/2026 — cinco meses antes da coleta TomTom que vocês vão fazer agora. Isso é uma discrepância temporal que precisa ser justificada (sazonalidade escolar, obras, etc.) ou, se possível, atualizada.
-5. Reescrever a questão de pesquisa pra ela se adequar no que temos:
-
-   > Mas a "grande tese" descrita no fim do plano_futuro.txt é justamente o oposto disso como proposição central: mostrar que melhorar o K de uma via isolada pode piorar o Tempo Total de Viagem do sistema (efeito Braess/propagação) — ou seja, o ponto do trabalho é a tensão entre métrica local e métrica sistêmica, não a métrica local isolada.
+1. **Scripts e Tabelas Obsoletas**: O script `organizer.py` possui falhas matemáticas e conceituais (como calcular regressão para uma via isolada ignorando efeito de rede) e gera o arquivo `K_Table.csv` usando direções invertidas de SPI e velocidades limitadas por marginais. **Ação imediata:** Apagar ou marcar `organizer.py` e `K_Table.csv` como `deprecated` no repositório para evitar uso acidental no futuro.
+2. **Definição da Região de Estudo**: Em vez de usar a malha inteira do DF com buracos de dados, selecionar um polígono reduzido (ex: ligação Águas Claras, Taguatinga e EPTG, com ~30 nós). Isso viabiliza o algoritmo de Wardrop (que tem alta complexidade temporal) e garante que o grafo operará apenas com vias bem documentadas.
+Também temos que tentar, em vez de só usar rodovias, pegar uma região menor do DF. Essa sugestão é pq o wardrop é demorado e por causa das limitações que surgem se modelarmos só com rodovias (pontuado no último trecho do documento, tópico 2.)
+3. **Consistência do Método**: Como os passos de coleta de dados foram reestruturados nas seções acima (usando OSMnx, TomTom com múltiplas chamadas e matriz OD sintética pelas bordas), o foco passa a ser construir a simulação com a certeza de que a matriz OD é viável e de que a fórmula do coeficiente $K$ ($V_{max}/V_{med}$) é constante em toda a pesquisa.
 
 ### Quais dados coletar (e de onde coletar)
 
 Para que o modelo rode perfeitamente, você precisará construir um "dicionário de atributos" para cada via (aresta) e calibrar a rede.
 
-**1. Dados Topológicos e Físicos (Fonte: OSMnx)**
+**1. Dados Topológicos e Físicos (Fontes: OSMnx e DER-DF)**
 
-Quando você baixa o grafo viário, cada aresta já deve conter ou derivar os seguintes atributos:
+Para a topologia definitiva do grafo, usaremos o **OSMnx** como, garantindo maior rigor. Após extrair a malha de interesse via OSMnx, faremos um **join espacial (nearest-edge matching)** para injetar as informações do DER-DF nas arestas do OpenStreetMap correspondentes.
 
-- Comprimento ($L$): O tamanho físico do segmento (atributo `length`).
-- Velocidade de Fluxo Livre ($V_0$): O limite de velocidade da via (atributo `maxspeed`).
-- Tempo de Fluxo Livre ($t_0$): O custo básico da aresta sem trânsito. Calculado dividindo $L$ por $V_0$. Este é o $t_0$ da equação BPR.
-- Tipo de Via (`highway`): A classificação hierárquica (ex: motorway, primary, residential).
+Os atributos de cada aresta devem incluir:
+- Comprimento ($L$): O tamanho físico do segmento (atributo `length` do OSMnx).
+- Velocidade de Fluxo Livre ($V_0$): O limite de velocidade da via. Será priorizado o atributo `maxspeed` do OSMnx, já que a base `Speeds.csv` do DER-DF fornece a velocidade no radar (incluindo marginais lentas a 40 km/h), o que distorceria o K para baixo indevidamente.
+- Tempo de Fluxo Livre ($t_0$): Custo básico da aresta sem trânsito ($L / V_0$).
+- Tipo de Via (`highway`): Classificação hierárquica (ex: motorway, primary, residential).
 - Número de Faixas (`lanes`): Quantas pistas a rua tem.
-- Heurística de limpeza: O OSM frequentemente não tem o atributo `lanes` para vias menores. Você precisará de uma regra no código: se for primary e NaN, assuma 2; se for residential, assuma 1.
+- Heurística de limpeza: O OSM frequentemente não tem o atributo `lanes` para vias menores. Você precisará de uma regra (ex: se `primary` e NaN, assuma 2; se `residential`, assuma 1). **Auditoria obrigatória:** verificar qual a cobertura real do OSM no DF antes de aplicar a regra e relatar essa dependência no artigo como uma limitação quantificada.
 
-**2. Dados de Capacidade Teórica (Fonte: Heurística baseada no Highway Capacity Manual - HCM)**
+*Nota de Proveniência para Artigo:* A origem de `Roads.csv` e `Speeds.csv` deve ser formalizada no artigo com agência, nome do dataset, link de acesso e licença, tal qual feito com o Flow.csv.
 
-Você não "coleta" a capacidade na rua, você a calcula. A fórmula é:
+**2. Dados de Capacidade Teórica (Fonte: Manual de Capacidade do DNIT)**
 
-Capacidade Total ($c$) = Número de Faixas $\times$ Capacidade por Faixa.
-
-No código, crie um dicionário mapeando o atributo highway para a capacidade por faixa:
-
-- Vias Expressas (motorway, trunk): ~1.800 a 2.000 veículos/hora/faixa.
-- Arteriais Principais (primary): ~1.000 a 1.200 veículos/hora/faixa.
-- Arteriais Secundárias e Coletoras (secondary, tertiary): ~800 a 900 veículos/hora/faixa.
-- Vias Locais (residential): ~500 a 600 veículos/hora/faixa.
-
-Justificativa para o artigo: Em modelos de macro-escala, essa aproximação determinística é o padrão ouro para não depender de micro-simulações de semáforos.
+A capacidade deve ser calculada: Capacidade Total ($c$) = Número de Faixas $\times$ Capacidade por Faixa.
+Em vez do manual americano, usaremos valores típicos da literatura brasileira (Manuais do DNIT ou extinto GEIPOT) para as faixas:
+- Vias Expressas: ~1.800 a 2.000 veículos/hora/faixa.
+- Arteriais Principais: ~1.000 a 1.200 veículos/hora/faixa.
+- Secundárias e Locais: ~500 a 900 veículos/hora/faixa.
 
 **3. Dados de Velocidade Real (Fonte: API da TomTom)**
 
-- Velocidade Média Empírica ($V_{med}$): Velocidade real registrada por GPS no horário de pico para as vias da sua região.
-- $K$ Inicial (SPI): Coeficiente calculado pela fórmula $K = V_{med} / V_0$. Ele será usado no Passo 1 como mapa de calor para achar os doentes (gargalos).
+- Velocidade Média Empírica ($V_{med}$): Velocidade real por GPS no horário de pico.
+- **Correção da Coleta:** A coleta no feriado de 7/9 mediu ruas vazias. Faremos um polling repetido em **3 a 5 dias úteis no horário de pico**, usando a mediana/IC das leituras, ou, alternativamente, usaremos o produto **Traffic Stats** da TomTom, caso o grupo tenha acesso, para obter o histórico médio daquele horário.
+- Tratamento explícito de compartilhamento: A metodologia descreverá a métrica de `tomtom_compartilhado` explicitamente (segmentos longos no zoom 10 cobrindo múltiplos trechos DER) como limitação da agregação, não sendo apenas uma flag no CSV.
+- $K$ Inicial: Índice de desempenho calculado pela fórmula **$K = V_{med} / V_0$** ($V_{med}/V_{max}$). Ele será usado no Passo 1 como mapa de calor para achar os doentes (gargalos onde o K é criticamente baixo).
 
-**4. Volumes de Tráfego Empíricos (Fonte: Flow.csv)**
+**4. Volumes de Tráfego Empíricos e o Desafio da Matriz OD**
 
-É necessário para cada aresta? Não. Como você usará alocação de Wardrop, o volume interno das ruas será gerado pelo algoritmo. Além disso, temos dados bem granulares (15 min de intervalo), mas somente para rodovias.
+As bases `Flow.csv` e `Roads.csv` contemplam exclusivamente as rodovias distritais/federais. Ao reduzir o grafo para uma sub-região (ex. Águas Claras - Taguatinga - EPTG), muitos nós de **borda** (entradas e saídas de bairro) serão vias arteriais, coletoras ou locais, nas quais não existem radares do DETRAN e, logo, não terão dados nessas planilhas.
+Como o Wardrop precisa de fluxo OD entrando/saindo por esses nós de borda, adotaremos ou combinaremos as seguintes abordagens rigorosas para estimativa e obtenção de dados:
 
-Para que serve então? Você precisa coletar a contagem de veículos apenas nas principais vias de entrada e saída (as "Fontes" e "Drenos" nas bordas do seu mapa) da sua região de estudo. Isso balizará o total de carros da Matriz OD. Note que as entradas e saídas devem ser rodovias!!!!! (eu acho)
+- **Solução 1: Restrição Topológica.** Selecionaremos intencionalmente a sub-região de modo que todas as suas fronteiras coincidam com os postos de radar em rodovias do DETRAN (ex: fechando o polígono na EPTG e EPVP). A limitação a ser assumida é a perda de fluxos residuais de ruas locais marginais.
+- **Solução 2: Estimativa Baseada no Plano Diretor de Transporte Urbano (PDTU/DF).** Essa é uma alternativa cientificamente rigorosa de estimativa de demanda. O PDTU-DF contém a matriz OD macroscópica oficial baseada em pesquisas domiciliares e dados de mobilidade celular. Podemos extrair a sub-matriz específica para as Zonas de Tráfego (ZTs) da nossa região de estudo e associá-las aos nós de borda, servindo de fundação validada empiricamente para o nosso modelo gravitacional ou substituição direta.
+- **Solução 3: Aquisição de Dados Reais de Terceiros (Contagens O/D).** Para obter os fluxos reais nas ruas menores e vias locais que faltam no DER, existem fontes alternativas empiricamente rigorosas e citáveis:
+  - *TomTom O/D Analysis & Junction Analytics:* Como o grupo já utiliza a API da TomTom, pode-se solicitar acesso de pesquisa ao portal *TomTom Move*. Ele fornece matrizes OD e *probe counts* baseados em bilhões de trilhas de GPS e celulares, abrangendo ruas de qualquer hierarquia, não apenas rodovias.
+  - *StreetLight Data / Google Maps Mobility:* Plataformas especializadas em métricas de trânsito baseadas em LBS (Location-Based Services), que extraem matrizes OD em microescala (vias de bairro).
+  - *Waze for Cities Data:* Programa parceiro gratuito para órgãos de trânsito e universidades que expõe volumes de veículos e relatórios de fluxo em vias locais.
+
+No artigo, formalizaremos que: *"Devido à cobertura das contagens de radar concentrar-se nas rodovias, adotou-se uma Matriz OD sintética, calibrada rigorosamente via dados macroscópicos (PDTU) ou dados empíricos de LBS (Location-Based Services) para suprir as demandas das vias coletoras de borda."*
 
 ### O que evoluir (lista de afazeres + ideia do fluxo completo do projeto)
 
@@ -171,7 +174,7 @@ Aqui está o encadeamento de como as entradas se transformam em saídas até res
 **Passo 1: Escolha da Região de Estudo baseada no $K$ (Diagnóstico Macro)**
 
 - Input: Dados brutos da TomTom e limites de velocidade gerais do DF.
-- Ação: Antes de baixar o grafo final, faça uma análise macro e calcule o $K$ empírico de grandes corredores. Localize uma mancha onde o $K$ é criticamente alto (muito engarrafamento).
+- Ação: Antes de baixar o grafo final, faça uma análise macro e calcule o $K$ empírico de grandes corredores. Localize uma mancha onde o $K$ é criticamente baixo (muito engarrafamento).
 - Output: Definição de um polígono contendo de 10 a 30 interseções ao redor desse gargalo (ex: a transição entre EPTG e a entrada de Águas Claras).
 
 **Passo 2: Construção da Rede e Preparação (O "Mundo Real")**
@@ -182,14 +185,12 @@ Aqui está o encadeamento de como as entradas se transformam em saídas até res
 
 **Passo 3: Geração da Matriz Origem-Destino Sintética (Fontes e Drenos)**
 
-Conceito: O algoritmo não sabe para onde os carros querem ir. Você precisa dizer a ele. Para isso, você escolhe nós nas bordas do seu grafo para servirem de "Fontes" e "Drenos".
+Conceito: O algoritmo não sabe para onde os carros querem ir. Você precisa dizer a ele. Para isso, você escolhe nós nas bordas da sua sub-rede para servirem de "Fontes" e "Drenos".
 
-- Fonte (Source): Um nó onde os veículos "nascem" e entram na simulação (ex: o primeiro nó da EPTG vindo do Plano Piloto).
-- Dreno (Sink): Um nó onde os veículos "morrem" e saem da simulação (ex: os nós que entram para os residenciais de Águas Claras).
+- Fonte (Source): Um nó de borda onde os veículos entram na simulação.
+- Dreno (Sink): Um nó de borda onde os veículos saem da simulação.
 
-> OBS: fontes e drenos devem ter dados sobre fluxo/escoamento/entrada!!! (Flow.csv)
-
-- Ação: Usando as contagens do DETRAN da Parte 1, você estipula a Matriz OD. Exemplo: "Injetar 4.000 carros saindo da Fonte A com destino ao Dreno B".
+- Ação: Usando as soluções estipuladas na seção anterior (Contagens diretas, proxy de TMD ou modelo gravitacional), você define a Matriz OD. Exemplo: "Injetar 4.000 carros saindo do nó da EPTG (Fonte A) com destino ao nó de entrada de Águas Claras (Dreno B)".
 - Output: A matriz matemática de demanda na qual faremos mudanças topológicas que alimentarão o simulador.
 
 **Passo 4: Simulação da Linha de Base (Wardrop + VDF)**
@@ -202,7 +203,7 @@ Conceito: O algoritmo não sabe para onde os carros querem ir. Você precisa diz
 **Passo 5: Intervenção Estrutural (Otimização Topológica)**
 
 - Input: A lista de vias com $K$ ruim mapeadas no Passo 1.
-- Ação: Você atua como o planejador urbano. Crie cópias do seu grafo e faça alterações manuais.
+- Ação: Você atua como o planejador urbano. Crie cópias do seu grafo e faça alterações manuais (podendo no futuro serem automatizadas por NSGA-II).
   - Cenário A: Adicionar 1 faixa numa via secundária (você vai no código e aumenta o atributo $c$ dela).
   - Cenário B: Alterar o sentido de uma rua (você inverte a direção da aresta no NetworkX).
 - Output: Uma bateria de 15 a 30 grafos com infraestruturas diferentes. Você repete o Passo 4 (Frank-Wolfe) para cada um deles e anota o novo Tempo Total de Viagem de cada cenário.
@@ -210,12 +211,12 @@ Conceito: O algoritmo não sabe para onde os carros querem ir. Você precisa diz
 **Passo 6: Avaliação e Resposta às Perguntas de Pesquisa**
 
 - Input: O volume ($v$) e o tempo ($t$) gerados pelos cenários do Passo 5.
-- Ação: Com o novo tempo $t$ estabilizado na Função BPR, você sabe o novo tempo de viagem da via intervencionada. Dividindo o comprimento $L$ pelo tempo $t$, você obtém a nova Velocidade Média teórica.
-- Output final (Recalculando os Ks): Você calcula o novo $K$ teórico da via alterada e das vias vizinhas.
+- Ação: Com o novo tempo $t$ estabilizado na Função BPR, você sabe o novo tempo de viagem da via. Dividindo o comprimento $L$ pelo tempo $t$, você obtém a nova Velocidade Média teórica.
+- Output final (Recalculando os Ks): Você calcula o novo índice de desempenho de velocidade ($K = V_{med}/V_{max}$) da via alterada e das vias vizinhas.
 
 **Observação final (a grande tese do trabalho)**
 
-O papel do $K$ é servir como sua bússola clínica. Você usa o $K$ empírico no começo para escolher a área e escolher onde aplicar a mudança. Após simular o Wardrop com a intervenção, você recalcula todos os $K$s teóricos da rede baseados no tempo da VDF e no tamanho da rua. A conclusão majestosa é provar que, em alguns cenários, a sua intervenção até melhorou o $K$ da rua específica, mas gerou um Paradoxo de Braess ou efeito de propagação que piorou o Tempo Total de Viagem da rede inteira. Isso responde perfeitamente à sua hipótese de que métricas locais não podem ditar o planejamento urbano desvinculadas da rede.
+O papel do $K$ é servir como sua bússola clínica. Você usa o $K$ empírico inicial para mapear a área e escolher onde aplicar a intervenção. Após simular o equilíbrio de Wardrop com a intervenção, você recalcula todos os $K$s teóricos da rede. A conclusão central é provar ou investigar que, em certos cenários, aumentar o $K$ (fluidez) de uma rua específica pode deflagrar um Paradoxo de Braess ou efeito de propagação, piorando o Tempo Total de Viagem (TSTT) da malha sistêmica, evidenciando que intervenções viárias pautadas apenas por métricas locais falham se não considerarem o efeito em rede.
 
 **Validação do algoritmo**
 
