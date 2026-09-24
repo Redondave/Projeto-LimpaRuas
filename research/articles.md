@@ -109,3 +109,23 @@
 - **Nome:** SUMO — Documentação do Eclipse SUMO [GitHub]
 - **Link:** [clique aqui](https://github.com/eclipse-sumo/sumo/blob/main/docs/web/docs/Networks/Import/OpenStreetMap.md)
 - **Notas:** osmWebWizard.py constrói cenário completo a partir do OSM rapidamente, mas a maioria dos métodos de importação gera deficiências de qualidade da rede (congestionamentos irreais e erros de teleporte de veículos).
+
+---
+
+## Sobre centralidade de intermediação na malha viária urbana:
+
+- **Nome:** Caracterização e Análise da Malha Viária Urbana de Santarém/PA Utilizando Medida de Centralidade por Intermediação em Teoria dos Grafos [Reis & Almeida]
+- **Link:** Não especificado no abstract
+- **Notas:** utiliza teoria dos grafos (via linguagem R) para modelar cruzamentos como vértices e vias como arestas. Demonstra como a medida de centralidade de intermediação ajuda a identificar vias cruciais para o fluxo e gargalos de mobilidade em cenários de expansão urbana desordenada.
+
+## Sobre planejamento dinâmico de rotas e paralelismo:
+
+- **Nome:** Uma Arquitetura para Planejamento de Rotas Veiculares em Cidades Inteligentes [Ferreira (2019)]
+- **Link:** Não especificado no abstract
+- **Notas:** propõe um Sistema Inteligente de Transporte (SIT) baseado em redes veiculares (VANETs) para roteamento colaborativo. O grande destaque é o uso de processamento paralelo em GPU para acelerar o cálculo de rotas ótimas e sub-ótimas em tempo real.
+
+## Sobre modelagem de grafos com dados georreferenciados:
+
+- **Nome:** Modelagem de Malhas Viárias Urbanas Aplicando Conceitos de Grafos [Santos (2006)]
+- **Link:** Não especificado no abstract
+- **Notas:** estuda a representação computacional de vias urbanas (estudo de caso em Dourados-MS) unindo dados geográficos e grafos. Excelente referência para validar as metodologias de conversão de dados espaciais do mundo real para modelos topológicos e testar algoritmos de caminho mínimo.
