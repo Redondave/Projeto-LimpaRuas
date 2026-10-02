@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d6" for="node" attr.name="street_count" attr.type="string"/>
+  <key id="d5" for="node" attr.name="x" attr.type="string"/>
+  <key id="d4" for="node" attr.name="y" attr.type="string"/>
+  <key id="d3" for="graph" attr.name="simplified" attr.type="string"/>
+  <key id="d2" for="graph" attr.name="crs" attr.type="string"/>
+  <key id="d1" for="graph" attr.name="created_with" attr.type="string"/>
+  <key id="d0" for="graph" attr.name="created_date" attr.type="string"/>
+  <graph edgedefault="directed">
+    <data key="d0">2026-10-01 08:31:56</data>
+    <data key="d1">OSMnx 2.1.1</data>
+    <data key="d2">EPSG:31983</data>
+    <data key="d3">True</data>
+
+    <!-- Nós da região mais densa -->
+    <node id="370530380"><data key="d4">8226565.535711349</data><data key="d5">172442.87900844408</data><data key="d6">3</data></node>
+    <node id="370530545"><data key="d4">8226562.425480327</data><data key="d5">172493.35343581322</data><data key="d6">3</data></node>
+    <node id="1704908292"><data key="d4">8226447.167866654</data><data key="d5">172452.9606438228</data><data key="d6">3</data></node>
+    <node id="370530381"><data key="d4">8226629.089076172</data><data key="d5">172434.0454135306</data><data key="d6">3</data></node>
+    <node id="370530383"><data key="d4">8226720.796023027</data><data key="d5">172436.13140353048</data><data key="d6">3</data></node>
+    <node id="2450715447"><data key="d4">8226687.765926538</data><data key="d5">172340.96781675017</data><data key="d6">3</data></node>
+    <node id="370530544"><data key="d4">8226636.22328985</data><data key="d5">172510.65991440817</data><data key="d6">3</data></node>
+    <node id="371015019"><data key="d4">8226713.928294427</data><data key="d5">172512.7384866248</data><data key="d6">3</data></node>
+    <node id="1703241389"><data key="d4">8226645.317330129</data><data key="d5">172787.8457764382</data><data key="d6">3</data></node>
+    <node id="370530547"><data key="d4">8226439.7944417</data><data key="d5">172466.00059026055</data><data key="d6">3</data></node>
+    <node id="1704908231"><data key="d4">8226475.171472339</data><data key="d5">172473.23516737553</data><data key="d6">3</data></node>
+    <node id="1704908568"><data key="d4">8226309.846079156</data><data key="d5">172555.35004450346</data><data key="d6">4</data></node>
+    <node id="370530550"><data key="d4">8226090.885681541</data><data key="d5">172470.1421583091</data><data key="d6">3</data></node>
+    <node id="2450715529"><data key="d4">8226287.5098283645</data><data key="d5">172461.20893731713</data><data key="d6">3</data></node>
+    <node id="370530626"><data key="d4">8226018.851788506</data><data key="d5">173081.82705690974</data><data key="d6">3</data></node>
+    <node id="1703531649"><data key="d4">8226016.474695182</data><data key="d5">173111.46262834634</data><data key="d6">3</data></node>
+    <node id="1377092073"><data key="d4">8225890.486195456</data><data key="d5">172845.6826614816</data><data key="d6">3</data></node>
+    <node id="370530673"><data key="d4">8226062.493543131</data><data key="d5">173095.92556777922</data><data key="d6">3</data></node>
+    <node id="372315203"><data key="d4">8226043.000755239</data><data key="d5">173096.8983414066</data><data key="d6">3</data></node>
+    <node id="370530674"><data key="d4">8226231.887816103</data><data key="d5">172859.86966347467</data><data key="d6">3</data></node>
+    <node id="1333703331"><data key="d4">8226158.9903130215</data><data key="d5">172978.79020565934</data><data key="d6">4</data></node>
+    <node id="371015123"><data key="d4">8226264.822050428</data><data key="d5">172829.90114118444</data><data key="d6">3</data></node>
+    <node id="371015008"><data key="d4">8226704.174720766</data><data key="d5">172840.70677821932</data><data key="d6">3</data></node>
+    <node id="371015010"><data key="d4">8226703.833791502</data><data key="d5">172807.79977193614</data><data key="d6">3</data></node>
+    <node id="7283957141"><data key="d4">8226741.916238083</data><data key="d5">172818.23067107383</data><data key="d6">3</data></node>
+    <node id="371015012"><data key="d4">8226894.465343066</data><data key="d5">172794.19104865758</data><data key="d6">3</data></node>
+    <node id="371015126"><data key="d4">8226281.620871864</data><data key="d5">172822.01490855182</data><data key="d6">3</data></node>
+    <node id="1703531578"><data key="d4">8226282.002018525</data><data key="d5">172790.0085117399</data><data key="d6">3</data></node>
+    <node id="371015128"><data key="d4">8226333.686031782</data><data key="d5">172807.85574481223</data><data key="d6">3</data></node>
+    <node id="581270283"><data key="d4">8226392.468082983</data><data key="d5">172810.50327911385</data><data key="d6">3</data></node>
+
+    <!-- Arestas conectando a sub-rede densa -->
+    <edge source="370530380" target="370530545"/>
+    <edge source="370530545" target="370530380"/>
+    <edge source="370530380" target="1704908292"/>
+    <edge source="1704908292" target="370530547"/>
+    <edge source="370530547" target="1704908231"/>
+    <edge source="370530380" target="370530381"/>
+    <edge source="370530381" target="370530383"/>
+    <edge source="370530381" target="2450715447"/>
+    <edge source="370530545" target="370530544"/>
+    <edge source="370530544" target="371015019"/>
+    <edge source="371015019" target="370530383"/>
+    <edge source="370530544" target="1703241389"/>
+    <edge source="1703241389" target="371015010"/>
+    <edge source="371015010" target="371015008"/>
+    <edge source="371015008" target="7283957141"/>
+    <edge source="1704908292" target="2450715529"/>
+    <edge source="2450715529" target="1704908568"/>
+    <edge source="1704908568" target="370530550"/>
+    <edge source="1704908568" target="371015123"/>
+    <edge source="371015123" target="371015126"/>
+    <edge source="371015126" target="1703531578"/>
+    <edge source="1703531578" target="371015128"/>
+    <edge source="371015128" target="581270283"/>
+    <edge source="371015123" target="370530674"/>
+    <edge source="370530674" target="1333703331"/>
+    <edge source="1333703331" target="370530673"/>
+    <edge source="370530673" target="370530626"/>
+    <edge source="370530626" target="1703531649"/>
+    <edge source="370530673" target="372315203"/>
+    <edge source="1333703331" target="1377092073"/>
+  </graph>
+</graphml>

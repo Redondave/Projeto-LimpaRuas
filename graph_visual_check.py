@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 workspace = Path(r'd:\Usuario\Área de trabalho\Estudo\2026.2\CE\Projeto-LimpaRuas')
-file_path = workspace / 'cache' / 'gama_drive_projected.graphml'
+file_path = workspace / 'cache' / 'gama_drive_reduced.graphml'
 out_path = workspace / 'graph_visualization.png'
 
 print(f'Input file: {file_path}')
