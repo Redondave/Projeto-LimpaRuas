@@ -8,8 +8,8 @@ import shapely
 import osmnx as ox
 from shapely import is_valid, make_valid
 
-GRAPH_PATH = Path("cache/gama_drive_projected.graphml")
-LAYERS_PATH = Path("cache/gama_drive_projected.gpkg")
+GRAPH_PATH = Path("/cache/gama_drive_projected.graphml")
+LAYERS_PATH = Path("/cache/gama_drive_projected.gpkg")
 
 
 def with_unique_edge_keys(graph):
@@ -25,7 +25,7 @@ def with_unique_edge_keys(graph):
     return normalized
 
 # 1. Carrega o limite oficial da RA Gama (disponível no Geoportal do DF)
-geojson_data = json.load(open("cache/limite_gama.geojson"))
+geojson_data = json.load(open("/cache/limite_gama.geojson"))
 geom = shapely.geometry.shape(geojson_data["geometry"])
 
 if not is_valid(geom):

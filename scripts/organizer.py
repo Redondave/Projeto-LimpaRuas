@@ -1,0 +1,231 @@
+import csv
+import os
+from pathlib import Path
+
+# dicionario para traduzir o código da rodovia para o seu local (início - fim)
+road_translation = {}
+
+# dicionario para as velocidades
+speeds = {}
+
+# flag para sair do programa
+quit_requested = 0
+
+# função para limpar a tela
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+# define a flag de sair do programa
+def quit():
+    global quit_requested
+    quit_requested = 1
+    return 
+
+# preenche a tabela de mapeamento do código da rodovia para o local, e a tabela de velocidades
+def populate():
+    global road_translation
+    with open("Tables/Roads.csv", encoding='utf-8-sig') as map:
+        reader = csv.DictReader(map)
+        for line in reader:
+            road_translation[line['CÓDIGO-DO-TRECHO']] = f"{line['TRECHO-INÍCIO']} até {line['TRECHO-FINAL']}"
+
+    global speeds
+    with open("Tables/Speeds.csv", encoding='utf-8-sig') as speed:
+        reader = csv.DictReader(speed)
+        for line in reader:
+            if line['RODOVIA'] not in speeds:
+                speeds[line['RODOVIA']] = []
+            speeds[line['RODOVIA']].append((line['SENTIDO'], line['VELOCIDADE']))
+    
+
+def parser(file, cat):
+    # Abrir o .csv e filtrar por nome da rodovia o total de veículos dentro dos dias de dada semana
+    # formatar como um dicionário de valores e retornar para a função 'assemble'
+    result = {}
+    with open(file, encoding='utf-8-sig') as info:
+        reader = csv.DictReader(info)
+        for line in reader:
+            # pega apenas os dados relevantes para a pesquisa (moto, onibus, total...)
+            if (line['porte'].lower() == cat.lower()):
+                if line['trecho'] not in result:
+                    result[line['trecho']] = []
+                result[line['trecho']].append(int(line['fluxo']))
+    return result
+
+
+def assemble(dict):
+    # TODO - pegar o dicionário gerado e imprimir informações mais relevantes (máx, min e média...), e retornar um .csv agregado
+    totals = {}
+    global road_translation
+    for r in dict:
+        totals[r] = 0
+        for qtd in dict[r]:
+            totals[r] += qtd
+            
+    totals_sorted = sorted(totals.items(), key = lambda item : item[1], reverse = True)
+    return totals_sorted
+
+def calculate(road):
+    # TODO - Calcular a Vmédia e o N para as rodovias de interesse a partir dos dados agregados de 'parser' ou 'assemble' 
+    # e das informações das rodovias do DETRAN
+    clear_screen()
+    global road_translation
+    global speeds
+    print(f"Analisando rodovia: {road} : {road_translation[road]}\n")
+
+    # captura a opção desejada e valida o input
+    option = int(input("Selecione operação desejada:\n1-Ver informações gerais\n2-Calcular N\n3-Voltar\n"))
+    if option not in range(1,4):
+        input("Opção inválida!")
+        calculate(road)
+
+    if option == 1:
+
+        # imprime todas as informações da rodovia
+        with open("Tables/Roads.csv", encoding='utf-8-sig') as file:
+            reader = csv.DictReader(file)
+            found = 0
+            headers = next(reader)
+            for line in reader:
+                if line['CÓDIGO-DO-TRECHO'] == road:
+                    for col in headers:
+                        print(f"{col} : {line[col]}")
+                    found = 1
+                    break
+
+            if not found:
+                print("Rodovia não localizada!")
+        print("\nVelocidades permitidas: ")
+        for v in speeds:
+            if v in road_translation[road]:
+                for s in speeds[v]:
+                    print(f"\t-{s[0]} : {s[1]}")
+                print()
+        
+    elif option == 2:
+        # TODO - precisa desenvolver função de cálculo do N
+        values = []
+        for v in speeds:
+            if v in road_translation[road]:
+                for s in speeds[v]:
+                    kilometers = s[1].split(" ")[0]
+                    values.append(float(kilometers))
+        avg_speed = sum(values)/len(values)
+        
+        with open("Tables/tomtom_flow_consolidado.csv", encoding='utf-8-sig') as file:
+            reader = csv.DictReader(file)
+            for line in reader:
+                if line['CÓDIGO-DO-TRECHO'] == road:
+                    cur_speed = float(line['tomtom_currentSpeed'])
+                    print(f"Velocidade atual: {cur_speed}; Velocidade máxima ponderada: {avg_speed} K aproximado: {cur_speed/avg_speed}")
+
+    else:
+        interface()
+
+    return
+
+def create_k_table():
+    # TODO - Criar uma tabela de velocidades máximas por rodovia, e salvar em .csv
+    k_table = {}
+
+    with open("Tables/tomtom_flow_consolidado.csv", 'r', encoding='utf-8-sig') as observed_speed:
+        observed_reader = csv.DictReader(observed_speed)
+
+        for line in observed_reader:
+            road = line['TRECHO-INÍCIO'] + line['TRECHO-FINAL']
+
+            if line['tomtom_currentSpeed'] != "":
+                for v in speeds:
+                    if v in road:
+                        sum = 0
+                        for s in speeds[v]:
+
+                            kilometers = s[1].split(" ")[0]
+                            sum += float(kilometers)
+
+                        k_table[line['CÓDIGO-DO-TRECHO']] = float(line['tomtom_currentSpeed']) / (sum / len(speeds[v]))
+
+    sorted_k_table = sorted(k_table.items(), key=lambda item: item[1], reverse=True)
+    with open("Tables/K_Table.csv", 'w', newline='', encoding='utf-8-sig') as k_result:
+            fieldnames = ['RODOVIA', 'SENTIDO', 'VALOR DO K']
+            writer = csv.DictWriter(k_result, fieldnames=fieldnames)
+            writer.writeheader()
+            for item in sorted_k_table:
+                writer.writerow({'RODOVIA': item[0], 'SENTIDO': road_translation[item[0]] if item[0] in road_translation else "Rodovia não identificada", 'VALOR DO K': item[1]})
+    return
+
+def visualize_speeds():
+    # TODO - Visualizar as velocidades permitidas para cada rodovia
+    clear_screen()
+    print("Velocidades permitidas por rodovia:\n")
+    for road in speeds:
+        print(f"Rodovia: {road} :")
+        for s in speeds[road]:
+            print(f"\t-{s[0]} : {s[1]}")
+        print()
+    return
+
+def interface():
+    global road_translation
+    clear_screen()
+
+    # captura a operação desejada pelo usuário e checa validade do input
+    option = int(input("Informe a operação desejada:\n1-Visualizar dados viários\n2-Ver mapa de códigos e nomes de rodovias\n3-Operações sobre uma rodovia\n4-Ver mapeamento das velocidades\n5-Mapear valores de K\n6-Sair\n"))
+
+    if option == 1:
+        category = -1
+        while category not in range(1, 6):
+            clear_screen()
+            # captura a categoria de veículos desejada e checa validade
+            category = int(input("Informe a categoria de veículos:\n1-Moto\n2-Carro\n3-Onibus\n4-Total\n5-Voltar\n"))
+            if category == 5:
+                interface()
+            cat_type = "moto" if category == 1 else "carro" if category == 2 else "onibus" if category == 3 else "total" if category == 4 else -1
+    
+        print("Analisando a base de dados...")
+
+        # extrai apenas os dados relevantes para a categoria, e devolve um dicionário ordenado e traduzido
+        roads_dict = parser("Tables/Flow.csv", cat_type)
+        totals_sorted = assemble(roads_dict)
+
+        print("Total por rodovias: ")
+        for x in totals_sorted:
+            print(f"Total: {x[1]}, Rua: {road_translation[x[0]] if x[0] in road_translation else "Rodovia não identificada"}")
+    
+    elif option == 2:
+        # apenas imprime a tabela de mapeamento das rodovias e seus nomes
+        for code in road_translation:
+            print(f"Código: {code}, Nome: {road_translation[code]}")
+    
+    elif option == 3:
+        # chama a função de cálculo para uma das rodovias
+        road = input("Digite o código da rodovia no formato (XXXAAAXXXX):\n")
+        calculate(road)
+
+    elif option == 4:
+        # chama a função de visualização das velocidades permitidas
+        visualize_speeds()
+
+    elif option == 5:
+        # chama a função de mapeamento dos valores de K
+        create_k_table()
+
+    elif option == 6:
+        quit()
+        return
+
+    else:
+        print("Opção inválida! Tente uma das disponíveis")
+    input("Pressione [ENTER] para continuar")
+
+def main():
+    # popula a tabela de mapeamento e chama a interação com o usuário até o 'quit'
+    print("Carregando dados...")
+    populate()
+
+    while not quit_requested:
+        interface()
+
+    return
+
+main()
