@@ -4,7 +4,7 @@ on:
   schedule:
     # 21:00 UTC = 18:00 no Horario de Brasilia (UTC-3)
     # Executa de Segunda a Sexta (1-5)
-    - cron: '0 21 * * 1-5'
+    - cron: '*/15 21 * * 1-5'
   workflow_dispatch: # Permite disparar o script manualmente para testes pela aba Actions
 
 jobs:
