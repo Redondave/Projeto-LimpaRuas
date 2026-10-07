@@ -9,6 +9,7 @@ import json
 import os
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -16,8 +17,8 @@ import geopandas as gpd
 import requests
 
 # Define os paths e parâmetros de configuração
-INPUT_GEOPACKAGE = Path("../cache/gama_drive_reduced.gpkg")
-OUTPUT_GEOPACKAGE = Path("../cache/gama_drive_reduced_tomtom.gpkg")
+INPUT_GEOPACKAGE = Path("cache/gama_drive_reduced.gpkg")
+OUTPUT_GEOPACKAGE = Path("cache/gama_drive_reduced_tomtom.gpkg")
 INPUT_LAYER = "edges"
 
 ZOOM = 10
@@ -28,7 +29,7 @@ BASE_URL = (
 REQS_PER_SECOND = 4
 REQUEST_INTERVAL = 1.0 / REQS_PER_SECOND
 MAX_ATTEMPTS = 4
-CHECKPOINT = Path("../cache/tomtom_flow_results.jsonl")
+HISTORY_FILE = Path("cache/tomtom_flow_history.jsonl")
 
 # Colunas para mapeamento no json retornado pela API da TomTom
 TOMTOM_COLUMNS = {
@@ -48,19 +49,19 @@ def edge_id(row: Any) -> str:
 
 
 # Carrega os resultados previamente salvos em checkpoint, se existirem, para evitar chamadas repetidas à API.
-def load_checkpoint(path: Path) -> dict[str, dict[str, Any]]:
-    results: dict[str, dict[str, Any]] = {}
-    if not path.exists():
-        return results
-    with path.open("r", encoding="utf-8") as source:
-        for line in source:
-            try:
-                record = json.loads(line)
-                if record.get("edge_id"):
-                    results[record["edge_id"]] = record
-            except json.JSONDecodeError:
-                continue
-    return results
+# def load_checkpoint(path: Path) -> dict[str, dict[str, Any]]:
+#     results: dict[str, dict[str, Any]] = {}
+#     if not path.exists():
+#         return results
+#     with path.open("r", encoding="utf-8") as source:
+#         for line in source:
+#             try:
+#                 record = json.loads(line)
+#                 if record.get("edge_id"):
+#                     results[record["edge_id"]] = record
+#             except json.JSONDecodeError:
+#                 continue
+#     return results
 
 
 def call_flow_segment(
@@ -88,7 +89,7 @@ def call_flow_segment(
 
 
 # Cria o ponto médio em WGS84 para cada aresta, sem assumir o CRS de entrada, a fim de consultar a API da TomTom com segurança.
-def midpoint_wgs84(edges: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+def midpoint_wgs84(edges: gpd.GeoDataFrame) -> gpd.GeoSeries:
     if edges.crs is None:
         raise ValueError("The edges layer has no CRS; cannot query TomTom safely.")
     projected_midpoints = edges.geometry.interpolate(0.5, normalized=True)
@@ -115,19 +116,21 @@ def flatten_record(record: dict[str, Any]) -> dict[str, Any]:
     return flattened
 
 
-def write_output(
+def write_latest_output(
     nodes: gpd.GeoDataFrame,
     edges: gpd.GeoDataFrame,
-    results: dict[str, dict[str, Any]],
+    latest_results: dict[str, dict[str, Any]],
 ) -> None:
+    """Atualiza a versão mais recente do GeoPackage para validações locais."""
     output = edges.copy()
     for column in ["tomtom_success", "tomtom_error", *TOMTOM_COLUMNS]:
         output[column] = [None] * len(output)
 
     for index, row in output.iterrows():
-        output.loc[index, list(flatten_record(results[edge_id(row)]))] = list(
-            flatten_record(results[edge_id(row)]).values()
-        )
+        eid = edge_id(row)
+        if eid in latest_results:
+            flat = flatten_record(latest_results[eid])
+            output.loc[index, list(flat.keys())] = list(flat.values())
 
     OUTPUT_GEOPACKAGE.parent.mkdir(parents=True, exist_ok=True)
     if OUTPUT_GEOPACKAGE.exists():
@@ -151,21 +154,22 @@ def main() -> None:
         sys.exit(f"Missing required edge columns: {sorted(missing)}")
 
     points = midpoint_wgs84(edges)
-    results = load_checkpoint(CHECKPOINT)
-    pending = [
-        (index, row)
-        for index, row in edges.iterrows()
-        if edge_id(row) not in results
-    ]
-    print(f"{len(pending)} edges to query; {len(results)} already checkpointed.")
+    # Executa a coleta para todas as arestas da malha
+    pending = list(edges.iterrows())
+    print(f"Iniciando coleta para {len(pending)} arestas do Gama...")
 
     session = requests.Session()
-    CHECKPOINT.parent.mkdir(parents=True, exist_ok=True)
-    with CHECKPOINT.open("a", encoding="utf-8") as checkpoint:
+    HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    
+    latest_results = {}
+
+    # Abre o arquivo em modo append para acumular coletas diárias
+    with HISTORY_FILE.open("a", encoding="utf-8") as history:
         for position, (index, row) in enumerate(pending, start=1):
             point = points.loc[index]
             lon, lat = point.x, point.y
             result = call_flow_segment(session, lat, lon, api_key)
+            now_utc = datetime.now(timezone.utc)
             record = {
                 "edge_id": edge_id(row),
                 "u": int(row["u"]),
@@ -173,16 +177,19 @@ def main() -> None:
                 "key": int(row["key"]),
                 "lat": lat,
                 "lon": lon,
+                "timestamp": now_utc.isoformat(),
+                "day_of_week": now_utc.weekday(),  # 0 = Segunda, 4 = Sexta
+                "hour": now_utc.hour,
                 **result,
             }
-            checkpoint.write(json.dumps(record, ensure_ascii=False) + "\n")
-            checkpoint.flush()
-            results[record["edge_id"]] = record
-            status = "ok" if result["success"] else f"failed: {result['error']}"
+            history.write(json.dumps(record, ensure_ascii=False) + "\n")
+            history.flush()
+            latest_results[record["edge_id"]] = record
+            status = "ok" if result["success"] else f"falhou: {result['error']}"
             print(f"[{position}/{len(pending)}] {record['edge_id']}: {status}")
             time.sleep(REQUEST_INTERVAL)
 
-    write_output(nodes, edges, results)
+    write_latest_output(nodes, edges, latest_results)
     print(f"TomTom-enriched GeoPackage written to {OUTPUT_GEOPACKAGE}")
 
 

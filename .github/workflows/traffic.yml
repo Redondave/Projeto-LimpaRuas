@@ -1,0 +1,43 @@
+name: Coleta Diaria de Trafego - Gama
+
+on:
+  schedule:
+    # 21:00 UTC = 18:00 no Horario de Brasilia (UTC-3)
+    # Executa de Segunda a Sexta (1-5)
+    - cron: '0 21 * * 1-5'
+  workflow_dispatch: # Permite disparar o script manualmente para testes pela aba Actions
+
+jobs:
+  collect-traffic-data:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Permissao para fazer push do arquivo atualizado de volta ao repositorio
+
+    steps:
+      - name: Checkout do Repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar Dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install geopandas requests pandas
+
+      - name: Executar Script de Coleta
+        env:
+          TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
+        run: |
+          python scripts/api_caller.py
+
+      - name: Salvar e Commitar Historico Atualizado
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add cache/tomtom_flow_history.jsonl cache/gama_drive_reduced_tomtom.gpkg
+          git commit -m "chore: atualizacao automatica de trafego Gama [$(date -u +'%Y-%m-%d %H:%M UTC')]" || exit 0
+          git push
