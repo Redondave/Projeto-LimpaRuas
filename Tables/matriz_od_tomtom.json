@@ -1,0 +1,93 @@
+﻿{
+    "analysisInfo":  {
+                         "id":  "1000585283272191355",
+                         "name":  "Gama",
+                         "type":  "FLOW_MATRIX",
+                         "owner":  "tomtom@@@PAXzZvk2xnDZmYxg",
+                         "developerId":  "tomtom@@@PAXzZvk2xnDZmYxg",
+                         "status":  "ACCEPTED",
+                         "currentProgress":  100,
+                         "estimatedDuration":  519,
+                         "creationTime":  "2026-10-08T00:19Z",
+                         "startAnalysisTime":  "2026-10-08T00:19Z",
+                         "endAnalysisTime":  "2026-10-08T00:21Z",
+                         "timeDefinition":  {
+                                                "dateRanges":  [
+                                                                   {
+                                                                       "startDate":  "2026-07-01",
+                                                                       "endDate":  "2026-07-30",
+                                                                       "exclusions":  [
+
+                                                                                      ],
+                                                                       "daysOfWeek":  [
+                                                                                          "WEDNESDAY",
+                                                                                          "THURSDAY",
+                                                                                          "TUESDAY",
+                                                                                          "FRIDAY",
+                                                                                          "MONDAY"
+                                                                                      ],
+                                                                       "name":  "June"
+                                                                   }
+                                                               ],
+                                                "timeRanges":  [
+                                                                   {
+                                                                       "startTime":  "17:00",
+                                                                       "endTime":  "19:00"
+                                                                   }
+                                                               ],
+                                                "zoneId":  "America/Sao_Paulo",
+                                                "daysOfWeek":  [
+                                                                   "WEDNESDAY",
+                                                                   "SATURDAY",
+                                                                   "THURSDAY",
+                                                                   "TUESDAY",
+                                                                   "FRIDAY",
+                                                                   "MONDAY",
+                                                                   "SUNDAY"
+                                                               ],
+                                                "timeRangeCondition":  "ENTERS_REGION"
+                                            },
+                         "tripStats":  true,
+                         "dataSources":  "ALL",
+                         "map":  {
+                                     "type":  "OPEN_DSEG",
+                                     "version":  "2026.08.0600"
+                                 },
+                         "mapMatchOption":  "AUTO",
+                         "isMapMatched":  true,
+                         "mapType":  "ORBIS",
+                         "analysisVersion":  2,
+                         "resultProfile":  "FULL"
+                     },
+    "regionsLink":  "https://api.tomtom.com/origindestination/rest/analysis/1000585283272191355/regions?version=0x8DF24D1D439C336",
+    "results":  [
+                    {
+                        "dateRange":  {
+                                          "startDate":  "2026-07-01",
+                                          "endDate":  "2026-07-30",
+                                          "exclusions":  [
+
+                                                         ],
+                                          "daysOfWeek":  [
+                                                             "WEDNESDAY",
+                                                             "THURSDAY",
+                                                             "TUESDAY",
+                                                             "FRIDAY",
+                                                             "MONDAY"
+                                                         ],
+                                          "name":  "June"
+                                      },
+                        "timeRange":  {
+                                          "startTime":  "17:00",
+                                          "endTime":  "19:00"
+                                      },
+                        "tripsResultFileSize":  0.000369,
+                        "tripsWholeResultLink":  "https://api.tomtom.com/origindestination/rest/analysis/flowmatrix/1000585283272191355/result/trips?dateRange=0\u0026timeRange=0",
+                        "tripsPartialResultLink":  "https://api.tomtom.com/origindestination/rest/analysis/flowmatrix/1000585283272191355/result/partial/trips?dateRange=0\u0026timeRange=0",
+                        "hoursOfDayHistogramPartialResultLink":  "https://api.tomtom.com/origindestination/rest/analysis/flowmatrix/1000585283272191355/result/partial/histogram?dateRange=0\u0026timeRange=0\u0026type=HOURS_OF_DAY",
+                        "lengthsHistogramPartialResultLink":  "https://api.tomtom.com/origindestination/rest/analysis/flowmatrix/1000585283272191355/result/partial/histogram?dateRange=0\u0026timeRange=0\u0026type=LENGTHS",
+                        "durationsHistogramPartialResultLink":  "https://api.tomtom.com/origindestination/rest/analysis/flowmatrix/1000585283272191355/result/partial/histogram?dateRange=0\u0026timeRange=0\u0026type=DURATIONS",
+                        "avgSpeedsHistogramPartialResultLink":  "https://api.tomtom.com/origindestination/rest/analysis/flowmatrix/1000585283272191355/result/partial/histogram?dateRange=0\u0026timeRange=0\u0026type=AVG_SPEEDS"
+                    }
+                ]
+}
