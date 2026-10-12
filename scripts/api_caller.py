@@ -17,8 +17,8 @@ import geopandas as gpd
 import requests
 
 # Define os paths e parâmetros de configuração
-INPUT_GEOPACKAGE = Path("cache/gama_drive_reduced.gpkg")
-OUTPUT_GEOPACKAGE = Path("cache/gama_drive_reduced_tomtom.gpkg")
+INPUT_GEOPACKAGE = Path("cache/gama_drive_sample_30.gpkg")
+OUTPUT_GEOPACKAGE = Path("cache/gama_drive_sample_30_tomtom.gpkg")
 INPUT_LAYER = "edges"
 
 ZOOM = 10

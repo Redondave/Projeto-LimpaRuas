@@ -2,17 +2,16 @@ name: Coleta Diaria de Trafego - Gama
 
 on:
   schedule:
-    # 21:00 UTC = 18:00 no Horario de Brasilia (UTC-3)
-    # Executa de Segunda a Sexta (1-5)
-    - cron: '*/15 21 * * 1-5'
-  workflow_dispatch: # Permite disparar o script manualmente para testes pela aba Actions
+    # Executa a cada 15 minutos entre 18:00 e 19:00 de Segunda a Sexta (1-5)
+    - cron: '*/15 21-22 * * 1-5'
+  workflow_dispatch:
 
 jobs:
   collect-traffic-data:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # Permissao para fazer push do arquivo atualizado de volta ao repositorio
+      contents: write
 
     steps:
       - name: Checkout do Repositorio
@@ -34,10 +33,11 @@ jobs:
         run: |
           python scripts/api_caller.py
 
-      - name: Salvar e Commitar Historico Atualizado
+      - name: Salvar e Commitar Historico Atualizado (Append)
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add cache/tomtom_flow_history.jsonl cache/gama_drive_reduced_tomtom.gpkg
+          git add cache/tomtom_flow_history.jsonl cache/gama_drive_sample_30_tomtom.gpkg
           git commit -m "chore: atualizacao automatica de trafego Gama [$(date -u +'%Y-%m-%d %H:%M UTC')]" || exit 0
+          git pull --rebase origin main
           git push
