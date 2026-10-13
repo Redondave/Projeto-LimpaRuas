@@ -1,0 +1,922 @@
+{
+ "source_graphml": "gama_area_estudo_osm.graphml",
+ "base_graphml": "gama_drive_sample_30.graphml",
+ "parametros": {
+  "buffer_m": 200,
+  "borda_m": 60,
+  "classes": [
+   "motorway",
+   "motorway_link",
+   "primary",
+   "primary_link",
+   "secondary",
+   "secondary_link",
+   "tertiary",
+   "tertiary_link",
+   "trunk",
+   "trunk_link",
+   "unclassified"
+  ]
+ },
+ "node_count": 134,
+ "edge_count": 236,
+ "nos_novos": 104,
+ "arestas_novas": 199,
+ "weakly_connected": true,
+ "maior_componente_forte": 114,
+ "fontes": [
+  "58",
+  "61",
+  "82"
+ ],
+ "sumidouros": [
+  "12",
+  "24",
+  "62",
+  "81"
+ ],
+ "highway_types": {
+  "tertiary": 168,
+  "trunk": 20,
+  "trunk_link": 17,
+  "unclassified": 14,
+  "primary": 12,
+  "tertiary_link": 4,
+  "busway": 1
+ },
+ "avisos": [
+  "A aresta 23->24 do grafo de 30 nos e 'busway' (corredor de onibus). Ela foi mantida para nao quebrar a compatibilidade; exclua highway == 'busway' da alocacao de carros no Frank-Wolfe."
+ ],
+ "diagnostico_rotas": {
+  "criterio": "rotas ate 30% mais longas que a mais curta e com menos de 60% de arestas em comum, ponderado pela matriz OD atual (veic/h)",
+  "grafo_30_nos": {
+   "demanda_com_caminho": 0.979,
+   "demanda_com_2_ou_mais_rotas": 0.0
+  },
+  "grafo_expandido": {
+   "demanda_com_caminho": 1.0,
+   "demanda_com_2_ou_mais_rotas": 0.402
+  }
+ },
+ "portoes": [
+  {
+   "no": "1",
+   "osmid": "1715023203",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "2",
+   "osmid": "1715023216",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "3",
+   "osmid": "1715023242",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "12",
+   "osmid": "2495149029",
+   "tipo": "principal",
+   "vias_externas": [
+    "trunk"
+   ]
+  },
+  {
+   "no": "23",
+   "osmid": "3079582829",
+   "tipo": "principal",
+   "vias_externas": [
+    "primary"
+   ]
+  },
+  {
+   "no": "24",
+   "osmid": "7270994410",
+   "tipo": "principal",
+   "vias_externas": []
+  },
+  {
+   "no": "27",
+   "osmid": "12018757717",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "28",
+   "osmid": "12018757719",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "29",
+   "osmid": "12018757722",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "31",
+   "osmid": "1333703330",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "32",
+   "osmid": "1333703340",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "33",
+   "osmid": "1333703342",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "34",
+   "osmid": "1333703346",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "35",
+   "osmid": "1333703352",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "38",
+   "osmid": "1333703363",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "39",
+   "osmid": "1333703372",
+   "tipo": "principal",
+   "vias_externas": [
+    "residential",
+    "tertiary"
+   ]
+  },
+  {
+   "no": "40",
+   "osmid": "1333703378",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "41",
+   "osmid": "1715023011",
+   "tipo": "principal",
+   "vias_externas": [
+    "residential",
+    "tertiary"
+   ]
+  },
+  {
+   "no": "42",
+   "osmid": "1715023247",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "43",
+   "osmid": "1715023273",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "44",
+   "osmid": "1715023303",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "45",
+   "osmid": "1715023307",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "46",
+   "osmid": "1715023387",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "48",
+   "osmid": "1715023434",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "49",
+   "osmid": "1715023462",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "50",
+   "osmid": "1715023487",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "51",
+   "osmid": "1715023538",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "52",
+   "osmid": "1715023650",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "53",
+   "osmid": "1715023808",
+   "tipo": "principal",
+   "vias_externas": [
+    "residential",
+    "tertiary"
+   ]
+  },
+  {
+   "no": "54",
+   "osmid": "1715023821",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "55",
+   "osmid": "1715023851",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "56",
+   "osmid": "1715023875",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "58",
+   "osmid": "1715024039",
+   "tipo": "principal",
+   "vias_externas": [
+    "primary"
+   ]
+  },
+  {
+   "no": "59",
+   "osmid": "1715024045",
+   "tipo": "principal",
+   "vias_externas": [
+    "tertiary"
+   ]
+  },
+  {
+   "no": "61",
+   "osmid": "2339358113",
+   "tipo": "principal",
+   "vias_externas": [
+    "trunk"
+   ]
+  },
+  {
+   "no": "62",
+   "osmid": "2339358115",
+   "tipo": "principal",
+   "vias_externas": [
+    "trunk"
+   ]
+  },
+  {
+   "no": "65",
+   "osmid": "2571842887",
+   "tipo": "principal",
+   "vias_externas": [
+    "primary"
+   ]
+  },
+  {
+   "no": "67",
+   "osmid": "2577614056",
+   "tipo": "principal",
+   "vias_externas": [
+    "trunk_link"
+   ]
+  },
+  {
+   "no": "69",
+   "osmid": "2588496338",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "70",
+   "osmid": "2588496343",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "73",
+   "osmid": "2696873667",
+   "tipo": "principal",
+   "vias_externas": [
+    "trunk_link"
+   ]
+  },
+  {
+   "no": "76",
+   "osmid": "3079582785",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "78",
+   "osmid": "3079582799",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "79",
+   "osmid": "3079582808",
+   "tipo": "principal",
+   "vias_externas": [
+    "tertiary"
+   ]
+  },
+  {
+   "no": "80",
+   "osmid": "3079582824",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "81",
+   "osmid": "3079582825",
+   "tipo": "principal",
+   "vias_externas": [
+    "tertiary"
+   ]
+  },
+  {
+   "no": "82",
+   "osmid": "3079582827",
+   "tipo": "principal",
+   "vias_externas": [
+    "tertiary"
+   ]
+  },
+  {
+   "no": "83",
+   "osmid": "3874588356",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "84",
+   "osmid": "4258644191",
+   "tipo": "principal",
+   "vias_externas": [
+    "tertiary"
+   ]
+  },
+  {
+   "no": "85",
+   "osmid": "4258644202",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "86",
+   "osmid": "4693690322",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "87",
+   "osmid": "4693690324",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "88",
+   "osmid": "4693690364",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "89",
+   "osmid": "4693690370",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "90",
+   "osmid": "4693690372",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "91",
+   "osmid": "4979783807",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "92",
+   "osmid": "5006250444",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "93",
+   "osmid": "5060470827",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "94",
+   "osmid": "6584360079",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "95",
+   "osmid": "6584399602",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "96",
+   "osmid": "6584399605",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "97",
+   "osmid": "6584399610",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "98",
+   "osmid": "6584399629",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "101",
+   "osmid": "7270951066",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "104",
+   "osmid": "7306441335",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "105",
+   "osmid": "7306441342",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "106",
+   "osmid": "7309927452",
+   "tipo": "principal",
+   "vias_externas": [
+    "primary"
+   ]
+  },
+  {
+   "no": "107",
+   "osmid": "8341147275",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "108",
+   "osmid": "8747575687",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "109",
+   "osmid": "8747575688",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "110",
+   "osmid": "8747575690",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "111",
+   "osmid": "8747575692",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "112",
+   "osmid": "8747575698",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "113",
+   "osmid": "8978213791",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "114",
+   "osmid": "8995576440",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "115",
+   "osmid": "8995576448",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "116",
+   "osmid": "9471027349",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "117",
+   "osmid": "9471027356",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "118",
+   "osmid": "9471027373",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "119",
+   "osmid": "10051009282",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "120",
+   "osmid": "10051031520",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "121",
+   "osmid": "10051031522",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "122",
+   "osmid": "10051031529",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "123",
+   "osmid": "10051031530",
+   "tipo": "acesso_local",
+   "vias_externas": [
+    "residential"
+   ]
+  },
+  {
+   "no": "124",
+   "osmid": "11301375774",
+   "tipo": "principal",
+   "vias_externas": [
+    "trunk"
+   ]
+  },
+  {
+   "no": "125",
+   "osmid": "12911055586",
+   "tipo": "principal",
+   "vias_externas": [
+    "residential",
+    "unclassified"
+   ]
+  },
+  {
+   "no": "127",
+   "osmid": "13046817202",
+   "tipo": "principal",
+   "vias_externas": [
+    "tertiary"
+   ]
+  },
+  {
+   "no": "129",
+   "osmid": "13616318206",
+   "tipo": "principal",
+   "vias_externas": [
+    "residential",
+    "tertiary"
+   ]
+  },
+  {
+   "no": "132",
+   "osmid": "14127397927",
+   "tipo": "principal",
+   "vias_externas": [
+    "unclassified"
+   ]
+  },
+  {
+   "no": "133",
+   "osmid": "14127397936",
+   "tipo": "principal",
+   "vias_externas": [
+    "unclassified"
+   ]
+  }
+ ],
+ "node_id_mapping": {
+  "0": "1715023123",
+  "1": "1715023203",
+  "2": "1715023216",
+  "3": "1715023242",
+  "4": "1715023408",
+  "5": "1715023431",
+  "6": "1715023878",
+  "7": "1715023893",
+  "8": "2339341115",
+  "9": "2339358095",
+  "10": "2339358111",
+  "11": "2495149013",
+  "12": "2495149029",
+  "13": "2571842888",
+  "14": "2571842893",
+  "15": "2571842896",
+  "16": "2571842898",
+  "17": "2572324707",
+  "18": "2572324709",
+  "19": "2639815666",
+  "20": "2696873608",
+  "21": "2696873682",
+  "22": "3079582820",
+  "23": "3079582829",
+  "24": "7270994410",
+  "25": "7287211866",
+  "26": "11301374749",
+  "27": "12018757717",
+  "28": "12018757719",
+  "29": "12018757722",
+  "30": "372308006",
+  "31": "1333703330",
+  "32": "1333703340",
+  "33": "1333703342",
+  "34": "1333703346",
+  "35": "1333703352",
+  "36": "1333703356",
+  "37": "1333703360",
+  "38": "1333703363",
+  "39": "1333703372",
+  "40": "1333703378",
+  "41": "1715023011",
+  "42": "1715023247",
+  "43": "1715023273",
+  "44": "1715023303",
+  "45": "1715023307",
+  "46": "1715023387",
+  "47": "1715023409",
+  "48": "1715023434",
+  "49": "1715023462",
+  "50": "1715023487",
+  "51": "1715023538",
+  "52": "1715023650",
+  "53": "1715023808",
+  "54": "1715023821",
+  "55": "1715023851",
+  "56": "1715023875",
+  "57": "1715023981",
+  "58": "1715024039",
+  "59": "1715024045",
+  "60": "2339358108",
+  "61": "2339358113",
+  "62": "2339358115",
+  "63": "2495149010",
+  "64": "2571842886",
+  "65": "2571842887",
+  "66": "2572324706",
+  "67": "2577614056",
+  "68": "2577614069",
+  "69": "2588496338",
+  "70": "2588496343",
+  "71": "2639815662",
+  "72": "2639815663",
+  "73": "2696873667",
+  "74": "2967056792",
+  "75": "2967056793",
+  "76": "3079582785",
+  "77": "3079582794",
+  "78": "3079582799",
+  "79": "3079582808",
+  "80": "3079582824",
+  "81": "3079582825",
+  "82": "3079582827",
+  "83": "3874588356",
+  "84": "4258644191",
+  "85": "4258644202",
+  "86": "4693690322",
+  "87": "4693690324",
+  "88": "4693690364",
+  "89": "4693690370",
+  "90": "4693690372",
+  "91": "4979783807",
+  "92": "5006250444",
+  "93": "5060470827",
+  "94": "6584360079",
+  "95": "6584399602",
+  "96": "6584399605",
+  "97": "6584399610",
+  "98": "6584399629",
+  "99": "7270951048",
+  "100": "7270951049",
+  "101": "7270951066",
+  "102": "7287211861",
+  "103": "7287211863",
+  "104": "7306441335",
+  "105": "7306441342",
+  "106": "7309927452",
+  "107": "8341147275",
+  "108": "8747575687",
+  "109": "8747575688",
+  "110": "8747575690",
+  "111": "8747575692",
+  "112": "8747575698",
+  "113": "8978213791",
+  "114": "8995576440",
+  "115": "8995576448",
+  "116": "9471027349",
+  "117": "9471027356",
+  "118": "9471027373",
+  "119": "10051009282",
+  "120": "10051031520",
+  "121": "10051031522",
+  "122": "10051031529",
+  "123": "10051031530",
+  "124": "11301375774",
+  "125": "12911055586",
+  "126": "13046810699",
+  "127": "13046817202",
+  "128": "13251184594",
+  "129": "13616318206",
+  "130": "14102529269",
+  "131": "14102529270",
+  "132": "14127397927",
+  "133": "14127397936"
+ }
+}

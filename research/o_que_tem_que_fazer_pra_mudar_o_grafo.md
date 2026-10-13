@@ -1,5 +1,25 @@
 # Viabilidade de Mudança de Região de Estudo
 
+## Status (13/10/2026): grafo expandido em volta do trevo EPCT / EPIP / DF-480
+
+Feito pelo `scripts/expand_graph.py` (reproduzível, ~10 s; só baixa do OSM na primeira vez).
+
+| Item da tabela abaixo | Situação |
+|---|---|
+| 1. Polígono da região | Envoltória dos 30 nós atuais + 200 m (`--buffer`). Não depende mais do `limite_gama.geojson` |
+| 2. Grafo OSMnx | Download só da área de estudo → `cache/gama_area_estudo_osm.graphml`. O `gama_drive_projected` não serve: foi recortado pelo limite da RA, e a EPCT corre a 2–12 m da divisa, então a pista sentido norte e a EPIP depois do trevo ficavam de fora |
+| 3. Redução do grafo | Agora tem script e critério: vias terciárias para cima dentro do polígono, sem becos internos → `cache/gama_drive_expanded.graphml` (134 nós, 236 arestas) |
+| 4. GeoPackage | `cache/gama_drive_expanded.gpkg`, mesmo esquema do `gama_drive_sample_30.gpkg` |
+| 5. Coleta TomTom Flow | **Pendente.** Para coletar no grafo novo: trocar `INPUT_GEOPACKAGE`/`OUTPUT_GEOPACKAGE` no `api_caller.py` e o `git add` do workflow |
+| 7. Análise O/D TomTom | **Pendente.** Caixas sugeridas em `cache/gama_drive_expanded_portoes.geojson` (24 portões principais, 66 acessos locais), cada uma com o nome `no <id>` |
+| 8. Mapeamento zona → nó | Automático no `build_od_matrix.py --grafo cache/gama_drive_expanded.graphml` |
+
+**Compatibilidade:** os 30 nós mantêm os ids `0`–`29` e as 37 arestas mantêm `u`, `v` e `id` (o script confere). A matriz `Tables/matriz_od_gama3.json`, o histórico `cache/tomtom_flow_history.jsonl` e o workflow continuam valendo. Os arquivos do grafo de 30 nós não foram alterados.
+
+**Escolha de rota** (critério: rotas até 30% mais longas, com menos de 60% de arestas em comum, ponderado pela matriz OD atual): 0% da demanda no grafo de 30 nós → 40% no expandido. Com a pista oposta e as alças, os 34 pares que não tinham caminho passam a ter (100% da demanda alocável). Os 60% restantes são tráfego de passagem pelas rodovias, que não tem alternativa nem no mapa real.
+
+**Atenção:** a aresta 23→24 (já no grafo de 30 nós) é `busway`, corredor de ônibus. Excluir `highway == "busway"` da alocação de carros.
+
 ## Veredicto Rápido
 
 **É viável em poucas horas de trabalho técnico**, mas tem um **gargalo calendário** importante: a coleta TomTom Flow precisa ser repetida em 3–5 dias úteis diferentes no horário de pico. Isso não é difícil, é só demorado no calendário (uma semana de rodar o script 1x/dia).
