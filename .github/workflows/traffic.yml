@@ -37,7 +37,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add cache/tomtom_flow_history.jsonl cache/gama_drive_sample_30_tomtom.gpkg
+          git add cache/tomtom_flow_history.jsonl cache/gama_drive_expanded_tomtom.gpkg
           git commit -m "chore: atualizacao automatica de trafego Gama [$(date -u +'%Y-%m-%d %H:%M UTC')]" || exit 0
           git pull --rebase origin main
           git push
