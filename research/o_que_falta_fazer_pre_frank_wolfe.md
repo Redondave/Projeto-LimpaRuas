@@ -1,47 +1,85 @@
 # O que falta antes do Frank-Wolfe
 
-*Atualizado em 14/10/2026, depois da matriz OD final. Este documento descreve os passos; nenhum deles foi executado ainda.*
+*Atualizado em 14/10/2026. Escopo: só o que precisa estar pronto **antes** de rodar a alocação. A implementação do Frank-Wolfe, a validação do simulador e os cenários de intervenção ficam para o próximo documento. Nada daqui foi executado ainda.*
 
 ## Onde estamos
 
 | Peça | Arquivo | Situação |
 |---|---|---|
-| Grafo | `cache/gama_drive_expanded.graphml` (+ `.gpkg`) | ✅ 134 nós, 236 arestas, gerado por `scripts/expand_graph.py` |
-| Matriz OD | `Tables/matriz_od_final.json` | ✅ 1.031 pares, 8.309 veíc/h, pico 18–19h de dia útil |
-| Bruto da TomTom | `Tables/od_tomtom_gama_final_bruto.json` | ✅ análise "Gama Final" (id 6604531297533426895), 134 caixas |
-| Atributos de aresta para a VDF (`t0`, capacidade) | — | ❌ não calculados (Etapa 1) |
-| Velocidade observada no pico (`Vmed`, K inicial) | — | ❌ não coletada para o grafo novo (Etapa 2) |
-| Implementação do Frank-Wolfe | — | ❌ não existe (Etapa 3) |
+| Grafo | `cache/gama_drive_expanded.graphml` (+ `.gpkg`) | ✅ 134 nós, 236 arestas (`scripts/expand_graph.py`) |
+| Matriz OD | `Tables/matriz_od_final.json` | ✅ 1.031 pares, 8.309 veíc/h, 18–19h de dia útil (`scripts/build_od_matrix.py`) |
+| Bruto da TomTom O/D | `Tables/od_tomtom_gama_final_bruto.json` | ✅ análise "Gama Final", 134 caixas |
+| Velocidades no pico | `cache/tomtom_flow_history.jsonl` | ⏳ coleta rodando de 14 a 20/10 (Etapa 1) |
+| Velocidade livre, faixas, capacidade e `t0` por aresta | — | ❌ Etapas 2 a 4 |
+| K inicial e vias críticas | — | ❌ Etapa 5 |
 
-### Como a matriz final foi feita
+## O que o Frank-Wolfe vai receber
 
-`python scripts/build_od_matrix.py` (o padrão já aponta para a análise "Gama Final" e o grafo expandido).
+É a meta deste documento: tudo abaixo existe e foi conferido.
 
-- **Amostra:** 15.429 viagens TomTom em 22 dias úteis de julho/2026, 18–19h. 86% são de passagem pelo recorte.
-- **Caixa → nó:** 129 das 134 caixas contêm um nó. 4 caem sobre via de mão dupla (vai para a ponta mais próxima) e 1 sobre aresta de mão única (vai para o nó seguinte).
-- **Nós sem caixa:** 24 (só alcançável pelo corredor de ônibus, irrelevante), 32, 41 e 129. Quem entra por eles aparece no nó vizinho com caixa; as arestas até eles ficam vazias no modelo.
-- **Descartes:** 229 viagens que entram e saem pelo mesmo nó e 240 sem caminho no grafo (1,6%). Destas, 146 terminam no nó 127, que só é alcançável por duas ligações de 15 e 112 m que ficaram fora do recorte.
-- **Fator de expansão: 12,21**, a mediana de 4 pistas com contador do DETRAN, encontradas automaticamente em 25 caixas que cobrem só uma pista de rodovia:
+1. **Grafo atribuído** (`cache/gama_drive_expanded_atributos.graphml`), com estes campos em **cada aresta**:
 
-  | Pista | DETRAN (veíc/h) | TomTom (viagens/h) | Fator |
-  |---|---|---|---|
-  | EPCT (001EDF0270) crescente | 1.508 | 184 | 8,18 |
-  | DF-480 (480EDF0030) crescente | 1.505 | 141 | 10,68 |
-  | DF-480 (480EDF0030) decrescente | 2.424 | 176 | 13,75 |
-  | EPCT (001EDF0250) decrescente | 2.146 | 103 | 20,81 |
+   | Campo | Unidade | Origem |
+   |---|---|---|
+   | `length` | m | OSM (já existe) |
+   | `v0_kmh`, `fonte_v0` | km/h | Etapa 2 |
+   | `t0_min` | min | `length / v0` |
+   | `lanes_sentido`, `fonte_lanes` | faixas | Etapa 3 |
+   | `capacidade_veic_h` | veíc/h | Etapa 3 |
+   | `permite_carro` | bool | `False` no corredor de ônibus (aresta 23→24) |
+   | `vmed_kmh`, `k_inicial`, `n_leituras` | km/h, —, — | Etapa 2. Não entra na alocação; serve para escolher as vias críticas e validar o modelo |
 
-  A análise "Gama 3", com outras caixas, deu 11,6 pelo mesmo princípio. A faixa 8,2–20,8 deve entrar na análise de sensibilidade. A EPIP ficou sem ponto de calibração: o recorte só pega a EPIP dentro do trevo.
-- **Robustez:** 91% da demanda está em pares com 5 ou mais viagens na amostra. Os 830 pares com 1–4 viagens são ruído de amostragem, mas pesam só 9%.
+2. **Matriz OD** (`Tables/matriz_od_final.json`): pares `origem` → `destino` (ids do GraphML, como strings) e `veic_h`.
+3. **Parâmetros fixados** (Etapa 6): α e β da BPR, fator de expansão e critério de parada.
 
-> **Atenção ao CSV exportado do portal:** há nomes de região repetidos ("Rodovia EPCT (18)" ×2, "Rua Dois Ponte Alta Norte (12)" ×3), então o CSV é ambíguo. O script usa os índices da API, não os nomes.
+As unidades precisam bater: demanda e capacidade em veículos por hora, tempo em minutos, TSTT em veíc·min.
 
 ---
 
-## O que falta, em ordem
+## Etapa 1 — Acompanhar a coleta de velocidades (em andamento)
 
-### Etapa 1 — Atributos das arestas (bloqueante)
+**O que está rodando:** o workflow do GitHub coleta a cada ~7 min, das 18:00 às 19:00 de dia útil, até reunir 5 dias com 3 ou mais rodadas cada (previsão: 14, 15, 16, 19 e 20/10). Cada rodada faz 156 consultas à Flow API da TomTom, com zoom 18, e grava uma linha por aresta.
 
-A VDF de cada aresta precisa de `t0` (tempo em fluxo livre) e `c` (capacidade em veíc/h). Cobertura atual no OSM:
+**O que fazer:**
+- Depois da primeira rodada, abrir o log no Actions e ler *"segmento a mais de 20 m da aresta: N"*.
+- A cada dia, conferir com `git pull` se o histórico cresceu. São 236 linhas por rodada; o esperado é de 3 a 8 rodadas por dia.
+
+**Saídas possíveis:**
+
+| Situação | O que fazer |
+|---|---|
+| N baixo (até ~20 de 236) | Seguir; as leituras ruins são descartadas na Etapa 2 |
+| N alto, sobretudo nas terciárias | O zoom 18 não resolveu. Testar `TOMTOM_ZOOM=22` e `14` com `python scripts/api_caller.py --forcar` (grava em arquivo de teste), escolher o melhor, apagar o conteúdo do histórico e recomeçar a coleta |
+| A TomTom não tem dado próprio para as ruas locais (segmento é sempre de outra via, em qualquer zoom) | Usar a TomTom só nas rodovias e alças; nas ruas locais, `V0` e capacidade por classe (Etapas 2 e 3). Declarar como limitação |
+| O GitHub perde o horário vários dias seguidos | Rodar o mesmo script pelo Agendador de Tarefas do Windows, a cada 5 min entre 17:55 e 19:00. O próprio script decide se a rodada vale. Lembrar de dar `git push` no histórico |
+| Erro 403 ou 429 no log | A chave do secret não tem a Flow API ou estourou a cota: trocar o secret `TOMTOM_API_KEY` |
+| A conta tem acesso ao TomTom Traffic Stats | Alternativa melhor: uma *Area Analysis* de julho/2026, 18–19h, dias úteis, dá velocidades no mesmo período da matriz OD. Substitui as Etapas 1 e 2 |
+
+**Saída:** `cache/tomtom_flow_history.jsonl` com 5 dias completos.
+
+## Etapa 2 — Velocidades por aresta (depois de 20/10)
+
+**O que fazer** (script a criar, sugestão: `scripts/aggregate_speeds.py`):
+
+1. **Filtrar leituras:**
+   - `success` verdadeiro, `roadClosure` falso;
+   - `snap_dist_m ≤ 20`: o segmento devolvido é desta aresta;
+   - `confidence ≥ 0,7`: leitura baseada em dado real, não em histórico da TomTom;
+   - **sentido:** em rua de mão dupla, as duas mãos são consultadas no mesmo ponto e recebem o mesmo segmento. Usar a leitura na aresta em que `snap_cos > 0` e decidir a outra mão: copiar o valor ou tratar como sem dado.
+2. **Agregar por aresta:** `vmed_kmh` = mediana de `currentSpeed`; `v0_kmh` = mediana de `freeFlowSpeed`; `n_leituras`; e a dispersão (intervalo interquartil) para relatar a incerteza.
+3. **Preencher a velocidade livre de quem ficou sem leitura válida**, nesta ordem: `freeFlowSpeed` da TomTom → `maxspeed` do OSM (71 de 236 arestas) → valor por classe. Registrar a fonte em `fonte_v0`.
+4. **`k_inicial = vmed / v0`**, só nas arestas com leitura própria.
+
+**Saídas possíveis:**
+- **Maioria das arestas com leitura válida:** o K inicial cobre a rede, e a velocidade livre vem de dado medido.
+- **Só rodovias e alças com leitura** (provável, se as terciárias não tiverem dado da TomTom): o K inicial fica restrito às vias principais, o que basta para escolher a via crítica; a velocidade livre das ruas locais vem por classe.
+- **`vmed` igual a `v0` em quase tudo:** não há congestionamento no pico nesta área. Isso precisa ser discutido antes dos cenários, porque sem congestionamento a VDF não age.
+
+**Saída:** `Tables/velocidades_arestas.csv` (uma linha por aresta, com fonte e número de leituras).
+
+## Etapa 3 — Faixas e capacidade (pode começar já)
+
+Cobertura no OSM:
 
 | Classe | Arestas | Com `lanes` | Com `maxspeed` |
 |---|---|---|---|
@@ -54,78 +92,119 @@ A VDF de cada aresta precisa de `t0` (tempo em fluxo livre) e `c` (capacidade em
 | busway | 1 | — | — |
 | **Total** | **236** | **113 (48%)** | **71 (30%)** |
 
-O que fazer (sugestão: um `scripts/enrich_graph.py` que grava `cache/gama_drive_expanded_atributos.graphml`):
+**O que fazer:**
 
-1. **Faixas:** usar `lanes` do OSM; quando faltar, regra por classe (ex.: terciária e alças = 1 por sentido). `lanes` do OSM conta as duas mãos em via de mão dupla: dividir por 2. Atributos com lista (`['2', '3']`) aparecem quando o OSMnx funde vias: usar o mínimo, que é o gargalo.
-2. **Velocidade livre `V0`:** prioridade `freeFlowSpeed` da TomTom (Etapa 2) → `maxspeed` do OSM → valor por classe.
-3. **Capacidade:** `c = faixas × capacidade por faixa` com os valores do `research_plan.md` (expressa ~1.800–2.000, arterial ~1.000–1.200, local ~500–900 veíc/h/faixa).
-4. **`t0 = length / V0`**, em segundos ou minutos, mantendo a mesma unidade do TSTT.
-5. **Corredor de ônibus:** marcar `highway == "busway"` (aresta 23→24) como proibido para carro. A matriz já ignora essa aresta no teste de caminho.
-6. **Registrar a cobertura** (a tabela acima, por atributo imputado). O `research_plan.md` pede que essa dependência seja relatada como limitação quantificada.
+1. **Faixas por sentido:**
+   - em via de mão dupla, `lanes` do OSM conta as duas mãos: dividir por 2;
+   - valores em lista (`['2', '3']`, quando o OSMnx funde vias): usar o mínimo, que é o gargalo;
+   - registrar a fonte em `fonte_lanes`.
+2. **Faltantes (123 arestas).** Opções:
+   - **(a) Regra por classe:** ex.: terciária e alças = 1 faixa por sentido; unclassified = 1. Rápido e reprodutível; impreciso nas terciárias largas, como a Avenida JK.
+   - **(b) Conferência por imagem de satélite**, só nas terciárias que carregam muita demanda: as que aparecem nos maiores pares da matriz ou que têm muitas passagens nas caixas. Mais preciso; uma tarde de trabalho.
+   - **(c) Híbrido:** (a) para todas e (b) para as ~20 mais carregadas. **Sugerido.**
+3. **Capacidade por faixa**, com os valores do `research_plan.md`. Proposta para fixar:
 
-### Etapa 2 — Velocidades observadas (dado que falta coletar)
+   | Classe | veíc/h/faixa |
+   |---|---|
+   | trunk | 1.800 |
+   | trunk_link, primary | 1.200 |
+   | primary_link, tertiary | 900 |
+   | tertiary_link, unclassified | 600 |
 
-Situação atual: o `cache/tomtom_flow_history.jsonl` tem 37 registros, todos do grafo antigo de 30 nós, coletados à meia-noite de 13/10. A velocidade atual é igual à livre em 100% deles, então não servem para `Vmed`. O workflow está agendado para 18–19h, mas o GitHub rodou à meia-noite: agendamento do GitHub Actions não garante horário.
+   `capacidade_veic_h = lanes_sentido × capacidade_por_faixa`.
 
-Duas opções:
+4. **Corredor de ônibus:** `permite_carro = False` na aresta 23→24.
+5. **Checagem de sanidade:** comparar a capacidade das 4 pistas com contador do DETRAN com o volume medido no pico. A razão V/C deve ficar abaixo de ~1,2. Se passar disso, as faixas ou a capacidade por faixa estão subestimadas (foi o que aconteceu no grafo rodoviário antigo).
 
-- **A (recomendada, se a conta tiver acesso): TomTom Traffic Stats**, no mesmo portal Move. Uma *Area Analysis* sobre o recorte, de julho/2026, dias úteis, 18–19h, devolve velocidade média e de referência por segmento. É o **mesmo período e a mesma janela da matriz OD**, sem semanas de coleta.
-- **B: coleta com a Flow API no grafo expandido.**
-  - Trocar `INPUT_GEOPACKAGE`/`OUTPUT_GEOPACKAGE` do `api_caller.py` para `cache/gama_drive_expanded*.gpkg` e o `git add` do workflow para o arquivo novo.
-  - Cada rodada faz 236 requisições. A cota gratuita (~2.500/dia; confirmar no painel) permite até 10 rodadas por dia; as 8 do workflow cabem.
-  - Rodar localmente (Agendador de Tarefas do Windows) ou aceitar o atraso do GitHub e filtrar por horário depois.
-  - Mínimo de 5 dias úteis; usar a mediana por aresta.
-  - Limitação a declarar: velocidades de outubro com demanda de julho.
+**Saídas possíveis:** regra pura (a), entregável hoje, ou híbrido (c), mais defensável no artigo. Em ambos os casos, a cobertura vira uma limitação quantificada, como o `research_plan.md` pede.
 
-Com `Vmed` e `V0`: **K inicial = Vmed / V0** por aresta, o mapa das vias críticas (Passo 1 do plano).
+**Saída:** colunas `lanes_sentido`, `fonte_lanes` e `capacidade_veic_h`.
 
-### Etapa 3 — Implementar e validar o Frank-Wolfe
+## Etapa 4 — Montar o grafo atribuído (depois das Etapas 2 e 3)
 
-1. **Entrada:** grafo atribuído + `Tables/matriz_od_final.json` (campos `pares[].origem`, `pares[].destino`, `pares[].veic_h`; os ids são as strings do GraphML).
-2. **Algoritmo:** alocação tudo-ou-nada inicial → direção pelo caminho mínimo com custos BPR → busca linear do passo → repetir até gap relativo < 1e-4. BPR com a = 0,15, b = 4 como padrão e a = 0,8, b = 4,7 como sensibilidade.
-3. **Saídas:** fluxo `x`, tempo `t` e `K = (L/t)/V0` por aresta, e TSTT.
-4. **Validação do código:** rede de Sioux Falls, que tem equilíbrio publicado (**dado a baixar**: arquivos `SiouxFalls_net.tntp`, `SiouxFalls_trips.tntp` e `SiouxFalls_flow.tntp` do repositório público *TransportationNetworks*).
-5. **Validação do modelo no Gama:**
-   - `regioes[].passagens_veic_h` da matriz: fluxo observado por caixa, comparável ao fluxo modelado no nó correspondente (126 caixas com 100 ou mais passagens);
-   - as 4 pistas do DETRAN da calibração;
-   - estatística GEH.
-6. **Sensibilidade:** rodar com o fator de expansão em 8,2 e em 20,8 (demanda × 0,67 e × 1,70).
+**O que fazer** (sugestão: `scripts/enrich_graph.py`):
+1. Juntar os resultados das Etapas 2 e 3 no grafo e calcular `t0_min = length / v0`.
+2. **Checagens antes de liberar para o Frank-Wolfe:**
+   - toda aresta com `permite_carro` tem `t0 > 0` e capacidade > 0;
+   - os 1.031 pares da matriz continuam com caminho no grafo sem o corredor de ônibus;
+   - nenhuma aresta com `t0` absurdo: velocidade livre abaixo de 10 ou acima de 120 km/h;
+   - ids e unidades conferidos.
+3. Gerar uma figura com a velocidade livre e o K inicial por aresta, para conferência visual.
 
-### Etapa 4 — Cenários (Passos 5 e 6 do `research_plan.md`)
+**Saída:** `cache/gama_drive_expanded_atributos.graphml` + um relatório de cobertura (quantas arestas têm cada atributo medido e quantas imputado).
 
-Escolher as vias críticas pelo K inicial e testar intervenções (faixa extra, sentido, fechamento para testar Braess) em cópias do grafo. A rede agora tem escolha de rota para cerca de 40% da demanda (medido com a matriz anterior), o que dá espaço para redistribuição.
+## Etapa 5 — Vias críticas (diagnóstico, Passo 1 do plano)
 
----
+**O que fazer:** com o K inicial, listar as arestas com pior desempenho no pico e confirmar que a matriz OD passa por elas.
 
-## Dados que ainda faltam coletar
+**Saídas possíveis:**
+- **Há vias com K baixo** (ex.: abaixo de 0,7) e com demanda passando: são as candidatas a via crítica. Sai daqui a lista de vias para os cenários.
+- **K alto em toda a rede:** a área não congestiona nesse horário. Opções:
+  - escolher como críticas as de maior V/C calculado na Etapa 3;
+  - rodar a análise com a demanda escalada, usando o fator máximo de 20,8;
+  - rever a região de estudo.
 
-| Dado | Necessário para | Prioridade |
+  Precisa ser decidido em grupo antes de seguir.
+
+**Saída:** lista de vias críticas e das intervenções candidatas (faixa extra, mudança de sentido, fechamento para testar Braess), com a justificativa de cada uma.
+
+## Etapa 6 — Parâmetros a fixar (pode ser feito já)
+
+| Parâmetro | Proposta | Sensibilidade |
 |---|---|---|
-| Velocidade por aresta no pico (Traffic Stats ou Flow API) | `V0`, `Vmed`, K inicial | **Bloqueante** |
-| Faixas das 123 arestas sem `lanes` (ao menos as terciárias principais, por imagem de satélite) | capacidade | Alta (pode começar por regra) |
-| Arquivos de Sioux Falls | validar o código | Alta |
-| Contagens do DETRAN de julho/2026 (portal de dados abertos do DF), mês da matriz | recalibrar o fator sem defasagem; basta trocar o `flow.csv` e rodar `build_od_matrix.py --offline` | Média |
-| Caixas TomTom nos nós 32 e 41 e as duas ligações até o nó 127 | recuperar 1,6% da demanda e arestas vazias | Baixa |
+| BPR α, β | 0,15 e 4 (BPR, 1964) | 0,8 e 4,7 (arteriais urbanas, Bagdá) |
+| Fator de expansão da OD | 12,21 (mediana de 4 pistas DETRAN) | 8,18 e 20,81 (demanda × 0,67 e × 1,70) |
+| Parada | gap relativo < 10⁻⁴ ou 500 iterações | — |
+| Pares OD com poucas viagens | manter todos (são 9% da demanda) | rodar sem os pares com menos de 5 viagens |
+
+**Opcional:** recalibrar o fator com as contagens do DETRAN de **julho/2026**, o mesmo mês da matriz, baixadas do portal de dados abertos do DF. Basta substituir o `flow.csv` e rodar `python scripts/build_od_matrix.py --offline`.
+
+## Etapa 7 — Dados para validação (pode ser feito já)
+
+Não é rodar a validação; é deixar os dados à mão.
+- **Sioux Falls**, para validar o código do Frank-Wolfe: baixar `SiouxFalls_net.tntp`, `SiouxFalls_trips.tntp` e `SiouxFalls_flow.tntp` do repositório público *TransportationNetworks*.
+- **Gama**, para validar o modelo:
+  - `regioes[].passagens_veic_h` na matriz: fluxo observado em cada caixa (126 caixas com 100 ou mais passagens);
+  - `fator_expansao.observacoes`: as 4 pistas com contagem do DETRAN.
 
 ---
+
+## Ordem e dependências
+
+```
+Agora (em paralelo):     Etapa 3 (faixas/capacidade) · Etapa 6 (parâmetros) · Etapa 7 (dados de validação)
+Até 20/10:               Etapa 1 (coleta rodando sozinha; só acompanhar)
+Depois de 20/10:         Etapa 2 (velocidades) → Etapa 4 (grafo atribuído) → Etapa 5 (vias críticas)
+Então:                   Frank-Wolfe
+```
+
+## Pendências opcionais (não bloqueiam)
+
+| Item | Ganho |
+|---|---|
+| Caixas TomTom nos nós 32 e 41, e as duas ligações até o nó 127 (ficaram fora do recorte) | Recupera 1,6% da demanda descartada e evita arestas vazias no modelo |
+| Ponto de calibração na EPIP | Hoje nenhuma caixa da EPIP passa no critério; o recorte só pega a EPIP dentro do trevo |
+| Contagens do DETRAN de julho/2026 | Calibração sem defasagem de meses (Etapa 6) |
 
 ## Arquivos que não serão mais usados
 
-Nada foi apagado. Sugestão de ação para cada um:
+Nada foi apagado.
 
 | Arquivo | Por quê | Sugestão |
 |---|---|---|
-| `scripts/organizer.py`, `Tables/K_Table.csv`, `Tables/tomtom_flow_consolidado.csv` | K antigo: limite de outra rodovia e coleta do feriado (já apontado no `research_plan.md`) | Apagar |
-| `Tables/matriz_od_gama3.json`, `Tables/matriz_od_gama3_expandido.json`, `Tables/od_tomtom_gama3_bruto.json` | Análise "Gama 3" (30 caixas), substituída pela "Gama Final" | Apagar (o histórico fica no git) |
-| `cache/gama_drive_reduced_tomtom.gpkg`, `cache/tomtom_flow_results.jsonl` | Grafo de 86 arestas anterior ao de 30 nós e checkpoint do coletor antigo | Apagar |
-| `scripts/graphml_to_geopackage.py` | Aponta para `gama_drive_reduced.graphml`, que não existe mais; o `expand_graph.py` já gera o `.gpkg` | Apagar |
-| `scripts/graph_visual_check.py` | Caminho fixo de outra máquina; o `expand_graph.py` já gera a figura | Apagar |
-| `scripts/osmnx-api.py`, `cache/gama_drive_projected.*`, `cache/limite_gama.geojson` | Grafo da RA inteira, cortado na divisa (sem a pista norte da EPCT). Substituído por `cache/gama_area_estudo_osm.graphml` | Apagar junto com a linha `GRAFO_COMPLETO` do `build_od_matrix.py`, que é só um fallback |
-| `cache/gama_drive_sample_30.*`, `cache/gama_drive_sample_30_selection.json`, `cache/gama_drive_sample_30_tomtom.gpkg` | Grafo de 30 nós | Manter até trocar o coletor (Etapa 2B), depois apagar |
-| `Tables/Speeds.csv` | Limites de radar; o plano prioriza `maxspeed` do OSM | Manter só se for usado como fallback de `V0` nas rodovias |
-| `README.md`, seção "TomTom flow" | Cita `api-caller.py`, `gama_drive_reduced` e `tomtom_flow_results.jsonl`, que não existem ou mudaram | Reescrever |
-| `scripts/__pycache__/` | Bytecode do Python commitado por engano | Apagar e adicionar `__pycache__/` ao `.gitignore` |
+| `scripts/organizer.py`, `Tables/K_Table.csv`, `Tables/tomtom_flow_consolidado.csv` | K antigo: limite de outra rodovia e coleta do feriado | Apagar |
+| `Tables/matriz_od_gama3.json`, `Tables/matriz_od_gama3_expandido.json`, `Tables/od_tomtom_gama3_bruto.json` | Análise "Gama 3" (30 caixas), substituída pela "Gama Final" | Apagar |
+| `cache/gama_drive_reduced_tomtom.gpkg`, `cache/tomtom_flow_results.jsonl`, `cache/gama_drive_sample_30_tomtom.gpkg` | Coletas de velocidade de grafos antigos | Apagar |
+| `cache/gama_drive_sample_30.*`, `cache/gama_drive_sample_30_selection.json` | Grafo de 30 nós; o coletor já usa o grafo expandido | Apagar (o `expand_graph.py` só precisa dele para refazer o recorte; manter se houver chance de refazer) |
+| `scripts/graphml_to_geopackage.py` | Aponta para `gama_drive_reduced.graphml`, que não existe | Apagar |
+| `scripts/graph_visual_check.py` | Caminho fixo de outra máquina | Apagar |
+| `scripts/osmnx-api.py`, `cache/gama_drive_projected.*`, `cache/limite_gama.geojson` | Grafo da RA inteira, cortado na divisa; substituído por `cache/gama_area_estudo_osm.graphml` | Apagar junto com a linha `GRAFO_COMPLETO` do `build_od_matrix.py`, que é só um fallback |
+| `cache/gama_drive_expanded_tomtom.gpkg` | Última rodada de velocidade, para o QGIS; o workflow não commita mais | Tirar do git (`git rm --cached`) |
+| `Tables/Speeds.csv` | Limites de radar; a velocidade livre virá da TomTom e do OSM | Manter só se for usado como fallback nas rodovias |
+| `README.md`, seção "TomTom flow" | Cita arquivos e comandos que não existem mais | Reescrever |
+| `scripts/__pycache__/` | Bytecode commitado por engano | Apagar e pôr `__pycache__/` no `.gitignore` |
 
-**Continuam necessários:** `flow.csv` (calibração), `Tables/trechos_com_coordenadas.csv` e `Tables/Roads.csv` (localização dos contadores), `scripts/mapping.py` (só se a tabela do DER mudar), `scripts/api_caller.py`, `scripts/expand_graph.py`, `scripts/build_od_matrix.py` e o workflow.
-
-O `research/o_que_tem_que_fazer_pra_mudar_o_grafo.md` está cumprido e fica como registro histórico.
+**Continuam necessários:**
+- dados: `flow.csv`, `Tables/trechos_com_coordenadas.csv`, `Tables/Roads.csv`, `cache/gama_area_estudo_osm.graphml`;
+- scripts: `scripts/api_caller.py`, `scripts/expand_graph.py`, `scripts/build_od_matrix.py` e `scripts/mapping.py` (este só se a tabela do DER mudar);
+- o workflow.
