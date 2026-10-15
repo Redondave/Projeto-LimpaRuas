@@ -26,11 +26,16 @@ ou seja, a velocidade que reproduz o tempo de percurso somado dos trechos.
 K inicial (SPI do research_plan.md) = vmed / limite de velocidade da aresta, com
 o limite de Tables/faixas_limite_arestas.csv (OSM ou CTB art. 61).
 
+Velocidade de madrugada (job 10086478, mesmo poligono e mesmos dias, 00:00-04:00):
+mesmo casamento e mesma media harmonica, em colunas proprias (*_madrugada). E a
+base da velocidade livre v0 do t0 (scripts/enrich_graph.py, Etapa 6).
+
 Uso (da raiz do repositorio):
     python scripts/velocidades_traffic_stats.py
 
 Entradas:
-    Tables/traffic_stats_gama_julho.json   resultado do job (download do portal/API)
+    Tables/traffic_stats_gama_julho.json       resultado do job do pico (download do portal/API)
+    Tables/traffic_stats_gama_madrugada.json   resultado do job da madrugada
     cache/gama_drive_expanded.graphml
     Tables/faixas_limite_arestas.csv       (scripts/faixas_limite.py)
 Saida:
@@ -54,6 +59,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 RAIZ = Path(__file__).resolve().parents[1]
 TRAFFIC_STATS = RAIZ / "Tables/traffic_stats_gama_julho.json"
+TRAFFIC_STATS_MADRUGADA = RAIZ / "Tables/traffic_stats_gama_madrugada.json"
 GRAFO = RAIZ / "cache/gama_drive_expanded.graphml"
 FAIXAS_LIMITE = RAIZ / "Tables/faixas_limite_arestas.csv"
 SAIDA = RAIZ / "Tables/velocidades_arestas.csv"
@@ -67,8 +73,8 @@ AMOSTRA_BAIXA = 0.01      # normalizedSampleSize abaixo disso: poucos veiculos
 P85 = 16                  # speedPercentiles vem de 5 em 5 (5..95): indice 16 = p85
 
 
-def carregar_trechos() -> gpd.GeoDataFrame:
-    d = json.loads(TRAFFIC_STATS.read_text(encoding="utf-8"))
+def carregar_trechos(arquivo: Path = TRAFFIC_STATS) -> gpd.GeoDataFrame:
+    d = json.loads(arquivo.read_text(encoding="utf-8"))
     linhas = []
     for s in d["network"]["segmentResults"]:
         r = s["segmentTimeResults"][0]
@@ -110,8 +116,20 @@ def casar(aresta: LineString, trechos: gpd.GeoDataFrame) -> list[tuple[int, floa
     return casados
 
 
+def harmonica(geom: LineString, trechos: gpd.GeoDataFrame) -> tuple[float | None, float, float | None]:
+    """(velocidade harmonica ponderada, cobertura, amostra) dos trechos com dado."""
+    com_dado = [(i, w) for i, w in casar(geom, trechos) if trechos["v_harm"].iloc[i] > 0]
+    if not com_dado:
+        return None, 0.0, None
+    w_total = sum(w for _, w in com_dado)
+    v = w_total / sum(w / trechos["v_harm"].iloc[i] for i, w in com_dado)
+    amostra = sum(trechos["amostra"].iloc[i] * w for i, w in com_dado) / w_total
+    return v, min(w_total / geom.length, 1.0), amostra
+
+
 def main() -> None:
     trechos, info = carregar_trechos()
+    madrugada, info_m = carregar_trechos(TRAFFIC_STATS_MADRUGADA)
     G = nx.read_graphml(GRAFO)
     limites = pd.read_csv(FAIXAS_LIMITE).set_index("edge_id")
     pos = {n: (float(d["x"]), float(d["y"])) for n, d in G.nodes(data=True)}
@@ -136,6 +154,7 @@ def main() -> None:
             "trecho sem dado" if casados else "sem trecho TomTom")
 
         lim = limites["maxspeed_kmh"].get(eid)
+        v_m, cob_m, am_m = harmonica(geom, madrugada)
         linhas.append({
             "edge_id": eid, "u": u, "v": v, "nome": d.get("name"),
             "highway": d["highway"], "length_m": round(L, 1),
@@ -150,11 +169,14 @@ def main() -> None:
             "n_trechos": len(casados), "n_trechos_com_dado": len(com_dado),
             "limite_tomtom_kmh": ponderada("limite_tomtom", casados),
             "status": status,
+            "v_madrugada_kmh": round(v_m, 1) if v_m else None,
+            "cobertura_madrugada": round(cob_m, 2),
+            "amostra_madrugada": round(am_m, 4) if am_m is not None else None,
             "segment_ids": ";".join(str(trechos["segmentId"].iloc[i]) for i, _ in casados),
         })
 
     t = pd.DataFrame(linhas)
-    t.loc[t["highway"] == "busway", ["status", "k_inicial"]] = ["corredor de onibus", None]
+    t.loc[t["highway"] == "busway", ["status", "k_inicial", "v_madrugada_kmh"]] = ["corredor de onibus", None, None]
     t.to_csv(SAIDA, index=False, encoding="utf-8-sig")
 
     usados = {int(s) for ids in t["segment_ids"] if ids for s in ids.split(";")}
@@ -172,6 +194,9 @@ def main() -> None:
     print(resumo.fillna(0).round(2).to_string())
     print(f"\nArestas ok com amostra baixa (< {AMOSTRA_BAIXA}): {int(ok['amostra_baixa'].sum())}")
     print(f"K inicial: {ok['k_inicial'].describe()[['min', '25%', '50%', '75%', 'max']].round(2).to_dict()}")
+    m = t[t["cobertura_madrugada"] >= COBERTURA_OK]
+    print(f"\nMadrugada '{info_m['janela']}': {len(m)} arestas com velocidade "
+          f"(cobertura >= {COBERTURA_OK}), {int((m['amostra_madrugada'] < AMOSTRA_BAIXA).sum())} com amostra baixa")
 
 
 if __name__ == "__main__":

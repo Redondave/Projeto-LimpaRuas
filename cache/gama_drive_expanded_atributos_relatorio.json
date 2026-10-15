@@ -1,0 +1,107 @@
+{
+ "arestas": 236,
+ "arestas_de_carro": 235,
+ "com_k_inicial": 233,
+ "fonte_v0": {
+  "madrugada": 142,
+  "pico (madrugada mais lenta)": 76,
+  "limite (madrugada acima dele)": 16,
+  "corredor de onibus": 1,
+  "limite (sem dado de madrugada)": 1
+ },
+ "fonte_lanes": {
+  "OSM": 113,
+  "padrao por classe": 93,
+  "OSM (mesma via)": 30
+ },
+ "t_obs_sobre_t0": {
+  "mediana": 1.04,
+  "rede_toda": 1.119,
+  "por_classe": {
+   "primary": 1.22,
+   "tertiary": 1.03,
+   "tertiary_link": 1.02,
+   "trunk": 1.36,
+   "trunk_link": 1.08,
+   "unclassified": 1.0
+  }
+ },
+ "capacidade_por_classe": {
+  "primary": [
+   3600
+  ],
+  "tertiary": [
+   900,
+   1800
+  ],
+  "tertiary_link": [
+   600
+  ],
+  "trunk": [
+   3600,
+   5400
+  ],
+  "trunk_link": [
+   1200
+  ],
+  "unclassified": [
+   600
+  ]
+ },
+ "capacidade_por_faixa": {
+  "motorway": 1800,
+  "trunk": 1800,
+  "motorway_link": 1200,
+  "trunk_link": 1200,
+  "primary": 1200,
+  "primary_link": 900,
+  "secondary": 900,
+  "tertiary": 900,
+  "secondary_link": 600,
+  "tertiary_link": 600,
+  "unclassified": 600,
+  "residential": 600,
+  "living_street": 600
+ },
+ "bpr": {
+  "alpha": 0.15,
+  "beta": 4.0
+ },
+ "pares_od": 1031,
+ "pares_od_sem_caminho": 0,
+ "v_sobre_c_detran": [
+  {
+   "trecho": "001EDF0250",
+   "sentido": "decrescente",
+   "rodovia": "DF-001",
+   "detran_veic_h": 2146,
+   "capacidade_veic_h": 3600,
+   "v_sobre_c": 0.6
+  },
+  {
+   "trecho": "001EDF0270",
+   "sentido": "crescente",
+   "rodovia": "DF-001",
+   "detran_veic_h": 1508,
+   "capacidade_veic_h": 3600,
+   "v_sobre_c": 0.42
+  },
+  {
+   "trecho": "480EDF0030",
+   "sentido": "crescente",
+   "rodovia": "DF-480",
+   "detran_veic_h": 1505,
+   "capacidade_veic_h": 3600,
+   "v_sobre_c": 0.42
+  },
+  {
+   "trecho": "480EDF0030",
+   "sentido": "decrescente",
+   "rodovia": "DF-480",
+   "detran_veic_h": 2424,
+   "capacidade_veic_h": 3600,
+   "v_sobre_c": 0.67
+  }
+ ],
+ "problemas": []
+}

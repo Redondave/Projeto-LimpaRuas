@@ -11,19 +11,19 @@
 | Bruto da TomTom O/D | `Tables/od_tomtom_gama_final_bruto.json` | ✅ análise "Gama Final", 134 caixas |
 | Velocidades no pico e K inicial | `Tables/velocidades_arestas.csv` | ✅ Traffic Stats de julho/2026, 233 de 236 arestas (Etapas 1 e 2) |
 | Faixas e limite de velocidade por aresta | `Tables/faixas_limite_arestas.csv` | ✅ falta conferência manual (Etapa 3a) |
-| Capacidade e `t0` por aresta | — | ❌ Etapas 3b e 4 |
+| Grafo atribuído (capacidade, `t0`, `v0`, K) | `cache/gama_drive_expanded_atributos.graphml` | ✅ checagens ok; refazer após a conferência manual (Etapas 3b e 4) |
 | Vias críticas | — | ❌ Etapa 5 |
 
 ## O que o Frank-Wolfe vai receber
 
-É a meta deste documento: tudo abaixo existe e foi conferido.
+Tudo abaixo já existe; o grafo foi conferido pelas checagens da Etapa 4.
 
 1. **Grafo atribuído** (`cache/gama_drive_expanded_atributos.graphml`), com estes campos em **cada aresta**:
 
    | Campo | Unidade | Origem |
    |---|---|---|
    | `length` | m | OSM (já existe) |
-   | `v0_kmh` | km/h | limite da via (Etapa 3a) |
+   | `v0_kmh` | km/h | velocidade de madrugada, entre a de pico e o limite (Etapa 6) |
    | `t0_min` | min | `length / v0` |
    | `lanes_sentido`, `fonte_lanes` | faixas | Etapa 3 |
    | `capacidade_veic_h` | veíc/h | Etapa 3 |
@@ -52,7 +52,7 @@ Substitui a coleta em tempo real pela Flow API, que foi removida. O GitHub dispa
 
 **Velocidade da aresta:** média harmônica das velocidades harmônicas dos trechos, ponderada pelo comprimento sobreposto, `vmed = Σ Lᵢ / Σ (Lᵢ / vᵢ)`. É a velocidade que reproduz o tempo de percurso somado dos trechos. A tabela também traz a mediana e o percentil 85, ponderados, e a amostra normalizada da TomTom (`amostra_baixa` quando < 0,01).
 
-**K inicial** = `vmed / maxspeed_kmh`, com o limite da Etapa 3a. É o SPI do `research_plan.md`. **Decisão:** a velocidade livre `V0` é o **limite da via**, como no plano e no SPI de He et al. (2016). A velocidade livre medida, de madrugada, não foi pedida. Limitação a declarar: em alças e ruas locais a velocidade real em via livre costuma ficar abaixo do limite; em rodovias, acima.
+**K inicial** = `vmed / maxspeed_kmh`, com o limite da Etapa 3a. É o SPI do `research_plan.md`. **Decisão:** no K, o denominador é o **limite da via**, como no plano e no SPI de He et al. (2016). No `t0` da BPR, a velocidade livre é a medida de madrugada (Etapa 6).
 
 **Resultado (236 arestas):**
 
@@ -130,37 +130,45 @@ Limites adotados por classe:
 - **Alças da EPCT/DF-480 (`trunk_link`, 13 sem tag):** o CTB as põe na categoria da rodovia (80 km/h), mas alças em laço de trevo costumam ter placa de 40 a 60 km/h.
 - **Avenidas largas com 1 faixa por regra** (ex.: Avenida JK): checar no satélite se não são 2 por sentido.
 
-**Como isso entra no modelo:** o limite é a **velocidade livre `V0`** de cada aresta (decisão das Etapas 1 e 2): define o `t0` e o denominador do K. Por isso a conferência manual pesa direto no modelo. As faixas entram na capacidade (3b).
+**Como isso entra no modelo:** o limite é o denominador do K e o teto da velocidade livre do `t0` (Etapa 6). Por isso a conferência manual pesa direto no modelo. As faixas entram na capacidade (3b).
 
-### 3b. Capacidade (falta fazer)
+### 3b. Capacidade (feito em 15/10)
 
-Capacidade por faixa com os valores do `research_plan.md`. Proposta para fixar:
+Capacidade por faixa dentro das faixas do `research_plan.md`:
 
 | Classe | veíc/h/faixa |
 |---|---|
-| trunk | 1.800 |
-| trunk_link, primary | 1.200 |
-| primary_link, tertiary | 900 |
+| trunk (EPCT) | 1.800 |
+| trunk_link, primary (DF-480) | 1.200 |
+| primary_link, secondary, tertiary | 900 |
 | tertiary_link, unclassified | 600 |
 
-`capacidade_veic_h = lanes_sentido × capacidade_por_faixa`.
+`capacidade_veic_h = lanes_sentido × capacidade_por_faixa`, por sentido. Valores resultantes:
+- EPCT: 3.600 ou 5.400 veíc/h;
+- DF-480: 3.600;
+- terciárias: 900 ou 1.800;
+- alças: 1.200;
+- locais: 600.
 
-**Checagem de sanidade:** comparar a capacidade das 4 pistas com contador do DETRAN com o volume medido no pico. A razão V/C deve ficar abaixo de ~1,2. Se passar disso, as faixas ou a capacidade por faixa estão subestimadas (foi o que aconteceu no grafo rodoviário antigo).
+**Checagem de sanidade (V/C nas 4 pistas com contador do DETRAN):** 0,60 e 0,42 na EPCT, 0,42 e 0,67 na DF-480. Todas abaixo de 1,2, então nenhuma capacidade está subestimada.
 
-**Saída:** coluna `capacidade_veic_h`, calculada na Etapa 4 a partir de `Tables/faixas_limite_arestas.csv`.
+## Etapa 4 — Grafo atribuído (feito em 15/10)
 
-## Etapa 4 — Montar o grafo atribuído (depois da Etapa 3)
+`python scripts/enrich_graph.py` → `cache/gama_drive_expanded_atributos.graphml`, com relatório em `cache/gama_drive_expanded_atributos_relatorio.json` e mapa do K inicial em `cache/gama_drive_expanded_k_inicial.png`.
 
-**O que fazer** (sugestão: `scripts/enrich_graph.py`):
-1. Juntar `Tables/faixas_limite_arestas.csv` (faixas, limite = `V0`) e `Tables/velocidades_arestas.csv` (`vmed`, K) no grafo, calcular `t0_min = length / v0` e a capacidade (3b).
-2. **Checagens antes de liberar para o Frank-Wolfe:**
-   - toda aresta com `permite_carro` tem `t0 > 0` e capacidade > 0;
-   - os 1.031 pares da matriz continuam com caminho no grafo sem o corredor de ônibus;
-   - nenhuma aresta com `t0` absurdo: velocidade livre abaixo de 10 ou acima de 120 km/h;
-   - ids e unidades conferidos.
-3. Gerar uma figura com a velocidade livre e o K inicial por aresta, para conferência visual.
+**Campos de cada aresta:** `length` (m), `limite_kmh`, `fonte_limite`, `v0_kmh`, `fonte_v0`, `v_madrugada_kmh`, `t0_min`, `lanes_sentido`, `fonte_lanes`, `capacidade_por_faixa`, `capacidade_veic_h`, `permite_carro`, `categoria_ctb`, `classe`; e, para validação, `vmed_kmh`, `t_obs_min`, `k_inicial`, `status_velocidade`.
 
-**Saída:** `cache/gama_drive_expanded_atributos.graphml` + um relatório de cobertura (quantas arestas têm cada atributo medido e quantas imputado).
+**Atributos do grafo:** `bpr_alpha = 0,15`, `bpr_beta = 4`, a fórmula da VDF, as unidades e a regra de exclusão (`permite_carro = False`).
+
+**Leitura:** `nx.read_graphml` devolve os atributos já tipados (float, int, bool). O `ox.load_graphml` não serve para este arquivo.
+
+**Checagens (todas ok):**
+- todas as 235 arestas de carro têm `t0 > 0` e capacidade > 0;
+- `v0` entre 10 e 120 km/h;
+- os 1.031 pares da matriz têm caminho sem o corredor de ônibus;
+- todos os nós da matriz existem no grafo.
+
+**Depois da conferência manual da Etapa 3a:** rodar de novo, em ordem, `faixas_limite.py` → `velocidades_traffic_stats.py` → `enrich_graph.py`.
 
 ## Etapa 5 — Vias críticas (diagnóstico, Passo 1 do plano)
 
@@ -186,6 +194,46 @@ Capacidade por faixa com os valores do `research_plan.md`. Proposta para fixar:
 | Parada | gap relativo < 10⁻⁴ ou 500 iterações | — |
 | Pares OD com poucas viagens | manter todos (são 9% da demanda) | rodar sem os pares com menos de 5 viagens |
 
+**Velocidade livre `v0` (decidido em 15/10): velocidade medida de madrugada.**
+
+*Problema.* Com `v0` igual ao limite, o tempo no pico dava, na mediana, 1,67 vez o `t0`. Com V/C entre 0,42 e 0,67, a BPR padrão só produz 1 a 3% de aumento. A maior parte desse "atraso" não era congestionamento: eram curva, trevo, conversão e semáforo, que existem também com a via vazia.
+
+*Solução.* TomTom Traffic Stats, job 10086478: mesmo polígono, dias úteis de julho/2026, das 00:00 às 04:00. O bruto está em `Tables/traffic_stats_gama_madrugada.json`, com a mesma regra de casamento das Etapas 1 e 2.
+
+*Regra:* `v0 = min(limite, max(v_madrugada, v_pico))`.
+- **Nunca abaixo da velocidade de pico.** De madrugada passam poucos carros. Em 52 arestas com amostra baixa (terciárias e locais), a média saiu mais lenta que no pico: ônibus, caminhão de lixo, carro estacionando.
+- **Nunca acima do limite.** Excesso de velocidade não serve de referência.
+- **Sem dado de madrugada:** o limite.
+
+| Fonte do `v0` | Arestas |
+|---|---|
+| madrugada | 142 |
+| pico (madrugada mais lenta) | 76 |
+| limite (madrugada acima dele) | 16 |
+| limite (sem dado de madrugada) | 1 |
+
+O K continua `vmed / limite`, como no `research_plan.md`. A madrugada entra só no `t0`.
+
+*Resultado.* O `t0` total da rede passou de 36,3 para 55,7 min. O tempo de pico sobre o `t0` caiu de 1,67 para **1,04** na mediana; na rede toda, de 1,72 para **1,12**.
+
+| Classe | Mediana de `t_obs/t0` |
+|---|---|
+| terciárias | 1,03 |
+| locais | 1,00 |
+| alças | 1,08 |
+| DF-480 | 1,22 |
+| EPCT | 1,36 |
+
+*O que ainda sobra.* Fora do corredor, o modelo-base já fica próximo do observado. Na EPCT e na DF-480 sobram 20 a 36% de atraso. Com V/C de 0,6, a BPR só reproduziria isso com α ≈ 2,8, um valor fora de qualquer referência. É fila no trevo (atraso de nó e entrelaçamento), que a BPR por aresta não representa.
+
+Opções para esse resíduo:
+- **(a)** reduzir a capacidade das arestas de gargalo do trevo;
+- **(b)** declarar a limitação e analisar os cenários pela variação relativa (ΔTSTT, ΔK).
+
+**α e β:** referência 0,15 e 4, a BPR original e a mais citada; não há valor nacional padronizado. Sensibilidade com 0,8 e 4,7. Com V/C ≤ 0,67, o β quase não pesa; ele importa nos cenários que levem vias para perto da capacidade.
+
+O grafo traz `t_obs_min` e `v_madrugada_kmh` em cada aresta para essa comparação.
+
 **Opcional:** recalibrar o fator com as contagens do DETRAN de **julho/2026**, o mesmo mês da matriz, baixadas do portal de dados abertos do DF. Basta substituir o `flow.csv` e rodar `python scripts/build_od_matrix.py --offline`.
 
 ## Etapa 7 — Dados para validação (pode ser feito já)
@@ -201,9 +249,9 @@ Não é rodar a validação; é deixar os dados à mão.
 ## Ordem e dependências
 
 ```
-Feito:                   Etapas 1 e 2 (velocidades e K, Traffic Stats) · Etapa 3a (faixas e limite, sem a conferência)
-Agora (em paralelo):     Etapa 3a (conferência manual) · 3b (capacidade) · Etapa 6 (parâmetros) · Etapa 7 (dados de validação)
-Depois da conferência:   rodar de novo faixas_limite.py e velocidades_traffic_stats.py → Etapa 4 (grafo atribuído) → Etapa 5 (vias críticas)
+Feito:                   Etapas 1 e 2 (velocidades e K) · 3a (faixas e limite, sem a conferência) · 3b (capacidade) · 4 (grafo atribuído)
+Agora (em paralelo):     Etapa 3a (conferência manual) · Etapa 6 (parâmetros e a decisão sobre a calibração) · Etapa 7 (dados de validação)
+Depois da conferência:   faixas_limite.py → velocidades_traffic_stats.py → enrich_graph.py → Etapa 5 (vias críticas)
 Então:                   Frank-Wolfe
 ```
 
