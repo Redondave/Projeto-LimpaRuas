@@ -16,6 +16,23 @@ e calcula:
                - nunca acima do limite: excesso de velocidade nao e referencia;
                - sem dado de madrugada (cobertura < 50%): o limite.
   - t0_min     tempo em fluxo livre = length / v0
+  - capacidade efetiva nos gargalos do corredor (research/problemas_do_modelo.md,
+    problema 1). A BPR por aresta nao representa a fila do trevo: perto dele a
+    EPCT e a DF-480 ficam lentas com so ~60% da capacidade ocupada. Nos trechos
+    de gargalo, a capacidade e reduzida ate a BPR reproduzir o tempo observado:
+        1. fluxo atual estimado: a matriz OD alocada tudo-ou-nada pelos caminhos
+           minimos com os tempos observados no pico (t_obs). Se os tempos
+           observados sao os de equilibrio, cada viagem usa o caminho mais
+           rapido sob eles. Conferido contra as passagens das caixas TomTom;
+        2. gargalo = aresta do corredor (CLASSES_CORREDOR) com velocidade
+           observada ok, fluxo >= VC_MIN_GARGALO x capacidade nominal e atraso
+           observado (t_obs/t0) acima do previsto pela BPR em mais de FOLGA_GARGALO;
+        3. capacidade efetiva = fluxo / ((t_obs/t0 - 1) / alpha) ** (1 / beta),
+           nunca acima da nominal.
+    O conjunto de gargalos e definido com o fator de expansao adotado (e uma
+    caracteristica fisica, medida pelo tempo observado). Como o fluxo escala com
+    o fator, a capacidade efetiva tambem: nos fatores minimo e maximo ela e a do
+    fator adotado x (fator / fator adotado), nunca acima da nominal.
 O K continua sendo vmed / limite (research_plan.md); a madrugada entra so no t0.
   - capacidade_veic_h = lanes_sentido x capacidade por faixa da classe
 
@@ -80,11 +97,67 @@ CAPACIDADE_POR_FAIXA = {
 BPR_ALPHA, BPR_BETA = 0.15, 4.0
 V0_MIN, V0_MAX = 10, 120
 COBERTURA_OK = 0.5        # mesma regra do velocidades_traffic_stats.py
+# gargalos do corredor (capacidade efetiva)
+CLASSES_CORREDOR = {"motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link"}
+VC_MIN_GARGALO = 0.3      # abaixo disso o atraso nao vem do volume (cruzamento, conversao)
+FOLGA_GARGALO = 0.05      # atraso observado - atraso da BPR, em fracao de t0
 VC_MAX_SANIDADE = 1.2
 
 
 def classe(h: str) -> str:
     return h.strip("[]").split(",")[0].strip(" '") if h.startswith("[") else h
+
+
+def fluxo_atual(G: nx.DiGraph, matriz: dict) -> dict:
+    """Fluxo por aresta (veic/h, fator adotado): matriz OD alocada tudo-ou-nada
+    pelos caminhos minimos com os tempos observados no pico."""
+    C = nx.DiGraph()
+    for u, v, d in G.edges(data=True):
+        if d["permite_carro"]:
+            C.add_edge(u, v, w=d.get("t_obs_min", d["t0_min"]))
+    fluxo = dict.fromkeys(C.edges, 0.0)
+    por_origem = {}
+    for p in matriz["pares"]:
+        por_origem.setdefault(p["origem"], []).append(p)
+    for o, pares in por_origem.items():
+        _, caminhos = nx.single_source_dijkstra(C, o, weight="w")
+        for p in pares:
+            c = caminhos[p["destino"]]
+            for a, b in zip(c, c[1:]):
+                fluxo[(a, b)] += p["veic_h"]
+    return fluxo
+
+
+def capacidade_efetiva(d: dict, fluxo: float, alpha: float = BPR_ALPHA, beta: float = BPR_BETA) -> float | None:
+    """Capacidade que faz a BPR reproduzir o tempo observado no pico, ou None se
+    a aresta nao e gargalo. Serve tambem para recalcular com outros alpha e beta
+    (sensibilidade) ou outro fator de expansao (fluxo proporcional ao fator)."""
+    if d["classe"] not in CLASSES_CORREDOR or d.get("status_velocidade") != "ok":
+        return None
+    c = d["capacidade_nominal_veic_h"]
+    r = d["t_obs_min"] / d["t0_min"]
+    if fluxo / c < VC_MIN_GARGALO or r - (1 + alpha * (fluxo / c) ** beta) < FOLGA_GARGALO:
+        return None
+    return min(c, fluxo / ((r - 1) / alpha) ** (1 / beta))
+
+
+def comparar_passagens(G: nx.DiGraph, matriz: dict, fluxo: dict) -> dict:
+    """Fluxo estimado x passagens observadas nas caixas TomTom, nas arestas em que
+    a caixa mede so aquela aresta (saida unica do no de origem ou entrada unica do
+    de destino)."""
+    pas = {}
+    for r in matriz["regioes"]:
+        pas[r["no"]] = pas.get(r["no"], 0) + r["passagens_veic_h"]
+    pares = []
+    for (u, v), f in fluxo.items():
+        if G.out_degree(u) == 1 and u in pas:
+            pares.append((f, pas[u]))
+        elif G.in_degree(v) == 1 and v in pas:
+            pares.append((f, pas[v]))
+    t = pd.DataFrame(pares, columns=["estimado", "observado"])
+    t = t[t["observado"] > 0]
+    return {"arestas": len(t), "razao_mediana": round(float((t["estimado"] / t["observado"]).median()), 2),
+            "correlacao": round(float(t.corr().iloc[0, 1]), 3)}
 
 
 def checar_capacidade(G: nx.DiGraph, matriz: dict) -> list[dict]:
@@ -96,7 +169,7 @@ def checar_capacidade(G: nx.DiGraph, matriz: dict) -> list[dict]:
         for n in o["nos"]:
             for _, w, d in G.out_edges(n, data=True):
                 if o["rodovia"] in re.findall(r"(?:DF|BR)-\d{3}", str(d.get("ref", ""))):
-                    caps.append(d["capacidade_veic_h"])
+                    caps.append(d["capacidade_nominal_veic_h"])
         if not caps:
             continue
         cap = sorted(caps)[len(caps) // 2]
@@ -175,6 +248,39 @@ def main() -> None:
             d["k_inicial"] = float(s["k_inicial"])
         d["status_velocidade"] = s["status"]
 
+    # ---- capacidade efetiva nos gargalos do corredor ----
+    for _, _, d in G.edges(data=True):
+        d["capacidade_nominal_veic_h"] = d["capacidade_veic_h"]
+    fluxo = fluxo_atual(G, matriz)
+    fe = matriz["fator_expansao"]
+    fatores = {"min": fe["faixa_para_sensibilidade"][0], "adotado": fe["adotado"],
+               "max": fe["faixa_para_sensibilidade"][1]}
+    gargalos = []
+    for u, v, d in G.edges(data=True):
+        if not d["permite_carro"]:
+            d["gargalo"] = False
+            continue
+        x = fluxo.get((u, v), 0.0)
+        d["fluxo_atual_estimado_veic_h"] = round(x, 1)
+        if d.get("status_velocidade") == "ok":
+            d["razao_t_obs_t0"] = round(d["t_obs_min"] / d["t0_min"], 3)
+        nominal = d["capacidade_nominal_veic_h"]
+        c = capacidade_efetiva(d, x)
+        d["gargalo"] = c is not None
+        cap = {k: min(nominal, c * f / fatores["adotado"]) if c else None for k, f in fatores.items()}
+        d["capacidade_veic_h"] = round(cap["adotado"]) if cap["adotado"] else nominal
+        d["capacidade_veic_h_fator_min"] = round(cap["min"]) if cap["min"] else nominal
+        d["capacidade_veic_h_fator_max"] = round(cap["max"]) if cap["max"] else nominal
+        if d["gargalo"]:
+            gargalos.append({"aresta": f"{u}->{v}", "nome": d.get("name", ""), "classe": d["classe"],
+                             "length_m": round(d["length"]), "fluxo_veic_h": round(x),
+                             "t_obs_sobre_t0": d["razao_t_obs_t0"],
+                             "capacidade_nominal": nominal, "capacidade_efetiva": d["capacidade_veic_h"],
+                             "fracao_da_nominal": round(d["capacidade_veic_h"] / nominal, 2),
+                             "capacidade_fator_min": d["capacidade_veic_h_fator_min"],
+                             "capacidade_fator_max": d["capacidade_veic_h_fator_max"]})
+    conferencia_fluxo = comparar_passagens(G, matriz, fluxo)
+
     # ---- checagens do que o Frank-Wolfe pressupoe ----
     problemas = []
     for u, v, d in G.edges(data=True):
@@ -199,6 +305,11 @@ def main() -> None:
     for r in vc:
         if r["v_sobre_c"] > VC_MAX_SANIDADE:
             problemas.append(f"V/C = {r['v_sobre_c']} em {r['rodovia']} {r['sentido']}: capacidade subestimada?")
+    for g in gargalos:
+        d = G.edges[g["aresta"].split("->")[0], g["aresta"].split("->")[1]]
+        r_bpr = 1 + BPR_ALPHA * (d["fluxo_atual_estimado_veic_h"] / d["capacidade_veic_h"]) ** BPR_BETA
+        if abs(r_bpr - d["razao_t_obs_t0"]) > 0.01 and d["capacidade_veic_h"] < d["capacidade_nominal_veic_h"]:
+            problemas.append(f"{g['aresta']}: capacidade efetiva nao reproduz t_obs")
 
     G.graph.update({
         "crs": "EPSG:31983",
@@ -206,7 +317,11 @@ def main() -> None:
         "gerado_em": date.today().isoformat(),
         "matriz_od": MATRIZ.relative_to(RAIZ).as_posix(),
         "unidades": "length m; v0_kmh, limite_kmh, vmed_kmh, v_madrugada_kmh km/h; t0_min, t_obs_min min; "
-                    "capacidade_veic_h veic/h por sentido",
+                    "capacidade_*, fluxo_atual_estimado_veic_h veic/h por sentido",
+        "capacidade": ("capacidade_veic_h = efetiva nos gargalos (gargalo = True, fator adotado), nominal "
+                       "nas demais; capacidade_veic_h_fator_min/_max para os outros fatores de expansao; "
+                       "outros alpha/beta: recalcular com enrich_graph.capacidade_efetiva"),
+        "fatores_expansao": json.dumps(fatores),
         "vdf": "BPR: t = t0_min * (1 + bpr_alpha * (fluxo / capacidade_veic_h) ** bpr_beta)",
         "bpr_alpha": BPR_ALPHA, "bpr_beta": BPR_BETA,
         "v0": "min(limite, max(v_madrugada 00-04h, v_pico)); sem dado de madrugada, o limite",
@@ -234,6 +349,10 @@ def main() -> None:
             "por_classe": (arestas["t_obs"] / arestas["t0"]).groupby(arestas["classe"]).median()
                 .dropna().round(2).to_dict(),
         },
+        "fluxo_estimado_vs_passagens_tomtom": conferencia_fluxo,
+        "gargalos": {"regra": {"classes": sorted(CLASSES_CORREDOR), "vc_min": VC_MIN_GARGALO,
+                               "folga": FOLGA_GARGALO, "alpha": BPR_ALPHA, "beta": BPR_BETA},
+                     "fatores": fatores, "arestas": gargalos},
         "capacidade_por_classe": arestas[arestas["carro"]].groupby("classe")["cap"]
             .agg(lambda c: sorted(set(int(x) for x in c))).to_dict(),
         "capacidade_por_faixa": CAPACIDADE_POR_FAIXA,
@@ -251,6 +370,12 @@ def main() -> None:
     print(f"v0 por fonte: {rel['fonte_v0']}")
     print(f"t_obs/t0 no pico: mediana {rel['t_obs_sobre_t0']['mediana']}, rede toda "
           f"{rel['t_obs_sobre_t0']['rede_toda']}, por classe {rel['t_obs_sobre_t0']['por_classe']}")
+    print(f"Fluxo estimado x passagens TomTom: {conferencia_fluxo}")
+    print(f"Gargalos com capacidade efetiva: {len(gargalos)} arestas")
+    for g in gargalos:
+        print(f"  {g['aresta']:9s} {g['classe']:10s} {g['length_m']:5d} m  fluxo {g['fluxo_veic_h']:5d}  "
+              f"t_obs/t0 {g['t_obs_sobre_t0']:.2f}  capacidade {g['capacidade_nominal']} -> {g['capacidade_efetiva']} "
+              f"({g['fracao_da_nominal']:.0%}; fatores min/max: {g['capacidade_fator_min']}/{g['capacidade_fator_max']})")
     print(f"Pares OD: {len(pares)} | sem caminho por vias de carro: {len(sem_caminho)}")
     print("V/C nas pistas com contador DETRAN:")
     for r in vc:

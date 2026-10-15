@@ -11,7 +11,7 @@ para a alocação de tráfego por Frank-Wolfe. Plano completo em
 | Caminho | Conteúdo |
 |---|---|
 | `cache/gama_drive_expanded.graphml` / `.gpkg` | Grafo de estudo: 134 nós, 236 arestas |
-| `cache/gama_drive_expanded_atributos.graphml` | Grafo pronto para o Frank-Wolfe (`t0`, capacidade, `v0`, K observado); ler com `nx.read_graphml` |
+| `cache/gama_drive_expanded_atributos.graphml` | Grafo pronto para o Frank-Wolfe (`t0`, capacidade nominal e efetiva nos gargalos, `v0`, K observado); ler com `nx.read_graphml` |
 | `cache/gama_area_estudo_osm.graphml` | Download do OpenStreetMap da área (fonte do grafo) |
 | `cache/gama_drive_sample_30.graphml` | Grafo de 30 nós original: base dos ids `0`–`29` do grafo de estudo |
 | `cache/gama_drive_expanded_portoes.geojson` | Caixas usadas na análise O/D da TomTom |
@@ -39,7 +39,9 @@ variável `TOMTOM_API_KEY`.
 
 ## Dados do DETRAN
 
-As contagens de tráfego calibram a matriz OD. O arquivo tem 134 MB e não fica no git:
+As contagens de tráfego calibram a matriz OD. O arquivo tem ~146 MB e não fica no git:
 
-1. Baixar um dos CSVs de [volume diário de tráfego do DETRAN](https://www.dados.df.gov.br/pt/dataset#/volume-diario-de-trafego-trechos-rodoviarios).
+1. Baixar o CSV de **julho/2026** (o mesmo mês da TomTom) de [volume diário de tráfego do DETRAN](https://www.dados.df.gov.br/pt/dataset#/volume-diario-de-trafego-trechos-rodoviarios).
 2. Salvar na raiz do repositório como `flow.csv`.
+
+A versão de abril/2026, usada na primeira calibração, pode ficar ao lado como `flow_abril_2026.csv` (também ignorada pelo git).

@@ -16,7 +16,7 @@
    "type": "OPEN_DSEG",
    "version": "2026.09.2500"
   },
-  "gerado_em": "2026-10-14T16:37:26"
+  "gerado_em": "2026-10-15T16:48:17"
  },
  "amostra": {
   "viagens_tomtom": 15429,
@@ -65,8 +65,8 @@
   "adotado": 12.21,
   "metodo": "mediana dos fatores de 4 pistas com contador DETRAN (25 caixas limpas)",
   "faixa_para_sensibilidade": [
-   8.18,
-   20.81
+   8.82,
+   21.96
   ],
   "observacoes": [
    {
@@ -82,15 +82,15 @@
     "tipos_no": [
      "divergencia"
     ],
-    "detran_veic_h": 2146,
-    "dias_detran": 22,
-    "periodo_detran": "2026-04-01 a 2026-04-30",
+    "detran_veic_h": 2265,
+    "dias_detran": 23,
+    "periodo_detran": "2026-07-01 a 2026-07-31",
     "tomtom_viagens_h": 103.1,
     "tomtom_viagens_h_faixa": [
      103.1,
      103.1
     ],
-    "fator_implicito": 20.81
+    "fator_implicito": 21.96
    },
    {
     "trecho": "001EDF0270",
@@ -126,15 +126,15 @@
      "convergencia",
      "divergencia"
     ],
-    "detran_veic_h": 1508,
-    "dias_detran": 10,
-    "periodo_detran": "2026-04-01 a 2026-04-30",
+    "detran_veic_h": 1626,
+    "dias_detran": 1,
+    "periodo_detran": "2026-07-01 a 2026-07-31",
     "tomtom_viagens_h": 184.4,
     "tomtom_viagens_h_faixa": [
      123.0,
      204.6
     ],
-    "fator_implicito": 8.18
+    "fator_implicito": 8.82
    },
    {
     "trecho": "480EDF0030",
@@ -155,15 +155,15 @@
      "divergencia",
      "convergencia"
     ],
-    "detran_veic_h": 1505,
+    "detran_veic_h": 1421,
     "dias_detran": 21,
-    "periodo_detran": "2026-04-01 a 2026-04-30",
+    "periodo_detran": "2026-07-01 a 2026-07-31",
     "tomtom_viagens_h": 140.9,
     "tomtom_viagens_h_faixa": [
      109.0,
      146.3
     ],
-    "fator_implicito": 10.68
+    "fator_implicito": 10.08
    },
    {
     "trecho": "480EDF0030",
@@ -196,15 +196,15 @@
      "convergencia",
      "divergencia"
     ],
-    "detran_veic_h": 2424,
-    "dias_detran": 19,
-    "periodo_detran": "2026-04-01 a 2026-04-30",
+    "detran_veic_h": 2530,
+    "dias_detran": 21,
+    "periodo_detran": "2026-07-01 a 2026-07-31",
     "tomtom_viagens_h": 176.3,
     "tomtom_viagens_h_faixa": [
      110.4,
      208.5
     ],
-    "fator_implicito": 13.75
+    "fator_implicito": 14.35
    }
   ]
  },

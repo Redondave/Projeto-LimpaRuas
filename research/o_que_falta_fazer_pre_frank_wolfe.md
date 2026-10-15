@@ -190,7 +190,7 @@ Capacidade por faixa dentro das faixas do `research_plan.md`:
 | Parâmetro | Proposta | Sensibilidade |
 |---|---|---|
 | BPR α, β | 0,15 e 4 (BPR, 1964) | 0,8 e 4,7 (arteriais urbanas, Bagdá) |
-| Fator de expansão da OD | 12,21 (mediana de 4 pistas DETRAN) | 8,18 e 20,81 (demanda × 0,67 e × 1,70) |
+| Fator de expansão da OD | 12,21 (mediana de 4 pistas DETRAN, julho/2026) | **obrigatório**: toda simulação também com 8,82 e 21,96 (demanda × 0,72 e × 1,80); ver `problemas_do_modelo.md`, problema 3 |
 | Parada | gap relativo < 10⁻⁴ ou 500 iterações | — |
 | Pares OD com poucas viagens | manter todos (são 9% da demanda) | rodar sem os pares com menos de 5 viagens |
 
@@ -226,15 +226,13 @@ O K continua `vmed / limite`, como no `research_plan.md`. A madrugada entra só 
 
 *O que ainda sobra.* Fora do corredor, o modelo-base já fica próximo do observado. Na EPCT e na DF-480 sobram 20 a 36% de atraso. Com V/C de 0,6, a BPR só reproduziria isso com α ≈ 2,8, um valor fora de qualquer referência. É fila no trevo (atraso de nó e entrelaçamento), que a BPR por aresta não representa.
 
-Opções para esse resíduo:
-- **(a)** reduzir a capacidade das arestas de gargalo do trevo;
-- **(b)** declarar a limitação e analisar os cenários pela variação relativa (ΔTSTT, ΔK).
+**Decisão (15/10): capacidade efetiva nos gargalos.** Em 25 arestas da EPCT (dois sentidos) e da DF-480 (sentido sudoeste) junto ao trevo, a capacidade foi reduzida até a BPR reproduzir o tempo observado. A capacidade efetiva ficou entre 23% e 74% da nominal. Regra, tabela e campos do grafo em `problemas_do_modelo.md`, problema 1; implementação em `scripts/enrich_graph.py`.
 
 **α e β:** referência 0,15 e 4, a BPR original e a mais citada; não há valor nacional padronizado. Sensibilidade com 0,8 e 4,7. Com V/C ≤ 0,67, o β quase não pesa; ele importa nos cenários que levem vias para perto da capacidade.
 
 O grafo traz `t_obs_min` e `v_madrugada_kmh` em cada aresta para essa comparação.
 
-**Opcional:** recalibrar o fator com as contagens do DETRAN de **julho/2026**, o mesmo mês da matriz, baixadas do portal de dados abertos do DF. Basta substituir o `flow.csv` e rodar `python scripts/build_od_matrix.py --offline`.
+**Feito (15/10):** o fator foi recalibrado com as contagens do DETRAN de **julho/2026**, o mesmo mês da matriz. O `flow.csv` agora é o de julho; o de abril ficou como `flow_abril_2026.csv`, fora do git. O fator adotado continuou 12,21, e a faixa passou a 8,82–21,96.
 
 ## Etapa 7 — Dados para validação (pode ser feito já)
 
@@ -261,7 +259,6 @@ Então:                   Frank-Wolfe
 |---|---|
 | Caixas TomTom nos nós 32 e 41, e as duas ligações até o nó 127 (ficaram fora do recorte) | Recupera 1,6% da demanda descartada e evita arestas vazias no modelo |
 | Ponto de calibração na EPIP | Hoje nenhuma caixa da EPIP passa no critério; o recorte só pega a EPIP dentro do trevo |
-| Contagens do DETRAN de julho/2026 | Calibração sem defasagem de meses (Etapa 6) |
 
 ## Limpeza do repositório (feita em 15/10/2026)
 
