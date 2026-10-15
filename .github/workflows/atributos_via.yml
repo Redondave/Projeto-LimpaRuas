@@ -1,0 +1,35 @@
+name: Atributos de via (TomTom Snap to Roads)
+
+on:
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: "Quantas arestas coletar (vazio = todas as 236)"
+        default: "10"
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install geopandas requests pandas numpy shapely
+      - name: Coletar atributos
+        env:
+          TOMTOM_API_KEY: ${{ secrets.TOMTOM_API_KEY }}
+        run: |
+          if [ -n "${{ inputs.limite }}" ]; then
+            python scripts/coletar_atributos_via.py --limite "${{ inputs.limite }}"
+          else
+            python scripts/coletar_atributos_via.py
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: atributos-tomtom
+          path: |
+            cache/tomtom_atributos_bruto.jsonl
+            Tables/atributos_tomtom_arestas.csv
+            Tables/atributos_tomtom_relatorio.json
