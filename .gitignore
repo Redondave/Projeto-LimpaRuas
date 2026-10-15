@@ -2,10 +2,4 @@
 flow.csv
 Flow.csv
 
-# coletas de teste do api_caller.py --forcar
-cache/tomtom_flow_teste.jsonl
-
-# ultima rodada de velocidade, gerada pelo api_caller.py para conferencia no QGIS
-cache/gama_drive_expanded_tomtom.gpkg
-
 __pycache__/

@@ -1,6 +1,6 @@
 # O que falta antes do Frank-Wolfe
 
-*Atualizado em 14/10/2026. Escopo: só o que precisa estar pronto **antes** de rodar a alocação. A implementação do Frank-Wolfe, a validação do simulador e os cenários de intervenção ficam para o próximo documento. Nada daqui foi executado ainda.*
+*Atualizado em 15/10/2026. Escopo: só o que precisa estar pronto **antes** de rodar a alocação. A implementação do Frank-Wolfe, a validação do simulador e os cenários de intervenção ficam para o próximo documento.*
 
 ## Onde estamos
 
@@ -9,9 +9,10 @@
 | Grafo | `cache/gama_drive_expanded.graphml` (+ `.gpkg`) | ✅ 134 nós, 236 arestas (`scripts/expand_graph.py`) |
 | Matriz OD | `Tables/matriz_od_final.json` | ✅ 1.031 pares, 8.309 veíc/h, 18–19h de dia útil (`scripts/build_od_matrix.py`) |
 | Bruto da TomTom O/D | `Tables/od_tomtom_gama_final_bruto.json` | ✅ análise "Gama Final", 134 caixas |
-| Velocidades no pico | `cache/tomtom_flow_history.jsonl` | ⏳ coleta rodando de 14 a 20/10 (Etapa 1) |
-| Velocidade livre, faixas, capacidade e `t0` por aresta | — | ❌ Etapas 2 a 4 |
-| K inicial e vias críticas | — | ❌ Etapa 5 |
+| Velocidades no pico e K inicial | `Tables/velocidades_arestas.csv` | ✅ Traffic Stats de julho/2026, 233 de 236 arestas (Etapas 1 e 2) |
+| Faixas e limite de velocidade por aresta | `Tables/faixas_limite_arestas.csv` | ✅ falta conferência manual (Etapa 3a) |
+| Capacidade e `t0` por aresta | — | ❌ Etapas 3b e 4 |
+| Vias críticas | — | ❌ Etapa 5 |
 
 ## O que o Frank-Wolfe vai receber
 
@@ -22,12 +23,12 @@
    | Campo | Unidade | Origem |
    |---|---|---|
    | `length` | m | OSM (já existe) |
-   | `v0_kmh`, `fonte_v0` | km/h | Etapa 2 |
+   | `v0_kmh` | km/h | limite da via (Etapa 3a) |
    | `t0_min` | min | `length / v0` |
    | `lanes_sentido`, `fonte_lanes` | faixas | Etapa 3 |
    | `capacidade_veic_h` | veíc/h | Etapa 3 |
    | `permite_carro` | bool | `False` no corredor de ônibus (aresta 23→24) |
-   | `vmed_kmh`, `k_inicial`, `n_leituras` | km/h, —, — | Etapa 2. Não entra na alocação; serve para escolher as vias críticas e validar o modelo |
+   | `vmed_kmh`, `k_inicial` | km/h, — | Etapas 1 e 2. Não entra na alocação; serve para escolher as vias críticas e validar o modelo |
 
 2. **Matriz OD** (`Tables/matriz_od_final.json`): pares `origem` → `destino` (ids do GraphML, como strings) e `veic_h`.
 3. **Parâmetros fixados** (Etapa 6): α e β da BPR, fator de expansão e critério de parada.
@@ -36,94 +37,122 @@ As unidades precisam bater: demanda e capacidade em veículos por hora, tempo em
 
 ---
 
-## Etapa 1 — Acompanhar a coleta de velocidades (em andamento)
+## Etapas 1 e 2 — Velocidades observadas e K inicial (feito em 15/10)
 
-**O que está rodando:** o workflow do GitHub coleta a cada ~7 min, das 18:00 às 19:00 de dia útil, até reunir 5 dias com 3 ou mais rodadas cada (previsão: 14, 15, 16, 19 e 20/10). Cada rodada faz 156 consultas à Flow API da TomTom, com zoom 18, e grava uma linha por aresta.
+**Fonte:** TomTom Traffic Stats, *Area Analysis* (job 10086419, "Gama"): julho/2026, dias úteis (2 a 31/07), 18:00–19:00. É **o mesmo período e a mesma janela da matriz OD**. O resultado bruto está em `Tables/traffic_stats_gama_julho.json`: 1.473 trechos da TomTom dentro do polígono, 886 com velocidade, cada um com a geometria no sentido de circulação.
 
-**O que fazer:**
-- Depois da primeira rodada, abrir o log no Actions e ler *"segmento a mais de 20 m da aresta: N"*.
-- A cada dia, conferir com `git pull` se o histórico cresceu. São 236 linhas por rodada; o esperado é de 3 a 8 rodadas por dia.
+Substitui a coleta em tempo real pela Flow API, que foi removida. O GitHub disparou só 1 dos 24 agendamentos por dia, com atraso de horas, e o histórico nunca recebeu uma rodada válida.
 
-**Saídas possíveis:**
+`python scripts/velocidades_traffic_stats.py` → `Tables/velocidades_arestas.csv`.
 
-| Situação | O que fazer |
+**Casamento trecho TomTom → aresta:**
+- o trecho precisa correr a até 8 m da aresta por pelo menos 5 m;
+- e no mesmo sentido (ângulo de até ~45°). Isso separa as duas mãos de uma rua de mão dupla e descarta a pista paralela e as vias transversais. Nas vias de mão única, 212 encaixes saíram no mesmo sentido e 21 no oposto, que eram a pista paralela;
+- vias da TomTom fora do grafo não encostam em nenhuma aresta e ficam de fora. Foram usados 431 dos 1.473 trechos.
+
+**Velocidade da aresta:** média harmônica das velocidades harmônicas dos trechos, ponderada pelo comprimento sobreposto, `vmed = Σ Lᵢ / Σ (Lᵢ / vᵢ)`. É a velocidade que reproduz o tempo de percurso somado dos trechos. A tabela também traz a mediana e o percentil 85, ponderados, e a amostra normalizada da TomTom (`amostra_baixa` quando < 0,01).
+
+**K inicial** = `vmed / maxspeed_kmh`, com o limite da Etapa 3a. É o SPI do `research_plan.md`. **Decisão:** a velocidade livre `V0` é o **limite da via**, como no plano e no SPI de He et al. (2016). A velocidade livre medida, de madrugada, não foi pedida. Limitação a declarar: em alças e ruas locais a velocidade real em via livre costuma ficar abaixo do limite; em rodovias, acima.
+
+**Resultado (236 arestas):**
+
+| Status | Arestas |
 |---|---|
-| N baixo (até ~20 de 236) | Seguir; as leituras ruins são descartadas na Etapa 2 |
-| N alto, sobretudo nas terciárias | O zoom 18 não resolveu. Testar `TOMTOM_ZOOM=22` e `14` com `python scripts/api_caller.py --forcar` (grava em arquivo de teste), escolher o melhor, apagar o conteúdo do histórico e recomeçar a coleta |
-| A TomTom não tem dado próprio para as ruas locais (segmento é sempre de outra via, em qualquer zoom) | Usar a TomTom só nas rodovias e alças; nas ruas locais, `V0` e capacidade por classe (Etapas 2 e 3). Declarar como limitação |
-| O GitHub perde o horário vários dias seguidos | Rodar o mesmo script pelo Agendador de Tarefas do Windows, a cada 5 min entre 17:55 e 19:00. O próprio script decide se a rodada vale. Lembrar de dar `git push` no histórico |
-| Erro 403 ou 429 no log | A chave do secret não tem a Flow API ou estourou a cota: trocar o secret `TOMTOM_API_KEY` |
-| A conta tem acesso ao TomTom Traffic Stats | Alternativa melhor: uma *Area Analysis* de julho/2026, 18–19h, dias úteis, dá velocidades no mesmo período da matriz OD. Substitui as Etapas 1 e 2 |
+| ok (≥ 50% da aresta coberta por trechos com dado) | 233 |
+| parcial | 1 (alça de 18 m) |
+| sem trecho TomTom | 1 (alça de 18 m) |
+| corredor de ônibus | 1 |
 
-**Saída:** `cache/tomtom_flow_history.jsonl` com 5 dias completos.
+| Classe | vmed mediana | K mediano |
+|---|---|---|
+| trunk (EPCT) | 29 km/h | 0,41 |
+| trunk_link | 36 km/h | 0,44 |
+| primary (DF-480) | 57 km/h | 0,71 |
+| tertiary | 25 km/h | 0,59 |
+| unclassified | 27 km/h | 0,90 |
 
-## Etapa 2 — Velocidades por aresta (depois de 20/10)
+A EPCT trava no pico perto do trevo (K entre 0,29 e 0,40), o que é coerente com os volumes altos do DETRAN. **Há congestionamento**, então a VDF tem onde agir.
 
-**O que fazer** (script a criar, sugestão: `scripts/aggregate_speeds.py`):
+**Para a conferência manual da Etapa 3a:**
+- **K acima de 1 em 10 arestas,** todas sem nome: terciárias onde a regra do CTB pôs 40 km/h mas o tráfego roda a 40–54 km/h, e unclassified com 30 km/h que rodam a ~31. Provavelmente são vias de categoria mais alta (marginais, por exemplo): conferir e corrigir o limite.
+- **Amostra baixa em 14 arestas:** valor menos confiável.
 
-1. **Filtrar leituras:**
-   - `success` verdadeiro, `roadClosure` falso;
-   - `snap_dist_m ≤ 20`: o segmento devolvido é desta aresta;
-   - `confidence ≥ 0,7`: leitura baseada em dado real, não em histórico da TomTom;
-   - **sentido:** em rua de mão dupla, as duas mãos são consultadas no mesmo ponto e recebem o mesmo segmento. Usar a leitura na aresta em que `snap_cos > 0` e decidir a outra mão: copiar o valor ou tratar como sem dado.
-2. **Agregar por aresta:** `vmed_kmh` = mediana de `currentSpeed`; `v0_kmh` = mediana de `freeFlowSpeed`; `n_leituras`; e a dispersão (intervalo interquartil) para relatar a incerteza.
-3. **Preencher a velocidade livre de quem ficou sem leitura válida**, nesta ordem: `freeFlowSpeed` da TomTom → `maxspeed` do OSM (71 de 236 arestas) → valor por classe. Registrar a fonte em `fonte_v0`.
-4. **`k_inicial = vmed / v0`**, só nas arestas com leitura própria.
+## Etapa 3 — Faixas, limite de velocidade e capacidade
 
-**Saídas possíveis:**
-- **Maioria das arestas com leitura válida:** o K inicial cobre a rede, e a velocidade livre vem de dado medido.
-- **Só rodovias e alças com leitura** (provável, se as terciárias não tiverem dado da TomTom): o K inicial fica restrito às vias principais, o que basta para escolher a via crítica; a velocidade livre das ruas locais vem por classe.
-- **`vmed` igual a `v0` em quase tudo:** não há congestionamento no pico nesta área. Isso precisa ser discutido antes dos cenários, porque sem congestionamento a VDF não age.
+### 3a. Faixas e limite de velocidade (feito em 15/10, falta a conferência manual)
 
-**Saída:** `Tables/velocidades_arestas.csv` (uma linha por aresta, com fonte e número de leituras).
+`python scripts/faixas_limite.py` → `Tables/faixas_limite_arestas.csv`, com uma linha por aresta, a fonte de cada valor e dois links do Google Maps (satélite e Street View, este olhando no sentido de circulação).
 
-## Etapa 3 — Faixas e capacidade (pode começar já)
+**Regra adotada, em ordem de prioridade:**
 
-Cobertura no OSM:
+1. **Tag do próprio trecho no OSM** (`lanes`, `maxspeed`).
+2. **Mesma via no OSM:** se outros trechos com o mesmo nome e a mesma classe têm a tag e **todos concordam**, o trecho sem tag recebe esse valor. Só a Avenida do Sol se encaixou: 18 trechos sem limite herdaram os 60 km/h e 30 trechos herdaram 1 faixa por sentido.
+3. **Regra legal ou de classe:**
+   - **Limite de velocidade: art. 61, § 1º, I do CTB (Lei 9.503/1997)**, que define o limite das vias urbanas sem sinalização pela categoria da via. A categoria vem da classe do OSM, pela correspondência usada pelo OSM Brasil na página "Classificação de vias":
 
-| Classe | Arestas | Com `lanes` | Com `maxspeed` |
+     | Classe OSM | Categoria (CTB art. 60) | Limite |
+     |---|---|---|
+     | motorway, trunk e alças | trânsito rápido | 80 km/h |
+     | primary, secondary e alças | arterial | 60 km/h |
+     | tertiary, tertiary_link | coletora | 40 km/h |
+     | unclassified, residential, living_street | local | 30 km/h |
+
+   - **Faixas por sentido:** o padrão das próprias vias da área que têm a tag: rodovias 2 faixas; terciárias, alças e locais 1 faixa.
+4. **Conferência manual** (`Tables/faixas_limite_correcoes.csv`, colunas `edge_id`, `lanes_sentido`, `maxspeed_kmh`, `observacao`): quando existe, tem a palavra final, com fonte "conferencia manual". Basta rodar o script de novo.
+
+**Conversões:**
+- **Mão dupla:** `lanes` do OSM conta as duas mãos, então faixas por sentido = `lanes / 2`, arredondado para baixo, com mínimo de 1. Hoje toda via de mão dupla com a tag tem `lanes=2`, então nenhum arredondamento entrou em jogo.
+- **Tag em lista** (`['2', '3']`, quando o OSMnx fundiu trechos diferentes): o menor valor, que é o gargalo.
+- **Corredor de ônibus** (aresta 23→24): `permite_carro = False`, sem limite.
+
+**Resultado (236 arestas):**
+
+| | OSM | OSM (mesma via) | Regra |
 |---|---|---|---|
-| trunk | 20 | 20 | 20 |
-| primary | 12 | 12 | 12 |
-| trunk_link | 17 | 13 | 4 |
-| tertiary | 168 | 68 | 35 |
-| tertiary_link | 4 | 0 | 0 |
-| unclassified | 14 | 0 | 0 |
-| busway | 1 | — | — |
-| **Total** | **236** | **113 (48%)** | **71 (30%)** |
+| Faixas | 113 | 30 | 93 |
+| Limite | 71 | 18 | 146 (CTB) |
 
-**O que fazer:**
+Limites adotados por classe:
 
-1. **Faixas por sentido:**
-   - em via de mão dupla, `lanes` do OSM conta as duas mãos: dividir por 2;
-   - valores em lista (`['2', '3']`, quando o OSMnx funde vias): usar o mínimo, que é o gargalo;
-   - registrar a fonte em `fonte_lanes`.
-2. **Faltantes (123 arestas).** Opções:
-   - **(a) Regra por classe:** ex.: terciária e alças = 1 faixa por sentido; unclassified = 1. Rápido e reprodutível; impreciso nas terciárias largas, como a Avenida JK.
-   - **(b) Conferência por imagem de satélite**, só nas terciárias que carregam muita demanda: as que aparecem nos maiores pares da matriz ou que têm muitas passagens nas caixas. Mais preciso; uma tarde de trabalho.
-   - **(c) Híbrido:** (a) para todas e (b) para as ~20 mais carregadas. **Sugerido.**
-3. **Capacidade por faixa**, com os valores do `research_plan.md`. Proposta para fixar:
+| Classe | Limites adotados |
+|---|---|
+| trunk | 80 em 8 arestas, 60 em 12 (todas do OSM) |
+| primary | 80 em todas (OSM) |
+| trunk_link | 80 em todas |
+| tertiary | 40 em 119, 60 em 49 |
+| tertiary_link | 40 em todas |
+| unclassified | 30 em todas |
 
-   | Classe | veíc/h/faixa |
-   |---|---|
-   | trunk | 1.800 |
-   | trunk_link, primary | 1.200 |
-   | primary_link, tertiary | 900 |
-   | tertiary_link, unclassified | 600 |
+**Por que não a TomTom:** a Snap to Roads foi testada nas 236 arestas e descartada (ver "Limpeza do repositório", no fim). O limite só bateu com o OSM em 14 de 71 arestas e veio 100 km/h em ruas locais; as faixas vieram em só 6 de 168 terciárias.
 
-   `capacidade_veic_h = lanes_sentido × capacidade_por_faixa`.
+**Pontos a conferir no Google Maps** (coluna `conferido` da tabela; corrigir pelo arquivo de correções):
+- **Terciárias sem tag (115 a 40 km/h, 70 com 1 faixa):** principalmente Avenida JK, Rua Bolivar 2, Avenida São Francisco e a rua "DF-480 Km 5". A TomTom classifica 167 das 168 terciárias como `LocalStreet`, o que daria 30 km/h. Se a conferência mostrar que são de fato ruas locais, a categoria do CTB muda para local (30 km/h).
+- **Alças da EPCT/DF-480 (`trunk_link`, 13 sem tag):** o CTB as põe na categoria da rodovia (80 km/h), mas alças em laço de trevo costumam ter placa de 40 a 60 km/h.
+- **Avenidas largas com 1 faixa por regra** (ex.: Avenida JK): checar no satélite se não são 2 por sentido.
 
-4. **Corredor de ônibus:** `permite_carro = False` na aresta 23→24.
-5. **Checagem de sanidade:** comparar a capacidade das 4 pistas com contador do DETRAN com o volume medido no pico. A razão V/C deve ficar abaixo de ~1,2. Se passar disso, as faixas ou a capacidade por faixa estão subestimadas (foi o que aconteceu no grafo rodoviário antigo).
+**Como isso entra no modelo:** o limite é a **velocidade livre `V0`** de cada aresta (decisão das Etapas 1 e 2): define o `t0` e o denominador do K. Por isso a conferência manual pesa direto no modelo. As faixas entram na capacidade (3b).
 
-**Saídas possíveis:** regra pura (a), entregável hoje, ou híbrido (c), mais defensável no artigo. Em ambos os casos, a cobertura vira uma limitação quantificada, como o `research_plan.md` pede.
+### 3b. Capacidade (falta fazer)
 
-**Saída:** colunas `lanes_sentido`, `fonte_lanes` e `capacidade_veic_h`.
+Capacidade por faixa com os valores do `research_plan.md`. Proposta para fixar:
 
-## Etapa 4 — Montar o grafo atribuído (depois das Etapas 2 e 3)
+| Classe | veíc/h/faixa |
+|---|---|
+| trunk | 1.800 |
+| trunk_link, primary | 1.200 |
+| primary_link, tertiary | 900 |
+| tertiary_link, unclassified | 600 |
+
+`capacidade_veic_h = lanes_sentido × capacidade_por_faixa`.
+
+**Checagem de sanidade:** comparar a capacidade das 4 pistas com contador do DETRAN com o volume medido no pico. A razão V/C deve ficar abaixo de ~1,2. Se passar disso, as faixas ou a capacidade por faixa estão subestimadas (foi o que aconteceu no grafo rodoviário antigo).
+
+**Saída:** coluna `capacidade_veic_h`, calculada na Etapa 4 a partir de `Tables/faixas_limite_arestas.csv`.
+
+## Etapa 4 — Montar o grafo atribuído (depois da Etapa 3)
 
 **O que fazer** (sugestão: `scripts/enrich_graph.py`):
-1. Juntar os resultados das Etapas 2 e 3 no grafo e calcular `t0_min = length / v0`.
+1. Juntar `Tables/faixas_limite_arestas.csv` (faixas, limite = `V0`) e `Tables/velocidades_arestas.csv` (`vmed`, K) no grafo, calcular `t0_min = length / v0` e a capacidade (3b).
 2. **Checagens antes de liberar para o Frank-Wolfe:**
    - toda aresta com `permite_carro` tem `t0 > 0` e capacidade > 0;
    - os 1.031 pares da matriz continuam com caminho no grafo sem o corredor de ônibus;
@@ -172,9 +201,9 @@ Não é rodar a validação; é deixar os dados à mão.
 ## Ordem e dependências
 
 ```
-Agora (em paralelo):     Etapa 3 (faixas/capacidade) · Etapa 6 (parâmetros) · Etapa 7 (dados de validação)
-Até 20/10:               Etapa 1 (coleta rodando sozinha; só acompanhar)
-Depois de 20/10:         Etapa 2 (velocidades) → Etapa 4 (grafo atribuído) → Etapa 5 (vias críticas)
+Feito:                   Etapas 1 e 2 (velocidades e K, Traffic Stats) · Etapa 3a (faixas e limite, sem a conferência)
+Agora (em paralelo):     Etapa 3a (conferência manual) · 3b (capacidade) · Etapa 6 (parâmetros) · Etapa 7 (dados de validação)
+Depois da conferência:   rodar de novo faixas_limite.py e velocidades_traffic_stats.py → Etapa 4 (grafo atribuído) → Etapa 5 (vias críticas)
 Então:                   Frank-Wolfe
 ```
 
@@ -206,3 +235,5 @@ O `README.md` foi reescrito para o fluxo atual.
 - as faixas vieram em só 6 de 168 terciárias.
 
 Por isso, a Etapa 3 segue com o OSM mais regras: limite pelo art. 61 do CTB (80 km/h em via de trânsito rápido, 60 em arterial, 40 em coletora, 30 em local) e faixas por classe de via. O script e os dados do teste foram removidos.
+
+**Coleta de velocidades em tempo real removida (15/10/2026):** `scripts/api_caller.py`, `.github/workflows/traffic.yml` e `cache/tomtom_flow_history.jsonl` (vazio: nenhuma rodada válida), substituídos pelo Traffic Stats (Etapas 1 e 2). O secret `TOMTOM_API_KEY` continua no repositório, mas nenhum workflow o usa mais.

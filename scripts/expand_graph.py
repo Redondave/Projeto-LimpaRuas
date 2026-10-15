@@ -27,11 +27,9 @@ Como o recorte e feito (deterministico, reproduzivel):
   5. fica a componente fracamente conexa que contem os 30 nos.
 
 Compatibilidade com o que ja existe:
-  - os 30 nos mantem os ids "0".."29" e as 37 arestas mantem u, v e "id".
-    O historico de velocidade (edge_id "u:v:key") continua valendo no grafo novo;
+  - os 30 nos mantem os ids "0".."29" e as 37 arestas mantem u, v e "id";
   - nos novos recebem ids a partir de "30", em ordem de osmid;
-  - os arquivos do grafo de 30 nos NAO sao alterados (api_caller.py e o
-    workflow do GitHub Actions continuam funcionando como hoje).
+  - o arquivo do grafo de 30 nos NAO e alterado.
 
 Uso (da raiz do repositorio):
     python scripts/expand_graph.py
@@ -41,7 +39,7 @@ Uso (da raiz do repositorio):
 Saidas em cache/:
     gama_area_estudo_osm.graphml           download do OSM da area (fonte do recorte)
     gama_drive_expanded.graphml            grafo (DiGraph, mesmo formato do de 30 nos)
-    gama_drive_expanded.gpkg               camadas nodes/edges no esquema do api_caller.py
+    gama_drive_expanded.gpkg               camadas nodes/edges (para QGIS)
     gama_drive_expanded_selection.json     parametros, mapeamento de ids, diagnostico
     gama_drive_expanded_portoes.geojson    caixas sugeridas para a analise O/D da TomTom
     gama_drive_expanded.png                figura de conferencia
@@ -83,7 +81,7 @@ CLASSES = {
     "motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link",
     "secondary", "secondary_link", "tertiary", "tertiary_link", "unclassified",
 }
-# colunas do GeoPackage, no esquema que o api_caller.py le
+# colunas do GeoPackage (mesmo esquema do grafo de 30 nos)
 COLUNAS_ARESTA = ["osmid", "highway", "lanes", "maxspeed", "ref", "oneway", "reversed",
                   "length", "name", "bridge", "junction", "access"]
 

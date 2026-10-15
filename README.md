@@ -1,9 +1,10 @@
 # Projeto LimpaRuas
 
 Otimização do índice de desempenho de velocidade (K) na malha viária do Gama (DF):
-grafo da região, matriz origem-destino e coleta de velocidades para a alocação de
-tráfego por Frank-Wolfe. Plano completo em `research/research_plan.md`; próximos
-passos em `research/o_que_falta_fazer_pre_frank_wolfe.md`.
+grafo da região, matriz origem-destino, velocidades observadas e atributos de via
+para a alocação de tráfego por Frank-Wolfe. Plano completo em
+`research/research_plan.md`; próximos passos em
+`research/o_que_falta_fazer_pre_frank_wolfe.md`.
 
 ## Estrutura
 
@@ -13,28 +14,25 @@ passos em `research/o_que_falta_fazer_pre_frank_wolfe.md`.
 | `cache/gama_area_estudo_osm.graphml` | Download do OpenStreetMap da área (fonte do grafo) |
 | `cache/gama_drive_sample_30.graphml` | Grafo de 30 nós original: base dos ids `0`–`29` do grafo de estudo |
 | `cache/gama_drive_expanded_portoes.geojson` | Caixas usadas na análise O/D da TomTom |
-| `cache/tomtom_flow_history.jsonl` | Velocidades no pico (18–19h), uma linha por aresta por rodada |
 | `Tables/matriz_od_final.json` | Matriz OD nó a nó em veíc/h, com calibração e dados de validação |
 | `Tables/od_tomtom_gama_final_bruto.json` | Resposta da TomTom O/D Analysis ("Gama Final") |
+| `Tables/traffic_stats_gama_julho.json` | TomTom Traffic Stats (job 10086419): velocidades por trecho, julho/2026, dias úteis, 18–19h |
+| `Tables/velocidades_arestas.csv` | Velocidade observada e K inicial por aresta |
+| `Tables/faixas_limite_arestas.csv` | Faixas por sentido e limite de velocidade por aresta (OSM + CTB) |
 | `Tables/Roads.csv`, `Tables/trechos_com_coordenadas.csv` | Trechos do DER-DF e sua geometria (localizam os contadores) |
 
 ## Scripts
 
 ```bash
-python scripts/expand_graph.py          # refaz o grafo de estudo (offline, a partir do cache)
-python scripts/build_od_matrix.py       # refaz a matriz OD (--offline usa o bruto salvo)
-python scripts/api_caller.py            # uma rodada de velocidades, se estiver na janela de pico
-python scripts/mapping.py               # só se a tabela de trechos do DER mudar
+python scripts/expand_graph.py               # refaz o grafo de estudo (offline, a partir do cache)
+python scripts/build_od_matrix.py --offline  # refaz a matriz OD a partir do bruto salvo
+python scripts/faixas_limite.py              # faixas e limite por aresta
+python scripts/velocidades_traffic_stats.py  # velocidade e K por aresta (usa faixas_limite)
+python scripts/mapping.py                    # só se a tabela de trechos do DER mudar
 ```
 
-Os scripts que chamam a TomTom leem a chave da variável `TOMTOM_API_KEY`.
-
-## Coleta automática de velocidades
-
-O workflow `.github/workflows/traffic.yml` dispara a cada 5 min entre 17:00 e 18:55
-de Brasília. O `api_caller.py` só coleta em dia útil, entre 18:00 e 19:00, até 8
-rodadas por dia, e para sozinho depois de 5 dias úteis com 3 ou mais rodadas.
-A chave vem do secret `TOMTOM_API_KEY` do repositório.
+O `build_od_matrix.py` sem `--offline` baixa a análise de novo e lê a chave da
+variável `TOMTOM_API_KEY`.
 
 ## Dados do DETRAN
 
