@@ -186,25 +186,23 @@ Então:                   Frank-Wolfe
 | Ponto de calibração na EPIP | Hoje nenhuma caixa da EPIP passa no critério; o recorte só pega a EPIP dentro do trevo |
 | Contagens do DETRAN de julho/2026 | Calibração sem defasagem de meses (Etapa 6) |
 
-## Arquivos que não serão mais usados
+## Limpeza do repositório (feita em 15/10/2026)
 
-Nada foi apagado.
+Removidos (continuam no histórico do git, se precisar recuperar):
+- K antigo: `scripts/organizer.py`, `Tables/K_Table.csv`, `Tables/tomtom_flow_consolidado.csv`, `Tables/Speeds.csv`;
+- análise O/D "Gama 3": `Tables/matriz_od_gama3.json`, `Tables/matriz_od_gama3_expandido.json`, `Tables/od_tomtom_gama3_bruto.json`;
+- grafos e coletas antigas: `cache/gama_drive_reduced_tomtom.gpkg`, `cache/tomtom_flow_results.jsonl`, `cache/gama_drive_sample_30.gpkg`, `cache/gama_drive_sample_30_selection.json`, `cache/gama_drive_sample_30_tomtom.gpkg`;
+- grafo da RA inteira, cortado na divisa: `scripts/osmnx-api.py`, `cache/gama_drive_projected.*`, `cache/limite_gama.geojson`;
+- utilitários quebrados: `scripts/graphml_to_geopackage.py`, `scripts/graph_visual_check.py`, `graph_visualization.png`;
+- `scripts/__pycache__/`, agora no `.gitignore`;
+- `cache/gama_drive_expanded_tomtom.gpkg` saiu do git (é regerado a cada rodada) e foi para o `.gitignore`.
 
-| Arquivo | Por quê | Sugestão |
-|---|---|---|
-| `scripts/organizer.py`, `Tables/K_Table.csv`, `Tables/tomtom_flow_consolidado.csv` | K antigo: limite de outra rodovia e coleta do feriado | Apagar |
-| `Tables/matriz_od_gama3.json`, `Tables/matriz_od_gama3_expandido.json`, `Tables/od_tomtom_gama3_bruto.json` | Análise "Gama 3" (30 caixas), substituída pela "Gama Final" | Apagar |
-| `cache/gama_drive_reduced_tomtom.gpkg`, `cache/tomtom_flow_results.jsonl`, `cache/gama_drive_sample_30_tomtom.gpkg` | Coletas de velocidade de grafos antigos | Apagar |
-| `cache/gama_drive_sample_30.*`, `cache/gama_drive_sample_30_selection.json` | Grafo de 30 nós; o coletor já usa o grafo expandido | Apagar (o `expand_graph.py` só precisa dele para refazer o recorte; manter se houver chance de refazer) |
-| `scripts/graphml_to_geopackage.py` | Aponta para `gama_drive_reduced.graphml`, que não existe | Apagar |
-| `scripts/graph_visual_check.py` | Caminho fixo de outra máquina | Apagar |
-| `scripts/osmnx-api.py`, `cache/gama_drive_projected.*`, `cache/limite_gama.geojson` | Grafo da RA inteira, cortado na divisa; substituído por `cache/gama_area_estudo_osm.graphml` | Apagar junto com a linha `GRAFO_COMPLETO` do `build_od_matrix.py`, que é só um fallback |
-| `cache/gama_drive_expanded_tomtom.gpkg` | Última rodada de velocidade, para o QGIS; o workflow não commita mais | Tirar do git (`git rm --cached`) |
-| `Tables/Speeds.csv` | Limites de radar; a velocidade livre virá da TomTom e do OSM | Manter só se for usado como fallback nas rodovias |
-| `README.md`, seção "TomTom flow" | Cita arquivos e comandos que não existem mais | Reescrever |
-| `scripts/__pycache__/` | Bytecode commitado por engano | Apagar e pôr `__pycache__/` no `.gitignore` |
+Mantido de propósito: `cache/gama_drive_sample_30.graphml`, porque o `expand_graph.py` usa esse grafo para preservar os ids `0`–`29`.
 
-**Continuam necessários:**
-- dados: `flow.csv`, `Tables/trechos_com_coordenadas.csv`, `Tables/Roads.csv`, `cache/gama_area_estudo_osm.graphml`;
-- scripts: `scripts/api_caller.py`, `scripts/expand_graph.py`, `scripts/build_od_matrix.py` e `scripts/mapping.py` (este só se a tabela do DER mudar);
-- o workflow.
+O `README.md` foi reescrito para o fluxo atual.
+
+**Teste descartado:** a TomTom Snap to Roads API foi testada em 15/10 nas 236 arestas, como fonte de faixas e limite de velocidade:
+- o limite só bateu com o OSM em 14 de 71 arestas comparáveis, e veio 100 km/h em 31 ruas locais;
+- as faixas vieram em só 6 de 168 terciárias.
+
+Por isso, a Etapa 3 segue com o OSM mais regras: limite pelo art. 61 do CTB (80 km/h em via de trânsito rápido, 60 em arterial, 40 em coletora, 30 em local) e faixas por classe de via. O script e os dados do teste foram removidos.

@@ -28,10 +28,6 @@ Uso (da raiz do repositorio):
     python scripts/build_od_matrix.py --offline # reusa o bruto salvo, sem API
     python scripts/build_od_matrix.py --fator 15  # forca o fator de expansao
 
-    # analise antiga ("Gama 3") no grafo de 30 nos:
-    python scripts/build_od_matrix.py --offline --grafo cache/gama_drive_sample_30.graphml \\
-        --bruto Tables/od_tomtom_gama3_bruto.json --saida Tables/matriz_od_gama3.json
-
 Saidas (padrao):
     Tables/od_tomtom_gama_final_bruto.json   resposta da TomTom (metadados, regioes, links)
     Tables/matriz_od_final.json              matriz no-a-no em veic/h + calibracao + validacao
@@ -62,7 +58,6 @@ RAIZ = Path(__file__).resolve().parents[1]
 ANALISE_ID = "6604531297533426895"          # "Gama Final" no portal TomTom O/D (134 regioes)
 GRAFO = RAIZ / "cache/gama_drive_expanded.graphml"
 AREA_OSM = RAIZ / "cache/gama_area_estudo_osm.graphml"          # geometria real das arestas
-GRAFO_COMPLETO = RAIZ / "cache/gama_drive_projected.graphml"    # alternativa, so cobre a RA Gama
 CRS = "EPSG:31983"                           # SIRGAS 2000 / UTM 23S, o mesmo do grafo
 FLOW = RAIZ / "flow.csv"
 TRECHOS = RAIZ / "Tables/trechos_com_coordenadas.csv"
@@ -357,7 +352,7 @@ def main() -> None:
         sys.exit("A calibracao supoe uma janela de exatamente 1 hora cheia.")
 
     G = nx.read_graphml(args.grafo)
-    fonte = AREA_OSM if AREA_OSM.exists() else GRAFO_COMPLETO
+    fonte = AREA_OSM
     F = nx.read_graphml(fonte)
     if not all(F.has_edge(d["original_u"], d["original_v"]) for _, _, d in G.edges(data=True)):
         sys.exit(f"{fonte.name} nao cobre todas as arestas de {args.grafo.name}")

@@ -28,8 +28,7 @@ Como o recorte e feito (deterministico, reproduzivel):
 
 Compatibilidade com o que ja existe:
   - os 30 nos mantem os ids "0".."29" e as 37 arestas mantem u, v e "id".
-    A matriz Tables/matriz_od_gama3.json e o historico de velocidade
-    (edge_id "u:v:key") continuam valendo no grafo novo;
+    O historico de velocidade (edge_id "u:v:key") continua valendo no grafo novo;
   - nos novos recebem ids a partir de "30", em ordem de osmid;
   - os arquivos do grafo de 30 nos NAO sao alterados (api_caller.py e o
     workflow do GitHub Actions continuam funcionando como hoje).
@@ -71,6 +70,8 @@ RAIZ = Path(__file__).resolve().parents[1]
 CACHE = RAIZ / "cache"
 AREA_OSM = CACHE / "gama_area_estudo_osm.graphml"
 GRAFO_ATUAL = CACHE / "gama_drive_sample_30.graphml"
+# matriz da analise "Gama 3" (30 caixas), usada so no diagnostico de rotas que
+# justificou a expansao. Foi removida do repositorio: sem ela o diagnostico e pulado.
 MATRIZ_OD = RAIZ / "Tables/matriz_od_gama3.json"
 NOME = "gama_drive_expanded"
 CRS = "EPSG:31983"
@@ -82,7 +83,7 @@ CLASSES = {
     "motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link",
     "secondary", "secondary_link", "tertiary", "tertiary_link", "unclassified",
 }
-# colunas do GeoPackage, iguais as de cache/gama_drive_sample_30.gpkg
+# colunas do GeoPackage, no esquema que o api_caller.py le
 COLUNAS_ARESTA = ["osmid", "highway", "lanes", "maxspeed", "ref", "oneway", "reversed",
                   "length", "name", "bridge", "junction", "access"]
 
