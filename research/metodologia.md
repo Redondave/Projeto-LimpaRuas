@@ -76,8 +76,11 @@ A aresta de busway (23→24) é corredor de ônibus e é excluída da alocação
 
 | | Grafo de 30 nós | Grafo expandido |
 |---|---|---|
-| Demanda com pelo menos 2 rotas | 0% | 40,2% |
-| Demanda com algum caminho | 97,9% | 100% |
+| Demanda com pelo menos 2 rotas (matriz final) | — | **46,5%** |
+| Demanda com pelo menos 2 rotas (matriz "Gama 3", 30 caixas) | 0% | 40,2% |
+| Demanda com algum caminho (matriz "Gama 3") | 97,9% | 100% |
+
+O diagnóstico que motivou a expansão usou a matriz preliminar "Gama 3", que só tinha caixas nos 30 nós. Com a matriz final (1.031 pares, recalculado em 21/10/2026), **46,5% da demanda** tem pelo menos duas rotas competitivas. O grafo de 30 nós não pode ser avaliado com a matriz final, porque a maioria dos nós dela não existe nele.
 
 ---
 
@@ -356,7 +359,25 @@ sujeito à conservação de fluxo por par OD, demanda fixa q_od e fluxos não ne
 4. **Atualização:** x ← x + λ(y − x).
 5. **Parada:** gap relativo = (Σ xₐ tₐ − Σ_od q_od · custo mínimo_od) / Σ xₐ tₐ < 10⁻⁴, ou 500 iterações.
 
-**Validação do código.** Rodar a rede de Sioux Falls (repositório *TransportationNetworks*: `SiouxFalls_net.tntp`, `_trips.tntp`, `_flow.tntp`) e comparar os fluxos e o TSTT com a solução publicada.
+**Implementação [feito em 21/10]:** `scripts/frank_wolfe.py`.
+- **Caminhos mínimos:** Dijkstra do SciPy, de cada uma das 121 origens.
+- **Carga tudo-ou-nada:** a demanda é empurrada pela árvore de caminhos mínimos, das folhas para a raiz, em ordem de profundidade na árvore (a ordem por distância falha quando há arestas de custo zero).
+- **Busca linear:** bisseção com 60 passos na derivada de Z, que é crescente em λ.
+- **Escopo:** cada rodada resolve os três níveis de demanda; as arestas com `permite_carro = False` ficam fora.
+
+**Validação do algoritmo [feito]** (`python scripts/frank_wolfe.py --teste`), em redes com solução conhecida:
+
+| Teste | Esperado | Obtido |
+|---|---|---|
+| Rede de Braess (1968), 6 veículos, sem a ponte | 3 veículos em cada rota, custo 83 | 3,0 / 3,0, custo 83,000 |
+| Rede de Braess, com a ponte | fluxos [4, 2, 2, 4, 2], custo 92 (TSTT sobe de 498 para 552) | [4,0, 2,0, 2,0, 4,0, 2,0], custo 92,000 |
+| Duas rotas paralelas com BPR | igualdade de custos resolvida por bisseção: 1.426,9 veíc/h na rota 1 | 1.426,9 |
+| Gama, demanda alta | Z de Beckmann não cresce entre iterações | ok (28 iterações) |
+| Gama, demanda alta | conservação de fluxo em todos os nós | desvio máximo 4 × 10⁻¹² veíc/h |
+
+**Benchmark de Sioux Falls [pendente].** O comando `--sioux-falls PASTA` lê `SiouxFalls_net.tntp`, `_trips.tntp` e `_flow.tntp` (repositório *TransportationNetworks*) e compara o TSTT e os fluxos com a solução de referência. Os arquivos ainda não foram baixados.
+
+**Convergência na rede do Gama** (situação atual): gap < 10⁻⁴ em 2 iterações (demanda baixa), 4 (adotada) e 28 (alta), em até 2 s. Na demanda alta aparece o zigue-zague típico do Frank-Wolfe perto do ótimo.
 
 ### 6.4 Situação atual e conferência do modelo
 
@@ -366,6 +387,26 @@ Rodar a alocação com a rede atual e a matriz OD, nos três níveis de demanda.
 - **fluxo modelado × contagens do DETRAN.** Não é validação, porque as 4 pistas calibram o fator.
 
 Métricas: GEH, RMSE relativo e R² dos fluxos; razão entre o tempo modelado e o observado.
+
+**Resultado da situação atual [feito em 21/10]** (`resultados/base/resumo.json`, campo `conferencias`, demanda adotada):
+
+| Comparação | O que testa | Resultado |
+|---|---|---|
+| Fluxo × passagens TomTom (40 arestas medidas isoladamente) | escolha de rota | correlação 0,93; modelo/observado 0,94 (mediana); GEH mediano 3,5; 60% com GEH < 5; RMSE relativo 0,32 |
+| Tempo × observado, 130 arestas não calibradas | VDF e t0 | modelo/observado 0,91 (mediana); 53% dentro de ±10%. O modelo fica mais rápido sobretudo nas terciárias (0,90), onde o atraso de cruzamento não depende do volume |
+| Tempo × observado, 104 arestas calibradas (gargalos e t0 do pico) | nada (calibradas) | 1,00 |
+| Tempo total ponderado pelo fluxo | aderência global | modelo/observado 0,972 |
+| Movimento nos nós dos 4 contadores DETRAN | nada (calibram o fator) | o modelo reproduz o que o fator único implica (por exemplo, 1.259 contra 1.259 esperados em 001EDF0250); a diferença para a contagem é a variação do fator entre as pistas |
+
+**Indicadores da situação atual:**
+
+| Demanda | veíc/h | TSTT (veíc·h) | K da rede | Velocidade média | Arestas com V/C > 1 |
+|---|---|---|---|---|---|
+| baixa (8,82) | 6.002 | 343,4 | 0,703 | 45,2 km/h | 20 |
+| adotada (12,21) | 8.309 | 476,9 | 0,700 | 45,1 km/h | 20 |
+| alta (21,96) | 14.944 | 884,4 | 0,676 | 43,7 km/h | 26 |
+
+As 20 arestas com V/C > 1 são os gargalos calibrados, cuja capacidade efetiva escala com o fator.
 
 **Decisão (15/10): não haverá validação com dados retidos,** por falta de tempo. O artigo declara o que foi usado para calibrar e o que foi usado para conferir. As alternativas ficam como trabalho futuro em `problemas_do_modelo.md`, problema 2: deixar um contador de fora, validar pelo tempo nos trechos não calibrados, dados de outro mês e contagens manuais.
 
@@ -378,6 +419,23 @@ Cópias do grafo, cada uma com uma alteração discreta:
 **Faixa adicional num trecho de gargalo:** capacidade nova = capacidade efetiva × (faixas + 1) / faixas. Não se soma a capacidade nominal de uma faixa. A regra é otimista se a fila nascer mais à frente, e isso deve ser declarado.
 
 Cada cenário é reequilibrado com o Frank-Wolfe. A meta é de 15 a 30 cenários. A automação com NSGA-II é opcional e futura.
+
+**Como rodar [ferramenta pronta em 21/10].** Cada cenário é um JSON em `cenarios/`, rodado com `python scripts/frank_wolfe.py --cenario cenarios/<arquivo>.json`. Tipos de alteração:
+
+| Tipo | Efeito |
+|---|---|
+| `faixa` | +n faixas, com a regra do gargalo acima |
+| `remover` | fechamento da aresta |
+| `inverter` | mão única invertida |
+| `capacidade` | multiplica a capacidade da aresta |
+
+O script recusa um cenário que desconecte algum par OD. A comparação com a situação atual sai nível a nível em `resultados/<cenario>/resumo.json`: ΔTSTT, ΔK da rede e as maiores mudanças de fluxo. `cenarios/exemplo_faixa_epct_norte.json` é só um exemplo de sintaxe (+1 faixa nos 5 gargalos da EPCT sentido norte): TSTT −8,6% nos três níveis e quase nenhuma mudança de rota.
+
+**Consequência da calibração para os três níveis.** Nos 25 gargalos, a capacidade efetiva escala com o fator, então a razão V/C desses trechos é a mesma nos três níveis. Cada nível é um "mundo" coerente que reproduz os tempos observados com aquela demanda. Por isso:
+- intervenções nos gargalos tendem a dar a mesma variação percentual nos três níveis (no exemplo, −8,59%, −8,57% e −8,32%);
+- a diferença entre os níveis aparece nas arestas não calibradas, onde a capacidade é a nominal.
+
+Uma conclusão "robusta" sobre um gargalo é, em parte, robusta por construção, e isso deve ser dito no artigo.
 
 > ⚠️ **Obrigatório: toda simulação (situação atual e cada cenário) roda com os três fatores de expansão.**
 >
@@ -399,6 +457,7 @@ Cada cenário é reequilibrado com o Frank-Wolfe. A meta é de 15 a 30 cenários
 ### 6.6 Análise de sensibilidade
 
 - α, β = 0,15 / 4 (referência) e 0,8 / 4,7. Ao trocar α e β, recalcular a capacidade efetiva dos gargalos com a função `capacidade_efetiva`, para que a situação atual continue reproduzindo o tempo observado;
+  - **feito para a situação atual (21/10):** `python scripts/frank_wolfe.py --alpha 0.8 --beta 4.7` → `resultados/base_a0.8_b4.7`. Nas demandas baixa e adotada, o resultado quase não muda (TSTT +0,2% e +0,7%). Na demanda alta, a rede fica bem mais congestionada (TSTT 1.166,6 contra 884,4 veíc·h, +32%; K da rede 0,51 contra 0,68) e o Frank-Wolfe precisa de 190 iterações. Então α e β pesam justamente nos cenários de demanda alta;
 - o fator de expansão não é sensibilidade opcional: entra em todas as rodadas (6.5);
 - matriz sem os pares com menos de 5 viagens na amostra;
 - capacidade por faixa nos extremos das faixas da literatura.
@@ -431,6 +490,10 @@ python scripts/build_od_matrix.py --offline  # matriz OD (precisa do flow.csv do
 python scripts/faixas_limite.py              # faixas e limite
 python scripts/velocidades_traffic_stats.py  # velocidades de pico e madrugada, K inicial
 python scripts/enrich_graph.py               # grafo atribuído + checagens
+python scripts/frank_wolfe.py --teste        # valida o algoritmo (Braess, duas rotas, propriedades)
+python scripts/frank_wolfe.py                # situação atual, três níveis de demanda
+python scripts/frank_wolfe.py --cenario cenarios/<arquivo>.json   # cenário + comparação
+python scripts/visualizar_resultados.py      # resultados/painel.html e resultados/figuras/*.png
 ```
 
 Os resultados brutos das APIs ficam no repositório sem chaves nem identificadores de conta.
@@ -462,4 +525,4 @@ Os resultados brutos das APIs ficam no repositório sem chaves nem identificador
     - As janelas de datas diferem um dia: O/D de 01 a 30/07, Traffic Stats de 02 a 31/07.
     - As versões de mapa da TomTom diferem entre os produtos (O/D: 2026.09; Traffic Stats: 2025.12).
     - O grafo de 30 nós original foi selecionado à mão.
-11. **Frank-Wolfe ainda não implementado nem validado** em Sioux Falls. As vias críticas e os cenários ainda não foram definidos (seções 6.2 a 6.5).
+11. **Frank-Wolfe implementado e validado em redes com solução conhecida** (seção 6.3). Falta o benchmark de Sioux Falls (arquivos não baixados). As vias críticas e os cenários ainda não foram definidos (seções 6.2 e 6.5).

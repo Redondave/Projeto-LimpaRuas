@@ -237,7 +237,7 @@ O grafo traz `t_obs_min` e `v_madrugada_kmh` em cada aresta para essa comparaç�
 ## Etapa 7 — Dados para validação (pode ser feito já)
 
 Não é rodar a validação; é deixar os dados à mão.
-- **Sioux Falls**, para validar o código do Frank-Wolfe: baixar `SiouxFalls_net.tntp`, `SiouxFalls_trips.tntp` e `SiouxFalls_flow.tntp` do repositório público *TransportationNetworks*.
+- **Sioux Falls**, para validar o código do Frank-Wolfe: baixar `SiouxFalls_net.tntp`, `SiouxFalls_trips.tntp` e `SiouxFalls_flow.tntp` do repositório público *TransportationNetworks* e rodar `python scripts/frank_wolfe.py --sioux-falls <pasta>`. **Ainda não baixados.** O algoritmo já foi validado em redes com solução analítica (`--teste`; ver `metodologia.md`, seção 6.3).
 - **Gama**, para validar o modelo:
   - `regioes[].passagens_veic_h` na matriz: fluxo observado em cada caixa (126 caixas com 100 ou mais passagens);
   - `fator_expansao.observacoes`: as 4 pistas com contagem do DETRAN.
@@ -250,7 +250,10 @@ Não é rodar a validação; é deixar os dados à mão.
 Feito:                   Etapas 1 e 2 (velocidades e K) · 3a (faixas e limite, sem a conferência) · 3b (capacidade) · 4 (grafo atribuído)
 Agora (em paralelo):     Etapa 3a (conferência manual) · Etapa 6 (parâmetros e a decisão sobre a calibração) · Etapa 7 (dados de validação)
 Depois da conferência:   faixas_limite.py → velocidades_traffic_stats.py → enrich_graph.py → Etapa 5 (vias críticas)
-Então:                   Frank-Wolfe
+Então:                   frank_wolfe.py (situação atual) → cenários → visualizar_resultados.py
+
+Feito em 21/10: o Frank-Wolfe (scripts/frank_wolfe.py) e a visualização (scripts/visualizar_resultados.py)
+já rodam no grafo atual. Ao mudar o grafo depois da conferência, basta rodar os dois de novo.
 ```
 
 ## Pendências opcionais (não bloqueiam)

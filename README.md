@@ -21,6 +21,10 @@ para a alocação de tráfego por Frank-Wolfe. Plano completo em
 | `Tables/traffic_stats_gama_madrugada.json` | TomTom Traffic Stats (job 10086478): mesma área e mesmos dias, 00–04h (velocidade livre) |
 | `Tables/velocidades_arestas.csv` | Velocidade observada e K inicial por aresta |
 | `Tables/faixas_limite_arestas.csv` | Faixas por sentido e limite de velocidade por aresta (OSM + CTB) |
+| `cenarios/*.json` | Cenários de intervenção para o Frank-Wolfe (`exemplo_faixa_epct_norte.json` é só um exemplo de sintaxe) |
+| `resultados/<rodada>/` | Saída do Frank-Wolfe: `arestas_<nivel>.csv` e `resumo.json`, para a situação atual (`base`) e cada cenário |
+| `resultados/painel.html` | Painel interativo dos resultados (mapa, indicadores, convergência, comparação) |
+| `resultados/figuras/` | Figuras estáticas para o artigo |
 | `Tables/Roads.csv`, `Tables/trechos_com_coordenadas.csv` | Trechos do DER-DF e sua geometria (localizam os contadores) |
 
 ## Scripts
@@ -31,11 +35,17 @@ python scripts/build_od_matrix.py --offline  # refaz a matriz OD a partir do bru
 python scripts/faixas_limite.py              # faixas e limite por aresta
 python scripts/velocidades_traffic_stats.py  # velocidade e K por aresta (usa faixas_limite)
 python scripts/enrich_graph.py               # grafo atribuído: capacidade, t0 e checagens
+python scripts/frank_wolfe.py --teste        # valida o algoritmo em redes com solução conhecida
+python scripts/frank_wolfe.py                # equilíbrio da situação atual nos 3 níveis de demanda
+python scripts/frank_wolfe.py --cenario cenarios/exemplo_faixa_epct_norte.json
+python scripts/visualizar_resultados.py      # gera resultados/painel.html e as figuras
 python scripts/mapping.py                    # só se a tabela de trechos do DER mudar
 ```
 
 O `build_od_matrix.py` sem `--offline` baixa a análise de novo e lê a chave da
 variável `TOMTOM_API_KEY`.
+
+Dependências (Python 3.13): `osmnx networkx geopandas shapely pyproj pandas numpy scipy matplotlib requests`.
 
 ## Dados do DETRAN
 

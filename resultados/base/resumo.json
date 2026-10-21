@@ -1,0 +1,380 @@
+{
+ "gerado_em": "2026-10-21T15:15:44",
+ "grafo": "cache/gama_drive_expanded_atributos.graphml",
+ "matriz": "Tables/matriz_od_final.json",
+ "bpr": {
+  "alpha": 0.15,
+  "beta": 4.0
+ },
+ "parada": {
+  "gap_relativo": 0.0001,
+  "iteracoes": 500
+ },
+ "rodada": "base",
+ "cenario": null,
+ "niveis": {
+  "baixa": {
+   "fator": 8.82,
+   "indicadores": {
+    "demanda_veic_h": 6002.2,
+    "tstt_veic_min": 20601.5,
+    "tstt_veic_h": 343.36,
+    "vkt_veic_km": 15520.8,
+    "velocidade_media_rede_kmh": 45.2,
+    "tempo_medio_viagem_min": 3.432,
+    "k_rede": 0.7026,
+    "arestas_vc_acima_1": 20,
+    "arestas_k_abaixo_0_5": 67,
+    "iteracoes": 2,
+    "gap_relativo": 3.531752933677163e-16,
+    "convergiu": true,
+    "segundos": 0.21
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.000101171,
+     "tstt": 20616.4,
+     "beckmann": 17479.9,
+     "passo": 1.0
+    },
+    {
+     "iteracao": 2,
+     "gap": 3.53175e-16,
+     "tstt": 20601.5,
+     "beckmann": 17477.9
+    }
+   ]
+  },
+  "adotada": {
+   "fator": 12.21,
+   "indicadores": {
+    "demanda_veic_h": 8309.2,
+    "tstt_veic_min": 28616.6,
+    "tstt_veic_h": 476.94,
+    "vkt_veic_km": 21485.8,
+    "velocidade_media_rede_kmh": 45.05,
+    "tempo_medio_viagem_min": 3.444,
+    "k_rede": 0.7001,
+    "arestas_vc_acima_1": 20,
+    "arestas_k_abaixo_0_5": 67,
+    "iteracoes": 4,
+    "gap_relativo": 3.1097356500267708e-09,
+    "convergiu": true,
+    "segundos": 0.34
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.000258888,
+     "tstt": 28640.9,
+     "beckmann": 24218.5,
+     "passo": 0.024712
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.000105532,
+     "tstt": 28636.2,
+     "beckmann": 24218.4,
+     "passo": 1.0
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.000142349,
+     "tstt": 28618.9,
+     "beckmann": 24215.5,
+     "passo": 0.0135738
+    },
+    {
+     "iteracao": 4,
+     "gap": 3.10974e-09,
+     "tstt": 28616.6,
+     "beckmann": 24215.5
+    }
+   ],
+   "conferencias": {
+    "fluxo_x_passagens_tomtom": {
+     "testa": "escolha de rota (mesma amostra da matriz)",
+     "arestas": 40,
+     "correlacao": 0.93,
+     "razao_mediana_modelo_obs": 0.937,
+     "geh_mediano": 3.48,
+     "fracao_geh_abaixo_5": 0.6,
+     "rmse_relativo": 0.323
+    },
+    "tempo_x_observado": {
+     "nao_calibradas": {
+      "arestas": 130,
+      "razao_mediana_modelo_obs": 0.912,
+      "fracao_dentro_10pct": 0.531
+     },
+     "calibradas_gargalo_ou_v0_do_pico": {
+      "arestas": 104,
+      "razao_mediana_modelo_obs": 1.0,
+      "fracao_dentro_10pct": 0.981
+     },
+     "por_classe_nao_calibradas": {
+      "tertiary": 0.901,
+      "tertiary_link": 0.983,
+      "trunk": 0.984,
+      "trunk_link": 0.91,
+      "unclassified": 1.038
+     },
+     "tempo_total_modelo_sobre_obs": 0.972
+    },
+    "fluxo_x_detran": {
+     "testa": "nada independente (as 4 pistas calibram o fator de expansao)",
+     "pistas": [
+      {
+       "trecho": "001EDF0250",
+       "sentido": "decrescente",
+       "detran_veic_h": 2265,
+       "modelo_veic_h": 1259,
+       "esperado_pelo_fator_veic_h": 1259,
+       "geh_modelo_x_detran": 23.97
+      },
+      {
+       "trecho": "001EDF0270",
+       "sentido": "crescente",
+       "detran_veic_h": 1626,
+       "modelo_veic_h": 2101,
+       "esperado_pelo_fator_veic_h": 2251,
+       "geh_modelo_x_detran": 11.0
+      },
+      {
+       "trecho": "480EDF0030",
+       "sentido": "crescente",
+       "detran_veic_h": 1421,
+       "modelo_veic_h": 1638,
+       "esperado_pelo_fator_veic_h": 1721,
+       "geh_modelo_x_detran": 5.54
+      },
+      {
+       "trecho": "480EDF0030",
+       "sentido": "decrescente",
+       "detran_veic_h": 2530,
+       "modelo_veic_h": 2143,
+       "esperado_pelo_fator_veic_h": 2153,
+       "geh_modelo_x_detran": 8.0
+      }
+     ]
+    }
+   }
+  },
+  "alta": {
+   "fator": 21.96,
+   "indicadores": {
+    "demanda_veic_h": 14944.3,
+    "tstt_veic_min": 53061.6,
+    "tstt_veic_h": 884.36,
+    "vkt_veic_km": 38626.8,
+    "velocidade_media_rede_kmh": 43.68,
+    "tempo_medio_viagem_min": 3.551,
+    "k_rede": 0.6763,
+    "arestas_vc_acima_1": 26,
+    "arestas_k_abaixo_0_5": 68,
+    "iteracoes": 28,
+    "gap_relativo": 9.984030376756848e-05,
+    "convergiu": true,
+    "segundos": 2.23
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.02073,
+     "tstt": 54162.3,
+     "beckmann": 44087.8,
+     "passo": 0.399298
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.000188748,
+     "tstt": 53090.6,
+     "beckmann": 43901.6,
+     "passo": 0.0379165
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.00028398,
+     "tstt": 53092.6,
+     "beckmann": 43901.4,
+     "passo": 0.0238756
+    },
+    {
+     "iteracao": 4,
+     "gap": 0.000176447,
+     "tstt": 53086.6,
+     "beckmann": 43901.2,
+     "passo": 0.0355349
+    },
+    {
+     "iteracao": 5,
+     "gap": 0.000265991,
+     "tstt": 53088.7,
+     "beckmann": 43901.0,
+     "passo": 0.0224145
+    },
+    {
+     "iteracao": 6,
+     "gap": 0.000165693,
+     "tstt": 53083.2,
+     "beckmann": 43900.9,
+     "passo": 0.0334427
+    },
+    {
+     "iteracao": 7,
+     "gap": 0.000250203,
+     "tstt": 53085.3,
+     "beckmann": 43900.7,
+     "passo": 0.0211265
+    },
+    {
+     "iteracao": 8,
+     "gap": 0.000156208,
+     "tstt": 53080.1,
+     "beckmann": 43900.6,
+     "passo": 0.0315894
+    },
+    {
+     "iteracao": 9,
+     "gap": 0.00023623,
+     "tstt": 53082.2,
+     "beckmann": 43900.4,
+     "passo": 0.0199822
+    },
+    {
+     "iteracao": 10,
+     "gap": 0.000147776,
+     "tstt": 53077.4,
+     "beckmann": 43900.3,
+     "passo": 0.0299357
+    },
+    {
+     "iteracao": 11,
+     "gap": 0.000223772,
+     "tstt": 53079.4,
+     "beckmann": 43900.2,
+     "passo": 0.0189585
+    },
+    {
+     "iteracao": 12,
+     "gap": 0.000140229,
+     "tstt": 53074.9,
+     "beckmann": 43900.1,
+     "passo": 0.0284507
+    },
+    {
+     "iteracao": 13,
+     "gap": 0.000212592,
+     "tstt": 53076.9,
+     "beckmann": 43900.0,
+     "passo": 0.018037
+    },
+    {
+     "iteracao": 14,
+     "gap": 0.000133433,
+     "tstt": 53072.7,
+     "beckmann": 43899.9,
+     "passo": 0.0271093
+    },
+    {
+     "iteracao": 15,
+     "gap": 0.0002025,
+     "tstt": 53074.6,
+     "beckmann": 43899.8,
+     "passo": 0.0172029
+    },
+    {
+     "iteracao": 16,
+     "gap": 0.000127279,
+     "tstt": 53070.7,
+     "beckmann": 43899.7,
+     "passo": 0.0258916
+    },
+    {
+     "iteracao": 17,
+     "gap": 0.000193343,
+     "tstt": 53072.6,
+     "beckmann": 43899.6,
+     "passo": 0.0164442
+    },
+    {
+     "iteracao": 18,
+     "gap": 0.00012168,
+     "tstt": 53068.8,
+     "beckmann": 43899.5,
+     "passo": 0.0247808
+    },
+    {
+     "iteracao": 19,
+     "gap": 0.000184995,
+     "tstt": 53070.7,
+     "beckmann": 43899.4,
+     "passo": 0.015751
+    },
+    {
+     "iteracao": 20,
+     "gap": 0.000116562,
+     "tstt": 53067.1,
+     "beckmann": 43899.4,
+     "passo": 0.0237633
+    },
+    {
+     "iteracao": 21,
+     "gap": 0.000177353,
+     "tstt": 53069.0,
+     "beckmann": 43899.3,
+     "passo": 0.015115
+    },
+    {
+     "iteracao": 22,
+     "gap": 0.000111867,
+     "tstt": 53065.6,
+     "beckmann": 43899.2,
+     "passo": 0.0228278
+    },
+    {
+     "iteracao": 23,
+     "gap": 0.000170329,
+     "tstt": 53067.4,
+     "beckmann": 43899.1,
+     "passo": 0.0145294
+    },
+    {
+     "iteracao": 24,
+     "gap": 0.000107542,
+     "tstt": 53064.1,
+     "beckmann": 43899.1,
+     "passo": 0.0219646
+    },
+    {
+     "iteracao": 25,
+     "gap": 0.00016385,
+     "tstt": 53065.9,
+     "beckmann": 43899.0,
+     "passo": 0.0139884
+    },
+    {
+     "iteracao": 26,
+     "gap": 0.000103545,
+     "tstt": 53062.8,
+     "beckmann": 43899.0,
+     "passo": 0.0211654
+    },
+    {
+     "iteracao": 27,
+     "gap": 0.000157856,
+     "tstt": 53064.5,
+     "beckmann": 43898.9,
+     "passo": 0.0134869
+    },
+    {
+     "iteracao": 28,
+     "gap": 9.98403e-05,
+     "tstt": 53061.6,
+     "beckmann": 43898.8
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,83 @@
+% Referências do que foi efetivamente realizado até 21/10/2026
+% (grafo, coleta de dados, matriz OD, velocidades, atributos das vias e capacidade efetiva).
+% As referências de etapas ainda não realizadas (cenários, NSGA-II, validação em Sioux Falls)
+% estão comentadas no fim, prontas para entrar quando forem feitas.
+
+\begin{thebibliography}{99}
+
+% ---------------- Fundamentos usados no que já foi feito ----------------
+\bibitem{wardrop1952} J. G. Wardrop, ``Some theoretical aspects of road traffic research,'' \textit{Proc. Institution of Civil Engineers}, Part II, vol. 1, no. 3, pp. 325--378, 1952.
+% usado: equilíbrio do usuário (premissa da estimativa de fluxo atual) e velocidade média no espaço = média harmônica
+
+\bibitem{bpr1964} U.S. Bureau of Public Roads, \textit{Traffic Assignment Manual}. Washington, DC: U.S. Dept. of Commerce, 1964.
+% usado: função volume-atraso e calibração da capacidade efetiva nos gargalos
+
+\bibitem{sheffi1985} Y. Sheffi, \textit{Urban Transportation Networks: Equilibrium Analysis with Mathematical Programming Methods}. Englewood Cliffs, NJ: Prentice-Hall, 1985.
+% usado: alocação tudo-ou-nada (estimativa do fluxo atual por aresta)
+
+\bibitem{dijkstra1959} E. W. Dijkstra, ``A note on two problems in connexion with graphs,'' \textit{Numerische Mathematik}, vol. 1, pp. 269--271, 1959.
+% usado: caminhos mínimos
+
+\bibitem{he2016spi} F. He, X. Yan, Y. Liu, and L. Ma, ``A traffic congestion assessment method for urban road networks based on speed performance index,'' \textit{Procedia Engineering}, vol. 137, pp. 425--433, 2016.
+% usado: índice K = SPI
+
+% ---------------- Legislação e classificação viária ----------------
+\bibitem{ctb1997} Brasil, ``Lei n.\textordmasculine{} 9.503, de 23 de setembro de 1997. Institui o Código de Trânsito Brasileiro,'' \textit{Diário Oficial da União}, Brasília, DF, 24 set. 1997.
+% usado: arts. 60 e 61 (categoria da via e limite de velocidade sem sinalização)
+
+\bibitem{osmbrasilvias} OpenStreetMap Wiki, ``Brazil/Classificação de vias.'' [Online]. Disponível em: \url{https://wiki.openstreetmap.org/wiki/Brazil/Classifica%C3%A7%C3%A3o_de_vias}. Acesso em: 15 out. 2026.
+% usado: correspondência entre classe do OSM e categoria do CTB
+
+% ---------------- Dados ----------------
+\bibitem{osm} OpenStreetMap contributors, ``OpenStreetMap,'' dados da área do trevo EPCT/EPIP/DF-480 (Gama, DF) obtidos via Overpass API em 13 out. 2026, licença ODbL. [Online]. Disponível em: \url{https://www.openstreetmap.org}.
+
+\bibitem{tomtomod} TomTom International B.V., ``O/D Analysis (flow matrix)'', análise ``Gama Final'' (134 regiões), dias úteis de 1 a 30 jul. 2026, 18:00--19:00. [Online]. Disponível em: \url{https://developer.tomtom.com/od-analysis/documentation/product-information/introduction}. Acesso em: 14 out. 2026.
+
+\bibitem{tomtomts} TomTom International B.V., ``Traffic Stats -- Area Analysis'', jobs 10086419 (18:00--19:00) e 10086478 (00:00--04:00), dias úteis de 2 a 31 jul. 2026. [Online]. Disponível em: \url{https://developer.tomtom.com/traffic-stats/documentation/product-information/introduction}. Acesso em: 15 out. 2026.
+
+\bibitem{derfluxo} Departamento de Estradas de Rodagem do Distrito Federal (DER-DF), ``Dados de Fluxo Veicular -- volume de tráfego por trecho rodoviário (intervalos de 15 min), julho/2026,'' Portal de Dados Abertos do Distrito Federal, licença CC-BY. [Online]. Disponível em: \url{https://www.dados.df.gov.br/pt/dataset#/volume-diario-de-trafego-trechos-rodoviarios}. Acesso em: 15 out. 2026.
+
+\bibitem{dersrdf} Departamento de Estradas de Rodagem do Distrito Federal (DER-DF), ``Sistema Rodoviário do Distrito Federal.'' [Online]. Disponível em: \url{https://www.der.df.gov.br/sistema-rodoviario/}. Acesso em: 15 out. 2026.
+
+\bibitem{derrodovias} Departamento de Estradas de Rodagem do Distrito Federal (DER-DF), ``Rodovias no Distrito Federal'' (camada geoespacial), ArcGIS Online. [Online]. Disponível em: \url{https://www.arcgis.com/home/item.html?id=970d7017c83e4136a69a2622d7cbb5cb}. Acesso em: out. 2026.
+
+\bibitem{geoportaldf} Secretaria de Desenvolvimento Urbano e Habitação do Distrito Federal (SEDUH), ``Geoportal -- limites das Regiões Administrativas.'' [Online]. Disponível em: \url{https://www.geoportal.seduh.df.gov.br}. Acesso em: out. 2026.
+% usado: polígono da RA Gama no grafo original de 30 nós (endereço não verificado daqui: o site não respondeu)
+
+% ---------------- Software ----------------
+\bibitem{boeing2017} G. Boeing, ``OSMnx: New methods for acquiring, constructing, analyzing, and visualizing complex street networks,'' \textit{Computers, Environment and Urban Systems}, vol. 65, pp. 126--139, 2017.
+% versão usada: 2.1.1
+
+\bibitem{hagberg2008} A. A. Hagberg, D. A. Schult, and P. J. Swart, ``Exploring network structure, dynamics, and function using NetworkX,'' in \textit{Proc. 7th Python in Science Conference (SciPy 2008)}, Pasadena, CA, 2008, pp. 11--15.
+% versão usada: 3.5
+
+\bibitem{mckinney2010} W. McKinney, ``Data structures for statistical computing in Python,'' in \textit{Proc. 9th Python in Science Conference (SciPy 2010)}, Austin, TX, 2010, pp. 56--61.
+% pandas, versão usada: 2.3.2
+
+\bibitem{geopandas} K. Jordahl \textit{et al.}, ``GeoPandas: Python tools for geographic data,'' software, versão 1.1.4. [Online]. Disponível em: \url{https://geopandas.org}.
+
+\bibitem{shapely} S. Gillies \textit{et al.}, ``Shapely: manipulation and analysis of geometric objects,'' software, versão 2.1.2. [Online]. Disponível em: \url{https://github.com/shapely/shapely}.
+
+% ---------------- Alocação de tráfego (Frank-Wolfe implementado em 21/10/2026) ----------------
+\bibitem{beckmann1956} M. J. Beckmann, C. B. McGuire, and C. B. Winsten, \textit{Studies in the Economics of Transportation}. New Haven, CT: Yale University Press, 1956.
+% usado: formulação do equilíbrio como problema de otimização (função objetivo do Frank-Wolfe)
+
+\bibitem{frank1956} M. Frank and P. Wolfe, ``An algorithm for quadratic programming,'' \textit{Naval Research Logistics Quarterly}, vol. 3, no. 1--2, pp. 95--110, 1956.
+
+\bibitem{leblanc1975fw} L. J. LeBlanc, E. K. Morlok, and W. P. Pierskalla, ``An efficient approach to solving the road network equilibrium traffic assignment problem,'' \textit{Transportation Research}, vol. 9, no. 5, pp. 309--318, 1975.
+% usado: Frank-Wolfe aplicado à alocação de tráfego (scripts/frank_wolfe.py)
+
+\bibitem{braess1968} D. Braess, ``Über ein Paradoxon aus der Verkehrsplanung,'' \textit{Unternehmensforschung}, vol. 12, pp. 258--268, 1968.
+% usado: rede de Braess como teste de validação do algoritmo
+
+\bibitem{braess2005} D. Braess, A. Nagurney, and T. Wakolbinger, ``On a paradox of traffic planning,'' \textit{Transportation Science}, vol. 39, no. 4, pp. 446--450, 2005.
+% tradução da referência anterior; o main.tex já cita esta chave
+
+\end{thebibliography}
+
+% ---------------- A incluir quando as etapas forem realizadas ----------------
+% \bibitem{leblanc1975dndp} L. J. LeBlanc, ``An algorithm for the discrete network design problem,'' \textit{Transportation Science}, vol. 9, no. 3, pp. 183--199, 1975.   (já citada no main.tex)
+% \bibitem{deb2002} K. Deb, A. Pratap, S. Agarwal, and T. Meyarivan, ``A fast and elitist multiobjective genetic algorithm: NSGA-II,'' \textit{IEEE Trans. Evolutionary Computation}, vol. 6, no. 2, pp. 182--197, 2002.
+% \bibitem{vdf2023} [Autoria a completar] ``Modified volume-delay function based on traffic fundamental diagram,'' \textit{J. Transportation Engineering, Part A}, vol. 149, no. 11, 2023.   (alfa = 0,8 e beta = 4,7: a rodada de sensibilidade já existe em resultados/base_a0.8_b4.7; já citada no main.tex)
+% \bibitem{vdf4etapas} [Autoria a completar] ``A influência da função volume-atraso na avaliação de incerteza para um modelo de quatro etapas.''   (já citada no main.tex)
+% \bibitem{tntp} Transportation Networks for Research Core Team, ``Transportation Networks for Research'' (rede de Sioux Falls). [Online]. Disponível em: https://github.com/bstabler/TransportationNetworks   (quando o benchmark for rodado)

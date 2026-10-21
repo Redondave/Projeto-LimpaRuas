@@ -236,13 +236,15 @@ A demanda de cada rodada é `veic_h × (fator ÷ 12,21)` de cada par da matriz.
 
 Rodar só com 12,21 e apresentar o resultado como certo seria esconder a principal incerteza do modelo.
 
+**Observação depois das primeiras rodadas (21/10).** Como a capacidade efetiva dos gargalos escala com o fator, os três níveis têm a mesma razão V/C nos 25 gargalos. Intervenções nesses trechos tendem a dar quase a mesma variação percentual nos três níveis; no cenário de exemplo, o TSTT caiu 8,59%, 8,57% e 8,32%. A incerteza do fator pesa de verdade nas arestas não calibradas. Uma conclusão "robusta" sobre um gargalo é, em parte, robusta por construção, e o artigo deve dizer isso.
+
 ---
 
 ## Problema 4 — Predomínio do tráfego de passagem
 
 ### O que é
 
-Das 15.429 viagens registradas pela TomTom, **86% só atravessam a área**: entram por uma ponta da rodovia e saem pela outra, sem começar nem terminar ali dentro. Para elas, normalmente há um único caminho razoável, que é seguir na rodovia. Só **40% da demanda** tem uma rota alternativa de verdade: outro caminho até 30% mais longo, sem compartilhar a maior parte dos trechos.
+Das 15.429 viagens registradas pela TomTom, **86% só atravessam a área**: entram por uma ponta da rodovia e saem pela outra, sem começar nem terminar ali dentro. Para elas, normalmente há um único caminho razoável, que é seguir na rodovia. Só **46,5% da demanda** tem uma rota alternativa de verdade: outro caminho até 30% mais longo, sem compartilhar a maior parte dos trechos. A primeira versão deste documento dizia 40%, valor calculado com a matriz preliminar "Gama 3"; foi recalculado com a matriz final em 21/10/2026.
 
 ### Por que importa
 
@@ -255,6 +257,6 @@ Não é um erro do modelo; é uma característica da área. O risco é o resulta
 ### Decisão
 
 Aceito como característica da área e declarado como limitação no artigo. Para aproveitar ao máximo a parte da demanda que tem escolha, os cenários devem incluir:
-- intervenções na malha interna (Ponte Alta Norte e alças), onde estão os 40% com alternativa;
+- intervenções na malha interna (Ponte Alta Norte e alças), onde está a parte da demanda com alternativa;
 - fechamentos ou restrições de trechos, que forçam desvio;
 - a rodada de demanda alta (fator 21,96, obrigatória pelo problema 3), onde desvios ficam mais atraentes.

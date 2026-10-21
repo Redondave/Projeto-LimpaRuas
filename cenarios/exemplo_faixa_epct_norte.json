@@ -1,0 +1,7 @@
+{
+ "nome": "exemplo_faixa_epct_norte",
+ "descricao": "EXEMPLO DE SINTAXE, nao e um cenario escolhido: +1 faixa nos 5 trechos de gargalo da EPCT sentido norte, antes do trevo",
+ "alteracoes": [
+  {"tipo": "faixa", "arestas": ["132->133", "133->63", "63->102", "102->126", "126->60"], "faixas": 1}
+ ]
+}
