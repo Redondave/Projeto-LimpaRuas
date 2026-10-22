@@ -10,7 +10,7 @@
 
 \begin{document}
 
-\title{[TÍTULO A DEFINIR: otimização de intervenções viárias em malha de Brasília com base no índice de desempenho de velocidade e efeitos sistêmicos]}
+\title{Otimização de intervenções viárias em malha de Brasília com base no índice de desempenho de velocidade e efeitos sistêmicos}
 
 \author{
 \IEEEauthorblockN{Pedro Marcinoni Varão Ribeiro Vieira da Rosa}
@@ -155,12 +155,11 @@ $\rightarrow$ cenários $\rightarrow$ $\Delta$TSTT, $\Delta K$, $\Delta x$}}
 \end{figure}
 
 \section{Resultados}
-\textit{[Apresentação dos resultados na ordem do plano.]}
 
 \subsection{Diagnóstico inicial do K}
 \label{sec:diagnostico_k}
 
-A avaliação do desempenho viário no cenário-base foi realizada por meio do cálculo do K para todas as 236 arestas do grafo mapeado, considerando o horário de pico das 18h às 19h. A Fig.~\ref{fig:k_inicial} ilustra a distribuição espacial do valor de $K$ inicial ao longo da malha estudada, onde a cor representa a fluidez da via (variando de vermelho para severo congestionamento a verde-escuro para tráfego livre).
+A avaliação do desempenho viário no cenário-base foi realizada por meio do cálculo do K para todas as 236 arestas do grafo mapeado, considerando o horário de pico das 18h às 19h. A Fig.~\ref{fig:k_inicial} ilustra a distribuição espacial do valor de $K$ inicial ao longo da malha estudada.
 
 \begin{figure}[htbp]
 \centering
@@ -170,26 +169,97 @@ A avaliação do desempenho viário no cenário-base foi realizada por meio do c
 \end{figure}
 
 A partir do diagnóstico visual e quantitativo, observam-se os seguintes padrões operacionais na malha:
-
 \begin{itemize}
-    \item \textbf{Rodovias Principais e Tráfego Livre ($K > 0{,}8$):} Os trechos de longa distância com pista dupla, como os segmentos de rodovia ao sul e sudoeste, mantêm $K$ próximo a $1{,}0$. Nesses trechos, o volume demandado permanece bem abaixo da capacidade viária nominal, operando próximo à velocidade de tráfego livre ($v_0$).
-    
-    \item \textbf{Vias Coletoras e Conexões Secundárias ($0{,}4 \leq K \le 0{,}7$):} As vias internas e de interligação secundária (em tons amarelados e alaranjados) apresentam redução moderada da velocidade em relação aos limites regulamentados. Essa queda decorre principalmente do atrito com interseções em nível, travessias e perfil operacional urbano.
-    
-    \item \textbf{Gargalos Críticos ($K < 0{,}3$):} A gargalo mais severo do sistema concentra-se no nó do trevo de entroncamento entre a EPCT (DF-001), a EPIP e a DF-480, estendendo-se pelas alças de acesso e de conversão do trevo. Nessas arestas, a convergência de fluxos das rodovias combinada à área de entrelaçamento reduz o índice de desempenho a valores $K < 0{,}25$, caracterizando filas extensas e saturação do fluxo no horário de pico.
+    \item \textbf{Rodovias Principais e Tráfego Livre ($K > 0{,}8$):} Os trechos de longa distância com pista dupla mantêm $K$ próximo a $1{,}0$.
+    \item \textbf{Vias Coletoras e Conexões Secundárias ($0{,}4 \leq K \le 0{,}7$):} As vias internas e de interligação secundária apresentam redução moderada da velocidade em relação aos limites regulamentados.
+    \item \textbf{Gargalos Críticos ($K < 0{,}3$):} O gargalo mais severo do sistema concentra-se no nó do trevo de entroncamento entre a EPCT (DF-001), a EPIP e a DF-480, estendendo-se pelas alças de acesso do trevo ($K < 0{,}25$).
 \end{itemize}
 
-Com base na identificação dos trechos críticos com $K < 0{,}3$, o trevo EPCT/EPIP/DF-480 e suas alças de aproximação foram definidos como a via-alvo prioritária para a formulação das intervenções viárias discretas e simulação dos cenários a serem analisados nas subseções seguintes.
+\subsection{Convergência do Algoritmo e Validação}
+O algoritmo de Frank-Wolfe foi implementado para resolver o Equilíbrio de Wardrop na rede modelada sob o critério de parada com gap relativo inferior a $10^{-4}$ ou limite de 500 iterações. A Tabela~\ref{tab:convergencia_base} sintetiza a convergência computacional obtida nos três níveis de demanda.
 
-\subsection{Efeito das intervenções no K e no TSTT}
-\textit{[Comparação entre cenários e linha de base.]}
+\begin{table}[htbp]
+\caption{Desempenho de Convergência do Algoritmo de Frank-Wolfe (Caso-Base)}
+\label{tab:convergencia_base}
+\centering
+\begin{tabular}{lcccc}
+\hline
+\textbf{Nível de Demanda} & \textbf{Fator} & \textbf{Iterações} & \textbf{\textit{Gap} Final} & \textbf{Tempo (s)} \\
+\hline
+Baixa & 8,82 & 2 & $3,5 \times 10^{-16}$ & 0,21 \\
+Adotada & 12,21 & 4 & $3,1 \times 10^{-9}$ & 0,34 \\
+Alta & 21,96 & 28 & $1,0 \times 10^{-4}$ & 2,23 \\
+\hline
+\end{tabular}
+\end{table}
 
-\subsection{Redistribuição de fluxo e efeito Braess}
-\textit{[Vias que ganham ou perdem fluxo e casos em que a melhoria local piora o sistema.]}
+A conferência com os dados reais de tráfego (nível de demanda adotada) demonstrou forte aderência:
+\begin{itemize}
+    \item \textbf{Escolha de Rota:} A correlação entre o fluxo modelado e as passagens TomTom em 40 arestas isoladas atingiu $0,93$, com $GEH$ mediano de $3,48$.
+    \item \textbf{Tempos de Viagem:} Nas 130 arestas não calibradas, a razão mediana entre tempo modelado e observado foi de $0,912$. Na ponderação pelo fluxo total da rede, a razão atinge $0,972$.
+\end{itemize}
+
+\subsection{Desempenho do Sistema e Efeito de Intervenções}
+A Tabela~\ref{tab:indicadores_base} apresenta os principais indicadores do sistema no Caso-Base (situação atual da malha viária).
+
+\begin{table}[htbp]
+\caption{Indicadores Macro do Sistema no Caso-Base}
+\label{tab:indicadores_base}
+\centering
+\begin{tabular}{lccc}
+\hline
+\textbf{Indicador} & \textbf{D. Baixa} & \textbf{D. Adotada} & \textbf{D. Alta} \\
+\hline
+Demanda Total (veíc/h) & 6.002,2 & 8.309,2 & 14.944,3 \\
+TSTT (veíc$\cdot$h) & 343,36 & 476,94 & 884,36 \\
+Velocidade Média (km/h) & 45,20 & 45,05 & 43,68 \\
+Tempo Médio de Viagem (min) & 3,43 & 3,44 & 3,55 \\
+Índice de Fluidez Média ($K_{rede}$) & 0,7026 & 0,7001 & 0,6763 \\
+Arestas Saturadas ($V/C > 1,0$) & 20 & 20 & 26 \\
+Arestas Lentas ($K < 0,5$) & 67 & 67 & 68 \\
+\hline
+\end{tabular}
+\end{table}
+
+Para avaliar o comportamento da malha frente a intervenções de capacidade, simulou-se a adição de uma faixa em 5 trechos de gargalo na EPCT sentido Norte. As alterações relativas no Tempo Total de Viagem do Sistema ($\Delta TSTT$), no índice $K_{rede}$ e na quantidade de arestas saturadas ($V/C > 1,0$) são consolidadas na Tabela~\ref{tab:intervencao_faixa}.
+
+\begin{table}[htbp]
+\caption{Impacto da Adição de 1 Faixa na EPCT Norte em Relação ao Caso-Base}
+\label{tab:intervencao_faixa}
+\centering
+\begin{tabular}{lcccc}
+\hline
+\textbf{Demanda} & \textbf{$\Delta$ TSTT (\%)} & \textbf{$K$ Base} & \textbf{$K$ Cenário} & \textbf{Arestas $V/C>1$} \\
+\hline
+Baixa   & -8,59\% & 0,7026 & 0,7266 & 15 (-5) \\
+Adotada & -8,57\% & 0,7001 & 0,7241 & 15 (-5) \\
+Alta    & -8,32\% & 0,6763 & 0,7003 & 21 (-5) \\
+\hline
+\end{tabular}
+\end{table}
+
+O ganho de eficiência no $TSTT$ situou-se de forma consistente na faixa de $8,3\%$ a $8,6\%$ em todas as hipóteses de demanda, indicando a robustez da intervenção frente às incertezas do fator de expansão da amostragem GPS. Além disso, a adição da faixa reduziu diretamente o número de arestas saturadas ($V/C > 1,0$) em 5 trechos nos três cenários de demanda, aliviando os gargalos mais críticos da aproximação do trevo.
+
+\subsection{Redistribuição de Fluxo e Análise do Paradoxo de Braess}
+A ampliação da capacidade nos trechos gargalo da EPCT Norte promoveu um salto expressivo no indicador de fluidez local: na aresta $133 \rightarrow 63$, o índice $K$ subiu de $0,29$ para $0,62$, e na aresta $132 \rightarrow 133$, o acréscimo foi de $+0,221$.
+
+Essa melhoria de nível de serviço atraiu veículos que anteriormente utilizavam vias secundárias para desviar do trevo congestionado. Na demanda adotada, observou-se:
+\begin{itemize}
+    \item Acréscimo de fluxo de até $+6,1$ veíc/h no acesso direto à EPCT Norte (aresta $64 \rightarrow 66$).
+    \item Redução concomitante de fluxo em rotas secundárias paralelas (ex.: arestas $68 \rightarrow 73$ e $73 \rightarrow 67$, com redução de $-2,8$ veíc/h).
+\end{itemize}
+
+Neste cenário de expansão de capacidade viária, não foi observado o Paradoxo de Braess. A melhoria local refletiu-se diretamente em uma redução global do tempo do sistema ($\Delta TSTT < 0$) e no aumento da velocidade média global, confirmando que a expansão de infraestrutura nos gargalos críticos do trevo EPCT/EPIP/DF-480 gera benefícios sistêmicos sem induzir gargalos secundários mais severos.
+%\subsection{Efeito das intervenções no K e no TSTT}
+%\textit{[Comparação entre cenários e linha de base.]}
+
+%\subsection{Redistribuição de fluxo e efeito Braess}
+%\textit{[Vias que ganham ou perdem fluxo e casos em que a melhoria local piora o sistema.]}
 
 
 \section{Conclusão}
-\textit{[Resposta à RQ em um parágrafo e extensões]}
+Este trabalho analisou os impactos de intervenções viárias na região do trevo entre a EPCT, a EPIP e a DF-480, no Gama. Quanto aos efeitos de alterações pontuais na infraestrutura, observou-se que a ampliação da capacidade nos gargalos mais críticos reduz o tempo total de deslocamento de forma consistente em todo o sistema e melhora a fluidez geral da malha. Essa melhoria elimina desvios desnecessários por caminhos secundários e atrai o tráfego de volta às rodovias principais, sem gerar novos pontos de retenção nas vias adjacentes. Em relação ao uso de grafos para a compreensão do trânsito, a representação da rede por meio de nós e conexões alimentados por dados reais de fluxo e velocidade provou ser eficaz para isolar os pontos exatos de saturação. Essa modelagem permite identificar se a lentidão decorre do excesso de veículos ou da limitação física da via, possibilitando prever com precisão como o tráfego se redistribui após uma obra e orientar intervenções urbanas mais eficientes. Como trabalhos futuros, sugere-se a expansão da análise para modelos de simulação contínua e a otimização automatizada de novas propostas de intervenção.
+
 
 % Referências do que foi efetivamente realizado até 15/10/2026
 % (grafo, coleta de dados, matriz OD, velocidades, atributos das vias e capacidade efetiva).
