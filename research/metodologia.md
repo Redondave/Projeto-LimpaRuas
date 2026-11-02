@@ -429,7 +429,16 @@ Cada cenário é reequilibrado com o Frank-Wolfe. A meta é de 15 a 30 cenários
 | `inverter` | mão única invertida |
 | `capacidade` | multiplica a capacidade da aresta |
 
-O script recusa um cenário que desconecte algum par OD. A comparação com a situação atual sai nível a nível em `resultados/<cenario>/resumo.json`: ΔTSTT, ΔK da rede e as maiores mudanças de fluxo. `cenarios/exemplo_faixa_epct_norte.json` é só um exemplo de sintaxe (+1 faixa nos 5 gargalos da EPCT sentido norte): TSTT −8,6% nos três níveis e quase nenhuma mudança de rota.
+O script recusa um cenário que desconecte algum par OD. A comparação com a situação atual sai nível a nível em `resultados/<cenario>/resumo.json`: ΔTSTT, ΔK da rede e as maiores mudanças de fluxo.
+
+**Cenários rodados [feito em 02/11].** Além do C0 (`cenarios/exemplo_faixa_epct_norte.json`, o caso da V1), `scripts/gerar_cenarios.py` gera 12 cenários por critérios explícitos sobre o grafo:
+- **F1–F6, faixa adicional:** gargalos da EPCT norte, da EPCT sul e da DF-480; alças com K observado < 0,25; as coletoras Av. São Francisco e Marginal DF-480;
+- **S1–S3, sentido de circulação:** binário na Marginal DF-480; inversão do acesso 30→7; inversão da alça "Acesso DF-480";
+- **R1–R3, fechamento de acessos que alimentam gargalos.**
+
+Todos rodam nos três níveis de demanda e também com a = 0,8 e b = 4,7. Para o teste de Braess, as varreduras `--varredura-remocao` e `--varredura-faixa` alteram cada uma das 235 arestas, uma por vez, nos três níveis; os candidatos são confirmados com gap 10⁻⁷.
+
+As alterações exatas, os resultados de cada caso e a leitura estão em `research/relatorio_cenarios.md`. A visualização interativa está em `resultados/painel.html`.
 
 **Consequência da calibração para os três níveis.** Nos 25 gargalos, a capacidade efetiva escala com o fator, então a razão V/C desses trechos é a mesma nos três níveis. Cada nível é um "mundo" coerente que reproduz os tempos observados com aquela demanda. Por isso:
 - intervenções nos gargalos tendem a dar a mesma variação percentual nos três níveis (no exemplo, −8,59%, −8,57% e −8,32%);

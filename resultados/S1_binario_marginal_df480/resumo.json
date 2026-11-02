@@ -1,0 +1,616 @@
+{
+ "gerado_em": "2026-11-02T16:18:25",
+ "grafo": "cache/gama_drive_expanded_atributos.graphml",
+ "matriz": "Tables/matriz_od_final.json",
+ "bpr": {
+  "alpha": 0.15,
+  "beta": 4.0
+ },
+ "parada": {
+  "gap_relativo": 0.0001,
+  "iteracoes": 500
+ },
+ "rodada": "S1_binario_marginal_df480",
+ "cenario": {
+  "codigo": "S1",
+  "nome": "S1_binario_marginal_df480",
+  "familia": "sentido",
+  "descricao": "Marginal DF-480 em mão única (binário): remove o sentido de menor fluxo",
+  "criterio": "mantém o sentido de maior fluxo na situação atual (914 veíc/h somados nas 7 arestas) e remove o oposto (513 veíc/h). A Av. São Francisco, primeira candidata, desconectaria 52 pares OD",
+  "alteracoes": [
+   {
+    "tipo": "remover",
+    "arestas": [
+     "56->87",
+     "78->105",
+     "79->91",
+     "86->78",
+     "87->86",
+     "91->56",
+     "105->77"
+    ]
+   }
+  ],
+  "arestas_mantidas": [
+   "56->91",
+   "77->105",
+   "78->86",
+   "86->87",
+   "87->56",
+   "91->79",
+   "105->78"
+  ]
+ },
+ "base": "resultados/base",
+ "niveis": {
+  "baixa": {
+   "fator": 8.82,
+   "indicadores": {
+    "demanda_veic_h": 6002.2,
+    "tstt_veic_min": 21068.1,
+    "tstt_veic_h": 351.13,
+    "vkt_veic_km": 15896.1,
+    "velocidade_media_rede_kmh": 45.27,
+    "tempo_medio_viagem_min": 3.51,
+    "k_rede": 0.7023,
+    "arestas_vc_acima_1": 20,
+    "arestas_k_abaixo_0_5": 64,
+    "iteracoes": 2,
+    "gap_relativo": 0.0,
+    "convergiu": true,
+    "segundos": 0.09
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.000119538,
+     "tstt": 21087.4,
+     "beckmann": 17838.5,
+     "passo": 1.0
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.0,
+     "tstt": 21068.1,
+     "beckmann": 17836.0
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 466.6,
+    "delta_tstt_pct": 2.265,
+    "delta_k_rede": -0.0003,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "22->101",
+      "delta_fluxo": 66.8,
+      "delta_k": -0.0002
+     },
+     {
+      "aresta": "74->57",
+      "delta_fluxo": 66.8,
+      "delta_k": -0.0004
+     },
+     {
+      "aresta": "57->8",
+      "delta_fluxo": 66.8,
+      "delta_k": -0.0003
+     },
+     {
+      "aresta": "7->22",
+      "delta_fluxo": 66.8,
+      "delta_k": -0.0248
+     },
+     {
+      "aresta": "75->74",
+      "delta_fluxo": 66.8,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "99->75",
+      "delta_fluxo": 66.8,
+      "delta_k": -0.0003
+     },
+     {
+      "aresta": "101->80",
+      "delta_fluxo": 66.7,
+      "delta_k": -0.0001
+     },
+     {
+      "aresta": "80->100",
+      "delta_fluxo": 66.7,
+      "delta_k": -0.0002
+     },
+     {
+      "aresta": "100->99",
+      "delta_fluxo": 66.7,
+      "delta_k": -0.0004
+     },
+     {
+      "aresta": "30->7",
+      "delta_fluxo": 64.3,
+      "delta_k": -0.0021
+     },
+     {
+      "aresta": "79->30",
+      "delta_fluxo": 64.3,
+      "delta_k": -0.0013
+     },
+     {
+      "aresta": "79->91",
+      "delta_fluxo": -56.7,
+      "delta_k": null
+     },
+     {
+      "aresta": "91->56",
+      "delta_fluxo": -54.7,
+      "delta_k": null
+     },
+     {
+      "aresta": "8->16",
+      "delta_fluxo": 54.3,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "4->47",
+      "delta_fluxo": 53.5,
+      "delta_k": -0.0001
+     }
+    ]
+   }
+  },
+  "adotada": {
+   "fator": 12.21,
+   "indicadores": {
+    "demanda_veic_h": 8309.2,
+    "tstt_veic_min": 29271.3,
+    "tstt_veic_h": 487.86,
+    "vkt_veic_km": 22005.1,
+    "velocidade_media_rede_kmh": 45.11,
+    "tempo_medio_viagem_min": 3.523,
+    "k_rede": 0.6995,
+    "arestas_vc_acima_1": 20,
+    "arestas_k_abaixo_0_5": 64,
+    "iteracoes": 4,
+    "gap_relativo": -1.242846401450568e-16,
+    "convergiu": true,
+    "segundos": 0.17
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.000409255,
+     "tstt": 29304.0,
+     "beckmann": 24717.2,
+     "passo": 0.0371183
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.000123407,
+     "tstt": 29296.4,
+     "beckmann": 24716.9,
+     "passo": 1.0
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.000276715,
+     "tstt": 29276.0,
+     "beckmann": 24713.6,
+     "passo": 0.0250577
+    },
+    {
+     "iteracao": 4,
+     "gap": -1.24285e-16,
+     "tstt": 29271.3,
+     "beckmann": 24713.5
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 654.7,
+    "delta_tstt_pct": 2.288,
+    "delta_k_rede": -0.0006,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "57->8",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0013
+     },
+     {
+      "aresta": "7->22",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0248
+     },
+     {
+      "aresta": "101->80",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0004
+     },
+     {
+      "aresta": "80->100",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0008
+     },
+     {
+      "aresta": "75->74",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0002
+     },
+     {
+      "aresta": "100->99",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0013
+     },
+     {
+      "aresta": "99->75",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0008
+     },
+     {
+      "aresta": "22->101",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0007
+     },
+     {
+      "aresta": "74->57",
+      "delta_fluxo": 92.4,
+      "delta_k": -0.0016
+     },
+     {
+      "aresta": "79->30",
+      "delta_fluxo": 89.1,
+      "delta_k": -0.0048
+     },
+     {
+      "aresta": "30->7",
+      "delta_fluxo": 89.1,
+      "delta_k": -0.0076
+     },
+     {
+      "aresta": "8->16",
+      "delta_fluxo": 85.7,
+      "delta_k": -0.0001
+     },
+     {
+      "aresta": "124->64",
+      "delta_fluxo": 81.8,
+      "delta_k": -0.0064
+     },
+     {
+      "aresta": "16->106",
+      "delta_fluxo": 81.8,
+      "delta_k": -0.0002
+     },
+     {
+      "aresta": "106->124",
+      "delta_fluxo": 81.8,
+      "delta_k": -0.0001
+     }
+    ]
+   }
+  },
+  "alta": {
+   "fator": 21.96,
+   "indicadores": {
+    "demanda_veic_h": 14944.3,
+    "tstt_veic_min": 54450.0,
+    "tstt_veic_h": 907.5,
+    "vkt_veic_km": 39563.7,
+    "velocidade_media_rede_kmh": 43.6,
+    "tempo_medio_viagem_min": 3.644,
+    "k_rede": 0.6724,
+    "arestas_vc_acima_1": 27,
+    "arestas_k_abaixo_0_5": 65,
+    "iteracoes": 32,
+    "gap_relativo": 9.714269389029586e-05,
+    "convergiu": true,
+    "segundos": 1.03
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.0220763,
+     "tstt": 55639.6,
+     "beckmann": 45041.6,
+     "passo": 0.395594
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.000189175,
+     "tstt": 54481.7,
+     "beckmann": 44838.4,
+     "passo": 0.035073
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.000288902,
+     "tstt": 54483.5,
+     "beckmann": 44838.2,
+     "passo": 0.0218809
+    },
+    {
+     "iteracao": 4,
+     "gap": 0.00017784,
+     "tstt": 54477.8,
+     "beckmann": 44838.0,
+     "passo": 0.0330411
+    },
+    {
+     "iteracao": 5,
+     "gap": 0.00027184,
+     "tstt": 54479.7,
+     "beckmann": 44837.9,
+     "passo": 0.0206289
+    },
+    {
+     "iteracao": 6,
+     "gap": 0.00016771,
+     "tstt": 54474.4,
+     "beckmann": 44837.7,
+     "passo": 0.0312184
+    },
+    {
+     "iteracao": 7,
+     "gap": 0.000256738,
+     "tstt": 54476.3,
+     "beckmann": 44837.6,
+     "passo": 0.0195165
+    },
+    {
+     "iteracao": 8,
+     "gap": 0.000158705,
+     "tstt": 54471.3,
+     "beckmann": 44837.4,
+     "passo": 0.029592
+    },
+    {
+     "iteracao": 9,
+     "gap": 0.000243271,
+     "tstt": 54473.2,
+     "beckmann": 44837.3,
+     "passo": 0.0185213
+    },
+    {
+     "iteracao": 10,
+     "gap": 0.000150644,
+     "tstt": 54468.6,
+     "beckmann": 44837.2,
+     "passo": 0.0281313
+    },
+    {
+     "iteracao": 11,
+     "gap": 0.000231184,
+     "tstt": 54470.4,
+     "beckmann": 44837.1,
+     "passo": 0.0176254
+    },
+    {
+     "iteracao": 12,
+     "gap": 0.000143384,
+     "tstt": 54466.1,
+     "beckmann": 44836.9,
+     "passo": 0.0268118
+    },
+    {
+     "iteracao": 13,
+     "gap": 0.000220272,
+     "tstt": 54467.9,
+     "beckmann": 44836.8,
+     "passo": 0.0168144
+    },
+    {
+     "iteracao": 14,
+     "gap": 0.000136809,
+     "tstt": 54463.9,
+     "beckmann": 44836.7,
+     "passo": 0.0256137
+    },
+    {
+     "iteracao": 15,
+     "gap": 0.000210369,
+     "tstt": 54465.6,
+     "beckmann": 44836.6,
+     "passo": 0.0160767
+    },
+    {
+     "iteracao": 16,
+     "gap": 0.000130826,
+     "tstt": 54461.8,
+     "beckmann": 44836.6,
+     "passo": 0.0245208
+    },
+    {
+     "iteracao": 17,
+     "gap": 0.000201339,
+     "tstt": 54463.6,
+     "beckmann": 44836.5,
+     "passo": 0.0154025
+    },
+    {
+     "iteracao": 18,
+     "gap": 0.000125356,
+     "tstt": 54459.9,
+     "beckmann": 44836.4,
+     "passo": 0.0235195
+    },
+    {
+     "iteracao": 19,
+     "gap": 0.000193071,
+     "tstt": 54461.6,
+     "beckmann": 44836.3,
+     "passo": 0.014784
+    },
+    {
+     "iteracao": 20,
+     "gap": 0.000120336,
+     "tstt": 54458.2,
+     "beckmann": 44836.2,
+     "passo": 0.0225987
+    },
+    {
+     "iteracao": 21,
+     "gap": 0.00018547,
+     "tstt": 54459.9,
+     "beckmann": 44836.1,
+     "passo": 0.0142143
+    },
+    {
+     "iteracao": 22,
+     "gap": 0.000115712,
+     "tstt": 54456.5,
+     "beckmann": 44836.1,
+     "passo": 0.0217489
+    },
+    {
+     "iteracao": 23,
+     "gap": 0.000178459,
+     "tstt": 54458.2,
+     "beckmann": 44836.0,
+     "passo": 0.0136879
+    },
+    {
+     "iteracao": 24,
+     "gap": 0.000111437,
+     "tstt": 54455.0,
+     "beckmann": 44835.9,
+     "passo": 0.0209621
+    },
+    {
+     "iteracao": 25,
+     "gap": 0.000171969,
+     "tstt": 54456.7,
+     "beckmann": 44835.9,
+     "passo": 0.0132
+    },
+    {
+     "iteracao": 26,
+     "gap": 0.000107474,
+     "tstt": 54453.7,
+     "beckmann": 44835.8,
+     "passo": 0.0202315
+    },
+    {
+     "iteracao": 27,
+     "gap": 0.000165945,
+     "tstt": 54455.3,
+     "beckmann": 44835.8,
+     "passo": 0.0127463
+    },
+    {
+     "iteracao": 28,
+     "gap": 0.000103789,
+     "tstt": 54452.4,
+     "beckmann": 44835.7,
+     "passo": 0.0195511
+    },
+    {
+     "iteracao": 29,
+     "gap": 0.000160337,
+     "tstt": 54453.9,
+     "beckmann": 44835.6,
+     "passo": 0.0123235
+    },
+    {
+     "iteracao": 30,
+     "gap": 0.000100354,
+     "tstt": 54451.2,
+     "beckmann": 44835.6,
+     "passo": 0.018916
+    },
+    {
+     "iteracao": 31,
+     "gap": 0.000155103,
+     "tstt": 54452.7,
+     "beckmann": 44835.5,
+     "passo": 0.0119284
+    },
+    {
+     "iteracao": 32,
+     "gap": 9.71427e-05,
+     "tstt": 54450.0,
+     "beckmann": 44835.5
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 1388.4,
+    "delta_tstt_pct": 2.617,
+    "delta_k_rede": -0.0039,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "57->8",
+      "delta_fluxo": 167.6,
+      "delta_k": -0.0121
+     },
+     {
+      "aresta": "100->99",
+      "delta_fluxo": 167.6,
+      "delta_k": -0.0141
+     },
+     {
+      "aresta": "101->80",
+      "delta_fluxo": 167.6,
+      "delta_k": -0.0048
+     },
+     {
+      "aresta": "99->75",
+      "delta_fluxo": 167.6,
+      "delta_k": -0.0082
+     },
+     {
+      "aresta": "22->101",
+      "delta_fluxo": 167.6,
+      "delta_k": -0.007
+     },
+     {
+      "aresta": "80->100",
+      "delta_fluxo": 167.5,
+      "delta_k": -0.0076
+     },
+     {
+      "aresta": "7->22",
+      "delta_fluxo": 167.5,
+      "delta_k": -0.0264
+     },
+     {
+      "aresta": "74->57",
+      "delta_fluxo": 167.5,
+      "delta_k": -0.0157
+     },
+     {
+      "aresta": "75->74",
+      "delta_fluxo": 167.5,
+      "delta_k": -0.0014
+     },
+     {
+      "aresta": "30->7",
+      "delta_fluxo": 162.5,
+      "delta_k": -0.066
+     },
+     {
+      "aresta": "79->30",
+      "delta_fluxo": 162.5,
+      "delta_k": -0.0416
+     },
+     {
+      "aresta": "79->91",
+      "delta_fluxo": -143.1,
+      "delta_k": null
+     },
+     {
+      "aresta": "8->16",
+      "delta_fluxo": 140.2,
+      "delta_k": -0.0032
+     },
+     {
+      "aresta": "91->56",
+      "delta_fluxo": -137.8,
+      "delta_k": null
+     },
+     {
+      "aresta": "16->106",
+      "delta_fluxo": 135.1,
+      "delta_k": -0.0042
+     }
+    ]
+   }
+  }
+ }
+}

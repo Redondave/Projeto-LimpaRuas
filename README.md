@@ -21,7 +21,9 @@ para a alocação de tráfego por Frank-Wolfe. Plano completo em
 | `Tables/traffic_stats_gama_madrugada.json` | TomTom Traffic Stats (job 10086478): mesma área e mesmos dias, 00–04h (velocidade livre) |
 | `Tables/velocidades_arestas.csv` | Velocidade observada e K inicial por aresta |
 | `Tables/faixas_limite_arestas.csv` | Faixas por sentido e limite de velocidade por aresta (OSM + CTB) |
-| `cenarios/*.json` | Cenários de intervenção para o Frank-Wolfe (`exemplo_faixa_epct_norte.json` é só um exemplo de sintaxe) |
+| `cenarios/*.json` | Cenários de intervenção (C0 = `exemplo_faixa_epct_norte.json`, caso da V1; F*, S*, R* gerados por `scripts/gerar_cenarios.py`) |
+| `resultados/varredura_*/` | Varreduras de Braess: cada aresta fechada ou ampliada, uma por vez, nos três níveis |
+| `research/relatorio_cenarios.md` | Relatório da etapa de cenários: alterações exatas e resultados de cada caso |
 | `resultados/<rodada>/` | Saída do Frank-Wolfe: `arestas_<nivel>.csv` e `resumo.json`, para a situação atual (`base`) e cada cenário |
 | `resultados/painel.html` | Painel interativo dos resultados (mapa, indicadores, convergência, comparação) |
 | `resultados/figuras/` | Figuras estáticas para o artigo |
@@ -37,8 +39,12 @@ python scripts/velocidades_traffic_stats.py  # velocidade e K por aresta (usa fa
 python scripts/enrich_graph.py               # grafo atribuído: capacidade, t0 e checagens
 python scripts/frank_wolfe.py --teste        # valida o algoritmo em redes com solução conhecida
 python scripts/frank_wolfe.py                # equilíbrio da situação atual nos 3 níveis de demanda
-python scripts/frank_wolfe.py --cenario cenarios/exemplo_faixa_epct_norte.json
+python scripts/gerar_cenarios.py             # gera cenarios/*.json a partir de critérios sobre o grafo
+python scripts/frank_wolfe.py --todos        # situação atual + todos os cenários
+python scripts/frank_wolfe.py --varredura-remocao --varredura-faixa   # teste de Braess aresta por aresta
+python scripts/frank_wolfe.py --alpha 0.8 --beta 4.7 --todos          # sensibilidade (idem para as varreduras)
 python scripts/visualizar_resultados.py      # gera resultados/painel.html e as figuras
+python scripts/relatorio_cenarios.py         # gera research/relatorio_cenarios.md
 python scripts/mapping.py                    # só se a tabela de trechos do DER mudar
 ```
 

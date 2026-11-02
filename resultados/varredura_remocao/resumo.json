@@ -1,0 +1,413 @@
+{
+ "gerado_em": "2026-11-02T16:15:07",
+ "grafo": "cache/gama_drive_expanded_atributos.graphml",
+ "matriz": "Tables/matriz_od_final.json",
+ "bpr": {
+  "alpha": 0.15,
+  "beta": 4.0
+ },
+ "parada": {
+  "gap_relativo": 0.0001,
+  "iteracoes": 500
+ },
+ "base": "resultados/base",
+ "modo": "remocao",
+ "alteracao": "fecha a aresta (remove do grafo)",
+ "criterio_braess": "delta TSTT < 0 ao fechar",
+ "arestas_testadas": 235,
+ "alteracoes_que_desconectam_pares_od": 69,
+ "alteracoes_avaliadas": 166,
+ "candidatos_gap_1e-4": 0,
+ "casos_braess_confirmados": [],
+ "candidatos_descartados_na_confirmacao": [],
+ "por_nivel": {
+  "baixa": {
+   "delta_tstt_pct_min": 0.0,
+   "delta_tstt_pct_mediana": 0.38639999999999997,
+   "delta_tstt_pct_max": 65.7564,
+   "maiores_aumentos": [
+    {
+     "aresta": "133->63",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 65.7564
+    },
+    {
+     "aresta": "26->13",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 55.0217
+    },
+    {
+     "aresta": "15->12",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 54.2592
+    },
+    {
+     "aresta": "25->0",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 50.4424
+    },
+    {
+     "aresta": "14->18",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": 46.0214
+    },
+    {
+     "aresta": "11->9",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 29.1018
+    },
+    {
+     "aresta": "8->16",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": 17.4138
+    },
+    {
+     "aresta": "64->66",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 16.0425
+    },
+    {
+     "aresta": "82->81",
+     "nome": "",
+     "classe": "tertiary_link",
+     "delta_tstt_pct": 10.9744
+    },
+    {
+     "aresta": "30->7",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 8.8659
+    }
+   ],
+   "maiores_reducoes": [
+    {
+     "aresta": "41->69",
+     "nome": "Rua das Figueiras",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "69->41",
+     "nome": "Rua das Figueiras",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "127->129",
+     "nome": "CAUB I Chácara 95",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "129->127",
+     "nome": "CAUB I Chácara 95",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "21->72",
+     "nome": "",
+     "classe": "trunk_link",
+     "delta_tstt_pct": 0.0019
+    },
+    {
+     "aresta": "19->72",
+     "nome": "Avenida do Sol",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0131
+    },
+    {
+     "aresta": "75->74",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0155
+    },
+    {
+     "aresta": "20->19",
+     "nome": "Avenida do Sol",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0175
+    },
+    {
+     "aresta": "44->45",
+     "nome": "Rua Bolivar 2",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0495
+    },
+    {
+     "aresta": "1->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.05
+    }
+   ]
+  },
+  "adotada": {
+   "delta_tstt_pct_min": 0.0,
+   "delta_tstt_pct_mediana": 0.38505,
+   "delta_tstt_pct_max": 98.2723,
+   "maiores_aumentos": [
+    {
+     "aresta": "25->0",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 98.2723
+    },
+    {
+     "aresta": "133->63",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 69.1658
+    },
+    {
+     "aresta": "26->13",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 58.5702
+    },
+    {
+     "aresta": "15->12",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 57.5442
+    },
+    {
+     "aresta": "14->18",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": 46.7309
+    },
+    {
+     "aresta": "11->9",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 32.1873
+    },
+    {
+     "aresta": "8->16",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": 20.0202
+    },
+    {
+     "aresta": "102->126",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 17.4563
+    },
+    {
+     "aresta": "64->66",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 17.2372
+    },
+    {
+     "aresta": "82->81",
+     "nome": "",
+     "classe": "tertiary_link",
+     "delta_tstt_pct": 11.0279
+    }
+   ],
+   "maiores_reducoes": [
+    {
+     "aresta": "41->69",
+     "nome": "Rua das Figueiras",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "69->41",
+     "nome": "Rua das Figueiras",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "127->129",
+     "nome": "CAUB I Chácara 95",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "129->127",
+     "nome": "CAUB I Chácara 95",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "21->72",
+     "nome": "",
+     "classe": "trunk_link",
+     "delta_tstt_pct": 0.0017
+    },
+    {
+     "aresta": "75->74",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.008
+    },
+    {
+     "aresta": "19->72",
+     "nome": "Avenida do Sol",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.014
+    },
+    {
+     "aresta": "20->19",
+     "nome": "Avenida do Sol",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0182
+    },
+    {
+     "aresta": "1->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0507
+    },
+    {
+     "aresta": "44->45",
+     "nome": "Rua Bolivar 2",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0521
+    }
+   ]
+  },
+  "alta": {
+   "delta_tstt_pct_min": 0.0,
+   "delta_tstt_pct_mediana": 0.3761,
+   "delta_tstt_pct_max": 678.4345,
+   "maiores_aumentos": [
+    {
+     "aresta": "25->0",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 678.4345
+    },
+    {
+     "aresta": "102->126",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 167.2417
+    },
+    {
+     "aresta": "133->63",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 127.9967
+    },
+    {
+     "aresta": "26->13",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 108.8674
+    },
+    {
+     "aresta": "15->12",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 103.5214
+    },
+    {
+     "aresta": "11->9",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 76.4268
+    },
+    {
+     "aresta": "6->7",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": 64.1635
+    },
+    {
+     "aresta": "14->18",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": 59.5762
+    },
+    {
+     "aresta": "8->16",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": 54.7305
+    },
+    {
+     "aresta": "64->66",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": 28.5668
+    }
+   ],
+   "maiores_reducoes": [
+    {
+     "aresta": "41->69",
+     "nome": "Rua das Figueiras",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "69->41",
+     "nome": "Rua das Figueiras",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "127->129",
+     "nome": "CAUB I Chácara 95",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "129->127",
+     "nome": "CAUB I Chácara 95",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "21->72",
+     "nome": "",
+     "classe": "trunk_link",
+     "delta_tstt_pct": 0.0021
+    },
+    {
+     "aresta": "75->74",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0109
+    },
+    {
+     "aresta": "71->47",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0362
+    },
+    {
+     "aresta": "47->5",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0369
+    },
+    {
+     "aresta": "44->45",
+     "nome": "Rua Bolivar 2",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0484
+    },
+    {
+     "aresta": "1->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0535
+    }
+   ]
+  }
+ },
+ "segundos": 7706.5
+}

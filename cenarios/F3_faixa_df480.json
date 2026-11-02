@@ -1,0 +1,24 @@
+{
+ "codigo": "F3",
+ "nome": "F3_faixa_df480",
+ "familia": "faixa",
+ "descricao": "+1 faixa em todos os gargalos da DF-480 (sentido sudoeste) e na alça de acesso",
+ "criterio": "arestas com gargalo = True que não são da EPCT (DF-480, classe primary, e a alça 'Acesso DF-480')",
+ "alteracoes": [
+  {
+   "tipo": "faixa",
+   "arestas": [
+    "4->5",
+    "5->6",
+    "6->7",
+    "7->22",
+    "14->18",
+    "18->4",
+    "21->18",
+    "22->23",
+    "65->14"
+   ],
+   "faixas": 1
+  }
+ ]
+}

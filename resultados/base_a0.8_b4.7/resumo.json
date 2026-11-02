@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-21T15:22:40",
+ "gerado_em": "2026-11-02T18:38:14",
  "grafo": "cache/gama_drive_expanded_atributos.graphml",
  "matriz": "Tables/matriz_od_final.json",
  "bpr": {
@@ -8,7 +8,7 @@
  },
  "parada": {
   "gap_relativo": 0.0001,
-  "iteracoes": 500
+  "iteracoes": 5000
  },
  "rodada": "base_a0.8_b4.7",
  "cenario": null,
@@ -26,9 +26,9 @@
     "arestas_vc_acima_1": 5,
     "arestas_k_abaixo_0_5": 67,
     "iteracoes": 4,
-    "gap_relativo": -1.7618079898785358e-16,
+    "gap_relativo": 3.523615979757071e-16,
     "convergiu": true,
-    "segundos": 0.53
+    "segundos": 0.14
    },
    "convergencia": [
     {
@@ -54,7 +54,7 @@
     },
     {
      "iteracao": 4,
-     "gap": -1.76181e-16,
+     "gap": 3.52362e-16,
      "tstt": 20649.1,
      "beckmann": 17391.2
     }
@@ -73,9 +73,9 @@
     "arestas_vc_acima_1": 5,
     "arestas_k_abaixo_0_5": 67,
     "iteracoes": 6,
-    "gap_relativo": 9.512979397431879e-05,
+    "gap_relativo": 9.5129793974445e-05,
     "convergiu": true,
-    "segundos": 0.58
+    "segundos": 0.21
    },
    "convergencia": [
     {
@@ -202,9 +202,9 @@
     "arestas_vc_acima_1": 13,
     "arestas_k_abaixo_0_5": 76,
     "iteracoes": 190,
-    "gap_relativo": 9.997283672707009e-05,
+    "gap_relativo": 9.997283672748581e-05,
     "convergiu": true,
-    "segundos": 15.12
+    "segundos": 6.49
    },
    "convergencia": [
     {

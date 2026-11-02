@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-21T15:15:44",
+ "gerado_em": "2026-11-02T16:18:25",
  "grafo": "cache/gama_drive_expanded_atributos.graphml",
  "matriz": "Tables/matriz_od_final.json",
  "bpr": {
@@ -26,9 +26,9 @@
     "arestas_vc_acima_1": 20,
     "arestas_k_abaixo_0_5": 67,
     "iteracoes": 2,
-    "gap_relativo": 3.531752933677163e-16,
+    "gap_relativo": 1.7658764668385815e-16,
     "convergiu": true,
-    "segundos": 0.21
+    "segundos": 0.08
    },
    "convergencia": [
     {
@@ -40,7 +40,7 @@
     },
     {
      "iteracao": 2,
-     "gap": 3.53175e-16,
+     "gap": 1.76588e-16,
      "tstt": 20601.5,
      "beckmann": 17477.9
     }
@@ -59,9 +59,9 @@
     "arestas_vc_acima_1": 20,
     "arestas_k_abaixo_0_5": 67,
     "iteracoes": 4,
-    "gap_relativo": 3.1097356500267708e-09,
+    "gap_relativo": 3.10973590428344e-09,
     "convergiu": true,
-    "segundos": 0.34
+    "segundos": 0.14
    },
    "convergencia": [
     {
@@ -174,9 +174,9 @@
     "arestas_vc_acima_1": 26,
     "arestas_k_abaixo_0_5": 68,
     "iteracoes": 28,
-    "gap_relativo": 9.984030376756848e-05,
+    "gap_relativo": 9.984030376743133e-05,
     "convergiu": true,
-    "segundos": 2.23
+    "segundos": 0.81
    },
    "convergencia": [
     {

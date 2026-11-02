@@ -1,0 +1,15 @@
+{
+ "codigo": "R3",
+ "nome": "R3_fechar_alca_11_63",
+ "familia": "remocao",
+ "descricao": "Fecha a alça 11→63 (retorno EPCT sul → EPCT norte), de K observado 0,16",
+ "criterio": "alça com K observado baixo e 138 veíc/h que se junta à EPCT norte em 63, logo antes do gargalo 63→102; a alça 67→66, primeira candidata, desconectaria 16 pares OD",
+ "alteracoes": [
+  {
+   "tipo": "remover",
+   "arestas": [
+    "11->63"
+   ]
+  }
+ ]
+}

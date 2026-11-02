@@ -1,0 +1,545 @@
+{
+ "gerado_em": "2026-11-02T16:18:25",
+ "grafo": "cache/gama_drive_expanded_atributos.graphml",
+ "matriz": "Tables/matriz_od_final.json",
+ "bpr": {
+  "alpha": 0.15,
+  "beta": 4.0
+ },
+ "parada": {
+  "gap_relativo": 0.0001,
+  "iteracoes": 500
+ },
+ "rodada": "R3_fechar_alca_11_63",
+ "cenario": {
+  "codigo": "R3",
+  "nome": "R3_fechar_alca_11_63",
+  "familia": "remocao",
+  "descricao": "Fecha a alça 11→63 (retorno EPCT sul → EPCT norte), de K observado 0,16",
+  "criterio": "alça com K observado baixo e 138 veíc/h que se junta à EPCT norte em 63, logo antes do gargalo 63→102; a alça 67→66, primeira candidata, desconectaria 16 pares OD",
+  "alteracoes": [
+   {
+    "tipo": "remover",
+    "arestas": [
+     "11->63"
+    ]
+   }
+  ]
+ },
+ "base": "resultados/base",
+ "niveis": {
+  "baixa": {
+   "fator": 8.82,
+   "indicadores": {
+    "demanda_veic_h": 6002.2,
+    "tstt_veic_min": 21105.8,
+    "tstt_veic_h": 351.76,
+    "vkt_veic_km": 15690.5,
+    "velocidade_media_rede_kmh": 44.61,
+    "tempo_medio_viagem_min": 3.516,
+    "k_rede": 0.699,
+    "arestas_vc_acima_1": 20,
+    "arestas_k_abaixo_0_5": 66,
+    "iteracoes": 1,
+    "gap_relativo": 8.302647997054093e-05,
+    "convergiu": true,
+    "segundos": 0.06
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 8.30265e-05,
+     "tstt": 21105.8,
+     "beckmann": 17729.6
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 504.3,
+    "delta_tstt_pct": 2.448,
+    "delta_k_rede": -0.0036,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "133->63",
+      "delta_fluxo": 100.9,
+      "delta_k": -0.0562
+     },
+     {
+      "aresta": "132->133",
+      "delta_fluxo": 100.9,
+      "delta_k": -0.0421
+     },
+     {
+      "aresta": "66->132",
+      "delta_fluxo": 100.9,
+      "delta_k": -0.0331
+     },
+     {
+      "aresta": "11->63",
+      "delta_fluxo": -99.7,
+      "delta_k": null
+     },
+     {
+      "aresta": "64->66",
+      "delta_fluxo": 91.2,
+      "delta_k": -0.0131
+     },
+     {
+      "aresta": "17->26",
+      "delta_fluxo": 90.4,
+      "delta_k": -0.0081
+     },
+     {
+      "aresta": "124->64",
+      "delta_fluxo": 90.0,
+      "delta_k": -0.0101
+     },
+     {
+      "aresta": "106->124",
+      "delta_fluxo": 90.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "16->106",
+      "delta_fluxo": 90.0,
+      "delta_k": -0.0001
+     },
+     {
+      "aresta": "26->13",
+      "delta_fluxo": 89.6,
+      "delta_k": -0.0001
+     },
+     {
+      "aresta": "15->16",
+      "delta_fluxo": 89.6,
+      "delta_k": -0.0001
+     },
+     {
+      "aresta": "13->15",
+      "delta_fluxo": 89.6,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "11->9",
+      "delta_fluxo": 73.1,
+      "delta_k": -0.0284
+     },
+     {
+      "aresta": "20->17",
+      "delta_fluxo": 73.1,
+      "delta_k": -0.0162
+     },
+     {
+      "aresta": "9->20",
+      "delta_fluxo": 73.1,
+      "delta_k": -0.0249
+     }
+    ]
+   }
+  },
+  "adotada": {
+   "fator": 12.21,
+   "indicadores": {
+    "demanda_veic_h": 8309.2,
+    "tstt_veic_min": 29322.6,
+    "tstt_veic_h": 488.71,
+    "vkt_veic_km": 21721.1,
+    "velocidade_media_rede_kmh": 44.45,
+    "tempo_medio_viagem_min": 3.529,
+    "k_rede": 0.6963,
+    "arestas_vc_acima_1": 20,
+    "arestas_k_abaixo_0_5": 66,
+    "iteracoes": 1,
+    "gap_relativo": 8.411041249551467e-05,
+    "convergiu": true,
+    "segundos": 0.07
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 8.41104e-05,
+     "tstt": 29322.6,
+     "beckmann": 24564.9
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 706.0,
+    "delta_tstt_pct": 2.467,
+    "delta_k_rede": -0.0038,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "66->132",
+      "delta_fluxo": 139.7,
+      "delta_k": -0.0331
+     },
+     {
+      "aresta": "132->133",
+      "delta_fluxo": 139.7,
+      "delta_k": -0.0421
+     },
+     {
+      "aresta": "133->63",
+      "delta_fluxo": 139.7,
+      "delta_k": -0.0563
+     },
+     {
+      "aresta": "11->63",
+      "delta_fluxo": -138.0,
+      "delta_k": null
+     },
+     {
+      "aresta": "17->26",
+      "delta_fluxo": 125.8,
+      "delta_k": -0.0081
+     },
+     {
+      "aresta": "26->13",
+      "delta_fluxo": 124.1,
+      "delta_k": -0.0004
+     },
+     {
+      "aresta": "15->16",
+      "delta_fluxo": 124.1,
+      "delta_k": -0.0004
+     },
+     {
+      "aresta": "13->15",
+      "delta_fluxo": 124.1,
+      "delta_k": -0.0002
+     },
+     {
+      "aresta": "64->66",
+      "delta_fluxo": 114.4,
+      "delta_k": -0.012
+     },
+     {
+      "aresta": "16->106",
+      "delta_fluxo": 112.7,
+      "delta_k": -0.0003
+     },
+     {
+      "aresta": "124->64",
+      "delta_fluxo": 112.7,
+      "delta_k": -0.0092
+     },
+     {
+      "aresta": "106->124",
+      "delta_fluxo": 112.7,
+      "delta_k": -0.0001
+     },
+     {
+      "aresta": "9->20",
+      "delta_fluxo": 101.8,
+      "delta_k": -0.025
+     },
+     {
+      "aresta": "20->17",
+      "delta_fluxo": 101.8,
+      "delta_k": -0.0163
+     },
+     {
+      "aresta": "11->9",
+      "delta_fluxo": 101.8,
+      "delta_k": -0.0286
+     }
+    ]
+   }
+  },
+  "alta": {
+   "fator": 21.96,
+   "indicadores": {
+    "demanda_veic_h": 14944.3,
+    "tstt_veic_min": 54427.0,
+    "tstt_veic_h": 907.12,
+    "vkt_veic_km": 39041.5,
+    "velocidade_media_rede_kmh": 43.04,
+    "tempo_medio_viagem_min": 3.642,
+    "k_rede": 0.6716,
+    "arestas_vc_acima_1": 27,
+    "arestas_k_abaixo_0_5": 67,
+    "iteracoes": 28,
+    "gap_relativo": 9.730132314377354e-05,
+    "convergiu": true,
+    "segundos": 0.89
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.0211086,
+     "tstt": 55497.0,
+     "beckmann": 44732.6,
+     "passo": 0.361266
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.000169473,
+     "tstt": 54456.5,
+     "beckmann": 44550.9,
+     "passo": 0.0333521
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.000299045,
+     "tstt": 54457.8,
+     "beckmann": 44550.8,
+     "passo": 0.0181328
+    },
+    {
+     "iteracao": 4,
+     "gap": 0.000160173,
+     "tstt": 54452.8,
+     "beckmann": 44550.6,
+     "passo": 0.0315759
+    },
+    {
+     "iteracao": 5,
+     "gap": 0.000283002,
+     "tstt": 54454.2,
+     "beckmann": 44550.5,
+     "passo": 0.0171863
+    },
+    {
+     "iteracao": 6,
+     "gap": 0.000151872,
+     "tstt": 54449.5,
+     "beckmann": 44550.3,
+     "passo": 0.029985
+    },
+    {
+     "iteracao": 7,
+     "gap": 0.000268643,
+     "tstt": 54450.8,
+     "beckmann": 44550.2,
+     "passo": 0.0163367
+    },
+    {
+     "iteracao": 8,
+     "gap": 0.000144413,
+     "tstt": 54446.5,
+     "beckmann": 44550.1,
+     "passo": 0.0285514
+    },
+    {
+     "iteracao": 9,
+     "gap": 0.000255713,
+     "tstt": 54447.8,
+     "beckmann": 44550.0,
+     "passo": 0.0155696
+    },
+    {
+     "iteracao": 10,
+     "gap": 0.000137674,
+     "tstt": 54443.7,
+     "beckmann": 44549.9,
+     "passo": 0.0272525
+    },
+    {
+     "iteracao": 11,
+     "gap": 0.000244004,
+     "tstt": 54445.1,
+     "beckmann": 44549.8,
+     "passo": 0.0148733
+    },
+    {
+     "iteracao": 12,
+     "gap": 0.000131553,
+     "tstt": 54441.2,
+     "beckmann": 44549.7,
+     "passo": 0.02607
+    },
+    {
+     "iteracao": 13,
+     "gap": 0.00023335,
+     "tstt": 54442.6,
+     "beckmann": 44549.6,
+     "passo": 0.0142383
+    },
+    {
+     "iteracao": 14,
+     "gap": 0.000125968,
+     "tstt": 54438.9,
+     "beckmann": 44549.5,
+     "passo": 0.0249885
+    },
+    {
+     "iteracao": 15,
+     "gap": 0.000223611,
+     "tstt": 54440.3,
+     "beckmann": 44549.4,
+     "passo": 0.0136568
+    },
+    {
+     "iteracao": 16,
+     "gap": 0.00012085,
+     "tstt": 54436.8,
+     "beckmann": 44549.3,
+     "passo": 0.0239955
+    },
+    {
+     "iteracao": 17,
+     "gap": 0.000214673,
+     "tstt": 54438.2,
+     "beckmann": 44549.3,
+     "passo": 0.0131221
+    },
+    {
+     "iteracao": 18,
+     "gap": 0.000116142,
+     "tstt": 54434.9,
+     "beckmann": 44549.2,
+     "passo": 0.0230804
+    },
+    {
+     "iteracao": 19,
+     "gap": 0.00020644,
+     "tstt": 54436.2,
+     "beckmann": 44549.1,
+     "passo": 0.0126287
+    },
+    {
+     "iteracao": 20,
+     "gap": 0.000111797,
+     "tstt": 54433.1,
+     "beckmann": 44549.0,
+     "passo": 0.0222343
+    },
+    {
+     "iteracao": 21,
+     "gap": 0.00019883,
+     "tstt": 54434.4,
+     "beckmann": 44549.0,
+     "passo": 0.012172
+    },
+    {
+     "iteracao": 22,
+     "gap": 0.000107772,
+     "tstt": 54431.4,
+     "beckmann": 44548.9,
+     "passo": 0.0214494
+    },
+    {
+     "iteracao": 23,
+     "gap": 0.000191774,
+     "tstt": 54432.7,
+     "beckmann": 44548.8,
+     "passo": 0.011748
+    },
+    {
+     "iteracao": 24,
+     "gap": 0.000104034,
+     "tstt": 54429.8,
+     "beckmann": 44548.8,
+     "passo": 0.0207194
+    },
+    {
+     "iteracao": 25,
+     "gap": 0.000185214,
+     "tstt": 54431.2,
+     "beckmann": 44548.7,
+     "passo": 0.0113531
+    },
+    {
+     "iteracao": 26,
+     "gap": 0.000100552,
+     "tstt": 54428.4,
+     "beckmann": 44548.7,
+     "passo": 0.0200386
+    },
+    {
+     "iteracao": 27,
+     "gap": 0.000179097,
+     "tstt": 54429.7,
+     "beckmann": 44548.6,
+     "passo": 0.0109846
+    },
+    {
+     "iteracao": 28,
+     "gap": 9.73013e-05,
+     "tstt": 54427.0,
+     "beckmann": 44548.5
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 1365.4,
+    "delta_tstt_pct": 2.573,
+    "delta_k_rede": -0.0047,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "11->63",
+      "delta_fluxo": -248.6,
+      "delta_k": null
+     },
+     {
+      "aresta": "133->63",
+      "delta_fluxo": 247.5,
+      "delta_k": -0.0555
+     },
+     {
+      "aresta": "132->133",
+      "delta_fluxo": 246.8,
+      "delta_k": -0.0413
+     },
+     {
+      "aresta": "66->132",
+      "delta_fluxo": 246.8,
+      "delta_k": -0.0325
+     },
+     {
+      "aresta": "17->26",
+      "delta_fluxo": 226.5,
+      "delta_k": -0.0145
+     },
+     {
+      "aresta": "15->16",
+      "delta_fluxo": 224.8,
+      "delta_k": -0.004
+     },
+     {
+      "aresta": "13->15",
+      "delta_fluxo": 224.6,
+      "delta_k": -0.0016
+     },
+     {
+      "aresta": "26->13",
+      "delta_fluxo": 224.6,
+      "delta_k": -0.0043
+     },
+     {
+      "aresta": "20->17",
+      "delta_fluxo": 181.3,
+      "delta_k": -0.016
+     },
+     {
+      "aresta": "11->9",
+      "delta_fluxo": 180.3,
+      "delta_k": -0.0282
+     },
+     {
+      "aresta": "9->20",
+      "delta_fluxo": 179.6,
+      "delta_k": -0.0245
+     },
+     {
+      "aresta": "16->106",
+      "delta_fluxo": 175.6,
+      "delta_k": -0.0056
+     },
+     {
+      "aresta": "124->64",
+      "delta_fluxo": 175.6,
+      "delta_k": -0.0153
+     },
+     {
+      "aresta": "106->124",
+      "delta_fluxo": 175.6,
+      "delta_k": -0.0185
+     },
+     {
+      "aresta": "64->66",
+      "delta_fluxo": 174.5,
+      "delta_k": -0.0189
+     }
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "codigo": "F4",
+ "nome": "F4_faixa_alcas_k_baixo",
+ "familia": "faixa",
+ "descricao": "+1 faixa nas alças do trevo com K observado < 0,25",
+ "criterio": "classe trunk_link com k_inicial < 0.25 (as alças apontadas como gargalo crítico no diagnóstico do K)",
+ "alteracoes": [
+  {
+   "tipo": "faixa",
+   "arestas": [
+    "11->63",
+    "19->17",
+    "21->72",
+    "60->10",
+    "67->66",
+    "133->9"
+   ],
+   "faixas": 1
+  }
+ ]
+}

@@ -1,0 +1,5607 @@
+{
+ "gerado_em": "2026-11-02T18:38:14",
+ "grafo": "cache/gama_drive_expanded_atributos.graphml",
+ "matriz": "Tables/matriz_od_final.json",
+ "bpr": {
+  "alpha": 0.8,
+  "beta": 4.7
+ },
+ "parada": {
+  "gap_relativo": 0.0001,
+  "iteracoes": 5000
+ },
+ "rodada": "S3_inverter_alca_acesso_df480_a0.8_b4.7",
+ "cenario": {
+  "codigo": "S3",
+  "nome": "S3_inverter_alca_acesso_df480",
+  "familia": "sentido",
+  "descricao": "Inverte a alça 'Acesso DF-480' (26→21→18): a ligação EPCT sul → DF-480 passa a ser DF-480 → EPCT",
+  "criterio": "alça com 879–888 veíc/h que converge no gargalo 18→4 da DF-480; a inversão do acesso 127→130→103→126 (primeira candidata) desconectaria 54 pares OD",
+  "alteracoes": [
+   {
+    "tipo": "inverter",
+    "arestas": [
+     "26->21",
+     "21->18"
+    ]
+   }
+  ]
+ },
+ "base": "resultados/base_a0.8_b4.7",
+ "niveis": {
+  "baixa": {
+   "fator": 8.82,
+   "indicadores": {
+    "demanda_veic_h": 6002.2,
+    "tstt_veic_min": 20985.7,
+    "tstt_veic_h": 349.76,
+    "vkt_veic_km": 15510.7,
+    "velocidade_media_rede_kmh": 44.35,
+    "tempo_medio_viagem_min": 3.496,
+    "k_rede": 0.7018,
+    "arestas_vc_acima_1": 5,
+    "arestas_k_abaixo_0_5": 65,
+    "iteracoes": 4,
+    "gap_relativo": -1.7335500624784126e-16,
+    "convergiu": true,
+    "segundos": 0.14
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.000538553,
+     "tstt": 21011.0,
+     "beckmann": 17736.8,
+     "passo": 0.0500555
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.000110976,
+     "tstt": 21002.3,
+     "beckmann": 17736.5,
+     "passo": 1.0
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.000412696,
+     "tstt": 20991.9,
+     "beckmann": 17734.5,
+     "passo": 0.0381934
+    },
+    {
+     "iteracao": 4,
+     "gap": -1.73355e-16,
+     "tstt": 20985.7,
+     "beckmann": 17734.3
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 336.6,
+    "delta_tstt_pct": 1.63,
+    "delta_k_rede": 0.0008,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "21->18",
+      "delta_fluxo": -641.9,
+      "delta_k": null
+     },
+     {
+      "aresta": "26->21",
+      "delta_fluxo": -635.1,
+      "delta_k": null
+     },
+     {
+      "aresta": "18->4",
+      "delta_fluxo": -634.3,
+      "delta_k": 0.1466
+     },
+     {
+      "aresta": "72->71",
+      "delta_fluxo": 628.2,
+      "delta_k": -0.0617
+     },
+     {
+      "aresta": "17->26",
+      "delta_fluxo": -622.6,
+      "delta_k": 0.0291
+     },
+     {
+      "aresta": "20->17",
+      "delta_fluxo": -622.6,
+      "delta_k": 0.0835
+     },
+     {
+      "aresta": "20->19",
+      "delta_fluxo": 621.0,
+      "delta_k": -0.0765
+     },
+     {
+      "aresta": "19->72",
+      "delta_fluxo": 621.0,
+      "delta_k": -0.0464
+     },
+     {
+      "aresta": "4->5",
+      "delta_fluxo": -615.8,
+      "delta_k": 0.1496
+     },
+     {
+      "aresta": "47->5",
+      "delta_fluxo": 615.4,
+      "delta_k": -0.121
+     },
+     {
+      "aresta": "71->47",
+      "delta_fluxo": 615.4,
+      "delta_k": -0.0827
+     },
+     {
+      "aresta": "4->47",
+      "delta_fluxo": -18.5,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "47->71",
+      "delta_fluxo": -18.5,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "15->16",
+      "delta_fluxo": 12.9,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "13->15",
+      "delta_fluxo": 12.9,
+      "delta_k": 0.0
+     }
+    ]
+   }
+  },
+  "adotada": {
+   "fator": 12.21,
+   "indicadores": {
+    "demanda_veic_h": 8309.2,
+    "tstt_veic_min": 29702.5,
+    "tstt_veic_h": 495.04,
+    "vkt_veic_km": 21561.8,
+    "velocidade_media_rede_kmh": 43.56,
+    "tempo_medio_viagem_min": 3.575,
+    "k_rede": 0.693,
+    "arestas_vc_acima_1": 5,
+    "arestas_k_abaixo_0_5": 68,
+    "iteracoes": 30,
+    "gap_relativo": 9.64228245639031e-05,
+    "convergiu": true,
+    "segundos": 0.99
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.0222926,
+     "tstt": 30296.5,
+     "beckmann": 24766.3,
+     "passo": 0.130376
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.00371259,
+     "tstt": 29719.6,
+     "beckmann": 24725.3,
+     "passo": 0.186255
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.000348632,
+     "tstt": 29690.5,
+     "beckmann": 24715.7,
+     "passo": 0.113736
+    },
+    {
+     "iteracao": 4,
+     "gap": 0.000698973,
+     "tstt": 29721.7,
+     "beckmann": 24715.1,
+     "passo": 0.00639828
+    },
+    {
+     "iteracao": 5,
+     "gap": 0.000319245,
+     "tstt": 29706.8,
+     "beckmann": 24715.0,
+     "passo": 0.0267714
+    },
+    {
+     "iteracao": 6,
+     "gap": 0.000166604,
+     "tstt": 29708.6,
+     "beckmann": 24714.9,
+     "passo": 0.0602405
+    },
+    {
+     "iteracao": 7,
+     "gap": 0.000853264,
+     "tstt": 29724.8,
+     "beckmann": 24714.8,
+     "passo": 0.00775546
+    },
+    {
+     "iteracao": 8,
+     "gap": 0.000167525,
+     "tstt": 29706.6,
+     "beckmann": 24714.7,
+     "passo": 0.0145091
+    },
+    {
+     "iteracao": 9,
+     "gap": 0.000150741,
+     "tstt": 29707.7,
+     "beckmann": 24714.6,
+     "passo": 0.0547723
+    },
+    {
+     "iteracao": 10,
+     "gap": 0.000790145,
+     "tstt": 29722.4,
+     "beckmann": 24714.5,
+     "passo": 0.00719167
+    },
+    {
+     "iteracao": 11,
+     "gap": 0.000152374,
+     "tstt": 29705.6,
+     "beckmann": 24714.4,
+     "passo": 0.0132119
+    },
+    {
+     "iteracao": 12,
+     "gap": 0.000139424,
+     "tstt": 29706.6,
+     "beckmann": 24714.4,
+     "passo": 0.0508007
+    },
+    {
+     "iteracao": 13,
+     "gap": 0.000732516,
+     "tstt": 29720.3,
+     "beckmann": 24714.3,
+     "passo": 0.00667595
+    },
+    {
+     "iteracao": 14,
+     "gap": 0.000141485,
+     "tstt": 29704.7,
+     "beckmann": 24714.2,
+     "passo": 0.0122735
+    },
+    {
+     "iteracao": 15,
+     "gap": 0.000129739,
+     "tstt": 29705.7,
+     "beckmann": 24714.2,
+     "passo": 0.0473829
+    },
+    {
+     "iteracao": 16,
+     "gap": 0.000682777,
+     "tstt": 29718.5,
+     "beckmann": 24714.1,
+     "passo": 0.00622975
+    },
+    {
+     "iteracao": 17,
+     "gap": 0.000132096,
+     "tstt": 29704.0,
+     "beckmann": 24714.0,
+     "passo": 0.0114635
+    },
+    {
+     "iteracao": 18,
+     "gap": 0.000121328,
+     "tstt": 29704.9,
+     "beckmann": 24714.0,
+     "passo": 0.0444018
+    },
+    {
+     "iteracao": 19,
+     "gap": 0.000639443,
+     "tstt": 29716.9,
+     "beckmann": 24713.9,
+     "passo": 0.00584017
+    },
+    {
+     "iteracao": 20,
+     "gap": 0.000123891,
+     "tstt": 29703.3,
+     "beckmann": 24713.9,
+     "passo": 0.0107552
+    },
+    {
+     "iteracao": 21,
+     "gap": 0.000113953,
+     "tstt": 29704.2,
+     "beckmann": 24713.9,
+     "passo": 0.0417779
+    },
+    {
+     "iteracao": 22,
+     "gap": 0.000601343,
+     "tstt": 29715.5,
+     "beckmann": 24713.8,
+     "passo": 0.00549701
+    },
+    {
+     "iteracao": 23,
+     "gap": 0.000116658,
+     "tstt": 29702.7,
+     "beckmann": 24713.7,
+     "passo": 0.0101302
+    },
+    {
+     "iteracao": 24,
+     "gap": 0.000107434,
+     "tstt": 29703.6,
+     "beckmann": 24713.7,
+     "passo": 0.0394502
+    },
+    {
+     "iteracao": 25,
+     "gap": 0.000567577,
+     "tstt": 29714.2,
+     "beckmann": 24713.7,
+     "passo": 0.00519237
+    },
+    {
+     "iteracao": 26,
+     "gap": 0.000110232,
+     "tstt": 29702.2,
+     "beckmann": 24713.6,
+     "passo": 0.0095747
+    },
+    {
+     "iteracao": 27,
+     "gap": 0.000101628,
+     "tstt": 29703.0,
+     "beckmann": 24713.6,
+     "passo": 0.0373708
+    },
+    {
+     "iteracao": 28,
+     "gap": 0.00053744,
+     "tstt": 29713.1,
+     "beckmann": 24713.5,
+     "passo": 0.00492008
+    },
+    {
+     "iteracao": 29,
+     "gap": 0.000104484,
+     "tstt": 29701.8,
+     "beckmann": 24713.5,
+     "passo": 0.00907754
+    },
+    {
+     "iteracao": 30,
+     "gap": 9.64228e-05,
+     "tstt": 29702.5,
+     "beckmann": 24713.5
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 882.2,
+    "delta_tstt_pct": 3.061,
+    "delta_k_rede": -0.0023,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "21->18",
+      "delta_fluxo": -889.1,
+      "delta_k": null
+     },
+     {
+      "aresta": "26->21",
+      "delta_fluxo": -879.6,
+      "delta_k": null
+     },
+     {
+      "aresta": "18->4",
+      "delta_fluxo": -796.8,
+      "delta_k": 0.1408
+     },
+     {
+      "aresta": "72->71",
+      "delta_fluxo": 787.1,
+      "delta_k": -0.1408
+     },
+     {
+      "aresta": "20->17",
+      "delta_fluxo": -781.0,
+      "delta_k": 0.0809
+     },
+     {
+      "aresta": "17->26",
+      "delta_fluxo": -780.9,
+      "delta_k": 0.0284
+     },
+     {
+      "aresta": "20->19",
+      "delta_fluxo": 777.3,
+      "delta_k": -0.1782
+     },
+     {
+      "aresta": "19->72",
+      "delta_fluxo": 777.3,
+      "delta_k": -0.1081
+     },
+     {
+      "aresta": "4->5",
+      "delta_fluxo": -772.0,
+      "delta_k": 0.1441
+     },
+     {
+      "aresta": "47->5",
+      "delta_fluxo": 770.0,
+      "delta_k": -0.2791
+     },
+     {
+      "aresta": "71->47",
+      "delta_fluxo": 770.0,
+      "delta_k": -0.1908
+     },
+     {
+      "aresta": "15->16",
+      "delta_fluxo": 99.5,
+      "delta_k": -0.0006
+     },
+     {
+      "aresta": "26->13",
+      "delta_fluxo": 99.3,
+      "delta_k": -0.0009
+     },
+     {
+      "aresta": "13->15",
+      "delta_fluxo": 99.3,
+      "delta_k": -0.0003
+     },
+     {
+      "aresta": "14->18",
+      "delta_fluxo": 99.0,
+      "delta_k": -0.058
+     }
+    ]
+   }
+  },
+  "alta": {
+   "fator": 21.96,
+   "indicadores": {
+    "demanda_veic_h": 14944.3,
+    "tstt_veic_min": 72092.1,
+    "tstt_veic_h": 1201.54,
+    "vkt_veic_km": 39036.1,
+    "velocidade_media_rede_kmh": 32.49,
+    "tempo_medio_viagem_min": 4.824,
+    "k_rede": 0.5125,
+    "arestas_vc_acima_1": 14,
+    "arestas_k_abaixo_0_5": 77,
+    "iteracoes": 719,
+    "gap_relativo": 9.922046453992011e-05,
+    "convergiu": true,
+    "segundos": 22.47
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.341308,
+     "tstt": 109115.0,
+     "beckmann": 54126.3,
+     "passo": 0.389687
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.0175584,
+     "tstt": 74490.4,
+     "beckmann": 48448.5,
+     "passo": 0.141822
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.0110481,
+     "tstt": 73186.6,
+     "beckmann": 48362.1,
+     "passo": 0.101535
+    },
+    {
+     "iteracao": 4,
+     "gap": 0.0081907,
+     "tstt": 73220.2,
+     "beckmann": 48320.8,
+     "passo": 0.0409184
+    },
+    {
+     "iteracao": 5,
+     "gap": 0.00559386,
+     "tstt": 72494.9,
+     "beckmann": 48308.6,
+     "passo": 0.0585172
+    },
+    {
+     "iteracao": 6,
+     "gap": 0.0042975,
+     "tstt": 72167.9,
+     "beckmann": 48296.9,
+     "passo": 0.0496552
+    },
+    {
+     "iteracao": 7,
+     "gap": 0.00328562,
+     "tstt": 72287.4,
+     "beckmann": 48289.2,
+     "passo": 0.0352167
+    },
+    {
+     "iteracao": 8,
+     "gap": 0.00238189,
+     "tstt": 72110.4,
+     "beckmann": 48285.0,
+     "passo": 0.0291135
+    },
+    {
+     "iteracao": 9,
+     "gap": 0.00260234,
+     "tstt": 72191.5,
+     "beckmann": 48282.5,
+     "passo": 0.0143607
+    },
+    {
+     "iteracao": 10,
+     "gap": 0.00190222,
+     "tstt": 72161.7,
+     "beckmann": 48281.2,
+     "passo": 0.0255772
+    },
+    {
+     "iteracao": 11,
+     "gap": 0.0023271,
+     "tstt": 72225.0,
+     "beckmann": 48279.4,
+     "passo": 0.0230846
+    },
+    {
+     "iteracao": 12,
+     "gap": 0.00159858,
+     "tstt": 72119.7,
+     "beckmann": 48277.5,
+     "passo": 0.021789
+    },
+    {
+     "iteracao": 13,
+     "gap": 0.00210528,
+     "tstt": 72175.4,
+     "beckmann": 48276.2,
+     "passo": 0.0199151
+    },
+    {
+     "iteracao": 14,
+     "gap": 0.0018691,
+     "tstt": 72142.5,
+     "beckmann": 48274.7,
+     "passo": 0.0227851
+    },
+    {
+     "iteracao": 15,
+     "gap": 0.00212354,
+     "tstt": 72206.4,
+     "beckmann": 48273.2,
+     "passo": 0.0116587
+    },
+    {
+     "iteracao": 16,
+     "gap": 0.00132274,
+     "tstt": 72182.5,
+     "beckmann": 48272.3,
+     "passo": 0.0161607
+    },
+    {
+     "iteracao": 17,
+     "gap": 0.00203677,
+     "tstt": 72228.8,
+     "beckmann": 48271.5,
+     "passo": 0.0215597
+    },
+    {
+     "iteracao": 18,
+     "gap": 0.00151792,
+     "tstt": 72123.4,
+     "beckmann": 48269.9,
+     "passo": 0.0187416
+    },
+    {
+     "iteracao": 19,
+     "gap": 0.00226801,
+     "tstt": 72177.1,
+     "beckmann": 48268.9,
+     "passo": 0.0124902
+    },
+    {
+     "iteracao": 20,
+     "gap": 0.00140219,
+     "tstt": 72151.3,
+     "beckmann": 48267.9,
+     "passo": 0.0172074
+    },
+    {
+     "iteracao": 21,
+     "gap": 0.0019534,
+     "tstt": 72200.3,
+     "beckmann": 48267.0,
+     "passo": 0.0107239
+    },
+    {
+     "iteracao": 22,
+     "gap": 0.00121707,
+     "tstt": 72178.5,
+     "beckmann": 48266.2,
+     "passo": 0.0148821
+    },
+    {
+     "iteracao": 23,
+     "gap": 0.00177086,
+     "tstt": 72220.9,
+     "beckmann": 48265.6,
+     "passo": 0.0188142
+    },
+    {
+     "iteracao": 24,
+     "gap": 0.0013268,
+     "tstt": 72129.5,
+     "beckmann": 48264.4,
+     "passo": 0.0163933
+    },
+    {
+     "iteracao": 25,
+     "gap": 0.00208067,
+     "tstt": 72176.5,
+     "beckmann": 48263.6,
+     "passo": 0.0114506
+    },
+    {
+     "iteracao": 26,
+     "gap": 0.00128817,
+     "tstt": 72152.9,
+     "beckmann": 48262.7,
+     "passo": 0.0158087
+    },
+    {
+     "iteracao": 27,
+     "gap": 0.00179668,
+     "tstt": 72197.9,
+     "beckmann": 48262.0,
+     "passo": 0.00985954
+    },
+    {
+     "iteracao": 28,
+     "gap": 0.00112026,
+     "tstt": 72177.8,
+     "beckmann": 48261.4,
+     "passo": 0.0137025
+    },
+    {
+     "iteracao": 29,
+     "gap": 0.00158012,
+     "tstt": 72216.9,
+     "beckmann": 48260.8,
+     "passo": 0.0168327
+    },
+    {
+     "iteracao": 30,
+     "gap": 0.00118853,
+     "tstt": 72135.3,
+     "beckmann": 48259.9,
+     "passo": 0.0146829
+    },
+    {
+     "iteracao": 31,
+     "gap": 0.0019145,
+     "tstt": 72177.4,
+     "beckmann": 48259.2,
+     "passo": 0.0105281
+    },
+    {
+     "iteracao": 32,
+     "gap": 0.00118706,
+     "tstt": 72155.8,
+     "beckmann": 48258.5,
+     "passo": 0.0145653
+    },
+    {
+     "iteracao": 33,
+     "gap": 0.00165768,
+     "tstt": 72197.1,
+     "beckmann": 48257.9,
+     "passo": 0.00909203
+    },
+    {
+     "iteracao": 34,
+     "gap": 0.00107644,
+     "tstt": 72178.7,
+     "beckmann": 48257.3,
+     "passo": 0.0111287
+    },
+    {
+     "iteracao": 35,
+     "gap": 0.00125472,
+     "tstt": 72130.7,
+     "beckmann": 48256.9,
+     "passo": 0.017121
+    },
+    {
+     "iteracao": 36,
+     "gap": 0.00132551,
+     "tstt": 72173.4,
+     "beckmann": 48256.1,
+     "passo": 0.0126257
+    },
+    {
+     "iteracao": 37,
+     "gap": 0.00136733,
+     "tstt": 72153.2,
+     "beckmann": 48255.5,
+     "passo": 0.0167221
+    },
+    {
+     "iteracao": 38,
+     "gap": 0.00143576,
+     "tstt": 72199.8,
+     "beckmann": 48254.7,
+     "passo": 0.00789821
+    },
+    {
+     "iteracao": 39,
+     "gap": 0.000899466,
+     "tstt": 72184.0,
+     "beckmann": 48254.3,
+     "passo": 0.0110371
+    },
+    {
+     "iteracao": 40,
+     "gap": 0.00150771,
+     "tstt": 72215.4,
+     "beckmann": 48253.9,
+     "passo": 0.0161194
+    },
+    {
+     "iteracao": 41,
+     "gap": 0.00113393,
+     "tstt": 72136.9,
+     "beckmann": 48253.0,
+     "passo": 0.014006
+    },
+    {
+     "iteracao": 42,
+     "gap": 0.00159271,
+     "tstt": 72176.6,
+     "beckmann": 48252.5,
+     "passo": 0.00878281
+    },
+    {
+     "iteracao": 43,
+     "gap": 0.000991558,
+     "tstt": 72158.9,
+     "beckmann": 48252.0,
+     "passo": 0.0122088
+    },
+    {
+     "iteracao": 44,
+     "gap": 0.00138911,
+     "tstt": 72193.5,
+     "beckmann": 48251.5,
+     "passo": 0.00764232
+    },
+    {
+     "iteracao": 45,
+     "gap": 0.000869338,
+     "tstt": 72178.2,
+     "beckmann": 48251.1,
+     "passo": 0.0106749
+    },
+    {
+     "iteracao": 46,
+     "gap": 0.00132286,
+     "tstt": 72208.5,
+     "beckmann": 48250.8,
+     "passo": 0.0141758
+    },
+    {
+     "iteracao": 47,
+     "gap": 0.000998561,
+     "tstt": 72139.9,
+     "beckmann": 48250.1,
+     "passo": 0.0123502
+    },
+    {
+     "iteracao": 48,
+     "gap": 0.00151782,
+     "tstt": 72175.0,
+     "beckmann": 48249.7,
+     "passo": 0.00825121
+    },
+    {
+     "iteracao": 49,
+     "gap": 0.000935836,
+     "tstt": 72155.0,
+     "beckmann": 48249.2,
+     "passo": 0.0115251
+    },
+    {
+     "iteracao": 50,
+     "gap": 0.00132233,
+     "tstt": 72187.7,
+     "beckmann": 48248.8,
+     "passo": 0.00727422
+    },
+    {
+     "iteracao": 51,
+     "gap": 0.000871797,
+     "tstt": 72173.2,
+     "beckmann": 48248.5,
+     "passo": 0.00903555
+    },
+    {
+     "iteracao": 52,
+     "gap": 0.0010553,
+     "tstt": 72134.1,
+     "beckmann": 48248.2,
+     "passo": 0.0144001
+    },
+    {
+     "iteracao": 53,
+     "gap": 0.00106594,
+     "tstt": 72170.0,
+     "beckmann": 48247.7,
+     "passo": 0.0101601
+    },
+    {
+     "iteracao": 54,
+     "gap": 0.00109317,
+     "tstt": 72153.8,
+     "beckmann": 48247.3,
+     "passo": 0.0134182
+    },
+    {
+     "iteracao": 55,
+     "gap": 0.00116094,
+     "tstt": 72191.3,
+     "beckmann": 48246.7,
+     "passo": 0.00639792
+    },
+    {
+     "iteracao": 56,
+     "gap": 0.000754673,
+     "tstt": 72178.6,
+     "beckmann": 48246.5,
+     "passo": 0.00784749
+    },
+    {
+     "iteracao": 57,
+     "gap": 0.00114934,
+     "tstt": 72144.8,
+     "beckmann": 48246.3,
+     "passo": 0.0155609
+    },
+    {
+     "iteracao": 58,
+     "gap": 0.00106397,
+     "tstt": 72182.8,
+     "beckmann": 48245.6,
+     "passo": 0.0107695
+    },
+    {
+     "iteracao": 59,
+     "gap": 0.000748109,
+     "tstt": 72134.9,
+     "beckmann": 48245.2,
+     "passo": 0.010258
+    },
+    {
+     "iteracao": 60,
+     "gap": 0.00121329,
+     "tstt": 72160.8,
+     "beckmann": 48244.9,
+     "passo": 0.0112298
+    },
+    {
+     "iteracao": 61,
+     "gap": 0.000921749,
+     "tstt": 72138.0,
+     "beckmann": 48244.4,
+     "passo": 0.0114056
+    },
+    {
+     "iteracao": 62,
+     "gap": 0.00118624,
+     "tstt": 72170.3,
+     "beckmann": 48244.1,
+     "passo": 0.00656309
+    },
+    {
+     "iteracao": 63,
+     "gap": 0.000742503,
+     "tstt": 72157.3,
+     "beckmann": 48243.8,
+     "passo": 0.009178
+    },
+    {
+     "iteracao": 64,
+     "gap": 0.00107253,
+     "tstt": 72183.4,
+     "beckmann": 48243.5,
+     "passo": 0.0115593
+    },
+    {
+     "iteracao": 65,
+     "gap": 0.000811327,
+     "tstt": 72127.8,
+     "beckmann": 48243.1,
+     "passo": 0.0100936
+    },
+    {
+     "iteracao": 66,
+     "gap": 0.00129106,
+     "tstt": 72156.6,
+     "beckmann": 48242.8,
+     "passo": 0.0070534
+    },
+    {
+     "iteracao": 67,
+     "gap": 0.000797025,
+     "tstt": 72139.7,
+     "beckmann": 48242.5,
+     "passo": 0.00987195
+    },
+    {
+     "iteracao": 68,
+     "gap": 0.00112671,
+     "tstt": 72167.8,
+     "beckmann": 48242.2,
+     "passo": 0.00623051
+    },
+    {
+     "iteracao": 69,
+     "gap": 0.0007055,
+     "tstt": 72155.4,
+     "beckmann": 48241.9,
+     "passo": 0.00871734
+    },
+    {
+     "iteracao": 70,
+     "gap": 0.000995611,
+     "tstt": 72180.2,
+     "beckmann": 48241.7,
+     "passo": 0.0107388
+    },
+    {
+     "iteracao": 71,
+     "gap": 0.000754531,
+     "tstt": 72128.7,
+     "beckmann": 48241.3,
+     "passo": 0.00938211
+    },
+    {
+     "iteracao": 72,
+     "gap": 0.00122487,
+     "tstt": 72155.5,
+     "beckmann": 48241.1,
+     "passo": 0.00668729
+    },
+    {
+     "iteracao": 73,
+     "gap": 0.000756665,
+     "tstt": 72139.5,
+     "beckmann": 48240.8,
+     "passo": 0.00936677
+    },
+    {
+     "iteracao": 74,
+     "gap": 0.00106916,
+     "tstt": 72166.1,
+     "beckmann": 48240.5,
+     "passo": 0.00590906
+    },
+    {
+     "iteracao": 75,
+     "gap": 0.000669773,
+     "tstt": 72154.4,
+     "beckmann": 48240.3,
+     "passo": 0.00827238
+    },
+    {
+     "iteracao": 76,
+     "gap": 0.00094254,
+     "tstt": 72178.0,
+     "beckmann": 48240.1,
+     "passo": 0.00520059
+    },
+    {
+     "iteracao": 77,
+     "gap": 0.00070028,
+     "tstt": 72167.8,
+     "beckmann": 48239.9,
+     "passo": 0.00727161
+    },
+    {
+     "iteracao": 78,
+     "gap": 0.000920521,
+     "tstt": 72136.3,
+     "beckmann": 48239.7,
+     "passo": 0.0125149
+    },
+    {
+     "iteracao": 79,
+     "gap": 0.000856237,
+     "tstt": 72167.1,
+     "beckmann": 48239.3,
+     "passo": 0.00869786
+    },
+    {
+     "iteracao": 80,
+     "gap": 0.000627494,
+     "tstt": 72128.6,
+     "beckmann": 48239.0,
+     "passo": 0.00386639
+    },
+    {
+     "iteracao": 81,
+     "gap": 0.000569731,
+     "tstt": 72094.4,
+     "beckmann": 48238.9,
+     "passo": 0.00581487
+    },
+    {
+     "iteracao": 82,
+     "gap": 0.00077086,
+     "tstt": 72087.3,
+     "beckmann": 48238.8,
+     "passo": 0.0105619
+    },
+    {
+     "iteracao": 83,
+     "gap": 0.000829889,
+     "tstt": 72114.2,
+     "beckmann": 48238.5,
+     "passo": 0.0084379
+    },
+    {
+     "iteracao": 84,
+     "gap": 0.000584516,
+     "tstt": 72077.2,
+     "beckmann": 48238.3,
+     "passo": 0.00806482
+    },
+    {
+     "iteracao": 85,
+     "gap": 0.000957906,
+     "tstt": 72098.1,
+     "beckmann": 48238.1,
+     "passo": 0.00915851
+    },
+    {
+     "iteracao": 86,
+     "gap": 0.000880258,
+     "tstt": 72083.8,
+     "beckmann": 48237.8,
+     "passo": 0.0109037
+    },
+    {
+     "iteracao": 87,
+     "gap": 0.00100026,
+     "tstt": 72115.0,
+     "beckmann": 48237.5,
+     "passo": 0.00555695
+    },
+    {
+     "iteracao": 88,
+     "gap": 0.000626891,
+     "tstt": 72104.3,
+     "beckmann": 48237.3,
+     "passo": 0.00777276
+    },
+    {
+     "iteracao": 89,
+     "gap": 0.00088119,
+     "tstt": 72126.7,
+     "beckmann": 48237.1,
+     "passo": 0.0048875
+    },
+    {
+     "iteracao": 90,
+     "gap": 0.000554024,
+     "tstt": 72117.3,
+     "beckmann": 48236.9,
+     "passo": 0.00685664
+    },
+    {
+     "iteracao": 91,
+     "gap": 0.000938691,
+     "tstt": 72137.1,
+     "beckmann": 48236.8,
+     "passo": 0.0101314
+    },
+    {
+     "iteracao": 92,
+     "gap": 0.000711648,
+     "tstt": 72088.8,
+     "beckmann": 48236.4,
+     "passo": 0.00884208
+    },
+    {
+     "iteracao": 93,
+     "gap": 0.00099698,
+     "tstt": 72114.2,
+     "beckmann": 48236.2,
+     "passo": 0.00553696
+    },
+    {
+     "iteracao": 94,
+     "gap": 0.000624281,
+     "tstt": 72103.5,
+     "beckmann": 48236.0,
+     "passo": 0.00774086
+    },
+    {
+     "iteracao": 95,
+     "gap": 0.000877068,
+     "tstt": 72125.8,
+     "beckmann": 48235.8,
+     "passo": 0.00486324
+    },
+    {
+     "iteracao": 96,
+     "gap": 0.00055096,
+     "tstt": 72116.5,
+     "beckmann": 48235.7,
+     "passo": 0.00681931
+    },
+    {
+     "iteracao": 97,
+     "gap": 0.000844817,
+     "tstt": 72136.1,
+     "beckmann": 48235.5,
+     "passo": 0.00912791
+    },
+    {
+     "iteracao": 98,
+     "gap": 0.000641762,
+     "tstt": 72092.7,
+     "beckmann": 48235.3,
+     "passo": 0.00797884
+    },
+    {
+     "iteracao": 99,
+     "gap": 0.000973571,
+     "tstt": 72115.7,
+     "beckmann": 48235.1,
+     "passo": 0.00540386
+    },
+    {
+     "iteracao": 100,
+     "gap": 0.000609492,
+     "tstt": 72105.2,
+     "beckmann": 48234.9,
+     "passo": 0.00755542
+    },
+    {
+     "iteracao": 101,
+     "gap": 0.000856263,
+     "tstt": 72126.9,
+     "beckmann": 48234.7,
+     "passo": 0.00474543
+    },
+    {
+     "iteracao": 102,
+     "gap": 0.000537744,
+     "tstt": 72117.8,
+     "beckmann": 48234.6,
+     "passo": 0.00665427
+    },
+    {
+     "iteracao": 103,
+     "gap": 0.000780699,
+     "tstt": 72136.9,
+     "beckmann": 48234.5,
+     "passo": 0.00844115
+    },
+    {
+     "iteracao": 104,
+     "gap": 0.000593935,
+     "tstt": 72096.8,
+     "beckmann": 48234.2,
+     "passo": 0.00738397
+    },
+    {
+     "iteracao": 105,
+     "gap": 0.000941671,
+     "tstt": 72118.1,
+     "beckmann": 48234.1,
+     "passo": 0.00522331
+    },
+    {
+     "iteracao": 106,
+     "gap": 0.000589587,
+     "tstt": 72108.0,
+     "beckmann": 48233.9,
+     "passo": 0.00730563
+    },
+    {
+     "iteracao": 107,
+     "gap": 0.000828464,
+     "tstt": 72128.9,
+     "beckmann": 48233.7,
+     "passo": 0.0045886
+    },
+    {
+     "iteracao": 108,
+     "gap": 0.000554321,
+     "tstt": 72120.1,
+     "beckmann": 48233.6,
+     "passo": 0.00575832
+    },
+    {
+     "iteracao": 109,
+     "gap": 0.000639498,
+     "tstt": 72095.4,
+     "beckmann": 48233.5,
+     "passo": 0.00877162
+    },
+    {
+     "iteracao": 110,
+     "gap": 0.000676381,
+     "tstt": 72117.6,
+     "beckmann": 48233.3,
+     "passo": 0.00647426
+    },
+    {
+     "iteracao": 111,
+     "gap": 0.000700818,
+     "tstt": 72107.6,
+     "beckmann": 48233.1,
+     "passo": 0.00866781
+    },
+    {
+     "iteracao": 112,
+     "gap": 0.000745306,
+     "tstt": 72132.2,
+     "beckmann": 48232.9,
+     "passo": 0.00413346
+    },
+    {
+     "iteracao": 113,
+     "gap": 0.000468861,
+     "tstt": 72124.3,
+     "beckmann": 48232.8,
+     "passo": 0.00580789
+    },
+    {
+     "iteracao": 114,
+     "gap": 0.000790792,
+     "tstt": 72141.0,
+     "beckmann": 48232.7,
+     "passo": 0.00855848
+    },
+    {
+     "iteracao": 115,
+     "gap": 0.000601154,
+     "tstt": 72100.2,
+     "beckmann": 48232.4,
+     "passo": 0.00747182
+    },
+    {
+     "iteracao": 116,
+     "gap": 0.000846908,
+     "tstt": 72121.6,
+     "beckmann": 48232.3,
+     "passo": 0.00470207
+    },
+    {
+     "iteracao": 117,
+     "gap": 0.000530938,
+     "tstt": 72112.5,
+     "beckmann": 48232.1,
+     "passo": 0.0065873
+    },
+    {
+     "iteracao": 118,
+     "gap": 0.000746919,
+     "tstt": 72131.4,
+     "beckmann": 48232.0,
+     "passo": 0.00414131
+    },
+    {
+     "iteracao": 119,
+     "gap": 0.000469524,
+     "tstt": 72123.5,
+     "beckmann": 48231.9,
+     "passo": 0.00581624
+    },
+    {
+     "iteracao": 120,
+     "gap": 0.000717731,
+     "tstt": 72140.1,
+     "beckmann": 48231.8,
+     "passo": 0.00777389
+    },
+    {
+     "iteracao": 121,
+     "gap": 0.000546476,
+     "tstt": 72103.1,
+     "beckmann": 48231.6,
+     "passo": 0.00679565
+    },
+    {
+     "iteracao": 122,
+     "gap": 0.000832366,
+     "tstt": 72122.6,
+     "beckmann": 48231.5,
+     "passo": 0.00461906
+    },
+    {
+     "iteracao": 123,
+     "gap": 0.000521704,
+     "tstt": 72113.7,
+     "beckmann": 48231.3,
+     "passo": 0.00647102
+    },
+    {
+     "iteracao": 124,
+     "gap": 0.000733877,
+     "tstt": 72132.2,
+     "beckmann": 48231.2,
+     "passo": 0.00406715
+    },
+    {
+     "iteracao": 125,
+     "gap": 0.000486238,
+     "tstt": 72124.4,
+     "beckmann": 48231.1,
+     "passo": 0.00505661
+    },
+    {
+     "iteracao": 126,
+     "gap": 0.000587394,
+     "tstt": 72102.7,
+     "beckmann": 48231.0,
+     "passo": 0.00805447
+    },
+    {
+     "iteracao": 127,
+     "gap": 0.000598436,
+     "tstt": 72123.0,
+     "beckmann": 48230.8,
+     "passo": 0.0057272
+    },
+    {
+     "iteracao": 128,
+     "gap": 0.000617986,
+     "tstt": 72114.1,
+     "beckmann": 48230.7,
+     "passo": 0.00765024
+    },
+    {
+     "iteracao": 129,
+     "gap": 0.000660256,
+     "tstt": 72135.9,
+     "beckmann": 48230.5,
+     "passo": 0.00366225
+    },
+    {
+     "iteracao": 130,
+     "gap": 0.000428477,
+     "tstt": 72128.8,
+     "beckmann": 48230.5,
+     "passo": 0.00446411
+    },
+    {
+     "iteracao": 131,
+     "gap": 0.000654613,
+     "tstt": 72109.7,
+     "beckmann": 48230.4,
+     "passo": 0.00893425
+    },
+    {
+     "iteracao": 132,
+     "gap": 0.000611016,
+     "tstt": 72132.0,
+     "beckmann": 48230.2,
+     "passo": 0.00623141
+    },
+    {
+     "iteracao": 133,
+     "gap": 0.000432606,
+     "tstt": 72104.6,
+     "beckmann": 48230.0,
+     "passo": 0.00594706
+    },
+    {
+     "iteracao": 134,
+     "gap": 0.000699591,
+     "tstt": 72119.7,
+     "beckmann": 48229.9,
+     "passo": 0.00651385
+    },
+    {
+     "iteracao": 135,
+     "gap": 0.000537875,
+     "tstt": 72106.8,
+     "beckmann": 48229.8,
+     "passo": 0.00668756
+    },
+    {
+     "iteracao": 136,
+     "gap": 0.000696189,
+     "tstt": 72125.9,
+     "beckmann": 48229.7,
+     "passo": 0.00386937
+    },
+    {
+     "iteracao": 137,
+     "gap": 0.000437445,
+     "tstt": 72118.5,
+     "beckmann": 48229.6,
+     "passo": 0.00543508
+    },
+    {
+     "iteracao": 138,
+     "gap": 0.000630328,
+     "tstt": 72134.1,
+     "beckmann": 48229.5,
+     "passo": 0.0068435
+    },
+    {
+     "iteracao": 139,
+     "gap": 0.000480139,
+     "tstt": 72101.6,
+     "beckmann": 48229.3,
+     "passo": 0.00598841
+    },
+    {
+     "iteracao": 140,
+     "gap": 0.000767796,
+     "tstt": 72118.8,
+     "beckmann": 48229.2,
+     "passo": 0.00427011
+    },
+    {
+     "iteracao": 141,
+     "gap": 0.000481256,
+     "tstt": 72110.6,
+     "beckmann": 48229.1,
+     "passo": 0.00598541
+    },
+    {
+     "iteracao": 142,
+     "gap": 0.000677146,
+     "tstt": 72127.7,
+     "beckmann": 48229.0,
+     "passo": 0.00376132
+    },
+    {
+     "iteracao": 143,
+     "gap": 0.000425493,
+     "tstt": 72120.5,
+     "beckmann": 48228.9,
+     "passo": 0.00528428
+    },
+    {
+     "iteracao": 144,
+     "gap": 0.000599767,
+     "tstt": 72135.6,
+     "beckmann": 48228.8,
+     "passo": 0.00332781
+    },
+    {
+     "iteracao": 145,
+     "gap": 0.000399469,
+     "tstt": 72129.2,
+     "beckmann": 48228.7,
+     "passo": 0.0041625
+    },
+    {
+     "iteracao": 146,
+     "gap": 0.000606375,
+     "tstt": 72111.4,
+     "beckmann": 48228.7,
+     "passo": 0.00827969
+    },
+    {
+     "iteracao": 147,
+     "gap": 0.000566278,
+     "tstt": 72132.0,
+     "beckmann": 48228.5,
+     "passo": 0.00577889
+    },
+    {
+     "iteracao": 148,
+     "gap": 0.000401262,
+     "tstt": 72106.6,
+     "beckmann": 48228.4,
+     "passo": 0.00551583
+    },
+    {
+     "iteracao": 149,
+     "gap": 0.000643129,
+     "tstt": 72120.6,
+     "beckmann": 48228.3,
+     "passo": 0.00598956
+    },
+    {
+     "iteracao": 150,
+     "gap": 0.000489967,
+     "tstt": 72108.8,
+     "beckmann": 48228.2,
+     "passo": 0.00609466
+    },
+    {
+     "iteracao": 151,
+     "gap": 0.000638276,
+     "tstt": 72126.2,
+     "beckmann": 48228.1,
+     "passo": 0.00354815
+    },
+    {
+     "iteracao": 152,
+     "gap": 0.000401232,
+     "tstt": 72119.4,
+     "beckmann": 48228.0,
+     "passo": 0.0049874
+    },
+    {
+     "iteracao": 153,
+     "gap": 0.000584159,
+     "tstt": 72133.7,
+     "beckmann": 48227.9,
+     "passo": 0.00634817
+    },
+    {
+     "iteracao": 154,
+     "gap": 0.000445309,
+     "tstt": 72103.5,
+     "beckmann": 48227.8,
+     "passo": 0.00555457
+    },
+    {
+     "iteracao": 155,
+     "gap": 0.000706592,
+     "tstt": 72119.5,
+     "beckmann": 48227.7,
+     "passo": 0.00393029
+    },
+    {
+     "iteracao": 156,
+     "gap": 0.000443153,
+     "tstt": 72111.9,
+     "beckmann": 48227.6,
+     "passo": 0.00551365
+    },
+    {
+     "iteracao": 157,
+     "gap": 0.000623861,
+     "tstt": 72127.7,
+     "beckmann": 48227.5,
+     "passo": 0.00346616
+    },
+    {
+     "iteracao": 158,
+     "gap": 0.00039216,
+     "tstt": 72121.0,
+     "beckmann": 48227.4,
+     "passo": 0.00487271
+    },
+    {
+     "iteracao": 159,
+     "gap": 0.000553211,
+     "tstt": 72135.0,
+     "beckmann": 48227.3,
+     "passo": 0.00601342
+    },
+    {
+     "iteracao": 160,
+     "gap": 0.00042208,
+     "tstt": 72106.4,
+     "beckmann": 48227.2,
+     "passo": 0.00526297
+    },
+    {
+     "iteracao": 161,
+     "gap": 0.000687158,
+     "tstt": 72121.5,
+     "beckmann": 48227.1,
+     "passo": 0.00376712
+    },
+    {
+     "iteracao": 162,
+     "gap": 0.000426801,
+     "tstt": 72112.7,
+     "beckmann": 48227.1,
+     "passo": 0.00530816
+    },
+    {
+     "iteracao": 163,
+     "gap": 0.000605839,
+     "tstt": 72127.9,
+     "beckmann": 48227.0,
+     "passo": 0.00336451
+    },
+    {
+     "iteracao": 164,
+     "gap": 0.000380886,
+     "tstt": 72121.5,
+     "beckmann": 48226.9,
+     "passo": 0.00473071
+    },
+    {
+     "iteracao": 165,
+     "gap": 0.000537145,
+     "tstt": 72135.0,
+     "beckmann": 48226.8,
+     "passo": 0.00298007
+    },
+    {
+     "iteracao": 166,
+     "gap": 0.000402041,
+     "tstt": 72129.3,
+     "beckmann": 48226.8,
+     "passo": 0.00418526
+    },
+    {
+     "iteracao": 167,
+     "gap": 0.00052564,
+     "tstt": 72111.3,
+     "beckmann": 48226.7,
+     "passo": 0.00719045
+    },
+    {
+     "iteracao": 168,
+     "gap": 0.000492004,
+     "tstt": 72129.2,
+     "beckmann": 48226.6,
+     "passo": 0.00502785
+    },
+    {
+     "iteracao": 169,
+     "gap": 0.00034902,
+     "tstt": 72107.2,
+     "beckmann": 48226.5,
+     "passo": 0.00480215
+    },
+    {
+     "iteracao": 170,
+     "gap": 0.000588142,
+     "tstt": 72119.4,
+     "beckmann": 48226.4,
+     "passo": 0.0054801
+    },
+    {
+     "iteracao": 171,
+     "gap": 0.000449754,
+     "tstt": 72108.5,
+     "beckmann": 48226.3,
+     "passo": 0.00559818
+    },
+    {
+     "iteracao": 172,
+     "gap": 0.000583619,
+     "tstt": 72124.5,
+     "beckmann": 48226.2,
+     "passo": 0.00324572
+    },
+    {
+     "iteracao": 173,
+     "gap": 0.000366934,
+     "tstt": 72118.3,
+     "beckmann": 48226.2,
+     "passo": 0.0045645
+    },
+    {
+     "iteracao": 174,
+     "gap": 0.000518102,
+     "tstt": 72131.4,
+     "beckmann": 48226.1,
+     "passo": 0.00563718
+    },
+    {
+     "iteracao": 175,
+     "gap": 0.000395368,
+     "tstt": 72104.6,
+     "beckmann": 48226.0,
+     "passo": 0.00493441
+    },
+    {
+     "iteracao": 176,
+     "gap": 0.000643577,
+     "tstt": 72118.8,
+     "beckmann": 48225.9,
+     "passo": 0.00353144
+    },
+    {
+     "iteracao": 177,
+     "gap": 0.000399859,
+     "tstt": 72110.6,
+     "beckmann": 48225.8,
+     "passo": 0.00497841
+    },
+    {
+     "iteracao": 178,
+     "gap": 0.000567712,
+     "tstt": 72124.8,
+     "beckmann": 48225.8,
+     "passo": 0.00315584
+    },
+    {
+     "iteracao": 179,
+     "gap": 0.000356979,
+     "tstt": 72118.8,
+     "beckmann": 48225.7,
+     "passo": 0.00443886
+    },
+    {
+     "iteracao": 180,
+     "gap": 0.000503515,
+     "tstt": 72131.5,
+     "beckmann": 48225.6,
+     "passo": 0.00279636
+    },
+    {
+     "iteracao": 181,
+     "gap": 0.000326937,
+     "tstt": 72126.1,
+     "beckmann": 48225.6,
+     "passo": 0.00340913
+    },
+    {
+     "iteracao": 182,
+     "gap": 0.000508949,
+     "tstt": 72111.5,
+     "beckmann": 48225.6,
+     "passo": 0.00696005
+    },
+    {
+     "iteracao": 183,
+     "gap": 0.000475924,
+     "tstt": 72128.9,
+     "beckmann": 48225.4,
+     "passo": 0.00486484
+    },
+    {
+     "iteracao": 184,
+     "gap": 0.000337694,
+     "tstt": 72107.5,
+     "beckmann": 48225.3,
+     "passo": 0.00464415
+    },
+    {
+     "iteracao": 185,
+     "gap": 0.000540553,
+     "tstt": 72119.3,
+     "beckmann": 48225.3,
+     "passo": 0.00503821
+    },
+    {
+     "iteracao": 186,
+     "gap": 0.000412894,
+     "tstt": 72109.3,
+     "beckmann": 48225.2,
+     "passo": 0.00514015
+    },
+    {
+     "iteracao": 187,
+     "gap": 0.000536897,
+     "tstt": 72124.0,
+     "beckmann": 48225.1,
+     "passo": 0.00298611
+    },
+    {
+     "iteracao": 188,
+     "gap": 0.000337734,
+     "tstt": 72118.3,
+     "beckmann": 48225.0,
+     "passo": 0.00420204
+    },
+    {
+     "iteracao": 189,
+     "gap": 0.000492817,
+     "tstt": 72130.3,
+     "beckmann": 48225.0,
+     "passo": 0.00536477
+    },
+    {
+     "iteracao": 190,
+     "gap": 0.000376237,
+     "tstt": 72104.9,
+     "beckmann": 48224.9,
+     "passo": 0.00469482
+    },
+    {
+     "iteracao": 191,
+     "gap": 0.000596854,
+     "tstt": 72118.4,
+     "beckmann": 48224.8,
+     "passo": 0.00327534
+    },
+    {
+     "iteracao": 192,
+     "gap": 0.000371033,
+     "tstt": 72110.7,
+     "beckmann": 48224.8,
+     "passo": 0.00462031
+    },
+    {
+     "iteracao": 193,
+     "gap": 0.000526809,
+     "tstt": 72124.0,
+     "beckmann": 48224.7,
+     "passo": 0.00292891
+    },
+    {
+     "iteracao": 194,
+     "gap": 0.00033139,
+     "tstt": 72118.4,
+     "beckmann": 48224.7,
+     "passo": 0.00412175
+    },
+    {
+     "iteracao": 195,
+     "gap": 0.000470363,
+     "tstt": 72130.2,
+     "beckmann": 48224.6,
+     "passo": 0.00512097
+    },
+    {
+     "iteracao": 196,
+     "gap": 0.000359327,
+     "tstt": 72105.9,
+     "beckmann": 48224.5,
+     "passo": 0.00448249
+    },
+    {
+     "iteracao": 197,
+     "gap": 0.00058329,
+     "tstt": 72118.7,
+     "beckmann": 48224.5,
+     "passo": 0.00319951
+    },
+    {
+     "iteracao": 198,
+     "gap": 0.000362643,
+     "tstt": 72111.3,
+     "beckmann": 48224.4,
+     "passo": 0.00451403
+    },
+    {
+     "iteracao": 199,
+     "gap": 0.000514458,
+     "tstt": 72124.2,
+     "beckmann": 48224.3,
+     "passo": 0.00285911
+    },
+    {
+     "iteracao": 200,
+     "gap": 0.000323649,
+     "tstt": 72118.7,
+     "beckmann": 48224.3,
+     "passo": 0.00402401
+    },
+    {
+     "iteracao": 201,
+     "gap": 0.000456667,
+     "tstt": 72130.2,
+     "beckmann": 48224.2,
+     "passo": 0.00253579
+    },
+    {
+     "iteracao": 202,
+     "gap": 0.000341713,
+     "tstt": 72125.4,
+     "beckmann": 48224.2,
+     "passo": 0.00355938
+    },
+    {
+     "iteracao": 203,
+     "gap": 0.000448888,
+     "tstt": 72110.1,
+     "beckmann": 48224.1,
+     "passo": 0.0061473
+    },
+    {
+     "iteracao": 204,
+     "gap": 0.000420607,
+     "tstt": 72125.5,
+     "beckmann": 48224.0,
+     "passo": 0.00430365
+    },
+    {
+     "iteracao": 205,
+     "gap": 0.000311518,
+     "tstt": 72106.6,
+     "beckmann": 48224.0,
+     "passo": 0.00192756
+    },
+    {
+     "iteracao": 206,
+     "gap": 0.000281211,
+     "tstt": 72089.5,
+     "beckmann": 48224.0,
+     "passo": 0.00286468
+    },
+    {
+     "iteracao": 207,
+     "gap": 0.000380468,
+     "tstt": 72086.0,
+     "beckmann": 48223.9,
+     "passo": 0.00523019
+    },
+    {
+     "iteracao": 208,
+     "gap": 0.000411894,
+     "tstt": 72099.3,
+     "beckmann": 48223.9,
+     "passo": 0.00421683
+    },
+    {
+     "iteracao": 209,
+     "gap": 0.000292251,
+     "tstt": 72080.9,
+     "beckmann": 48223.8,
+     "passo": 0.00403146
+    },
+    {
+     "iteracao": 210,
+     "gap": 0.000478535,
+     "tstt": 72091.2,
+     "beckmann": 48223.8,
+     "passo": 0.00458336
+    },
+    {
+     "iteracao": 211,
+     "gap": 0.000442865,
+     "tstt": 72084.2,
+     "beckmann": 48223.7,
+     "passo": 0.00551326
+    },
+    {
+     "iteracao": 212,
+     "gap": 0.000507471,
+     "tstt": 72100.0,
+     "beckmann": 48223.6,
+     "passo": 0.00282704
+    },
+    {
+     "iteracao": 213,
+     "gap": 0.000319258,
+     "tstt": 72094.7,
+     "beckmann": 48223.5,
+     "passo": 0.0039761
+    },
+    {
+     "iteracao": 214,
+     "gap": 0.000450149,
+     "tstt": 72106.1,
+     "beckmann": 48223.5,
+     "passo": 0.00250557
+    },
+    {
+     "iteracao": 215,
+     "gap": 0.000283648,
+     "tstt": 72101.4,
+     "beckmann": 48223.4,
+     "passo": 0.00352915
+    },
+    {
+     "iteracao": 216,
+     "gap": 0.000480261,
+     "tstt": 72111.6,
+     "beckmann": 48223.4,
+     "passo": 0.00522668
+    },
+    {
+     "iteracao": 217,
+     "gap": 0.000366737,
+     "tstt": 72086.8,
+     "beckmann": 48223.3,
+     "passo": 0.00457218
+    },
+    {
+     "iteracao": 218,
+     "gap": 0.000516991,
+     "tstt": 72100.0,
+     "beckmann": 48223.3,
+     "passo": 0.00287939
+    },
+    {
+     "iteracao": 219,
+     "gap": 0.000325068,
+     "tstt": 72094.5,
+     "beckmann": 48223.2,
+     "passo": 0.00404816
+    },
+    {
+     "iteracao": 220,
+     "gap": 0.000458186,
+     "tstt": 72106.2,
+     "beckmann": 48223.2,
+     "passo": 0.00254968
+    },
+    {
+     "iteracao": 221,
+     "gap": 0.000288566,
+     "tstt": 72101.4,
+     "beckmann": 48223.1,
+     "passo": 0.00359003
+    },
+    {
+     "iteracao": 222,
+     "gap": 0.000442256,
+     "tstt": 72111.7,
+     "beckmann": 48223.1,
+     "passo": 0.00481481
+    },
+    {
+     "iteracao": 223,
+     "gap": 0.000338011,
+     "tstt": 72089.0,
+     "beckmann": 48223.0,
+     "passo": 0.00421511
+    },
+    {
+     "iteracao": 224,
+     "gap": 0.000515264,
+     "tstt": 72101.1,
+     "beckmann": 48223.0,
+     "passo": 0.00286871
+    },
+    {
+     "iteracao": 225,
+     "gap": 0.000323915,
+     "tstt": 72095.7,
+     "beckmann": 48222.9,
+     "passo": 0.00403281
+    },
+    {
+     "iteracao": 226,
+     "gap": 0.000456519,
+     "tstt": 72107.2,
+     "beckmann": 48222.9,
+     "passo": 0.00253949
+    },
+    {
+     "iteracao": 227,
+     "gap": 0.000287457,
+     "tstt": 72102.5,
+     "beckmann": 48222.8,
+     "passo": 0.00357538
+    },
+    {
+     "iteracao": 228,
+     "gap": 0.000417171,
+     "tstt": 72112.7,
+     "beckmann": 48222.8,
+     "passo": 0.00454266
+    },
+    {
+     "iteracao": 229,
+     "gap": 0.000319047,
+     "tstt": 72091.3,
+     "beckmann": 48222.7,
+     "passo": 0.00397827
+    },
+    {
+     "iteracao": 230,
+     "gap": 0.000507946,
+     "tstt": 72102.7,
+     "beckmann": 48222.7,
+     "passo": 0.00282675
+    },
+    {
+     "iteracao": 231,
+     "gap": 0.000319305,
+     "tstt": 72097.4,
+     "beckmann": 48222.6,
+     "passo": 0.00397413
+    },
+    {
+     "iteracao": 232,
+     "gap": 0.000450039,
+     "tstt": 72108.8,
+     "beckmann": 48222.6,
+     "passo": 0.00250241
+    },
+    {
+     "iteracao": 233,
+     "gap": 0.000301785,
+     "tstt": 72104.1,
+     "beckmann": 48222.5,
+     "passo": 0.00314313
+    },
+    {
+     "iteracao": 234,
+     "gap": 0.000348457,
+     "tstt": 72090.6,
+     "beckmann": 48222.5,
+     "passo": 0.00479141
+    },
+    {
+     "iteracao": 235,
+     "gap": 0.000370105,
+     "tstt": 72102.7,
+     "beckmann": 48222.4,
+     "passo": 0.0035461
+    },
+    {
+     "iteracao": 236,
+     "gap": 0.000385042,
+     "tstt": 72097.3,
+     "beckmann": 48222.4,
+     "passo": 0.00478706
+    },
+    {
+     "iteracao": 237,
+     "gap": 0.000411488,
+     "tstt": 72111.0,
+     "beckmann": 48222.3,
+     "passo": 0.00228957
+    },
+    {
+     "iteracao": 238,
+     "gap": 0.000259318,
+     "tstt": 72106.7,
+     "beckmann": 48222.3,
+     "passo": 0.0032266
+    },
+    {
+     "iteracao": 239,
+     "gap": 0.000437002,
+     "tstt": 72115.9,
+     "beckmann": 48222.2,
+     "passo": 0.00475979
+    },
+    {
+     "iteracao": 240,
+     "gap": 0.000334002,
+     "tstt": 72093.4,
+     "beckmann": 48222.2,
+     "passo": 0.00416365
+    },
+    {
+     "iteracao": 241,
+     "gap": 0.000472867,
+     "tstt": 72105.4,
+     "beckmann": 48222.1,
+     "passo": 0.00263255
+    },
+    {
+     "iteracao": 242,
+     "gap": 0.000297417,
+     "tstt": 72100.4,
+     "beckmann": 48222.1,
+     "passo": 0.00370369
+    },
+    {
+     "iteracao": 243,
+     "gap": 0.000419409,
+     "tstt": 72111.0,
+     "beckmann": 48222.0,
+     "passo": 0.00233311
+    },
+    {
+     "iteracao": 244,
+     "gap": 0.000264188,
+     "tstt": 72106.6,
+     "beckmann": 48222.0,
+     "passo": 0.00328691
+    },
+    {
+     "iteracao": 245,
+     "gap": 0.000403726,
+     "tstt": 72116.0,
+     "beckmann": 48222.0,
+     "passo": 0.0043987
+    },
+    {
+     "iteracao": 246,
+     "gap": 0.000308807,
+     "tstt": 72095.2,
+     "beckmann": 48221.9,
+     "passo": 0.00385041
+    },
+    {
+     "iteracao": 247,
+     "gap": 0.000472064,
+     "tstt": 72106.3,
+     "beckmann": 48221.9,
+     "passo": 0.0026272
+    },
+    {
+     "iteracao": 248,
+     "gap": 0.000296854,
+     "tstt": 72101.3,
+     "beckmann": 48221.8,
+     "passo": 0.00369585
+    },
+    {
+     "iteracao": 249,
+     "gap": 0.000418579,
+     "tstt": 72111.9,
+     "beckmann": 48221.8,
+     "passo": 0.00232773
+    },
+    {
+     "iteracao": 250,
+     "gap": 0.000277765,
+     "tstt": 72107.5,
+     "beckmann": 48221.7,
+     "passo": 0.00289431
+    },
+    {
+     "iteracao": 251,
+     "gap": 0.000335915,
+     "tstt": 72095.1,
+     "beckmann": 48221.7,
+     "passo": 0.0046174
+    },
+    {
+     "iteracao": 252,
+     "gap": 0.000343404,
+     "tstt": 72106.8,
+     "beckmann": 48221.7,
+     "passo": 0.00328959
+    },
+    {
+     "iteracao": 253,
+     "gap": 0.000355848,
+     "tstt": 72101.7,
+     "beckmann": 48221.6,
+     "passo": 0.00442504
+    },
+    {
+     "iteracao": 254,
+     "gap": 0.000381613,
+     "tstt": 72114.4,
+     "beckmann": 48221.6,
+     "passo": 0.00212308
+    },
+    {
+     "iteracao": 255,
+     "gap": 0.000247793,
+     "tstt": 72110.4,
+     "beckmann": 48221.5,
+     "passo": 0.00258464
+    },
+    {
+     "iteracao": 256,
+     "gap": 0.000378824,
+     "tstt": 72099.3,
+     "beckmann": 48221.5,
+     "passo": 0.00519283
+    },
+    {
+     "iteracao": 257,
+     "gap": 0.000355148,
+     "tstt": 72112.3,
+     "beckmann": 48221.4,
+     "passo": 0.00363744
+    },
+    {
+     "iteracao": 258,
+     "gap": 0.000252459,
+     "tstt": 72096.4,
+     "beckmann": 48221.4,
+     "passo": 0.00347666
+    },
+    {
+     "iteracao": 259,
+     "gap": 0.000408461,
+     "tstt": 72105.2,
+     "beckmann": 48221.4,
+     "passo": 0.00381384
+    },
+    {
+     "iteracao": 260,
+     "gap": 0.000315897,
+     "tstt": 72097.8,
+     "beckmann": 48221.3,
+     "passo": 0.00393783
+    },
+    {
+     "iteracao": 261,
+     "gap": 0.000409625,
+     "tstt": 72109.1,
+     "beckmann": 48221.3,
+     "passo": 0.00228146
+    },
+    {
+     "iteracao": 262,
+     "gap": 0.000257927,
+     "tstt": 72104.8,
+     "beckmann": 48221.2,
+     "passo": 0.00321382
+    },
+    {
+     "iteracao": 263,
+     "gap": 0.000371434,
+     "tstt": 72114.0,
+     "beckmann": 48221.2,
+     "passo": 0.00405113
+    },
+    {
+     "iteracao": 264,
+     "gap": 0.000284102,
+     "tstt": 72094.9,
+     "beckmann": 48221.1,
+     "passo": 0.003548
+    },
+    {
+     "iteracao": 265,
+     "gap": 0.000455582,
+     "tstt": 72105.1,
+     "beckmann": 48221.1,
+     "passo": 0.00253833
+    },
+    {
+     "iteracao": 266,
+     "gap": 0.000286441,
+     "tstt": 72100.2,
+     "beckmann": 48221.1,
+     "passo": 0.00357112
+    },
+    {
+     "iteracao": 267,
+     "gap": 0.000403898,
+     "tstt": 72110.5,
+     "beckmann": 48221.0,
+     "passo": 0.00224867
+    },
+    {
+     "iteracao": 268,
+     "gap": 0.000254315,
+     "tstt": 72106.2,
+     "beckmann": 48221.0,
+     "passo": 0.00316781
+    },
+    {
+     "iteracao": 269,
+     "gap": 0.000358979,
+     "tstt": 72115.3,
+     "beckmann": 48221.0,
+     "passo": 0.00199724
+    },
+    {
+     "iteracao": 270,
+     "gap": 0.00023935,
+     "tstt": 72111.5,
+     "beckmann": 48220.9,
+     "passo": 0.00249664
+    },
+    {
+     "iteracao": 271,
+     "gap": 0.000363407,
+     "tstt": 72100.8,
+     "beckmann": 48220.9,
+     "passo": 0.00498177
+    },
+    {
+     "iteracao": 272,
+     "gap": 0.00034073,
+     "tstt": 72113.3,
+     "beckmann": 48220.9,
+     "passo": 0.00349065
+    },
+    {
+     "iteracao": 273,
+     "gap": 0.000242274,
+     "tstt": 72098.1,
+     "beckmann": 48220.8,
+     "passo": 0.00333603
+    },
+    {
+     "iteracao": 274,
+     "gap": 0.000388555,
+     "tstt": 72106.5,
+     "beckmann": 48220.8,
+     "passo": 0.00362796
+    },
+    {
+     "iteracao": 275,
+     "gap": 0.000297378,
+     "tstt": 72099.4,
+     "beckmann": 48220.7,
+     "passo": 0.00370755
+    },
+    {
+     "iteracao": 276,
+     "gap": 0.000388112,
+     "tstt": 72110.1,
+     "beckmann": 48220.7,
+     "passo": 0.00216166
+    },
+    {
+     "iteracao": 277,
+     "gap": 0.000244422,
+     "tstt": 72106.0,
+     "beckmann": 48220.7,
+     "passo": 0.00304596
+    },
+    {
+     "iteracao": 278,
+     "gap": 0.000355724,
+     "tstt": 72114.7,
+     "beckmann": 48220.6,
+     "passo": 0.00388115
+    },
+    {
+     "iteracao": 279,
+     "gap": 0.000272157,
+     "tstt": 72096.4,
+     "beckmann": 48220.6,
+     "passo": 0.00339882
+    },
+    {
+     "iteracao": 280,
+     "gap": 0.000432854,
+     "tstt": 72106.1,
+     "beckmann": 48220.6,
+     "passo": 0.0024117
+    },
+    {
+     "iteracao": 281,
+     "gap": 0.000272209,
+     "tstt": 72101.6,
+     "beckmann": 48220.5,
+     "passo": 0.00339409
+    },
+    {
+     "iteracao": 282,
+     "gap": 0.000383915,
+     "tstt": 72111.3,
+     "beckmann": 48220.5,
+     "passo": 0.00213749
+    },
+    {
+     "iteracao": 283,
+     "gap": 0.000241766,
+     "tstt": 72107.2,
+     "beckmann": 48220.5,
+     "passo": 0.00301198
+    },
+    {
+     "iteracao": 284,
+     "gap": 0.000341322,
+     "tstt": 72115.9,
+     "beckmann": 48220.4,
+     "passo": 0.00189913
+    },
+    {
+     "iteracao": 285,
+     "gap": 0.000228545,
+     "tstt": 72112.3,
+     "beckmann": 48220.4,
+     "passo": 0.00238417
+    },
+    {
+     "iteracao": 286,
+     "gap": 0.000347228,
+     "tstt": 72102.1,
+     "beckmann": 48220.4,
+     "passo": 0.00476095
+    },
+    {
+     "iteracao": 287,
+     "gap": 0.000325618,
+     "tstt": 72114.0,
+     "beckmann": 48220.3,
+     "passo": 0.0033368
+    },
+    {
+     "iteracao": 288,
+     "gap": 0.000231586,
+     "tstt": 72099.4,
+     "beckmann": 48220.3,
+     "passo": 0.00318893
+    },
+    {
+     "iteracao": 289,
+     "gap": 0.000370895,
+     "tstt": 72107.5,
+     "beckmann": 48220.3,
+     "passo": 0.00346324
+    },
+    {
+     "iteracao": 290,
+     "gap": 0.000283073,
+     "tstt": 72100.7,
+     "beckmann": 48220.2,
+     "passo": 0.00352964
+    },
+    {
+     "iteracao": 291,
+     "gap": 0.0003698,
+     "tstt": 72110.8,
+     "beckmann": 48220.2,
+     "passo": 0.0020597
+    },
+    {
+     "iteracao": 292,
+     "gap": 0.000232916,
+     "tstt": 72106.9,
+     "beckmann": 48220.1,
+     "passo": 0.00290298
+    },
+    {
+     "iteracao": 293,
+     "gap": 0.000340043,
+     "tstt": 72115.3,
+     "beckmann": 48220.1,
+     "passo": 0.0037113
+    },
+    {
+     "iteracao": 294,
+     "gap": 0.000260229,
+     "tstt": 72097.7,
+     "beckmann": 48220.1,
+     "passo": 0.00324997
+    },
+    {
+     "iteracao": 295,
+     "gap": 0.000412931,
+     "tstt": 72107.1,
+     "beckmann": 48220.0,
+     "passo": 0.00230071
+    },
+    {
+     "iteracao": 296,
+     "gap": 0.000259725,
+     "tstt": 72102.7,
+     "beckmann": 48220.0,
+     "passo": 0.00323882
+    },
+    {
+     "iteracao": 297,
+     "gap": 0.000366376,
+     "tstt": 72112.0,
+     "beckmann": 48220.0,
+     "passo": 0.00203992
+    },
+    {
+     "iteracao": 298,
+     "gap": 0.000230745,
+     "tstt": 72108.1,
+     "beckmann": 48220.0,
+     "passo": 0.00287513
+    },
+    {
+     "iteracao": 299,
+     "gap": 0.000325994,
+     "tstt": 72116.3,
+     "beckmann": 48219.9,
+     "passo": 0.00355824
+    },
+    {
+     "iteracao": 300,
+     "gap": 0.000249587,
+     "tstt": 72099.5,
+     "beckmann": 48219.9,
+     "passo": 0.00311636
+    },
+    {
+     "iteracao": 301,
+     "gap": 0.000407176,
+     "tstt": 72108.5,
+     "beckmann": 48219.9,
+     "passo": 0.00223636
+    },
+    {
+     "iteracao": 302,
+     "gap": 0.000253589,
+     "tstt": 72103.3,
+     "beckmann": 48219.8,
+     "passo": 0.00316144
+    },
+    {
+     "iteracao": 303,
+     "gap": 0.000360139,
+     "tstt": 72112.4,
+     "beckmann": 48219.8,
+     "passo": 0.00200458
+    },
+    {
+     "iteracao": 304,
+     "gap": 0.000226829,
+     "tstt": 72108.6,
+     "beckmann": 48219.8,
+     "passo": 0.00282552
+    },
+    {
+     "iteracao": 305,
+     "gap": 0.00032029,
+     "tstt": 72116.7,
+     "beckmann": 48219.7,
+     "passo": 0.0017817
+    },
+    {
+     "iteracao": 306,
+     "gap": 0.000239969,
+     "tstt": 72113.3,
+     "beckmann": 48219.7,
+     "passo": 0.00250175
+    },
+    {
+     "iteracao": 307,
+     "gap": 0.000314364,
+     "tstt": 72102.6,
+     "beckmann": 48219.7,
+     "passo": 0.0043141
+    },
+    {
+     "iteracao": 308,
+     "gap": 0.000295203,
+     "tstt": 72113.4,
+     "beckmann": 48219.7,
+     "passo": 0.0030269
+    },
+    {
+     "iteracao": 309,
+     "gap": 0.000219125,
+     "tstt": 72100.2,
+     "beckmann": 48219.6,
+     "passo": 0.00135779
+    },
+    {
+     "iteracao": 310,
+     "gap": 0.000198449,
+     "tstt": 72088.2,
+     "beckmann": 48219.6,
+     "passo": 0.00202085
+    },
+    {
+     "iteracao": 311,
+     "gap": 0.000268042,
+     "tstt": 72085.7,
+     "beckmann": 48219.6,
+     "passo": 0.0036882
+    },
+    {
+     "iteracao": 312,
+     "gap": 0.000290165,
+     "tstt": 72095.0,
+     "beckmann": 48219.6,
+     "passo": 0.00297608
+    },
+    {
+     "iteracao": 313,
+     "gap": 0.000206336,
+     "tstt": 72082.0,
+     "beckmann": 48219.5,
+     "passo": 0.00284736
+    },
+    {
+     "iteracao": 314,
+     "gap": 0.000338023,
+     "tstt": 72089.3,
+     "beckmann": 48219.5,
+     "passo": 0.00323984
+    },
+    {
+     "iteracao": 315,
+     "gap": 0.000314322,
+     "tstt": 72084.4,
+     "beckmann": 48219.5,
+     "passo": 0.00391871
+    },
+    {
+     "iteracao": 316,
+     "gap": 0.000360372,
+     "tstt": 72095.6,
+     "beckmann": 48219.4,
+     "passo": 0.00200919
+    },
+    {
+     "iteracao": 317,
+     "gap": 0.000226971,
+     "tstt": 72091.8,
+     "beckmann": 48219.4,
+     "passo": 0.00283049
+    },
+    {
+     "iteracao": 318,
+     "gap": 0.00032032,
+     "tstt": 72100.0,
+     "beckmann": 48219.4,
+     "passo": 0.0017848
+    },
+    {
+     "iteracao": 319,
+     "gap": 0.000201973,
+     "tstt": 72096.6,
+     "beckmann": 48219.4,
+     "passo": 0.00251697
+    },
+    {
+     "iteracao": 320,
+     "gap": 0.000341497,
+     "tstt": 72103.9,
+     "beckmann": 48219.3,
+     "passo": 0.00372587
+    },
+    {
+     "iteracao": 321,
+     "gap": 0.000261345,
+     "tstt": 72086.3,
+     "beckmann": 48219.3,
+     "passo": 0.00326158
+    },
+    {
+     "iteracao": 322,
+     "gap": 0.000369448,
+     "tstt": 72095.7,
+     "beckmann": 48219.3,
+     "passo": 0.00205941
+    },
+    {
+     "iteracao": 323,
+     "gap": 0.000232591,
+     "tstt": 72091.8,
+     "beckmann": 48219.2,
+     "passo": 0.00290036
+    },
+    {
+     "iteracao": 324,
+     "gap": 0.000328169,
+     "tstt": 72100.2,
+     "beckmann": 48219.2,
+     "passo": 0.00182817
+    },
+    {
+     "iteracao": 325,
+     "gap": 0.000206845,
+     "tstt": 72096.7,
+     "beckmann": 48219.2,
+     "passo": 0.00257746
+    },
+    {
+     "iteracao": 326,
+     "gap": 0.000316762,
+     "tstt": 72104.1,
+     "beckmann": 48219.2,
+     "passo": 0.00345674
+    },
+    {
+     "iteracao": 327,
+     "gap": 0.000242557,
+     "tstt": 72087.9,
+     "beckmann": 48219.1,
+     "passo": 0.0030276
+    },
+    {
+     "iteracao": 328,
+     "gap": 0.000370495,
+     "tstt": 72096.6,
+     "beckmann": 48219.1,
+     "passo": 0.00206466
+    },
+    {
+     "iteracao": 329,
+     "gap": 0.000233211,
+     "tstt": 72092.7,
+     "beckmann": 48219.1,
+     "passo": 0.00290752
+    },
+    {
+     "iteracao": 330,
+     "gap": 0.000329018,
+     "tstt": 72101.0,
+     "beckmann": 48219.1,
+     "passo": 0.00183239
+    },
+    {
+     "iteracao": 331,
+     "gap": 0.000207346,
+     "tstt": 72097.6,
+     "beckmann": 48219.0,
+     "passo": 0.00258319
+    },
+    {
+     "iteracao": 332,
+     "gap": 0.000300773,
+     "tstt": 72105.0,
+     "beckmann": 48219.0,
+     "passo": 0.00328263
+    },
+    {
+     "iteracao": 333,
+     "gap": 0.000230416,
+     "tstt": 72089.6,
+     "beckmann": 48219.0,
+     "passo": 0.00287581
+    },
+    {
+     "iteracao": 334,
+     "gap": 0.000367422,
+     "tstt": 72097.8,
+     "beckmann": 48219.0,
+     "passo": 0.00204687
+    },
+    {
+     "iteracao": 335,
+     "gap": 0.000231268,
+     "tstt": 72094.0,
+     "beckmann": 48218.9,
+     "passo": 0.00288254
+    },
+    {
+     "iteracao": 336,
+     "gap": 0.000326279,
+     "tstt": 72102.3,
+     "beckmann": 48218.9,
+     "passo": 0.00181656
+    },
+    {
+     "iteracao": 337,
+     "gap": 0.000219074,
+     "tstt": 72098.8,
+     "beckmann": 48218.9,
+     "passo": 0.00228359
+    },
+    {
+     "iteracao": 338,
+     "gap": 0.000252782,
+     "tstt": 72089.1,
+     "beckmann": 48218.9,
+     "passo": 0.00347861
+    },
+    {
+     "iteracao": 339,
+     "gap": 0.000269003,
+     "tstt": 72097.9,
+     "beckmann": 48218.8,
+     "passo": 0.0025788
+    },
+    {
+     "iteracao": 340,
+     "gap": 0.000280218,
+     "tstt": 72093.9,
+     "beckmann": 48218.8,
+     "passo": 0.00348983
+    },
+    {
+     "iteracao": 341,
+     "gap": 0.000299956,
+     "tstt": 72103.9,
+     "beckmann": 48218.8,
+     "passo": 0.00167079
+    },
+    {
+     "iteracao": 342,
+     "gap": 0.000189142,
+     "tstt": 72100.8,
+     "beckmann": 48218.8,
+     "passo": 0.00235693
+    },
+    {
+     "iteracao": 343,
+     "gap": 0.000318561,
+     "tstt": 72107.6,
+     "beckmann": 48218.7,
+     "passo": 0.00347717
+    },
+    {
+     "iteracao": 344,
+     "gap": 0.000243917,
+     "tstt": 72091.2,
+     "beckmann": 48218.7,
+     "passo": 0.00304366
+    },
+    {
+     "iteracao": 345,
+     "gap": 0.000345971,
+     "tstt": 72099.9,
+     "beckmann": 48218.7,
+     "passo": 0.00192786
+    },
+    {
+     "iteracao": 346,
+     "gap": 0.000217844,
+     "tstt": 72096.3,
+     "beckmann": 48218.6,
+     "passo": 0.0027162
+    },
+    {
+     "iteracao": 347,
+     "gap": 0.00030745,
+     "tstt": 72104.1,
+     "beckmann": 48218.6,
+     "passo": 0.00171222
+    },
+    {
+     "iteracao": 348,
+     "gap": 0.0001938,
+     "tstt": 72100.8,
+     "beckmann": 48218.6,
+     "passo": 0.00241477
+    },
+    {
+     "iteracao": 349,
+     "gap": 0.000296088,
+     "tstt": 72107.8,
+     "beckmann": 48218.6,
+     "passo": 0.00323249
+    },
+    {
+     "iteracao": 350,
+     "gap": 0.000226831,
+     "tstt": 72092.5,
+     "beckmann": 48218.6,
+     "passo": 0.00283087
+    },
+    {
+     "iteracao": 351,
+     "gap": 0.000347219,
+     "tstt": 72100.7,
+     "beckmann": 48218.5,
+     "passo": 0.00193431
+    },
+    {
+     "iteracao": 352,
+     "gap": 0.000218596,
+     "tstt": 72097.0,
+     "beckmann": 48218.5,
+     "passo": 0.00272506
+    },
+    {
+     "iteracao": 353,
+     "gap": 0.000308487,
+     "tstt": 72104.8,
+     "beckmann": 48218.5,
+     "passo": 0.00171754
+    },
+    {
+     "iteracao": 354,
+     "gap": 0.00020473,
+     "tstt": 72101.6,
+     "beckmann": 48218.5,
+     "passo": 0.00213474
+    },
+    {
+     "iteracao": 355,
+     "gap": 0.000247787,
+     "tstt": 72092.5,
+     "beckmann": 48218.5,
+     "passo": 0.00340889
+    },
+    {
+     "iteracao": 356,
+     "gap": 0.000253595,
+     "tstt": 72101.1,
+     "beckmann": 48218.4,
+     "passo": 0.00243065
+    },
+    {
+     "iteracao": 357,
+     "gap": 0.000263105,
+     "tstt": 72097.4,
+     "beckmann": 48218.4,
+     "passo": 0.00327696
+    },
+    {
+     "iteracao": 358,
+     "gap": 0.000282523,
+     "tstt": 72106.7,
+     "beckmann": 48218.4,
+     "passo": 0.00157347
+    },
+    {
+     "iteracao": 359,
+     "gap": 0.000183488,
+     "tstt": 72103.8,
+     "beckmann": 48218.4,
+     "passo": 0.00191468
+    },
+    {
+     "iteracao": 360,
+     "gap": 0.000280616,
+     "tstt": 72095.6,
+     "beckmann": 48218.3,
+     "passo": 0.00385255
+    },
+    {
+     "iteracao": 361,
+     "gap": 0.000263499,
+     "tstt": 72105.3,
+     "beckmann": 48218.3,
+     "passo": 0.002703
+    },
+    {
+     "iteracao": 362,
+     "gap": 0.000187591,
+     "tstt": 72093.5,
+     "beckmann": 48218.3,
+     "passo": 0.00258455
+    },
+    {
+     "iteracao": 363,
+     "gap": 0.00030354,
+     "tstt": 72100.0,
+     "beckmann": 48218.3,
+     "passo": 0.00283701
+    },
+    {
+     "iteracao": 364,
+     "gap": 0.000235138,
+     "tstt": 72094.5,
+     "beckmann": 48218.2,
+     "passo": 0.00293388
+    },
+    {
+     "iteracao": 365,
+     "gap": 0.000305212,
+     "tstt": 72103.0,
+     "beckmann": 48218.2,
+     "passo": 0.00170121
+    },
+    {
+     "iteracao": 366,
+     "gap": 0.000192329,
+     "tstt": 72099.8,
+     "beckmann": 48218.2,
+     "passo": 0.00239896
+    },
+    {
+     "iteracao": 367,
+     "gap": 0.000276936,
+     "tstt": 72106.6,
+     "beckmann": 48218.2,
+     "passo": 0.0030255
+    },
+    {
+     "iteracao": 368,
+     "gap": 0.000212141,
+     "tstt": 72092.4,
+     "beckmann": 48218.1,
+     "passo": 0.00265057
+    },
+    {
+     "iteracao": 369,
+     "gap": 0.000340506,
+     "tstt": 72100.0,
+     "beckmann": 48218.1,
+     "passo": 0.00189843
+    },
+    {
+     "iteracao": 370,
+     "gap": 0.000214332,
+     "tstt": 72096.4,
+     "beckmann": 48218.1,
+     "passo": 0.0026745
+    },
+    {
+     "iteracao": 371,
+     "gap": 0.000302459,
+     "tstt": 72104.1,
+     "beckmann": 48218.1,
+     "passo": 0.00168535
+    },
+    {
+     "iteracao": 372,
+     "gap": 0.000190589,
+     "tstt": 72100.9,
+     "beckmann": 48218.1,
+     "passo": 0.00237665
+    },
+    {
+     "iteracao": 373,
+     "gap": 0.000269167,
+     "tstt": 72107.7,
+     "beckmann": 48218.0,
+     "passo": 0.00149907
+    },
+    {
+     "iteracao": 374,
+     "gap": 0.000179506,
+     "tstt": 72104.9,
+     "beckmann": 48218.0,
+     "passo": 0.00187314
+    },
+    {
+     "iteracao": 375,
+     "gap": 0.000272634,
+     "tstt": 72096.9,
+     "beckmann": 48218.0,
+     "passo": 0.00374292
+    },
+    {
+     "iteracao": 376,
+     "gap": 0.000256011,
+     "tstt": 72106.3,
+     "beckmann": 48218.0,
+     "passo": 0.00262654
+    },
+    {
+     "iteracao": 377,
+     "gap": 0.000182289,
+     "tstt": 72094.8,
+     "beckmann": 48217.9,
+     "passo": 0.00251123
+    },
+    {
+     "iteracao": 378,
+     "gap": 0.000292373,
+     "tstt": 72101.2,
+     "beckmann": 48217.9,
+     "passo": 0.00273254
+    },
+    {
+     "iteracao": 379,
+     "gap": 0.000224103,
+     "tstt": 72095.9,
+     "beckmann": 48217.9,
+     "passo": 0.00279642
+    },
+    {
+     "iteracao": 380,
+     "gap": 0.000292737,
+     "tstt": 72103.9,
+     "beckmann": 48217.9,
+     "passo": 0.00163164
+    },
+    {
+     "iteracao": 381,
+     "gap": 0.000184486,
+     "tstt": 72100.8,
+     "beckmann": 48217.9,
+     "passo": 0.00230128
+    },
+    {
+     "iteracao": 382,
+     "gap": 0.00026848,
+     "tstt": 72107.4,
+     "beckmann": 48217.8,
+     "passo": 0.00293372
+    },
+    {
+     "iteracao": 383,
+     "gap": 0.000205693,
+     "tstt": 72093.6,
+     "beckmann": 48217.8,
+     "passo": 0.00256995
+    },
+    {
+     "iteracao": 384,
+     "gap": 0.000327415,
+     "tstt": 72101.0,
+     "beckmann": 48217.8,
+     "passo": 0.0018254
+    },
+    {
+     "iteracao": 385,
+     "gap": 0.000206116,
+     "tstt": 72097.6,
+     "beckmann": 48217.8,
+     "passo": 0.00257214
+    },
+    {
+     "iteracao": 386,
+     "gap": 0.000290906,
+     "tstt": 72104.9,
+     "beckmann": 48217.8,
+     "passo": 0.00162097
+    },
+    {
+     "iteracao": 387,
+     "gap": 0.000183323,
+     "tstt": 72101.9,
+     "beckmann": 48217.7,
+     "passo": 0.00228623
+    },
+    {
+     "iteracao": 388,
+     "gap": 0.000258933,
+     "tstt": 72108.4,
+     "beckmann": 48217.7,
+     "passo": 0.0014421
+    },
+    {
+     "iteracao": 389,
+     "gap": 0.000173426,
+     "tstt": 72105.7,
+     "beckmann": 48217.7,
+     "passo": 0.0018098
+    },
+    {
+     "iteracao": 390,
+     "gap": 0.000263554,
+     "tstt": 72098.0,
+     "beckmann": 48217.7,
+     "passo": 0.00361863
+    },
+    {
+     "iteracao": 391,
+     "gap": 0.000247505,
+     "tstt": 72107.1,
+     "beckmann": 48217.7,
+     "passo": 0.0025397
+    },
+    {
+     "iteracao": 392,
+     "gap": 0.000176257,
+     "tstt": 72096.0,
+     "beckmann": 48217.6,
+     "passo": 0.00242815
+    },
+    {
+     "iteracao": 393,
+     "gap": 0.00028229,
+     "tstt": 72102.1,
+     "beckmann": 48217.6,
+     "passo": 0.00263831
+    },
+    {
+     "iteracao": 394,
+     "gap": 0.000215749,
+     "tstt": 72097.0,
+     "beckmann": 48217.6,
+     "passo": 0.00269235
+    },
+    {
+     "iteracao": 395,
+     "gap": 0.000282073,
+     "tstt": 72104.7,
+     "beckmann": 48217.6,
+     "passo": 0.00157218
+    },
+    {
+     "iteracao": 396,
+     "gap": 0.000177776,
+     "tstt": 72101.8,
+     "beckmann": 48217.6,
+     "passo": 0.00221775
+    },
+    {
+     "iteracao": 397,
+     "gap": 0.000259538,
+     "tstt": 72108.1,
+     "beckmann": 48217.6,
+     "passo": 0.00283659
+    },
+    {
+     "iteracao": 398,
+     "gap": 0.000198873,
+     "tstt": 72094.7,
+     "beckmann": 48217.5,
+     "passo": 0.00248477
+    },
+    {
+     "iteracao": 399,
+     "gap": 0.000315799,
+     "tstt": 72101.9,
+     "beckmann": 48217.5,
+     "passo": 0.00176061
+    },
+    {
+     "iteracao": 400,
+     "gap": 0.000198823,
+     "tstt": 72098.6,
+     "beckmann": 48217.5,
+     "passo": 0.00248127
+    },
+    {
+     "iteracao": 401,
+     "gap": 0.000280646,
+     "tstt": 72105.7,
+     "beckmann": 48217.5,
+     "passo": 0.00156379
+    },
+    {
+     "iteracao": 402,
+     "gap": 0.000176867,
+     "tstt": 72102.7,
+     "beckmann": 48217.5,
+     "passo": 0.00220591
+    },
+    {
+     "iteracao": 403,
+     "gap": 0.000249885,
+     "tstt": 72109.1,
+     "beckmann": 48217.4,
+     "passo": 0.00273119
+    },
+    {
+     "iteracao": 404,
+     "gap": 0.000191537,
+     "tstt": 72096.2,
+     "beckmann": 48217.4,
+     "passo": 0.00239268
+    },
+    {
+     "iteracao": 405,
+     "gap": 0.000312665,
+     "tstt": 72103.0,
+     "beckmann": 48217.4,
+     "passo": 0.00171846
+    },
+    {
+     "iteracao": 406,
+     "gap": 0.00019491,
+     "tstt": 72099.1,
+     "beckmann": 48217.4,
+     "passo": 0.00243191
+    },
+    {
+     "iteracao": 407,
+     "gap": 0.000276977,
+     "tstt": 72106.1,
+     "beckmann": 48217.4,
+     "passo": 0.00154297
+    },
+    {
+     "iteracao": 408,
+     "gap": 0.00017456,
+     "tstt": 72103.2,
+     "beckmann": 48217.3,
+     "passo": 0.00217662
+    },
+    {
+     "iteracao": 409,
+     "gap": 0.000246584,
+     "tstt": 72109.4,
+     "beckmann": 48217.3,
+     "passo": 0.00137302
+    },
+    {
+     "iteracao": 410,
+     "gap": 0.000184812,
+     "tstt": 72106.8,
+     "beckmann": 48217.3,
+     "passo": 0.00192742
+    },
+    {
+     "iteracao": 411,
+     "gap": 0.000242193,
+     "tstt": 72098.6,
+     "beckmann": 48217.3,
+     "passo": 0.00332737
+    },
+    {
+     "iteracao": 412,
+     "gap": 0.000227706,
+     "tstt": 72106.9,
+     "beckmann": 48217.3,
+     "passo": 0.00233746
+    },
+    {
+     "iteracao": 413,
+     "gap": 0.000169094,
+     "tstt": 72096.7,
+     "beckmann": 48217.3,
+     "passo": 0.00104846
+    },
+    {
+     "iteracao": 414,
+     "gap": 0.000153113,
+     "tstt": 72087.5,
+     "beckmann": 48217.3,
+     "passo": 0.00155887
+    },
+    {
+     "iteracao": 415,
+     "gap": 0.000206934,
+     "tstt": 72085.5,
+     "beckmann": 48217.2,
+     "passo": 0.00284879
+    },
+    {
+     "iteracao": 416,
+     "gap": 0.000224124,
+     "tstt": 72092.7,
+     "beckmann": 48217.2,
+     "passo": 0.00230118
+    },
+    {
+     "iteracao": 417,
+     "gap": 0.000159576,
+     "tstt": 72082.7,
+     "beckmann": 48217.2,
+     "passo": 0.00220196
+    },
+    {
+     "iteracao": 418,
+     "gap": 0.000261429,
+     "tstt": 72088.3,
+     "beckmann": 48217.2,
+     "passo": 0.00250663
+    },
+    {
+     "iteracao": 419,
+     "gap": 0.000243424,
+     "tstt": 72084.5,
+     "beckmann": 48217.2,
+     "passo": 0.00303724
+    },
+    {
+     "iteracao": 420,
+     "gap": 0.000279404,
+     "tstt": 72093.2,
+     "beckmann": 48217.1,
+     "passo": 0.00155845
+    },
+    {
+     "iteracao": 421,
+     "gap": 0.000176084,
+     "tstt": 72090.3,
+     "beckmann": 48217.1,
+     "passo": 0.0021975
+    },
+    {
+     "iteracao": 422,
+     "gap": 0.000248631,
+     "tstt": 72096.6,
+     "beckmann": 48217.1,
+     "passo": 0.00138615
+    },
+    {
+     "iteracao": 423,
+     "gap": 0.000156835,
+     "tstt": 72094.1,
+     "beckmann": 48217.1,
+     "passo": 0.00195847
+    },
+    {
+     "iteracao": 424,
+     "gap": 0.000265179,
+     "tstt": 72099.7,
+     "beckmann": 48217.1,
+     "passo": 0.00289721
+    },
+    {
+     "iteracao": 425,
+     "gap": 0.000203084,
+     "tstt": 72086.0,
+     "beckmann": 48217.1,
+     "passo": 0.00253592
+    },
+    {
+     "iteracao": 426,
+     "gap": 0.000287484,
+     "tstt": 72093.3,
+     "beckmann": 48217.0,
+     "passo": 0.00160328
+    },
+    {
+     "iteracao": 427,
+     "gap": 0.000181117,
+     "tstt": 72090.3,
+     "beckmann": 48217.0,
+     "passo": 0.00226016
+    },
+    {
+     "iteracao": 428,
+     "gap": 0.000255686,
+     "tstt": 72096.8,
+     "beckmann": 48217.0,
+     "passo": 0.00142525
+    },
+    {
+     "iteracao": 429,
+     "gap": 0.000161237,
+     "tstt": 72094.2,
+     "beckmann": 48217.0,
+     "passo": 0.00201327
+    },
+    {
+     "iteracao": 430,
+     "gap": 0.000246923,
+     "tstt": 72100.0,
+     "beckmann": 48217.0,
+     "passo": 0.00269815
+    },
+    {
+     "iteracao": 431,
+     "gap": 0.000189177,
+     "tstt": 72087.3,
+     "beckmann": 48217.0,
+     "passo": 0.00236253
+    },
+    {
+     "iteracao": 432,
+     "gap": 0.000289318,
+     "tstt": 72094.1,
+     "beckmann": 48216.9,
+     "passo": 0.00161314
+    },
+    {
+     "iteracao": 433,
+     "gap": 0.000182247,
+     "tstt": 72091.0,
+     "beckmann": 48216.9,
+     "passo": 0.00227388
+    },
+    {
+     "iteracao": 434,
+     "gap": 0.000257264,
+     "tstt": 72097.6,
+     "beckmann": 48216.9,
+     "passo": 0.00143372
+    },
+    {
+     "iteracao": 435,
+     "gap": 0.000162212,
+     "tstt": 72094.9,
+     "beckmann": 48216.9,
+     "passo": 0.00202511
+    },
+    {
+     "iteracao": 436,
+     "gap": 0.000235305,
+     "tstt": 72100.7,
+     "beckmann": 48216.9,
+     "passo": 0.00257138
+    },
+    {
+     "iteracao": 437,
+     "gap": 0.000180334,
+     "tstt": 72088.6,
+     "beckmann": 48216.9,
+     "passo": 0.00225456
+    },
+    {
+     "iteracao": 438,
+     "gap": 0.000288051,
+     "tstt": 72095.1,
+     "beckmann": 48216.9,
+     "passo": 0.00160564
+    },
+    {
+     "iteracao": 439,
+     "gap": 0.000181332,
+     "tstt": 72092.1,
+     "beckmann": 48216.8,
+     "passo": 0.00226461
+    },
+    {
+     "iteracao": 440,
+     "gap": 0.000256118,
+     "tstt": 72098.6,
+     "beckmann": 48216.8,
+     "passo": 0.00142696
+    },
+    {
+     "iteracao": 441,
+     "gap": 0.000171863,
+     "tstt": 72095.9,
+     "beckmann": 48216.8,
+     "passo": 0.00179211
+    },
+    {
+     "iteracao": 442,
+     "gap": 0.000198454,
+     "tstt": 72088.3,
+     "beckmann": 48216.8,
+     "passo": 0.00273338
+    },
+    {
+     "iteracao": 443,
+     "gap": 0.000211227,
+     "tstt": 72095.2,
+     "beckmann": 48216.8,
+     "passo": 0.00202554
+    },
+    {
+     "iteracao": 444,
+     "gap": 0.000220426,
+     "tstt": 72092.1,
+     "beckmann": 48216.8,
+     "passo": 0.00274784
+    },
+    {
+     "iteracao": 445,
+     "gap": 0.000235977,
+     "tstt": 72100.0,
+     "beckmann": 48216.7,
+     "passo": 0.00131521
+    },
+    {
+     "iteracao": 446,
+     "gap": 0.000148858,
+     "tstt": 72097.5,
+     "beckmann": 48216.7,
+     "passo": 0.00185867
+    },
+    {
+     "iteracao": 447,
+     "gap": 0.000250819,
+     "tstt": 72102.8,
+     "beckmann": 48216.7,
+     "passo": 0.00274108
+    },
+    {
+     "iteracao": 448,
+     "gap": 0.000192151,
+     "tstt": 72089.9,
+     "beckmann": 48216.7,
+     "passo": 0.00239904
+    },
+    {
+     "iteracao": 449,
+     "gap": 0.0002728,
+     "tstt": 72096.8,
+     "beckmann": 48216.7,
+     "passo": 0.00152091
+    },
+    {
+     "iteracao": 450,
+     "gap": 0.000171881,
+     "tstt": 72094.0,
+     "beckmann": 48216.7,
+     "passo": 0.00214713
+    },
+    {
+     "iteracao": 451,
+     "gap": 0.000242834,
+     "tstt": 72100.1,
+     "beckmann": 48216.6,
+     "passo": 0.00135322
+    },
+    {
+     "iteracao": 452,
+     "gap": 0.00015304,
+     "tstt": 72097.6,
+     "beckmann": 48216.6,
+     "passo": 0.00191074
+    },
+    {
+     "iteracao": 453,
+     "gap": 0.000233925,
+     "tstt": 72103.1,
+     "beckmann": 48216.6,
+     "passo": 0.0025568
+    },
+    {
+     "iteracao": 454,
+     "gap": 0.000179274,
+     "tstt": 72091.1,
+     "beckmann": 48216.6,
+     "passo": 0.00224111
+    },
+    {
+     "iteracao": 455,
+     "gap": 0.000274781,
+     "tstt": 72097.5,
+     "beckmann": 48216.6,
+     "passo": 0.00153162
+    },
+    {
+     "iteracao": 456,
+     "gap": 0.000173003,
+     "tstt": 72094.6,
+     "beckmann": 48216.6,
+     "passo": 0.00216079
+    },
+    {
+     "iteracao": 457,
+     "gap": 0.000244402,
+     "tstt": 72100.8,
+     "beckmann": 48216.6,
+     "passo": 0.00136166
+    },
+    {
+     "iteracao": 458,
+     "gap": 0.000162237,
+     "tstt": 72098.3,
+     "beckmann": 48216.6,
+     "passo": 0.00169211
+    },
+    {
+     "iteracao": 459,
+     "gap": 0.000196344,
+     "tstt": 72091.0,
+     "beckmann": 48216.5,
+     "passo": 0.00270364
+    },
+    {
+     "iteracao": 460,
+     "gap": 0.000201001,
+     "tstt": 72097.9,
+     "beckmann": 48216.5,
+     "passo": 0.00192716
+    },
+    {
+     "iteracao": 461,
+     "gap": 0.000208875,
+     "tstt": 72094.9,
+     "beckmann": 48216.5,
+     "passo": 0.00260391
+    },
+    {
+     "iteracao": 462,
+     "gap": 0.000224295,
+     "tstt": 72102.4,
+     "beckmann": 48216.5,
+     "passo": 0.00124993
+    },
+    {
+     "iteracao": 463,
+     "gap": 0.000145815,
+     "tstt": 72100.0,
+     "beckmann": 48216.5,
+     "passo": 0.00152172
+    },
+    {
+     "iteracao": 464,
+     "gap": 0.000222867,
+     "tstt": 72093.5,
+     "beckmann": 48216.5,
+     "passo": 0.00306379
+    },
+    {
+     "iteracao": 465,
+     "gap": 0.000209542,
+     "tstt": 72101.3,
+     "beckmann": 48216.4,
+     "passo": 0.00215147
+    },
+    {
+     "iteracao": 466,
+     "gap": 0.000149266,
+     "tstt": 72091.9,
+     "beckmann": 48216.4,
+     "passo": 0.00205705
+    },
+    {
+     "iteracao": 467,
+     "gap": 0.000241492,
+     "tstt": 72097.1,
+     "beckmann": 48216.4,
+     "passo": 0.00225839
+    },
+    {
+     "iteracao": 468,
+     "gap": 0.000187453,
+     "tstt": 72092.7,
+     "beckmann": 48216.4,
+     "passo": 0.00234015
+    },
+    {
+     "iteracao": 469,
+     "gap": 0.000243268,
+     "tstt": 72099.4,
+     "beckmann": 48216.4,
+     "passo": 0.00135652
+    },
+    {
+     "iteracao": 470,
+     "gap": 0.000153365,
+     "tstt": 72096.9,
+     "beckmann": 48216.4,
+     "passo": 0.00191633
+    },
+    {
+     "iteracao": 471,
+     "gap": 0.000220847,
+     "tstt": 72102.4,
+     "beckmann": 48216.4,
+     "passo": 0.00241509
+    },
+    {
+     "iteracao": 472,
+     "gap": 0.000169236,
+     "tstt": 72091.0,
+     "beckmann": 48216.3,
+     "passo": 0.00211505
+    },
+    {
+     "iteracao": 473,
+     "gap": 0.000271902,
+     "tstt": 72097.1,
+     "beckmann": 48216.3,
+     "passo": 0.0015165
+    },
+    {
+     "iteracao": 474,
+     "gap": 0.000171264,
+     "tstt": 72094.3,
+     "beckmann": 48216.3,
+     "passo": 0.00213818
+    },
+    {
+     "iteracao": 475,
+     "gap": 0.000241798,
+     "tstt": 72100.4,
+     "beckmann": 48216.3,
+     "passo": 0.00134798
+    },
+    {
+     "iteracao": 476,
+     "gap": 0.000152437,
+     "tstt": 72097.9,
+     "beckmann": 48216.3,
+     "passo": 0.00190433
+    },
+    {
+     "iteracao": 477,
+     "gap": 0.000215476,
+     "tstt": 72103.3,
+     "beckmann": 48216.3,
+     "passo": 0.00120074
+    },
+    {
+     "iteracao": 478,
+     "gap": 0.000143647,
+     "tstt": 72101.1,
+     "beckmann": 48216.3,
+     "passo": 0.0014991
+    },
+    {
+     "iteracao": 479,
+     "gap": 0.000218168,
+     "tstt": 72094.7,
+     "beckmann": 48216.3,
+     "passo": 0.00299907
+    },
+    {
+     "iteracao": 480,
+     "gap": 0.000205121,
+     "tstt": 72102.2,
+     "beckmann": 48216.2,
+     "passo": 0.00210624
+    },
+    {
+     "iteracao": 481,
+     "gap": 0.00014613,
+     "tstt": 72093.0,
+     "beckmann": 48216.2,
+     "passo": 0.00201365
+    },
+    {
+     "iteracao": 482,
+     "gap": 0.000234337,
+     "tstt": 72098.1,
+     "beckmann": 48216.2,
+     "passo": 0.00219136
+    },
+    {
+     "iteracao": 483,
+     "gap": 0.000179991,
+     "tstt": 72093.9,
+     "beckmann": 48216.2,
+     "passo": 0.0022471
+    },
+    {
+     "iteracao": 484,
+     "gap": 0.000235032,
+     "tstt": 72100.3,
+     "beckmann": 48216.2,
+     "passo": 0.00131055
+    },
+    {
+     "iteracao": 485,
+     "gap": 0.000148184,
+     "tstt": 72097.9,
+     "beckmann": 48216.2,
+     "passo": 0.00185165
+    },
+    {
+     "iteracao": 486,
+     "gap": 0.00021567,
+     "tstt": 72103.2,
+     "beckmann": 48216.2,
+     "passo": 0.00235879
+    },
+    {
+     "iteracao": 487,
+     "gap": 0.000165284,
+     "tstt": 72092.1,
+     "beckmann": 48216.1,
+     "passo": 0.0020656
+    },
+    {
+     "iteracao": 488,
+     "gap": 0.000263333,
+     "tstt": 72098.0,
+     "beckmann": 48216.1,
+     "passo": 0.00146866
+    },
+    {
+     "iteracao": 489,
+     "gap": 0.000165879,
+     "tstt": 72095.3,
+     "beckmann": 48216.1,
+     "passo": 0.00207102
+    },
+    {
+     "iteracao": 490,
+     "gap": 0.00023422,
+     "tstt": 72101.2,
+     "beckmann": 48216.1,
+     "passo": 0.0013057
+    },
+    {
+     "iteracao": 491,
+     "gap": 0.000147667,
+     "tstt": 72098.8,
+     "beckmann": 48216.1,
+     "passo": 0.00184483
+    },
+    {
+     "iteracao": 492,
+     "gap": 0.00020875,
+     "tstt": 72104.1,
+     "beckmann": 48216.1,
+     "passo": 0.00116325
+    },
+    {
+     "iteracao": 493,
+     "gap": 0.000139772,
+     "tstt": 72101.9,
+     "beckmann": 48216.1,
+     "passo": 0.00145871
+    },
+    {
+     "iteracao": 494,
+     "gap": 0.000212392,
+     "tstt": 72095.6,
+     "beckmann": 48216.1,
+     "passo": 0.00291983
+    },
+    {
+     "iteracao": 495,
+     "gap": 0.000199698,
+     "tstt": 72103.0,
+     "beckmann": 48216.0,
+     "passo": 0.00205078
+    },
+    {
+     "iteracao": 496,
+     "gap": 0.000142279,
+     "tstt": 72094.0,
+     "beckmann": 48216.0,
+     "passo": 0.00196056
+    },
+    {
+     "iteracao": 497,
+     "gap": 0.000227831,
+     "tstt": 72099.0,
+     "beckmann": 48216.0,
+     "passo": 0.00213049
+    },
+    {
+     "iteracao": 498,
+     "gap": 0.000174479,
+     "tstt": 72094.9,
+     "beckmann": 48216.0,
+     "passo": 0.00217837
+    },
+    {
+     "iteracao": 499,
+     "gap": 0.000228023,
+     "tstt": 72101.1,
+     "beckmann": 48216.0,
+     "passo": 0.00127143
+    },
+    {
+     "iteracao": 500,
+     "gap": 0.000143771,
+     "tstt": 72098.7,
+     "beckmann": 48216.0,
+     "passo": 0.00179658
+    },
+    {
+     "iteracao": 501,
+     "gap": 0.000209915,
+     "tstt": 72103.9,
+     "beckmann": 48216.0,
+     "passo": 0.00229617
+    },
+    {
+     "iteracao": 502,
+     "gap": 0.000160889,
+     "tstt": 72093.1,
+     "beckmann": 48215.9,
+     "passo": 0.00201067
+    },
+    {
+     "iteracao": 503,
+     "gap": 0.000255705,
+     "tstt": 72098.9,
+     "beckmann": 48215.9,
+     "passo": 0.00142607
+    },
+    {
+     "iteracao": 504,
+     "gap": 0.000161084,
+     "tstt": 72096.2,
+     "beckmann": 48215.9,
+     "passo": 0.00201121
+    },
+    {
+     "iteracao": 505,
+     "gap": 0.000227468,
+     "tstt": 72101.9,
+     "beckmann": 48215.9,
+     "passo": 0.00126804
+    },
+    {
+     "iteracao": 506,
+     "gap": 0.000143416,
+     "tstt": 72099.6,
+     "beckmann": 48215.9,
+     "passo": 0.0017918
+    },
+    {
+     "iteracao": 507,
+     "gap": 0.000202754,
+     "tstt": 72104.7,
+     "beckmann": 48215.9,
+     "passo": 0.00112983
+    },
+    {
+     "iteracao": 508,
+     "gap": 0.000135824,
+     "tstt": 72102.6,
+     "beckmann": 48215.9,
+     "passo": 0.00141758
+    },
+    {
+     "iteracao": 509,
+     "gap": 0.000206626,
+     "tstt": 72096.5,
+     "beckmann": 48215.9,
+     "passo": 0.00284076
+    },
+    {
+     "iteracao": 510,
+     "gap": 0.000194286,
+     "tstt": 72103.7,
+     "beckmann": 48215.9,
+     "passo": 0.00199542
+    },
+    {
+     "iteracao": 511,
+     "gap": 0.000139005,
+     "tstt": 72095.0,
+     "beckmann": 48215.8,
+     "passo": 0.000862222
+    },
+    {
+     "iteracao": 512,
+     "gap": 0.000118006,
+     "tstt": 72087.3,
+     "beckmann": 48215.8,
+     "passo": 0.00120141
+    },
+    {
+     "iteracao": 513,
+     "gap": 0.000169698,
+     "tstt": 72085.8,
+     "beckmann": 48215.8,
+     "passo": 0.00233745
+    },
+    {
+     "iteracao": 514,
+     "gap": 0.00018696,
+     "tstt": 72091.8,
+     "beckmann": 48215.8,
+     "passo": 0.00192061
+    },
+    {
+     "iteracao": 515,
+     "gap": 0.000133181,
+     "tstt": 72083.4,
+     "beckmann": 48215.8,
+     "passo": 0.00183725
+    },
+    {
+     "iteracao": 516,
+     "gap": 0.000215669,
+     "tstt": 72088.1,
+     "beckmann": 48215.8,
+     "passo": 0.00206806
+    },
+    {
+     "iteracao": 517,
+     "gap": 0.000196148,
+     "tstt": 72084.9,
+     "beckmann": 48215.8,
+     "passo": 0.00244859
+    },
+    {
+     "iteracao": 518,
+     "gap": 0.00022889,
+     "tstt": 72092.0,
+     "beckmann": 48215.8,
+     "passo": 0.00127699
+    },
+    {
+     "iteracao": 519,
+     "gap": 0.000144321,
+     "tstt": 72089.6,
+     "beckmann": 48215.8,
+     "passo": 0.00180393
+    },
+    {
+     "iteracao": 520,
+     "gap": 0.000203968,
+     "tstt": 72094.8,
+     "beckmann": 48215.7,
+     "passo": 0.0011375
+    },
+    {
+     "iteracao": 521,
+     "gap": 0.000128613,
+     "tstt": 72092.7,
+     "beckmann": 48215.7,
+     "passo": 0.00160685
+    },
+    {
+     "iteracao": 522,
+     "gap": 0.000220868,
+     "tstt": 72097.3,
+     "beckmann": 48215.7,
+     "passo": 0.00241504
+    },
+    {
+     "iteracao": 523,
+     "gap": 0.000169257,
+     "tstt": 72085.9,
+     "beckmann": 48215.7,
+     "passo": 0.00211655
+    },
+    {
+     "iteracao": 524,
+     "gap": 0.000237016,
+     "tstt": 72092.0,
+     "beckmann": 48215.7,
+     "passo": 0.00132216
+    },
+    {
+     "iteracao": 525,
+     "gap": 0.0001493,
+     "tstt": 72089.5,
+     "beckmann": 48215.7,
+     "passo": 0.00186606
+    },
+    {
+     "iteracao": 526,
+     "gap": 0.000210965,
+     "tstt": 72094.9,
+     "beckmann": 48215.7,
+     "passo": 0.00117637
+    },
+    {
+     "iteracao": 527,
+     "gap": 0.000132989,
+     "tstt": 72092.7,
+     "beckmann": 48215.7,
+     "passo": 0.00166142
+    },
+    {
+     "iteracao": 528,
+     "gap": 0.000205473,
+     "tstt": 72097.5,
+     "beckmann": 48215.7,
+     "passo": 0.00224698
+    },
+    {
+     "iteracao": 529,
+     "gap": 0.000157517,
+     "tstt": 72086.9,
+     "beckmann": 48215.6,
+     "passo": 0.00196998
+    },
+    {
+     "iteracao": 530,
+     "gap": 0.000239466,
+     "tstt": 72092.6,
+     "beckmann": 48215.6,
+     "passo": 0.00133558
+    },
+    {
+     "iteracao": 531,
+     "gap": 0.000150823,
+     "tstt": 72090.1,
+     "beckmann": 48215.6,
+     "passo": 0.00188484
+    },
+    {
+     "iteracao": 532,
+     "gap": 0.000213103,
+     "tstt": 72095.5,
+     "beckmann": 48215.6,
+     "passo": 0.00118806
+    },
+    {
+     "iteracao": 533,
+     "gap": 0.00013432,
+     "tstt": 72093.3,
+     "beckmann": 48215.6,
+     "passo": 0.00167781
+    },
+    {
+     "iteracao": 534,
+     "gap": 0.000195858,
+     "tstt": 72098.1,
+     "beckmann": 48215.6,
+     "passo": 0.00214195
+    },
+    {
+     "iteracao": 535,
+     "gap": 0.000150188,
+     "tstt": 72088.0,
+     "beckmann": 48215.6,
+     "passo": 0.00187822
+    },
+    {
+     "iteracao": 536,
+     "gap": 0.00023901,
+     "tstt": 72093.4,
+     "beckmann": 48215.6,
+     "passo": 0.00133274
+    },
+    {
+     "iteracao": 537,
+     "gap": 0.000150529,
+     "tstt": 72090.9,
+     "beckmann": 48215.6,
+     "passo": 0.00188083
+    },
+    {
+     "iteracao": 538,
+     "gap": 0.000212685,
+     "tstt": 72096.4,
+     "beckmann": 48215.5,
+     "passo": 0.00118547
+    },
+    {
+     "iteracao": 539,
+     "gap": 0.000142169,
+     "tstt": 72094.1,
+     "beckmann": 48215.5,
+     "passo": 0.0014829
+    },
+    {
+     "iteracao": 540,
+     "gap": 0.000165593,
+     "tstt": 72087.8,
+     "beckmann": 48215.5,
+     "passo": 0.00228126
+    },
+    {
+     "iteracao": 541,
+     "gap": 0.000175368,
+     "tstt": 72093.6,
+     "beckmann": 48215.5,
+     "passo": 0.00168194
+    },
+    {
+     "iteracao": 542,
+     "gap": 0.000183051,
+     "tstt": 72091.0,
+     "beckmann": 48215.5,
+     "passo": 0.00228324
+    },
+    {
+     "iteracao": 543,
+     "gap": 0.000196097,
+     "tstt": 72097.6,
+     "beckmann": 48215.5,
+     "passo": 0.00109332
+    },
+    {
+     "iteracao": 544,
+     "gap": 0.000123739,
+     "tstt": 72095.5,
+     "beckmann": 48215.5,
+     "passo": 0.00154581
+    },
+    {
+     "iteracao": 545,
+     "gap": 0.000209324,
+     "tstt": 72100.0,
+     "beckmann": 48215.5,
+     "passo": 0.00228928
+    },
+    {
+     "iteracao": 546,
+     "gap": 0.000160457,
+     "tstt": 72089.2,
+     "beckmann": 48215.5,
+     "passo": 0.00200628
+    },
+    {
+     "iteracao": 547,
+     "gap": 0.00022735,
+     "tstt": 72095.0,
+     "beckmann": 48215.4,
+     "passo": 0.00126788
+    },
+    {
+     "iteracao": 548,
+     "gap": 0.000143216,
+     "tstt": 72092.6,
+     "beckmann": 48215.4,
+     "passo": 0.00178979
+    },
+    {
+     "iteracao": 549,
+     "gap": 0.000202397,
+     "tstt": 72097.7,
+     "beckmann": 48215.4,
+     "passo": 0.00112829
+    },
+    {
+     "iteracao": 550,
+     "gap": 0.000127589,
+     "tstt": 72095.6,
+     "beckmann": 48215.4,
+     "passo": 0.00159378
+    },
+    {
+     "iteracao": 551,
+     "gap": 0.000195482,
+     "tstt": 72100.2,
+     "beckmann": 48215.4,
+     "passo": 0.00213813
+    },
+    {
+     "iteracao": 552,
+     "gap": 0.000149897,
+     "tstt": 72090.1,
+     "beckmann": 48215.4,
+     "passo": 0.00187442
+    },
+    {
+     "iteracao": 553,
+     "gap": 0.000229422,
+     "tstt": 72095.5,
+     "beckmann": 48215.4,
+     "passo": 0.00127921
+    },
+    {
+     "iteracao": 554,
+     "gap": 0.000144505,
+     "tstt": 72093.1,
+     "beckmann": 48215.4,
+     "passo": 0.00180565
+    },
+    {
+     "iteracao": 555,
+     "gap": 0.000204206,
+     "tstt": 72098.3,
+     "beckmann": 48215.4,
+     "passo": 0.00113816
+    },
+    {
+     "iteracao": 556,
+     "gap": 0.000135917,
+     "tstt": 72096.2,
+     "beckmann": 48215.4,
+     "passo": 0.00141791
+    },
+    {
+     "iteracao": 557,
+     "gap": 0.000164254,
+     "tstt": 72090.1,
+     "beckmann": 48215.3,
+     "passo": 0.00226238
+    },
+    {
+     "iteracao": 558,
+     "gap": 0.000168171,
+     "tstt": 72095.8,
+     "beckmann": 48215.3,
+     "passo": 0.0016127
+    },
+    {
+     "iteracao": 559,
+     "gap": 0.00017474,
+     "tstt": 72093.4,
+     "beckmann": 48215.3,
+     "passo": 0.00217959
+    },
+    {
+     "iteracao": 560,
+     "gap": 0.000187785,
+     "tstt": 72099.6,
+     "beckmann": 48215.3,
+     "passo": 0.00104684
+    },
+    {
+     "iteracao": 561,
+     "gap": 0.000122152,
+     "tstt": 72097.7,
+     "beckmann": 48215.3,
+     "passo": 0.00127494
+    },
+    {
+     "iteracao": 562,
+     "gap": 0.000186713,
+     "tstt": 72092.2,
+     "beckmann": 48215.3,
+     "passo": 0.00256817
+    },
+    {
+     "iteracao": 563,
+     "gap": 0.000175647,
+     "tstt": 72098.7,
+     "beckmann": 48215.3,
+     "passo": 0.00180447
+    },
+    {
+     "iteracao": 564,
+     "gap": 0.000125187,
+     "tstt": 72090.8,
+     "beckmann": 48215.3,
+     "passo": 0.00172546
+    },
+    {
+     "iteracao": 565,
+     "gap": 0.000202499,
+     "tstt": 72095.2,
+     "beckmann": 48215.3,
+     "passo": 0.00194017
+    },
+    {
+     "iteracao": 566,
+     "gap": 0.000158483,
+     "tstt": 72092.2,
+     "beckmann": 48215.2,
+     "passo": 0.00197915
+    },
+    {
+     "iteracao": 567,
+     "gap": 0.000204576,
+     "tstt": 72097.9,
+     "beckmann": 48215.2,
+     "passo": 0.00114103
+    },
+    {
+     "iteracao": 568,
+     "gap": 0.000129015,
+     "tstt": 72095.8,
+     "beckmann": 48215.2,
+     "passo": 0.0016127
+    },
+    {
+     "iteracao": 569,
+     "gap": 0.000185046,
+     "tstt": 72100.4,
+     "beckmann": 48215.2,
+     "passo": 0.0020249
+    },
+    {
+     "iteracao": 570,
+     "gap": 0.000141881,
+     "tstt": 72090.9,
+     "beckmann": 48215.2,
+     "passo": 0.00177555
+    },
+    {
+     "iteracao": 571,
+     "gap": 0.000228868,
+     "tstt": 72096.0,
+     "beckmann": 48215.2,
+     "passo": 0.00127673
+    },
+    {
+     "iteracao": 572,
+     "gap": 0.000144129,
+     "tstt": 72093.6,
+     "beckmann": 48215.2,
+     "passo": 0.0018021
+    },
+    {
+     "iteracao": 573,
+     "gap": 0.000203669,
+     "tstt": 72098.8,
+     "beckmann": 48215.2,
+     "passo": 0.00113572
+    },
+    {
+     "iteracao": 574,
+     "gap": 0.000128353,
+     "tstt": 72096.7,
+     "beckmann": 48215.2,
+     "passo": 0.00160412
+    },
+    {
+     "iteracao": 575,
+     "gap": 0.000181472,
+     "tstt": 72101.3,
+     "beckmann": 48215.2,
+     "passo": 0.00101159
+    },
+    {
+     "iteracao": 576,
+     "gap": 0.000118591,
+     "tstt": 72099.4,
+     "beckmann": 48215.2,
+     "passo": 0.00123787
+    },
+    {
+     "iteracao": 577,
+     "gap": 0.00018419,
+     "tstt": 72094.1,
+     "beckmann": 48215.1,
+     "passo": 0.00253327
+    },
+    {
+     "iteracao": 578,
+     "gap": 0.000173248,
+     "tstt": 72100.5,
+     "beckmann": 48215.1,
+     "passo": 0.00177992
+    },
+    {
+     "iteracao": 579,
+     "gap": 0.000123483,
+     "tstt": 72092.7,
+     "beckmann": 48215.1,
+     "passo": 0.00170179
+    },
+    {
+     "iteracao": 580,
+     "gap": 0.000197187,
+     "tstt": 72097.0,
+     "beckmann": 48215.1,
+     "passo": 0.00184452
+    },
+    {
+     "iteracao": 581,
+     "gap": 0.000151539,
+     "tstt": 72093.4,
+     "beckmann": 48215.1,
+     "passo": 0.00189243
+    },
+    {
+     "iteracao": 582,
+     "gap": 0.000197758,
+     "tstt": 72098.9,
+     "beckmann": 48215.1,
+     "passo": 0.00110293
+    },
+    {
+     "iteracao": 583,
+     "gap": 0.000124726,
+     "tstt": 72096.8,
+     "beckmann": 48215.1,
+     "passo": 0.00155904
+    },
+    {
+     "iteracao": 584,
+     "gap": 0.000182163,
+     "tstt": 72101.3,
+     "beckmann": 48215.1,
+     "passo": 0.00199351
+    },
+    {
+     "iteracao": 585,
+     "gap": 0.00013968,
+     "tstt": 72091.9,
+     "beckmann": 48215.1,
+     "passo": 0.00174786
+    },
+    {
+     "iteracao": 586,
+     "gap": 0.000222108,
+     "tstt": 72096.9,
+     "beckmann": 48215.1,
+     "passo": 0.00123893
+    },
+    {
+     "iteracao": 587,
+     "gap": 0.000139882,
+     "tstt": 72094.6,
+     "beckmann": 48215.0,
+     "passo": 0.00174896
+    },
+    {
+     "iteracao": 588,
+     "gap": 0.000197685,
+     "tstt": 72099.6,
+     "beckmann": 48215.0,
+     "passo": 0.00110229
+    },
+    {
+     "iteracao": 589,
+     "gap": 0.000124588,
+     "tstt": 72097.5,
+     "beckmann": 48215.0,
+     "passo": 0.00155705
+    },
+    {
+     "iteracao": 590,
+     "gap": 0.000176161,
+     "tstt": 72102.0,
+     "beckmann": 48215.0,
+     "passo": 0.000981941
+    },
+    {
+     "iteracao": 591,
+     "gap": 0.000118305,
+     "tstt": 72100.2,
+     "beckmann": 48215.0,
+     "passo": 0.00123483
+    },
+    {
+     "iteracao": 592,
+     "gap": 0.00017957,
+     "tstt": 72094.9,
+     "beckmann": 48215.0,
+     "passo": 0.00246985
+    },
+    {
+     "iteracao": 593,
+     "gap": 0.000168923,
+     "tstt": 72101.1,
+     "beckmann": 48215.0,
+     "passo": 0.00173563
+    },
+    {
+     "iteracao": 594,
+     "gap": 0.000120409,
+     "tstt": 72093.5,
+     "beckmann": 48215.0,
+     "passo": 0.00165942
+    },
+    {
+     "iteracao": 595,
+     "gap": 0.000192889,
+     "tstt": 72097.7,
+     "beckmann": 48215.0,
+     "passo": 0.00180425
+    },
+    {
+     "iteracao": 596,
+     "gap": 0.000147583,
+     "tstt": 72094.3,
+     "beckmann": 48215.0,
+     "passo": 0.00184308
+    },
+    {
+     "iteracao": 597,
+     "gap": 0.000192927,
+     "tstt": 72099.5,
+     "beckmann": 48215.0,
+     "passo": 0.00107596
+    },
+    {
+     "iteracao": 598,
+     "gap": 0.000121682,
+     "tstt": 72097.5,
+     "beckmann": 48214.9,
+     "passo": 0.00152104
+    },
+    {
+     "iteracao": 599,
+     "gap": 0.000177863,
+     "tstt": 72101.9,
+     "beckmann": 48214.9,
+     "passo": 0.00194665
+    },
+    {
+     "iteracao": 600,
+     "gap": 0.000136393,
+     "tstt": 72092.7,
+     "beckmann": 48214.9,
+     "passo": 0.00170673
+    },
+    {
+     "iteracao": 601,
+     "gap": 0.000216948,
+     "tstt": 72097.6,
+     "beckmann": 48214.9,
+     "passo": 0.00119335
+    },
+    {
+     "iteracao": 602,
+     "gap": 0.00013529,
+     "tstt": 72094.9,
+     "beckmann": 48214.9,
+     "passo": 0.00169163
+    },
+    {
+     "iteracao": 603,
+     "gap": 0.000192608,
+     "tstt": 72099.8,
+     "beckmann": 48214.9,
+     "passo": 0.00107399
+    },
+    {
+     "iteracao": 604,
+     "gap": 0.000121393,
+     "tstt": 72097.8,
+     "beckmann": 48214.9,
+     "passo": 0.00151719
+    },
+    {
+     "iteracao": 605,
+     "gap": 0.000172573,
+     "tstt": 72102.1,
+     "beckmann": 48214.9,
+     "passo": 0.00188874
+    },
+    {
+     "iteracao": 606,
+     "gap": 0.000132362,
+     "tstt": 72093.2,
+     "beckmann": 48214.9,
+     "passo": 0.00165608
+    },
+    {
+     "iteracao": 607,
+     "gap": 0.000215425,
+     "tstt": 72098.0,
+     "beckmann": 48214.9,
+     "passo": 0.00118475
+    },
+    {
+     "iteracao": 608,
+     "gap": 0.000134341,
+     "tstt": 72095.3,
+     "beckmann": 48214.9,
+     "passo": 0.00167947
+    },
+    {
+     "iteracao": 609,
+     "gap": 0.000191079,
+     "tstt": 72100.1,
+     "beckmann": 48214.8,
+     "passo": 0.00106528
+    },
+    {
+     "iteracao": 610,
+     "gap": 0.00012043,
+     "tstt": 72098.1,
+     "beckmann": 48214.8,
+     "passo": 0.0015049
+    },
+    {
+     "iteracao": 611,
+     "gap": 0.000170291,
+     "tstt": 72102.4,
+     "beckmann": 48214.8,
+     "passo": 0.000949076
+    },
+    {
+     "iteracao": 612,
+     "gap": 0.000127431,
+     "tstt": 72100.6,
+     "beckmann": 48214.8,
+     "passo": 0.0013296
+    },
+    {
+     "iteracao": 613,
+     "gap": 0.000167932,
+     "tstt": 72094.9,
+     "beckmann": 48214.8,
+     "passo": 0.0023106
+    },
+    {
+     "iteracao": 614,
+     "gap": 0.000158112,
+     "tstt": 72100.8,
+     "beckmann": 48214.8,
+     "passo": 0.00162489
+    },
+    {
+     "iteracao": 615,
+     "gap": 0.000119236,
+     "tstt": 72093.7,
+     "beckmann": 48214.8,
+     "passo": 0.000739773
+    },
+    {
+     "iteracao": 616,
+     "gap": 0.000106087,
+     "tstt": 72087.1,
+     "beckmann": 48214.8,
+     "passo": 0.00107979
+    },
+    {
+     "iteracao": 617,
+     "gap": 0.000142942,
+     "tstt": 72085.8,
+     "beckmann": 48214.8,
+     "passo": 0.00196959
+    },
+    {
+     "iteracao": 618,
+     "gap": 0.000156042,
+     "tstt": 72090.8,
+     "beckmann": 48214.8,
+     "passo": 0.00160385
+    },
+    {
+     "iteracao": 619,
+     "gap": 0.00011121,
+     "tstt": 72083.8,
+     "beckmann": 48214.8,
+     "passo": 0.00153435
+    },
+    {
+     "iteracao": 620,
+     "gap": 0.000181225,
+     "tstt": 72087.7,
+     "beckmann": 48214.8,
+     "passo": 0.00173818
+    },
+    {
+     "iteracao": 621,
+     "gap": 0.00016905,
+     "tstt": 72085.1,
+     "beckmann": 48214.8,
+     "passo": 0.00211089
+    },
+    {
+     "iteracao": 622,
+     "gap": 0.000194213,
+     "tstt": 72091.1,
+     "beckmann": 48214.7,
+     "passo": 0.00108368
+    },
+    {
+     "iteracao": 623,
+     "gap": 0.000122493,
+     "tstt": 72089.1,
+     "beckmann": 48214.7,
+     "passo": 0.00153155
+    },
+    {
+     "iteracao": 624,
+     "gap": 0.000173156,
+     "tstt": 72093.5,
+     "beckmann": 48214.7,
+     "passo": 0.000965863
+    },
+    {
+     "iteracao": 625,
+     "gap": 0.000109197,
+     "tstt": 72091.7,
+     "beckmann": 48214.7,
+     "passo": 0.00136478
+    },
+    {
+     "iteracao": 626,
+     "gap": 0.000185122,
+     "tstt": 72095.6,
+     "beckmann": 48214.7,
+     "passo": 0.00202544
+    },
+    {
+     "iteracao": 627,
+     "gap": 0.000141946,
+     "tstt": 72086.1,
+     "beckmann": 48214.7,
+     "passo": 0.00177547
+    },
+    {
+     "iteracao": 628,
+     "gap": 0.000200839,
+     "tstt": 72091.2,
+     "beckmann": 48214.7,
+     "passo": 0.00112053
+    },
+    {
+     "iteracao": 629,
+     "gap": 0.000126548,
+     "tstt": 72089.1,
+     "beckmann": 48214.7,
+     "passo": 0.00158216
+    },
+    {
+     "iteracao": 630,
+     "gap": 0.000178861,
+     "tstt": 72093.7,
+     "beckmann": 48214.7,
+     "passo": 0.000997566
+    },
+    {
+     "iteracao": 631,
+     "gap": 0.00011277,
+     "tstt": 72091.8,
+     "beckmann": 48214.7,
+     "passo": 0.00140935
+    },
+    {
+     "iteracao": 632,
+     "gap": 0.000173006,
+     "tstt": 72095.9,
+     "beckmann": 48214.7,
+     "passo": 0.00189305
+    },
+    {
+     "iteracao": 633,
+     "gap": 0.000132695,
+     "tstt": 72087.0,
+     "beckmann": 48214.7,
+     "passo": 0.00165989
+    },
+    {
+     "iteracao": 634,
+     "gap": 0.000202926,
+     "tstt": 72091.8,
+     "beckmann": 48214.6,
+     "passo": 0.00113199
+    },
+    {
+     "iteracao": 635,
+     "gap": 0.00012785,
+     "tstt": 72089.6,
+     "beckmann": 48214.6,
+     "passo": 0.00159824
+    },
+    {
+     "iteracao": 636,
+     "gap": 0.00018069,
+     "tstt": 72094.2,
+     "beckmann": 48214.6,
+     "passo": 0.0010076
+    },
+    {
+     "iteracao": 637,
+     "gap": 0.000113913,
+     "tstt": 72092.4,
+     "beckmann": 48214.6,
+     "passo": 0.00142344
+    },
+    {
+     "iteracao": 638,
+     "gap": 0.000165456,
+     "tstt": 72096.5,
+     "beckmann": 48214.6,
+     "passo": 0.00181051
+    },
+    {
+     "iteracao": 639,
+     "gap": 0.000126933,
+     "tstt": 72087.9,
+     "beckmann": 48214.6,
+     "passo": 0.00158772
+    },
+    {
+     "iteracao": 640,
+     "gap": 0.000202692,
+     "tstt": 72092.5,
+     "beckmann": 48214.6,
+     "passo": 0.00113047
+    },
+    {
+     "iteracao": 641,
+     "gap": 0.000127697,
+     "tstt": 72090.4,
+     "beckmann": 48214.6,
+     "passo": 0.00159608
+    },
+    {
+     "iteracao": 642,
+     "gap": 0.000180474,
+     "tstt": 72095.0,
+     "beckmann": 48214.6,
+     "passo": 0.00100621
+    },
+    {
+     "iteracao": 643,
+     "gap": 0.000121336,
+     "tstt": 72093.1,
+     "beckmann": 48214.6,
+     "passo": 0.00126583
+    },
+    {
+     "iteracao": 644,
+     "gap": 0.000139995,
+     "tstt": 72087.7,
+     "beckmann": 48214.6,
+     "passo": 0.00192901
+    },
+    {
+     "iteracao": 645,
+     "gap": 0.000149111,
+     "tstt": 72092.6,
+     "beckmann": 48214.6,
+     "passo": 0.00143026
+    },
+    {
+     "iteracao": 646,
+     "gap": 0.000155663,
+     "tstt": 72090.4,
+     "beckmann": 48214.6,
+     "passo": 0.00194246
+    },
+    {
+     "iteracao": 647,
+     "gap": 0.000166839,
+     "tstt": 72096.0,
+     "beckmann": 48214.5,
+     "passo": 0.000930422
+    },
+    {
+     "iteracao": 648,
+     "gap": 0.000105301,
+     "tstt": 72094.2,
+     "beckmann": 48214.5,
+     "passo": 0.00131596
+    },
+    {
+     "iteracao": 649,
+     "gap": 0.000177432,
+     "tstt": 72098.0,
+     "beckmann": 48214.5,
+     "passo": 0.00194159
+    },
+    {
+     "iteracao": 650,
+     "gap": 0.000136077,
+     "tstt": 72088.9,
+     "beckmann": 48214.5,
+     "passo": 0.00170186
+    },
+    {
+     "iteracao": 651,
+     "gap": 0.000193468,
+     "tstt": 72093.8,
+     "beckmann": 48214.5,
+     "passo": 0.00107915
+    },
+    {
+     "iteracao": 652,
+     "gap": 0.000121907,
+     "tstt": 72091.8,
+     "beckmann": 48214.5,
+     "passo": 0.00152397
+    },
+    {
+     "iteracao": 653,
+     "gap": 0.000172322,
+     "tstt": 72096.1,
+     "beckmann": 48214.5,
+     "passo": 0.000960881
+    },
+    {
+     "iteracao": 654,
+     "gap": 0.000108649,
+     "tstt": 72094.3,
+     "beckmann": 48214.5,
+     "passo": 0.0013577
+    },
+    {
+     "iteracao": 655,
+     "gap": 0.000166105,
+     "tstt": 72098.2,
+     "beckmann": 48214.5,
+     "passo": 0.0018178
+    },
+    {
+     "iteracao": 656,
+     "gap": 0.000127426,
+     "tstt": 72089.7,
+     "beckmann": 48214.5,
+     "passo": 0.00159378
+    },
+    {
+     "iteracao": 657,
+     "gap": 0.000195423,
+     "tstt": 72094.3,
+     "beckmann": 48214.5,
+     "passo": 0.00108988
+    },
+    {
+     "iteracao": 658,
+     "gap": 0.000123127,
+     "tstt": 72092.2,
+     "beckmann": 48214.5,
+     "passo": 0.00153903
+    },
+    {
+     "iteracao": 659,
+     "gap": 0.000174037,
+     "tstt": 72096.7,
+     "beckmann": 48214.5,
+     "passo": 0.000970291
+    },
+    {
+     "iteracao": 660,
+     "gap": 0.000115553,
+     "tstt": 72094.8,
+     "beckmann": 48214.4,
+     "passo": 0.00120568
+    },
+    {
+     "iteracao": 661,
+     "gap": 0.000139927,
+     "tstt": 72089.7,
+     "beckmann": 48214.4,
+     "passo": 0.00192771
+    },
+    {
+     "iteracao": 662,
+     "gap": 0.00014332,
+     "tstt": 72094.6,
+     "beckmann": 48214.4,
+     "passo": 0.00137456
+    },
+    {
+     "iteracao": 663,
+     "gap": 0.000149022,
+     "tstt": 72092.5,
+     "beckmann": 48214.4,
+     "passo": 0.00185957
+    },
+    {
+     "iteracao": 664,
+     "gap": 0.000160161,
+     "tstt": 72097.8,
+     "beckmann": 48214.4,
+     "passo": 0.000893075
+    },
+    {
+     "iteracao": 665,
+     "gap": 0.00010417,
+     "tstt": 72096.1,
+     "beckmann": 48214.4,
+     "passo": 0.00108736
+    },
+    {
+     "iteracao": 666,
+     "gap": 0.000159244,
+     "tstt": 72091.5,
+     "beckmann": 48214.4,
+     "passo": 0.00219124
+    },
+    {
+     "iteracao": 667,
+     "gap": 0.000149869,
+     "tstt": 72097.0,
+     "beckmann": 48214.4,
+     "passo": 0.00154029
+    },
+    {
+     "iteracao": 668,
+     "gap": 0.000106856,
+     "tstt": 72090.3,
+     "beckmann": 48214.4,
+     "passo": 0.00147296
+    },
+    {
+     "iteracao": 669,
+     "gap": 0.000172925,
+     "tstt": 72094.0,
+     "beckmann": 48214.4,
+     "passo": 0.00161813
+    },
+    {
+     "iteracao": 670,
+     "gap": 0.000134345,
+     "tstt": 72090.9,
+     "beckmann": 48214.4,
+     "passo": 0.00168005
+    },
+    {
+     "iteracao": 671,
+     "gap": 0.00017456,
+     "tstt": 72095.7,
+     "beckmann": 48214.4,
+     "passo": 0.000973803
+    },
+    {
+     "iteracao": 672,
+     "gap": 0.000110038,
+     "tstt": 72093.9,
+     "beckmann": 48214.4,
+     "passo": 0.00137582
+    },
+    {
+     "iteracao": 673,
+     "gap": 0.000158482,
+     "tstt": 72097.9,
+     "beckmann": 48214.4,
+     "passo": 0.00173496
+    },
+    {
+     "iteracao": 674,
+     "gap": 0.000121567,
+     "tstt": 72089.7,
+     "beckmann": 48214.3,
+     "passo": 0.00152145
+    },
+    {
+     "iteracao": 675,
+     "gap": 0.000195494,
+     "tstt": 72094.1,
+     "beckmann": 48214.3,
+     "passo": 0.00109074
+    },
+    {
+     "iteracao": 676,
+     "gap": 0.000123155,
+     "tstt": 72092.1,
+     "beckmann": 48214.3,
+     "passo": 0.00154017
+    },
+    {
+     "iteracao": 677,
+     "gap": 0.000174069,
+     "tstt": 72096.5,
+     "beckmann": 48214.3,
+     "passo": 0.000970876
+    },
+    {
+     "iteracao": 678,
+     "gap": 0.000109725,
+     "tstt": 72094.7,
+     "beckmann": 48214.3,
+     "passo": 0.00137169
+    },
+    {
+     "iteracao": 679,
+     "gap": 0.000155157,
+     "tstt": 72098.6,
+     "beckmann": 48214.3,
+     "passo": 0.000865139
+    },
+    {
+     "iteracao": 680,
+     "gap": 0.000103461,
+     "tstt": 72097.0,
+     "beckmann": 48214.3,
+     "passo": 0.00107995
+    },
+    {
+     "iteracao": 681,
+     "gap": 0.00015723,
+     "tstt": 72092.4,
+     "beckmann": 48214.3,
+     "passo": 0.00216341
+    },
+    {
+     "iteracao": 682,
+     "gap": 0.000147969,
+     "tstt": 72097.8,
+     "beckmann": 48214.3,
+     "passo": 0.00152082
+    },
+    {
+     "iteracao": 683,
+     "gap": 0.000105506,
+     "tstt": 72091.2,
+     "beckmann": 48214.3,
+     "passo": 0.00145424
+    },
+    {
+     "iteracao": 684,
+     "gap": 0.000169185,
+     "tstt": 72094.9,
+     "beckmann": 48214.3,
+     "passo": 0.00158305
+    },
+    {
+     "iteracao": 685,
+     "gap": 0.000130033,
+     "tstt": 72091.8,
+     "beckmann": 48214.3,
+     "passo": 0.00162617
+    },
+    {
+     "iteracao": 686,
+     "gap": 0.000170013,
+     "tstt": 72096.5,
+     "beckmann": 48214.3,
+     "passo": 0.0009484
+    },
+    {
+     "iteracao": 687,
+     "gap": 0.000107175,
+     "tstt": 72094.7,
+     "beckmann": 48214.3,
+     "passo": 0.00134004
+    },
+    {
+     "iteracao": 688,
+     "gap": 0.000156058,
+     "tstt": 72098.6,
+     "beckmann": 48214.2,
+     "passo": 0.00170854
+    },
+    {
+     "iteracao": 689,
+     "gap": 0.000119712,
+     "tstt": 72090.5,
+     "beckmann": 48214.2,
+     "passo": 0.00149819
+    },
+    {
+     "iteracao": 690,
+     "gap": 0.000190854,
+     "tstt": 72094.8,
+     "beckmann": 48214.2,
+     "passo": 0.00106481
+    },
+    {
+     "iteracao": 691,
+     "gap": 0.000120237,
+     "tstt": 72092.9,
+     "beckmann": 48214.2,
+     "passo": 0.00150369
+    },
+    {
+     "iteracao": 692,
+     "gap": 0.000169955,
+     "tstt": 72097.2,
+     "beckmann": 48214.2,
+     "passo": 0.000947903
+    },
+    {
+     "iteracao": 693,
+     "gap": 0.000107135,
+     "tstt": 72095.4,
+     "beckmann": 48214.2,
+     "passo": 0.00133933
+    },
+    {
+     "iteracao": 694,
+     "gap": 0.000151502,
+     "tstt": 72099.2,
+     "beckmann": 48214.2,
+     "passo": 0.000844738
+    },
+    {
+     "iteracao": 695,
+     "gap": 0.000101488,
+     "tstt": 72097.7,
+     "beckmann": 48214.2,
+     "passo": 0.00105938
+    },
+    {
+     "iteracao": 696,
+     "gap": 0.000154295,
+     "tstt": 72093.1,
+     "beckmann": 48214.2,
+     "passo": 0.00212306
+    },
+    {
+     "iteracao": 697,
+     "gap": 0.000145207,
+     "tstt": 72098.5,
+     "beckmann": 48214.2,
+     "passo": 0.00149252
+    },
+    {
+     "iteracao": 698,
+     "gap": 0.000103541,
+     "tstt": 72092.0,
+     "beckmann": 48214.2,
+     "passo": 0.00142714
+    },
+    {
+     "iteracao": 699,
+     "gap": 0.000165783,
+     "tstt": 72095.6,
+     "beckmann": 48214.2,
+     "passo": 0.00155117
+    },
+    {
+     "iteracao": 700,
+     "gap": 0.000127031,
+     "tstt": 72092.6,
+     "beckmann": 48214.2,
+     "passo": 0.00158864
+    },
+    {
+     "iteracao": 701,
+     "gap": 0.000166224,
+     "tstt": 72097.2,
+     "beckmann": 48214.2,
+     "passo": 0.00092723
+    },
+    {
+     "iteracao": 702,
+     "gap": 0.000104788,
+     "tstt": 72095.4,
+     "beckmann": 48214.1,
+     "passo": 0.00131021
+    },
+    {
+     "iteracao": 703,
+     "gap": 0.000153082,
+     "tstt": 72099.2,
+     "beckmann": 48214.1,
+     "passo": 0.00167609
+    },
+    {
+     "iteracao": 704,
+     "gap": 0.000117436,
+     "tstt": 72091.3,
+     "beckmann": 48214.1,
+     "passo": 0.00146969
+    },
+    {
+     "iteracao": 705,
+     "gap": 0.000186779,
+     "tstt": 72095.5,
+     "beckmann": 48214.1,
+     "passo": 0.0010276
+    },
+    {
+     "iteracao": 706,
+     "gap": 0.000116512,
+     "tstt": 72093.2,
+     "beckmann": 48214.1,
+     "passo": 0.00145716
+    },
+    {
+     "iteracao": 707,
+     "gap": 0.000166041,
+     "tstt": 72097.4,
+     "beckmann": 48214.1,
+     "passo": 0.000926079
+    },
+    {
+     "iteracao": 708,
+     "gap": 0.000104671,
+     "tstt": 72095.6,
+     "beckmann": 48214.1,
+     "passo": 0.00130857
+    },
+    {
+     "iteracao": 709,
+     "gap": 0.00014873,
+     "tstt": 72099.4,
+     "beckmann": 48214.1,
+     "passo": 0.00162843
+    },
+    {
+     "iteracao": 710,
+     "gap": 0.000114116,
+     "tstt": 72091.7,
+     "beckmann": 48214.1,
+     "passo": 0.00142798
+    },
+    {
+     "iteracao": 711,
+     "gap": 0.000185698,
+     "tstt": 72095.8,
+     "beckmann": 48214.1,
+     "passo": 0.00102149
+    },
+    {
+     "iteracao": 712,
+     "gap": 0.000115838,
+     "tstt": 72093.5,
+     "beckmann": 48214.1,
+     "passo": 0.00144852
+    },
+    {
+     "iteracao": 713,
+     "gap": 0.000164927,
+     "tstt": 72097.7,
+     "beckmann": 48214.1,
+     "passo": 0.00091972
+    },
+    {
+     "iteracao": 714,
+     "gap": 0.000103969,
+     "tstt": 72096.0,
+     "beckmann": 48214.1,
+     "passo": 0.00129959
+    },
+    {
+     "iteracao": 715,
+     "gap": 0.000147031,
+     "tstt": 72099.7,
+     "beckmann": 48214.1,
+     "passo": 0.000819695
+    },
+    {
+     "iteracao": 716,
+     "gap": 0.000110064,
+     "tstt": 72098.1,
+     "beckmann": 48214.1,
+     "passo": 0.00114854
+    },
+    {
+     "iteracao": 717,
+     "gap": 0.000144953,
+     "tstt": 72093.2,
+     "beckmann": 48214.1,
+     "passo": 0.00199511
+    },
+    {
+     "iteracao": 718,
+     "gap": 0.000136527,
+     "tstt": 72098.3,
+     "beckmann": 48214.0,
+     "passo": 0.00140354
+    },
+    {
+     "iteracao": 719,
+     "gap": 9.92205e-05,
+     "tstt": 72092.1,
+     "beckmann": 48214.0
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": 2095.1,
+    "delta_tstt_pct": 2.993,
+    "delta_k_rede": -0.0001,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "21->18",
+      "delta_fluxo": -1186.2,
+      "delta_k": null
+     },
+     {
+      "aresta": "26->21",
+      "delta_fluxo": -1169.2,
+      "delta_k": null
+     },
+     {
+      "aresta": "18->4",
+      "delta_fluxo": -779.2,
+      "delta_k": 0.1878
+     },
+     {
+      "aresta": "4->5",
+      "delta_fluxo": -766.3,
+      "delta_k": 0.1785
+     },
+     {
+      "aresta": "20->17",
+      "delta_fluxo": -752.4,
+      "delta_k": 0.0385
+     },
+     {
+      "aresta": "17->26",
+      "delta_fluxo": -750.7,
+      "delta_k": 0.0951
+     },
+     {
+      "aresta": "71->47",
+      "delta_fluxo": 726.2,
+      "delta_k": -0.404
+     },
+     {
+      "aresta": "47->5",
+      "delta_fluxo": 726.2,
+      "delta_k": -0.5902
+     },
+     {
+      "aresta": "72->71",
+      "delta_fluxo": 432.0,
+      "delta_k": -0.1678
+     },
+     {
+      "aresta": "26->13",
+      "delta_fluxo": 418.8,
+      "delta_k": -0.0367
+     },
+     {
+      "aresta": "13->15",
+      "delta_fluxo": 418.8,
+      "delta_k": -0.0119
+     },
+     {
+      "aresta": "15->16",
+      "delta_fluxo": 418.7,
+      "delta_k": -0.0521
+     },
+     {
+      "aresta": "65->14",
+      "delta_fluxo": 418.2,
+      "delta_k": -0.1355
+     },
+     {
+      "aresta": "64->65",
+      "delta_fluxo": 418.2,
+      "delta_k": -0.0225
+     },
+     {
+      "aresta": "14->18",
+      "delta_fluxo": 418.2,
+      "delta_k": -0.1433
+     }
+    ]
+   }
+  }
+ }
+}

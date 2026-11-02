@@ -1,0 +1,30 @@
+{
+ "codigo": "S1",
+ "nome": "S1_binario_marginal_df480",
+ "familia": "sentido",
+ "descricao": "Marginal DF-480 em mão única (binário): remove o sentido de menor fluxo",
+ "criterio": "mantém o sentido de maior fluxo na situação atual (914 veíc/h somados nas 7 arestas) e remove o oposto (513 veíc/h). A Av. São Francisco, primeira candidata, desconectaria 52 pares OD",
+ "alteracoes": [
+  {
+   "tipo": "remover",
+   "arestas": [
+    "56->87",
+    "78->105",
+    "79->91",
+    "86->78",
+    "87->86",
+    "91->56",
+    "105->77"
+   ]
+  }
+ ],
+ "arestas_mantidas": [
+  "56->91",
+  "77->105",
+  "78->86",
+  "86->87",
+  "87->56",
+  "91->79",
+  "105->78"
+ ]
+}

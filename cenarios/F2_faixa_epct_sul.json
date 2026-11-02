@@ -1,0 +1,22 @@
+{
+ "codigo": "F2",
+ "nome": "F2_faixa_epct_sul",
+ "familia": "faixa",
+ "descricao": "+1 faixa em todos os gargalos da EPCT (DF-001) sentido sul",
+ "criterio": "arestas com gargalo = True, ref DF-001 e rumo sudeste (sentido sul da EPCT)",
+ "alteracoes": [
+  {
+   "tipo": "faixa",
+   "arestas": [
+    "0->11",
+    "9->20",
+    "11->9",
+    "17->26",
+    "20->17",
+    "25->0",
+    "61->10"
+   ],
+   "faixas": 1
+  }
+ ]
+}

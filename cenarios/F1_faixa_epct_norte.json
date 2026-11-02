@@ -1,0 +1,24 @@
+{
+ "codigo": "F1",
+ "nome": "F1_faixa_epct_norte",
+ "familia": "faixa",
+ "descricao": "+1 faixa em todos os gargalos da EPCT (DF-001) sentido norte",
+ "criterio": "arestas com gargalo = True, ref DF-001 e rumo noroeste (sentido norte da EPCT)",
+ "alteracoes": [
+  {
+   "tipo": "faixa",
+   "arestas": [
+    "60->62",
+    "63->102",
+    "64->66",
+    "66->132",
+    "102->126",
+    "124->64",
+    "126->60",
+    "132->133",
+    "133->63"
+   ],
+   "faixas": 1
+  }
+ ]
+}

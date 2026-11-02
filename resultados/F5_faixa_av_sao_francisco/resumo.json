@@ -1,0 +1,583 @@
+{
+ "gerado_em": "2026-11-02T16:18:25",
+ "grafo": "cache/gama_drive_expanded_atributos.graphml",
+ "matriz": "Tables/matriz_od_final.json",
+ "bpr": {
+  "alpha": 0.15,
+  "beta": 4.0
+ },
+ "parada": {
+  "gap_relativo": 0.0001,
+  "iteracoes": 500
+ },
+ "rodada": "F5_faixa_av_sao_francisco",
+ "cenario": {
+  "codigo": "F5",
+  "nome": "F5_faixa_av_sao_francisco",
+  "familia": "faixa",
+  "descricao": "+1 faixa na Avenida São Francisco (coletora), nos dois sentidos",
+  "criterio": "arestas com name = 'Avenida São Francisco': a via coletora de maior fluxo do grafo",
+  "alteracoes": [
+   {
+    "tipo": "faixa",
+    "arestas": [
+     "30->79",
+     "53->54",
+     "54->53",
+     "54->93",
+     "55->79",
+     "55->93",
+     "79->30",
+     "79->55",
+     "93->54",
+     "93->55"
+    ],
+    "faixas": 1
+   }
+  ]
+ },
+ "base": "resultados/base",
+ "niveis": {
+  "baixa": {
+   "fator": 8.82,
+   "indicadores": {
+    "demanda_veic_h": 6002.2,
+    "tstt_veic_min": 20601.2,
+    "tstt_veic_h": 343.35,
+    "vkt_veic_km": 15520.8,
+    "velocidade_media_rede_kmh": 45.2,
+    "tempo_medio_viagem_min": 3.432,
+    "k_rede": 0.7026,
+    "arestas_vc_acima_1": 20,
+    "arestas_k_abaixo_0_5": 67,
+    "iteracoes": 2,
+    "gap_relativo": 0.0,
+    "convergiu": true,
+    "segundos": 0.08
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.000101175,
+     "tstt": 20616.1,
+     "beckmann": 17479.9,
+     "passo": 1.0
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.0,
+     "tstt": 20601.2,
+     "beckmann": 17477.8
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": -0.3,
+    "delta_tstt_pct": -0.001,
+    "delta_k_rede": 0.0,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "0->1",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "0->11",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "1->0",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "1->29",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "10->25",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "10->70",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "100->81",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "100->99",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "101->80",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "102->126",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "102->128",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "103->126",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "104->108",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "104->77",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "105->77",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     }
+    ]
+   }
+  },
+  "adotada": {
+   "fator": 12.21,
+   "indicadores": {
+    "demanda_veic_h": 8309.2,
+    "tstt_veic_min": 28615.0,
+    "tstt_veic_h": 476.92,
+    "vkt_veic_km": 21485.8,
+    "velocidade_media_rede_kmh": 45.05,
+    "tempo_medio_viagem_min": 3.444,
+    "k_rede": 0.7001,
+    "arestas_vc_acima_1": 20,
+    "arestas_k_abaixo_0_5": 67,
+    "iteracoes": 4,
+    "gap_relativo": 3.1099091861577237e-09,
+    "convergiu": true,
+    "segundos": 0.14
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.000258912,
+     "tstt": 28639.3,
+     "beckmann": 24218.2,
+     "passo": 0.0247129
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.000105548,
+     "tstt": 28634.7,
+     "beckmann": 24218.1,
+     "passo": 1.0
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.000142357,
+     "tstt": 28617.3,
+     "beckmann": 24215.2,
+     "passo": 0.0135738
+    },
+    {
+     "iteracao": 4,
+     "gap": 3.10991e-09,
+     "tstt": 28615.0,
+     "beckmann": 24215.2
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": -1.6,
+    "delta_tstt_pct": -0.006,
+    "delta_k_rede": 0.0,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "0->1",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "0->11",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "1->0",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "1->29",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "10->25",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "10->70",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "100->81",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "100->99",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "101->80",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "102->126",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "102->128",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "103->126",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "104->108",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "104->77",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "105->77",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     }
+    ]
+   }
+  },
+  "alta": {
+   "fator": 21.96,
+   "indicadores": {
+    "demanda_veic_h": 14944.3,
+    "tstt_veic_min": 53031.6,
+    "tstt_veic_h": 883.86,
+    "vkt_veic_km": 38626.8,
+    "velocidade_media_rede_kmh": 43.7,
+    "tempo_medio_viagem_min": 3.549,
+    "k_rede": 0.6765,
+    "arestas_vc_acima_1": 26,
+    "arestas_k_abaixo_0_5": 68,
+    "iteracoes": 28,
+    "gap_relativo": 9.981359366406692e-05,
+    "convergiu": true,
+    "segundos": 0.78
+   },
+   "convergencia": [
+    {
+     "iteracao": 1,
+     "gap": 0.0207412,
+     "tstt": 54132.3,
+     "beckmann": 44081.8,
+     "passo": 0.399289
+    },
+    {
+     "iteracao": 2,
+     "gap": 0.000188569,
+     "tstt": 53060.6,
+     "beckmann": 43895.6,
+     "passo": 0.037861
+    },
+    {
+     "iteracao": 3,
+     "gap": 0.000283721,
+     "tstt": 53062.7,
+     "beckmann": 43895.4,
+     "passo": 0.0238415
+    },
+    {
+     "iteracao": 4,
+     "gap": 0.000176296,
+     "tstt": 53056.7,
+     "beckmann": 43895.2,
+     "passo": 0.035486
+    },
+    {
+     "iteracao": 5,
+     "gap": 0.000265772,
+     "tstt": 53058.8,
+     "beckmann": 43895.0,
+     "passo": 0.0223844
+    },
+    {
+     "iteracao": 6,
+     "gap": 0.000165565,
+     "tstt": 53053.2,
+     "beckmann": 43894.9,
+     "passo": 0.0333992
+    },
+    {
+     "iteracao": 7,
+     "gap": 0.000250017,
+     "tstt": 53055.3,
+     "beckmann": 43894.7,
+     "passo": 0.0210997
+    },
+    {
+     "iteracao": 8,
+     "gap": 0.000156098,
+     "tstt": 53050.2,
+     "beckmann": 43894.6,
+     "passo": 0.0315505
+    },
+    {
+     "iteracao": 9,
+     "gap": 0.000236071,
+     "tstt": 53052.2,
+     "beckmann": 43894.4,
+     "passo": 0.0199582
+    },
+    {
+     "iteracao": 10,
+     "gap": 0.000147682,
+     "tstt": 53047.4,
+     "beckmann": 43894.3,
+     "passo": 0.0299007
+    },
+    {
+     "iteracao": 11,
+     "gap": 0.000223635,
+     "tstt": 53049.5,
+     "beckmann": 43894.2,
+     "passo": 0.0189368
+    },
+    {
+     "iteracao": 12,
+     "gap": 0.000140148,
+     "tstt": 53045.0,
+     "beckmann": 43894.1,
+     "passo": 0.028419
+    },
+    {
+     "iteracao": 13,
+     "gap": 0.000212473,
+     "tstt": 53047.0,
+     "beckmann": 43894.0,
+     "passo": 0.0180172
+    },
+    {
+     "iteracao": 14,
+     "gap": 0.000133362,
+     "tstt": 53042.8,
+     "beckmann": 43893.9,
+     "passo": 0.0270805
+    },
+    {
+     "iteracao": 15,
+     "gap": 0.000202397,
+     "tstt": 53044.7,
+     "beckmann": 43893.8,
+     "passo": 0.0171849
+    },
+    {
+     "iteracao": 16,
+     "gap": 0.000127218,
+     "tstt": 53040.7,
+     "beckmann": 43893.7,
+     "passo": 0.0258651
+    },
+    {
+     "iteracao": 17,
+     "gap": 0.000193254,
+     "tstt": 53042.6,
+     "beckmann": 43893.6,
+     "passo": 0.0164277
+    },
+    {
+     "iteracao": 18,
+     "gap": 0.000121627,
+     "tstt": 53038.9,
+     "beckmann": 43893.5,
+     "passo": 0.0247565
+    },
+    {
+     "iteracao": 19,
+     "gap": 0.000184917,
+     "tstt": 53040.8,
+     "beckmann": 43893.4,
+     "passo": 0.0157358
+    },
+    {
+     "iteracao": 20,
+     "gap": 0.000116516,
+     "tstt": 53037.2,
+     "beckmann": 43893.4,
+     "passo": 0.023741
+    },
+    {
+     "iteracao": 21,
+     "gap": 0.000177285,
+     "tstt": 53039.0,
+     "beckmann": 43893.3,
+     "passo": 0.015101
+    },
+    {
+     "iteracao": 22,
+     "gap": 0.000111826,
+     "tstt": 53035.6,
+     "beckmann": 43893.2,
+     "passo": 0.0228071
+    },
+    {
+     "iteracao": 23,
+     "gap": 0.00017027,
+     "tstt": 53037.4,
+     "beckmann": 43893.2,
+     "passo": 0.0145164
+    },
+    {
+     "iteracao": 24,
+     "gap": 0.000107507,
+     "tstt": 53034.2,
+     "beckmann": 43893.1,
+     "passo": 0.0219453
+    },
+    {
+     "iteracao": 25,
+     "gap": 0.000163799,
+     "tstt": 53036.0,
+     "beckmann": 43893.0,
+     "passo": 0.0139763
+    },
+    {
+     "iteracao": 26,
+     "gap": 0.000103515,
+     "tstt": 53032.9,
+     "beckmann": 43893.0,
+     "passo": 0.0211475
+    },
+    {
+     "iteracao": 27,
+     "gap": 0.000157811,
+     "tstt": 53034.6,
+     "beckmann": 43892.9,
+     "passo": 0.0134757
+    },
+    {
+     "iteracao": 28,
+     "gap": 9.98136e-05,
+     "tstt": 53031.6,
+     "beckmann": 43892.9
+    }
+   ],
+   "comparacao_com_base": {
+    "delta_tstt_veic_min": -30.0,
+    "delta_tstt_pct": -0.057,
+    "delta_k_rede": 0.0002,
+    "maiores_mudancas_de_fluxo": [
+     {
+      "aresta": "10->25",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "124->64",
+      "delta_fluxo": -0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "126->60",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "18->4",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "17->26",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "14->18",
+      "delta_fluxo": -0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "5->6",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "35->32",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "4->47",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "32->34",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "20->19",
+      "delta_fluxo": -0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "37->83",
+      "delta_fluxo": -0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "42->90",
+      "delta_fluxo": -0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "83->111",
+      "delta_fluxo": -0.0,
+      "delta_k": 0.0
+     },
+     {
+      "aresta": "21->18",
+      "delta_fluxo": 0.0,
+      "delta_k": 0.0
+     }
+    ]
+   }
+  }
+ }
+}

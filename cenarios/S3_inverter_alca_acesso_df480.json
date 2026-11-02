@@ -1,0 +1,16 @@
+{
+ "codigo": "S3",
+ "nome": "S3_inverter_alca_acesso_df480",
+ "familia": "sentido",
+ "descricao": "Inverte a alça 'Acesso DF-480' (26→21→18): a ligação EPCT sul → DF-480 passa a ser DF-480 → EPCT",
+ "criterio": "alça com 879–888 veíc/h que converge no gargalo 18→4 da DF-480; a inversão do acesso 127→130→103→126 (primeira candidata) desconectaria 54 pares OD",
+ "alteracoes": [
+  {
+   "tipo": "inverter",
+   "arestas": [
+    "26->21",
+    "21->18"
+   ]
+  }
+ ]
+}

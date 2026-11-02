@@ -1,0 +1,29 @@
+{
+ "codigo": "F6",
+ "nome": "F6_faixa_marginal_df480",
+ "familia": "faixa",
+ "descricao": "+1 faixa na Marginal DF-480, nos dois sentidos",
+ "criterio": "arestas com name = 'Marginal DF-480': coletora com K observado entre 0,26 e 0,6",
+ "alteracoes": [
+  {
+   "tipo": "faixa",
+   "arestas": [
+    "56->87",
+    "56->91",
+    "77->105",
+    "78->86",
+    "78->105",
+    "79->91",
+    "86->78",
+    "86->87",
+    "87->56",
+    "87->86",
+    "91->56",
+    "91->79",
+    "105->77",
+    "105->78"
+   ],
+   "faixas": 1
+  }
+ ]
+}

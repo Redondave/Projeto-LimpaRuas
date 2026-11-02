@@ -1,0 +1,15 @@
+{
+ "codigo": "S2",
+ "nome": "S2_inverter_acesso_df480_30_7",
+ "familia": "sentido",
+ "descricao": "Inverte o acesso 30→7: a entrada na DF-480 vira saída da DF-480",
+ "criterio": "30→7 é a mão única que converge no gargalo 7→22 da DF-480 (415 veíc/h na situação atual)",
+ "alteracoes": [
+  {
+   "tipo": "inverter",
+   "arestas": [
+    "30->7"
+   ]
+  }
+ ]
+}

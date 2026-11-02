@@ -1,0 +1,15 @@
+{
+ "codigo": "R1",
+ "nome": "R1_fechar_alca_acesso_df480_21_18",
+ "familia": "remocao",
+ "descricao": "Fecha a alça 21→18 ('Acesso DF-480'), que converge no gargalo 18→4",
+ "criterio": "acesso de maior fluxo (888 veíc/h) que pode ser fechado sem desconectar pares OD e que alimenta um gargalo; o acesso 103→126 à EPCT norte, primeira candidata, desconectaria 47 pares OD",
+ "alteracoes": [
+  {
+   "tipo": "remover",
+   "arestas": [
+    "21->18"
+   ]
+  }
+ ]
+}

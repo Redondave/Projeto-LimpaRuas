@@ -1,0 +1,15 @@
+{
+ "codigo": "R2",
+ "nome": "R2_fechar_acesso_df480_30_7",
+ "familia": "remocao",
+ "descricao": "Fecha o acesso 30→7 à DF-480",
+ "criterio": "acesso (415 veíc/h) que converge no gargalo 7→22 da DF-480; teste de Braess por fechamento de acesso",
+ "alteracoes": [
+  {
+   "tipo": "remover",
+   "arestas": [
+    "30->7"
+   ]
+  }
+ ]
+}

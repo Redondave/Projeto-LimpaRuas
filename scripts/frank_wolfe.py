@@ -40,10 +40,17 @@ Sensibilidade de alpha e beta: com valores diferentes dos do grafo, a
 capacidade efetiva dos gargalos e recalculada para que a situacao atual continue
 reproduzindo o tempo observado (mesmo conjunto de gargalos).
 
+Varredura de remocao (teste de Braess, secao 6.5): fecha cada aresta de carro,
+uma por vez, e resolve o equilibrio nos tres niveis de demanda. Uma aresta cujo
+fechamento REDUZ o TSTT e um caso de paradoxo de Braess (a via existente piora o
+sistema). Os candidatos sao confirmados com gap 1e-7 antes de entrar no resumo.
+
 Uso (da raiz do repositorio):
     python scripts/frank_wolfe.py                              # situacao atual
     python scripts/frank_wolfe.py --cenario cenarios/x.json    # cenario + comparacao
-    python scripts/frank_wolfe.py --alpha 0.8 --beta 4.7       # sensibilidade
+    python scripts/frank_wolfe.py --todos                      # todos os cenarios/*.json
+    python scripts/frank_wolfe.py --varredura-remocao          # fecha cada aresta (Braess)
+    python scripts/frank_wolfe.py --alpha 0.8 --beta 4.7 --todos   # sensibilidade
     python scripts/frank_wolfe.py --teste                      # valida o algoritmo
     python scripts/frank_wolfe.py --sioux-falls DIR            # benchmark TNTP
 
@@ -75,6 +82,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 RAIZ = Path(__file__).resolve().parents[1]
+CENARIOS = RAIZ / "cenarios"
 GRAFO = RAIZ / "cache/gama_drive_expanded_atributos.graphml"
 MATRIZ = RAIZ / "Tables/matriz_od_final.json"
 RESULTADOS = RAIZ / "resultados"
@@ -82,6 +90,8 @@ RESULTADOS = RAIZ / "resultados"
 GAP_MAX = 1e-4            # criterio de parada (metodologia, secao 6.3)
 ITER_MAX = 500
 BISSECAO_ITER = 60        # passos da busca linear (precisao ~1e-18 em lambda)
+GAP_CONFIRMACAO = 1e-7    # varredura: candidatos a Braess sao refeitos com este gap
+ITER_CONFIRMACAO = 20000
 NIVEIS = {                # nivel -> (chave do fator no grafo, coluna de capacidade)
     "baixa": ("min", "capacidade_veic_h_fator_min"),
     "adotada": ("adotado", "capacidade_veic_h"),
@@ -160,44 +170,44 @@ def montar_demanda(rede: Rede, pares: list[tuple[str, str, float]]) -> Demanda:
 # ---------------------------------------------------------------------------
 def tudo_ou_nada(rede: Rede, dem: Demanda, custo: np.ndarray) -> tuple[np.ndarray, float]:
     """Carrega toda a demanda nos caminhos minimos. Devolve (fluxo por aresta,
-    soma q_od * custo minimo_od)."""
+    soma q_od * custo minimo_od).
+
+    Vetorizado sobre todas as origens: a demanda e empurrada pelas arvores de
+    caminhos minimos das folhas para as raizes, nivel a nivel de profundidade.
+    A ordem e pela profundidade na arvore, nao pela distancia: com arestas de
+    custo zero, pai e filho empatam na distancia."""
     n = len(rede.nos)
     M = sp.csr_matrix((custo, (rede.cauda, rede.cabeca)), shape=(n, n))
     dist, pred = dijkstra(M, directed=True, indices=dem.origens, return_predecessors=True)
+    alvo = dem.q > 0
+    if np.isinf(dist[alvo]).any():
+        k = np.nonzero(np.isinf(dist) & alvo)[0][0]
+        raise RuntimeError(f"par sem caminho a partir de {rede.nos[dem.origens[k]]}")
+    sptt = float((dem.q[alvo] * dist[alvo]).sum())
+    prof = _profundidade(pred)
+    acumulado = dem.q.copy()
     y = np.zeros(len(custo))
-    sptt = 0.0
-    for k, o in enumerate(dem.origens):
-        q = dem.q[k]
-        alvo = q > 0
-        if np.isinf(dist[k][alvo]).any():
-            raise RuntimeError(f"par sem caminho a partir de {rede.nos[o]}")
-        sptt += float(q[alvo] @ dist[k][alvo])
-        # empurra a demanda pela arvore de caminhos minimos, das folhas para a
-        # raiz. A ordem e pela profundidade na arvore, nao pela distancia: com
-        # arestas de custo zero, pai e filho empatam na distancia.
-        acumulado = q.copy()
-        for no in np.argsort(-_profundidade(pred[k], o)):
-            p = pred[k, no]
-            if p < 0 or acumulado[no] == 0:
-                continue
-            y[rede.aresta_de[p, no]] += acumulado[no]
-            acumulado[p] += acumulado[no]
+    for nivel in range(int(prof.max()), 0, -1):
+        o, no = np.nonzero(prof == nivel)
+        vals = acumulado[o, no]
+        pai = pred[o, no]
+        np.add.at(acumulado, (o, pai), vals)
+        np.add.at(y, rede.aresta_de[pai, no], vals)
     return y, sptt
 
 
-def _profundidade(pred: np.ndarray, raiz: int) -> np.ndarray:
-    """Numero de arestas entre a raiz e cada no na arvore de predecessores (-1 se inalcancavel)."""
-    prof = np.full(len(pred), -1)
-    prof[raiz] = 0
-    for no in range(len(pred)):
-        cadeia, atual = [], no
-        while prof[atual] < 0 and pred[atual] >= 0:
-            cadeia.append(atual)
-            atual = pred[atual]
-        if prof[atual] < 0:
-            continue
-        for k, c in enumerate(reversed(cadeia), 1):
-            prof[c] = prof[atual] + k
+def _profundidade(pred: np.ndarray) -> np.ndarray:
+    """Numero de arestas entre a raiz e cada no, para cada linha (origem) da
+    matriz de predecessores; 0 na raiz e nos inalcancaveis."""
+    valido = pred >= 0
+    pai = np.where(valido, pred, 0)
+    linhas = np.arange(pred.shape[0])[:, None]
+    prof = np.zeros(pred.shape, dtype=np.int64)
+    for _ in range(pred.shape[1]):
+        novo = np.where(valido, prof[linhas, pai] + 1, 0)
+        if np.array_equal(novo, prof):
+            break
+        prof = novo
     return prof
 
 
@@ -283,7 +293,10 @@ def capacidades_bpr(G: nx.DiGraph, nivel: str, alpha: float, beta: float) -> dic
             continue
         fluxo = d["fluxo_atual_estimado_veic_h"] * fat[chave] / fat["adotado"]
         r = d["razao_t_obs_t0"]
-        caps[(u, v)] = min(float(d["capacidade_nominal_veic_h"]), fluxo / ((r - 1) / alpha) ** (1 / beta))
+        # _nominal_base e _mult_cap: gravados por aplicar_cenario, para que a
+        # faixa extra de um cenario tambem valha na rodada de sensibilidade
+        nominal = float(d.get("_nominal_base", d["capacidade_nominal_veic_h"]))
+        caps[(u, v)] = min(nominal, fluxo / ((r - 1) / alpha) ** (1 / beta)) * d.get("_mult_cap", 1.0)
     return caps
 
 
@@ -318,9 +331,12 @@ def aplicar_cenario(G: nx.DiGraph, cenario: dict) -> nx.DiGraph:
                 raise ValueError(f"cenario {cenario['nome']}: aresta {rot} nao existe")
             d = H[u][v]
             tipo = alt["tipo"]
+            d.setdefault("_nominal_base", d["capacidade_nominal_veic_h"])
             if tipo == "faixa":
                 n = int(alt.get("faixas", 1))
                 faixas = d["lanes_sentido"]
+                if d["gargalo"]:
+                    d["_mult_cap"] = d.get("_mult_cap", 1.0) * (faixas + n) / faixas
                 for c in COLUNAS_CAP:
                     if d["gargalo"] and c != "capacidade_nominal_veic_h":
                         d[c] = d[c] * (faixas + n) / faixas
@@ -330,6 +346,7 @@ def aplicar_cenario(G: nx.DiGraph, cenario: dict) -> nx.DiGraph:
             elif tipo == "capacidade":
                 for c in COLUNAS_CAP:
                     d[c] = d[c] * float(alt["fator"])
+                d["_mult_cap"] = d.get("_mult_cap", 1.0) * float(alt["fator"])
             elif tipo == "remover":
                 H.remove_edge(u, v)
             elif tipo == "inverter":
@@ -337,6 +354,13 @@ def aplicar_cenario(G: nx.DiGraph, cenario: dict) -> nx.DiGraph:
                     raise ValueError(f"cenario {cenario['nome']}: {v}->{u} ja existe, nao da para inverter {rot}")
                 dados = dict(d)
                 H.remove_edge(u, v)
+                # o observado (TomTom) e a calibracao valiam para o outro sentido
+                for k in ("vmed_kmh", "t_obs_min", "k_inicial", "razao_t_obs_t0", "_mult_cap"):
+                    dados.pop(k, None)
+                if dados["gargalo"]:
+                    dados["gargalo"] = False
+                    for c in COLUNAS_CAP:
+                        dados[c] = dados["capacidade_nominal_veic_h"]
                 if "geometry" in dados:
                     from shapely import wkt
                     dados["geometry"] = wkt.loads(dados["geometry"]).reverse().wkt
@@ -479,18 +503,22 @@ def comparar(base: pd.DataFrame, cen: pd.DataFrame, ind_b: dict, ind_c: dict) ->
     }
 
 
+def resolver_nivel(G: nx.DiGraph, matriz: dict, nivel: str, alpha: float, beta: float,
+                   gap_max: float, iter_max: int) -> tuple[Solucao, pd.DataFrame, dict]:
+    fat = fatores_do_grafo(G)
+    rede = rede_do_grafo(G, capacidades_bpr(G, nivel, alpha, beta), alpha, beta)
+    pares = pares_do_nivel(matriz, fat, nivel)
+    sol = frank_wolfe(rede, montar_demanda(rede, pares), gap_max, iter_max)
+    t = tabela_arestas(G, rede, sol)
+    return sol, t, indicadores(t, sol, sum(p[2] for p in pares))
+
+
 def rodar(G: nx.DiGraph, matriz: dict, alpha: float, beta: float, gap_max: float, iter_max: int,
           rotulo: str) -> tuple[dict, dict]:
     fat = fatores_do_grafo(G)
     resultados, tabelas = {}, {}
     for nivel in NIVEIS:
-        caps = capacidades_bpr(G, nivel, alpha, beta)
-        rede = rede_do_grafo(G, caps, alpha, beta)
-        pares = pares_do_nivel(matriz, fat, nivel)
-        dem = montar_demanda(rede, pares)
-        sol = frank_wolfe(rede, dem, gap_max, iter_max)
-        t = tabela_arestas(G, rede, sol)
-        ind = indicadores(t, sol, sum(p[2] for p in pares))
+        sol, t, ind = resolver_nivel(G, matriz, nivel, alpha, beta, gap_max, iter_max)
         estado = "convergiu" if sol.convergiu else "NAO convergiu"
         print(f"  [{rotulo}] demanda {nivel:7s} (fator {fat[NIVEIS[nivel][0]]:5.2f}): "
               f"{ind['demanda_veic_h']:8.0f} veic/h | TSTT {ind['tstt_veic_h']:8.1f} veic.h | "
@@ -622,9 +650,116 @@ def sioux_falls(pasta: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Varredura de remocao (teste de Braess)
+# ---------------------------------------------------------------------------
+VARREDURAS = {
+    # modo -> (descricao, sinal de Braess no delta TSTT)
+    "remocao": ("fecha a aresta (remove do grafo)", -1),
+    "faixa": ("soma 1 faixa a aresta (regra do gargalo do cenario 'faixa')", +1),
+}
+
+
+def _alterar(G: nx.DiGraph, u: str, v: str, modo: str) -> nx.DiGraph:
+    if modo == "remocao":
+        H = G.copy()
+        H.remove_edge(u, v)
+        return H
+    return aplicar_cenario(G, {"nome": f"faixa {u}->{v}",
+                               "alteracoes": [{"tipo": "faixa", "arestas": [f"{u}->{v}"], "faixas": 1}]})
+
+
+def varredura(G: nx.DiGraph, matriz: dict, alpha: float, beta: float, gap_max: float,
+              iter_max: int, tab_b: dict, res_b: dict, modo: str) -> tuple[pd.DataFrame, dict]:
+    """Altera cada aresta de carro, uma por vez (fechamento ou faixa extra), e
+    resolve os tres niveis. Braess: fechar reduz o TSTT, ou ampliar aumenta.
+    Devolve a tabela (uma linha por aresta e nivel) e o resumo com os casos
+    confirmados com gap GAP_CONFIRMACAO."""
+    sinal = VARREDURAS[modo][1]
+    arestas = [(u, v) for u, v, d in G.edges(data=True) if d["permite_carro"]]
+    base_ind = {n: res_b[n]["indicadores"] for n in NIVEIS}
+    fluxo_base = {n: tab_b[n].set_index("aresta")["fluxo_veic_h"] for n in NIVEIS}
+    linhas, inicio = [], time.perf_counter()
+    for i, (u, v) in enumerate(arestas, 1):
+        H = _alterar(G, u, v, modo)
+        perdidos = checar_alcance(H, matriz)
+        d = G[u][v]
+        comum = {"aresta": f"{u}->{v}", "nome": d.get("name", ""), "classe": d["classe"], "gargalo": d["gargalo"],
+                 "length_m": round(float(d["length"]), 1)}
+        if perdidos:
+            for n in NIVEIS:
+                linhas.append({**comum, "nivel": n, "desconecta": True, "pares_perdidos": len(perdidos),
+                               "demanda_perdida_veic_h": round(sum(p["veic_h"] for p in perdidos), 1),
+                               "fluxo_base_veic_h": float(fluxo_base[n][f"{u}->{v}"])})
+        else:
+            for n in NIVEIS:
+                sol, t, ind = resolver_nivel(H, matriz, n, alpha, beta, gap_max, iter_max)
+                b = base_ind[n]
+                linhas.append({**comum, "nivel": n, "desconecta": False, "pares_perdidos": 0,
+                               "demanda_perdida_veic_h": 0.0,
+                               "fluxo_base_veic_h": float(fluxo_base[n][f"{u}->{v}"]),
+                               "tstt_veic_min": ind["tstt_veic_min"],
+                               "delta_tstt_veic_min": round(ind["tstt_veic_min"] - b["tstt_veic_min"], 2),
+                               "delta_tstt_pct": round(100 * (ind["tstt_veic_min"] / b["tstt_veic_min"] - 1), 4),
+                               "k_rede": ind["k_rede"], "delta_k_rede": round(ind["k_rede"] - b["k_rede"], 5),
+                               "iteracoes": sol.iteracoes, "gap_relativo": sol.gap})
+        if i % 25 == 0 or i == len(arestas):
+            print(f"  varredura: {i}/{len(arestas)} arestas ({time.perf_counter() - inicio:.0f} s)")
+    tab = pd.DataFrame(linhas)
+
+    # confirmacao dos candidatos (delta TSTT com o sinal de Braess) com gap bem menor
+    cand = tab[(~tab["desconecta"]) & (sinal * tab["delta_tstt_veic_min"] > 0)]
+    confirmados = []
+    base_fina = {}
+    for n in sorted(set(cand["nivel"])):
+        sol_b, _, ind_b = resolver_nivel(G, matriz, n, alpha, beta, GAP_CONFIRMACAO, ITER_CONFIRMACAO)
+        base_fina[n] = ind_b["tstt_veic_min"]
+    for r in cand.itertuples():
+        u, v = r.aresta.split("->")
+        H = _alterar(G, u, v, modo)
+        sol, _, ind = resolver_nivel(H, matriz, r.nivel, alpha, beta, GAP_CONFIRMACAO, ITER_CONFIRMACAO)
+        delta = ind["tstt_veic_min"] - base_fina[r.nivel]
+        confirmados.append({"aresta": r.aresta, "nome": r.nome, "classe": r.classe, "nivel": r.nivel,
+                            "delta_tstt_veic_min_gap_1e-4": r.delta_tstt_veic_min,
+                            "delta_tstt_veic_min_confirmado": round(delta, 3),
+                            "delta_tstt_pct_confirmado": round(100 * delta / base_fina[r.nivel], 4),
+                            "gap_confirmacao": sol.gap, "braess": bool(sinal * delta > 0)})
+    tab["braess_confirmado"] = False
+    for c in confirmados:
+        if c["braess"]:
+            tab.loc[(tab["aresta"] == c["aresta"]) & (tab["nivel"] == c["nivel"]), "braess_confirmado"] = True
+    validas = tab[~tab["desconecta"]]
+    resumo = {
+        "modo": modo, "alteracao": VARREDURAS[modo][0],
+        "criterio_braess": "delta TSTT < 0 ao fechar" if sinal < 0 else "delta TSTT > 0 ao ampliar",
+        "arestas_testadas": len(arestas),
+        "alteracoes_que_desconectam_pares_od": int(tab.loc[tab["desconecta"], "aresta"].nunique()),
+        "alteracoes_avaliadas": int(validas["aresta"].nunique()),
+        "candidatos_gap_1e-4": len(cand),
+        "casos_braess_confirmados": [c for c in confirmados if c["braess"]],
+        "candidatos_descartados_na_confirmacao": [c for c in confirmados if not c["braess"]],
+        "por_nivel": {n: {
+            "delta_tstt_pct_min": float(validas.loc[validas["nivel"] == n, "delta_tstt_pct"].min()),
+            "delta_tstt_pct_mediana": float(validas.loc[validas["nivel"] == n, "delta_tstt_pct"].median()),
+            "delta_tstt_pct_max": float(validas.loc[validas["nivel"] == n, "delta_tstt_pct"].max()),
+            "maiores_aumentos": validas[validas["nivel"] == n].nlargest(10, "delta_tstt_pct")[
+                ["aresta", "nome", "classe", "delta_tstt_pct"]].to_dict(orient="records"),
+            "maiores_reducoes": validas[validas["nivel"] == n].nsmallest(10, "delta_tstt_pct")[
+                ["aresta", "nome", "classe", "delta_tstt_pct"]].to_dict(orient="records"),
+        } for n in NIVEIS},
+        "segundos": round(time.perf_counter() - inicio, 1),
+    }
+    return tab, resumo
+
+
+# ---------------------------------------------------------------------------
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[1])
-    ap.add_argument("--cenario", type=Path, help="JSON com as alteracoes do cenario")
+    ap.add_argument("--cenario", type=Path, nargs="+", help="JSON(s) com as alteracoes de cada cenario")
+    ap.add_argument("--todos", action="store_true", help="roda todos os cenarios/*.json")
+    ap.add_argument("--varredura-remocao", action="store_true",
+                    help="fecha cada aresta, uma por vez, nos tres niveis (teste de Braess)")
+    ap.add_argument("--varredura-faixa", action="store_true",
+                    help="soma 1 faixa a cada aresta, uma por vez, nos tres niveis (paradoxo da capacidade)")
     ap.add_argument("--alpha", type=float, help="alpha da BPR (padrao: o do grafo)")
     ap.add_argument("--beta", type=float, help="beta da BPR (padrao: o do grafo)")
     ap.add_argument("--gap", type=float, default=GAP_MAX)
@@ -662,14 +797,17 @@ def main() -> None:
           f"{conf['tempo_x_observado']['nao_calibradas']['razao_mediana_modelo_obs']} (mediana)")
     print(f"  -> {pasta_base.relative_to(RAIZ)}")
 
-    if args.cenario:
-        cenario = json.loads(args.cenario.read_text(encoding="utf-8"))
+    arquivos = list(args.cenario or [])
+    if args.todos:
+        arquivos += sorted(CENARIOS.glob("*.json"))
+    for arq in arquivos:
+        cenario = json.loads(Path(arq).read_text(encoding="utf-8"))
         H = aplicar_cenario(G, cenario)
         perdidos = checar_alcance(H, matriz)
         if perdidos:
             demanda = sum(p["veic_h"] for p in perdidos)
-            sys.exit(f"Cenario {cenario['nome']} desconecta {len(perdidos)} pares OD ({demanda:.0f} veic/h). "
-                     "Reveja as alteracoes.")
+            print(f"\nCenario {cenario['nome']} IGNORADO: desconecta {len(perdidos)} pares OD ({demanda:.0f} veic/h).")
+            continue
         print(f"\nCenario '{cenario['nome']}': {cenario.get('descricao', '')}")
         res_c, tab_c = rodar(H, matriz, alpha, beta, args.gap, args.iter_max, cenario["nome"])
         for nivel in NIVEIS:
@@ -682,6 +820,24 @@ def main() -> None:
         salvar(pasta, {**meta, "rodada": f"{cenario['nome']}{sufixo}", "cenario": cenario,
                        "base": pasta_base.relative_to(RAIZ).as_posix()}, res_c, tab_c)
         print(f"  -> {pasta.relative_to(RAIZ)}")
+
+    for modo, ligado in (("remocao", args.varredura_remocao), ("faixa", args.varredura_faixa)):
+        if not ligado:
+            continue
+        print(f"\nVarredura '{modo}' ({VARREDURAS[modo][0]}, uma aresta por vez, tres niveis):")
+        tab, resumo = varredura(G, matriz, alpha, beta, args.gap, args.iter_max, tab_b, res_b, modo)
+        pasta = RESULTADOS / f"varredura_{modo}{sufixo}"
+        pasta.mkdir(parents=True, exist_ok=True)
+        tab.to_csv(pasta / "varredura.csv", index=False, encoding="utf-8-sig")
+        (pasta / "resumo.json").write_text(json.dumps({**meta, "base": pasta_base.relative_to(RAIZ).as_posix(),
+                                                       **resumo}, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"  alteracoes avaliadas: {resumo['alteracoes_avaliadas']} | desconectam pares OD: "
+              f"{resumo['alteracoes_que_desconectam_pares_od']} | candidatos (gap 1e-4): "
+              f"{resumo['candidatos_gap_1e-4']} | Braess confirmados: {len(resumo['casos_braess_confirmados'])}")
+        for c in resumo["casos_braess_confirmados"]:
+            print(f"    BRAESS: {modo} em {c['aresta']} ({c['classe']}, {c['nome'] or 'sem nome'}) na demanda {c['nivel']}: "
+                  f"TSTT {c['delta_tstt_veic_min_confirmado']:+.2f} veic.min ({c['delta_tstt_pct_confirmado']:+.3f}%)")
+        print(f"  -> {pasta.relative_to(RAIZ)} ({resumo['segundos']:.0f} s)")
 
 
 if __name__ == "__main__":

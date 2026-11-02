@@ -1,5 +1,5 @@
 {
- "gerado_em": "2026-10-21T15:15:44",
+ "gerado_em": "2026-11-02T16:18:25",
  "grafo": "cache/gama_drive_expanded_atributos.graphml",
  "matriz": "Tables/matriz_od_final.json",
  "bpr": {
@@ -13,7 +13,7 @@
  "rodada": "exemplo_faixa_epct_norte",
  "cenario": {
   "nome": "exemplo_faixa_epct_norte",
-  "descricao": "EXEMPLO DE SINTAXE, nao e um cenario escolhido: +1 faixa nos 5 trechos de gargalo da EPCT sentido norte, antes do trevo",
+  "descricao": "+1 faixa nos 5 gargalos da EPCT sentido norte imediatamente antes do trevo (caso usado na V1 do artigo)",
   "alteracoes": [
    {
     "tipo": "faixa",
@@ -26,7 +26,10 @@
     ],
     "faixas": 1
    }
-  ]
+  ],
+  "codigo": "C0",
+  "familia": "faixa",
+  "criterio": "primeiro cenário do repositório, criado como exemplo de sintaxe: os 5 gargalos da EPCT norte entre 132 e 60 (132→133→63→102→126→60)"
  },
  "base": "resultados/base",
  "niveis": {
@@ -45,7 +48,7 @@
     "iteracoes": 1,
     "gap_relativo": 4.1959303344386105e-05,
     "convergiu": true,
-    "segundos": 0.19
+    "segundos": 0.05
    },
    "convergencia": [
     {
@@ -151,9 +154,9 @@
     "arestas_vc_acima_1": 19,
     "arestas_k_abaixo_0_5": 62,
     "iteracoes": 2,
-    "gap_relativo": 4.680087952581393e-05,
+    "gap_relativo": 4.680087952567488e-05,
     "convergiu": true,
-    "segundos": 0.3
+    "segundos": 0.09
    },
    "convergencia": [
     {
@@ -266,9 +269,9 @@
     "arestas_vc_acima_1": 25,
     "arestas_k_abaixo_0_5": 63,
     "iteracoes": 18,
-    "gap_relativo": 9.819485111990283e-05,
+    "gap_relativo": 9.819485112020193e-05,
     "convergiu": true,
-    "segundos": 1.77
+    "segundos": 0.57
    },
    "convergencia": [
     {

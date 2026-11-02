@@ -1,0 +1,413 @@
+{
+ "gerado_em": "2026-11-02T16:15:07",
+ "grafo": "cache/gama_drive_expanded_atributos.graphml",
+ "matriz": "Tables/matriz_od_final.json",
+ "bpr": {
+  "alpha": 0.15,
+  "beta": 4.0
+ },
+ "parada": {
+  "gap_relativo": 0.0001,
+  "iteracoes": 500
+ },
+ "base": "resultados/base",
+ "modo": "faixa",
+ "alteracao": "soma 1 faixa a aresta (regra do gargalo do cenario 'faixa')",
+ "criterio_braess": "delta TSTT > 0 ao ampliar",
+ "arestas_testadas": 235,
+ "alteracoes_que_desconectam_pares_od": 0,
+ "alteracoes_avaliadas": 235,
+ "candidatos_gap_1e-4": 0,
+ "casos_braess_confirmados": [],
+ "candidatos_descartados_na_confirmacao": [],
+ "por_nivel": {
+  "baixa": {
+   "delta_tstt_pct_min": -4.6997,
+   "delta_tstt_pct_mediana": 0.0,
+   "delta_tstt_pct_max": 0.0,
+   "maiores_aumentos": [
+    {
+     "aresta": "0->1",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "1->0",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "1->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "2->3",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "2->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "3->2",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "3->28",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "4->47",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "6->30",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "8->16",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": 0.0
+    }
+   ],
+   "maiores_reducoes": [
+    {
+     "aresta": "63->102",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -4.6997
+    },
+    {
+     "aresta": "126->60",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -1.5955
+    },
+    {
+     "aresta": "132->133",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -1.5732
+    },
+    {
+     "aresta": "5->6",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -1.4319
+    },
+    {
+     "aresta": "7->22",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -1.1786
+    },
+    {
+     "aresta": "60->62",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.3412
+    },
+    {
+     "aresta": "61->10",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.316
+    },
+    {
+     "aresta": "22->23",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -0.2752
+    },
+    {
+     "aresta": "9->20",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.2311
+    },
+    {
+     "aresta": "133->63",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.2291
+    }
+   ]
+  },
+  "adotada": {
+   "delta_tstt_pct_min": -4.6941,
+   "delta_tstt_pct_mediana": 0.0,
+   "delta_tstt_pct_max": 0.0,
+   "maiores_aumentos": [
+    {
+     "aresta": "0->1",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "1->0",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "1->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "2->3",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "2->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "3->2",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "3->28",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "4->47",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "6->30",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "10->70",
+     "nome": "Rua das Figueiras",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    }
+   ],
+   "maiores_reducoes": [
+    {
+     "aresta": "63->102",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -4.6941
+    },
+    {
+     "aresta": "126->60",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -1.5907
+    },
+    {
+     "aresta": "132->133",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -1.5704
+    },
+    {
+     "aresta": "5->6",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -1.4303
+    },
+    {
+     "aresta": "7->22",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -1.1766
+    },
+    {
+     "aresta": "60->62",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.3411
+    },
+    {
+     "aresta": "61->10",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.3159
+    },
+    {
+     "aresta": "133->63",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.2974
+    },
+    {
+     "aresta": "20->17",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.2918
+    },
+    {
+     "aresta": "102->126",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.2764
+    }
+   ]
+  },
+  "alta": {
+   "delta_tstt_pct_min": -4.5905,
+   "delta_tstt_pct_mediana": 0.0,
+   "delta_tstt_pct_max": 0.0,
+   "maiores_aumentos": [
+    {
+     "aresta": "0->1",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "1->0",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "1->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "2->3",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "2->29",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "3->2",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "3->28",
+     "nome": "DF-480 Km 5 1 Pan Bola na Rede",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "4->47",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "6->30",
+     "nome": "",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    },
+    {
+     "aresta": "10->70",
+     "nome": "Rua das Figueiras",
+     "classe": "tertiary",
+     "delta_tstt_pct": 0.0
+    }
+   ],
+   "maiores_reducoes": [
+    {
+     "aresta": "63->102",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -4.5905
+    },
+    {
+     "aresta": "126->60",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -1.6025
+    },
+    {
+     "aresta": "132->133",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -1.5608
+    },
+    {
+     "aresta": "5->6",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -1.4478
+    },
+    {
+     "aresta": "7->22",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -1.3281
+    },
+    {
+     "aresta": "57->8",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -0.6033
+    },
+    {
+     "aresta": "10->25",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.4664
+    },
+    {
+     "aresta": "26->21",
+     "nome": "Acesso DF-480",
+     "classe": "trunk_link",
+     "delta_tstt_pct": -0.4421
+    },
+    {
+     "aresta": "22->23",
+     "nome": "",
+     "classe": "primary",
+     "delta_tstt_pct": -0.4321
+    },
+    {
+     "aresta": "60->62",
+     "nome": "Estrada Parque Contorno",
+     "classe": "trunk",
+     "delta_tstt_pct": -0.333
+    }
+   ]
+  }
+ },
+ "segundos": 294.5
+}

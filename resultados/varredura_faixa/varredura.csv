@@ -1,0 +1,706 @@
+﻿aresta,nome,classe,gargalo,length_m,nivel,desconecta,pares_perdidos,demanda_perdida_veic_h,fluxo_base_veic_h,tstt_veic_min,delta_tstt_veic_min,delta_tstt_pct,k_rede,delta_k_rede,iteracoes,gap_relativo,braess_confirmado
+0->1,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,541.7,baixa,False,0,0.0,6.43,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668388632e-16,False
+0->1,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,541.7,adotada,False,0,0.0,8.9,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771569193e-09,False
+0->1,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,541.7,alta,False,0,0.0,16.01,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376788538e-05,False
+0->11,Estrada Parque Contorno,trunk,True,122.9,baixa,False,0,0.0,1499.32,20558.4,-43.1,-0.2092,0.7041,0.0015,2,-3.5391594769201306e-16,False
+0->11,Estrada Parque Contorno,trunk,True,122.9,adotada,False,0,0.0,2075.04,28557.6,-59.0,-0.2062,0.7016,0.0015,4,-2.547817200469879e-16,False
+0->11,Estrada Parque Contorno,trunk,True,122.9,alta,False,0,0.0,3732.66,52955.5,-106.1,-0.2,0.6777,0.0014,30,9.685854255736221e-05,False
+1->0,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,541.7,baixa,False,0,0.0,28.99,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+1->0,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,541.7,adotada,False,0,0.0,40.13,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357806724696e-09,False
+1->0,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,541.7,alta,False,0,0.0,72.53,53061.6,0.0,0.0,0.6763,0.0,28,9.984054738670703e-05,False
+1->29,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,81.2,baixa,False,0,0.0,4.02,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+1->29,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,81.2,adotada,False,0,0.0,5.57,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771551318e-09,False
+1->29,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,81.2,alta,False,0,0.0,10.02,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376744001e-05,False
+2->3,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,29.4,baixa,False,0,0.0,4.83,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668385856e-16,False
+2->3,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,29.4,adotada,False,0,0.0,6.68,28616.6,0.0,0.0,0.7001,0.0,4,3.109735650026798e-09,False
+2->3,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,29.4,alta,False,0,0.0,12.01,53061.6,0.0,0.0,0.6763,0.0,28,9.98403037673032e-05,False
+2->29,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,45.6,baixa,False,0,0.0,25.38,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+2->29,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,45.6,adotada,False,0,0.0,35.14,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357772843337e-09,False
+2->29,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,45.6,alta,False,0,0.0,63.55,53061.6,0.0,0.0,0.6763,0.0,28,9.984031404680455e-05,False
+3->2,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,29.4,baixa,False,0,0.0,24.57,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+3->2,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,29.4,adotada,False,0,0.0,34.02,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359043547006e-09,False
+3->2,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,29.4,alta,False,0,0.0,61.54,53061.6,0.0,0.0,0.6763,0.0,28,9.984030963143397e-05,False
+3->28,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,144.2,baixa,False,0,0.0,5.24,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668386226e-16,False
+3->28,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,144.2,adotada,False,0,0.0,7.25,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771553704e-09,False
+3->28,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,144.2,alta,False,0,0.0,13.04,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376738072e-05,False
+4->5,,primary,True,41.4,baixa,False,0,0.0,1490.2,20591.8,-9.7,-0.0471,0.703,0.0004,2,1.7667128962171234e-16,False
+4->5,,primary,True,41.4,adotada,False,0,0.0,2062.97,28603.1,-13.5,-0.0472,0.7005,0.0004,4,3.1112048976907347e-09,False
+4->5,,primary,True,41.4,alta,False,0,0.0,3711.3,53037.3,-24.3,-0.0458,0.6767,0.0004,28,9.977722228917532e-05,False
+4->47,,tertiary,False,33.7,baixa,False,0,0.0,58.37,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764674673975e-16,False
+4->47,,tertiary,False,33.7,adotada,False,0,0.0,80.25,28616.6,0.0,0.0,0.7001,0.0,4,3.1185246713944537e-09,False
+4->47,,tertiary,False,33.7,alta,False,0,0.0,120.42,53061.6,0.0,0.0,0.6763,0.0,28,9.983995637365879e-05,False
+5->6,,primary,True,1795.5,baixa,False,0,0.0,1496.28,20306.5,-295.0,-1.4319,0.7194,0.0168,1,9.236494834081644e-05,False
+5->6,,primary,True,1795.5,adotada,False,0,0.0,2071.38,28207.3,-409.3,-1.4303,0.7169,0.0168,2,9.658803159780382e-05,False
+5->6,,primary,True,1795.5,alta,False,0,0.0,3726.75,52293.4,-768.2,-1.4478,0.6931,0.0168,28,9.77819006450873e-05,False
+6->7,,primary,True,65.6,baixa,False,0,0.0,1450.84,20586.8,-14.7,-0.0714,0.7032,0.0006,2,1.7671401311629742e-16,False
+6->7,,primary,True,65.6,adotada,False,0,0.0,2008.48,28596.2,-20.4,-0.0713,0.7007,0.0006,4,3.111957420323546e-09,False
+6->7,,primary,True,65.6,alta,False,0,0.0,3613.95,53024.8,-36.8,-0.0694,0.6769,0.0006,28,9.9628233890325e-05,False
+6->30,,tertiary,False,43.8,baixa,False,0,0.0,89.56,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+6->30,,tertiary,False,43.8,adotada,False,0,0.0,123.98,28616.6,0.0,0.0,0.7001,0.0,4,3.1097358296216773e-09,False
+6->30,,tertiary,False,43.8,alta,False,0,0.0,222.66,53061.6,0.0,0.0,0.6763,0.0,28,9.984054119121633e-05,False
+7->22,,primary,True,927.6,baixa,False,0,0.0,1742.95,20358.7,-242.8,-1.1786,0.7159,0.0133,1,9.07656294365384e-05,False
+7->22,,primary,True,927.6,adotada,False,0,0.0,2412.86,28279.9,-336.7,-1.1766,0.7134,0.0133,2,9.523353766262997e-05,False
+7->22,,primary,True,927.6,alta,False,0,0.0,4338.23,52356.9,-704.7,-1.3281,0.6906,0.0143,26,9.79515081589408e-05,False
+8->16,,primary,False,289.6,baixa,False,0,0.0,517.48,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+8->16,,primary,False,289.6,adotada,False,0,0.0,728.31,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.1087321021883184e-09,False
+8->16,,primary,False,289.6,alta,False,0,0.0,1915.07,53056.8,-4.8,-0.009,0.6764,0.0001,28,9.962730299692535e-05,False
+8->68,,trunk_link,False,245.7,baixa,False,0,0.0,712.43,20598.8,-2.7,-0.0131,0.7028,0.0002,2,-1.7661119703104394e-16,False
+8->68,,trunk_link,False,245.7,adotada,False,0,0.0,974.32,28604.9,-11.7,-0.0409,0.7006,0.0005,2,3.217045916329766e-09,False
+8->68,,trunk_link,False,245.7,alta,False,0,0.0,1145.79,53037.9,-23.7,-0.0447,0.6768,0.0005,24,9.75036002364728e-05,False
+9->20,Estrada Parque Contorno,trunk,True,99.6,baixa,False,0,0.0,1397.63,20553.9,-47.6,-0.2311,0.7035,0.0009,2,0.0,False
+9->20,Estrada Parque Contorno,trunk,True,99.6,adotada,False,0,0.0,1934.26,28551.3,-65.3,-0.2282,0.701,0.0009,4,2.548376444207596e-16,False
+9->20,Estrada Parque Contorno,trunk,True,99.6,alta,False,0,0.0,3479.12,52943.4,-118.2,-0.2228,0.6771,0.0008,28,9.930468089024407e-05,False
+10->25,Estrada Parque Contorno,trunk,False,419.8,baixa,False,0,0.0,1445.83,20599.0,-2.5,-0.0121,0.7027,0.0001,2,-1.766098187604039e-16,False
+10->25,Estrada Parque Contorno,trunk,False,419.8,adotada,False,0,0.0,2001.54,28603.4,-13.2,-0.0461,0.7004,0.0003,4,3.111165180466204e-09,False
+10->25,Estrada Parque Contorno,trunk,False,419.8,alta,False,0,0.0,3600.81,52814.1,-247.5,-0.4664,0.6792,0.0029,28,9.915076773844709e-05,False
+10->70,Rua das Figueiras,tertiary,False,221.5,baixa,False,0,0.0,28.1,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764670037177e-16,False
+10->70,Rua das Figueiras,tertiary,False,221.5,adotada,False,0,0.0,38.9,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359053478835e-09,False
+10->70,Rua das Figueiras,tertiary,False,221.5,alta,False,0,0.0,69.96,53061.6,0.0,0.0,0.6763,0.0,28,9.984030411426907e-05,False
+11->9,Estrada Parque Contorno,trunk,True,33.5,baixa,False,0,0.0,1404.84,20564.8,-36.7,-0.1781,0.7029,0.0003,1,9.998091787327302e-05,False
+11->9,Estrada Parque Contorno,trunk,True,33.5,adotada,False,0,0.0,1944.25,28545.9,-70.7,-0.2471,0.7005,0.0004,4,0.0,False
+11->9,Estrada Parque Contorno,trunk,True,33.5,alta,False,0,0.0,3497.08,52932.8,-128.8,-0.2427,0.6767,0.0004,28,9.949310269760055e-05,False
+11->63,,trunk_link,False,25.3,baixa,False,0,0.0,99.69,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764698512854e-16,False
+11->63,,trunk_link,False,25.3,adotada,False,0,0.0,138.0,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357965745607e-09,False
+11->63,,trunk_link,False,25.3,alta,False,0,0.0,248.55,53061.6,0.0,0.0,0.6763,0.0,28,9.984068719563914e-05,False
+13->15,Estrada Parque Contorno,trunk,False,103.3,baixa,False,0,0.0,906.58,20601.5,0.0,0.0,0.7026,0.0,2,1.765877114280474e-16,False
+13->15,Estrada Parque Contorno,trunk,False,103.3,adotada,False,0,0.0,1255.03,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.109739950476437e-09,False
+13->15,Estrada Parque Contorno,trunk,False,103.3,alta,False,0,0.0,2258.21,53060.8,-0.8,-0.0015,0.6763,0.0,28,9.984696021336491e-05,False
+14->13,,trunk_link,False,227.0,baixa,False,0,0.0,113.11,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+14->13,,trunk_link,False,227.0,adotada,False,0,0.0,156.58,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359842923245e-09,False
+14->13,,trunk_link,False,227.0,alta,False,0,0.0,281.61,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984037126093247e-05,False
+14->18,,primary,True,268.4,baixa,False,0,0.0,901.4,20562.1,-39.4,-0.1912,0.7044,0.0018,2,1.769264276412022e-16,False
+14->18,,primary,True,268.4,adotada,False,0,0.0,1247.86,28562.1,-54.5,-0.1904,0.702,0.0019,4,3.115670219299658e-09,False
+14->18,,primary,True,268.4,alta,False,0,0.0,2243.32,52962.2,-99.4,-0.1873,0.6781,0.0018,30,9.724986642772711e-05,False
+15->12,Estrada Parque Contorno,trunk,False,259.2,baixa,False,0,0.0,765.71,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+15->12,Estrada Parque Contorno,trunk,False,259.2,adotada,False,0,0.0,1060.01,28616.4,-0.2,-0.0007,0.7001,0.0,4,3.109760151022195e-09,False
+15->12,Estrada Parque Contorno,trunk,False,259.2,alta,False,0,0.0,1909.14,53057.3,-4.3,-0.0081,0.6764,0.0001,28,9.98971485683076e-05,False
+15->16,,trunk_link,False,246.9,baixa,False,0,0.0,143.69,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+15->16,,trunk_link,False,246.9,adotada,False,0,0.0,198.92,28616.6,0.0,0.0,0.7001,0.0,4,3.109736527826291e-09,False
+15->16,,trunk_link,False,246.9,alta,False,0,0.0,356.09,53061.4,-0.2,-0.0004,0.6763,0.0,28,9.983860733281329e-05,False
+16->106,,primary,False,116.1,baixa,False,0,0.0,664.39,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+16->106,,primary,False,116.1,adotada,False,0,0.0,931.68,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.1084392009759464e-09,False
+16->106,,primary,False,116.1,alta,False,0,0.0,2279.16,53056.3,-5.3,-0.01,0.6763,0.0,28,9.967212479278368e-05,False
+17->26,Estrada Parque Contorno,trunk,True,70.4,baixa,False,0,0.0,1413.72,20593.7,-7.8,-0.0379,0.7028,0.0002,2,0.0,False
+17->26,Estrada Parque Contorno,trunk,True,70.4,adotada,False,0,0.0,1956.54,28606.4,-10.2,-0.0356,0.7003,0.0002,4,1.271735586494539e-16,False
+17->26,Estrada Parque Contorno,trunk,True,70.4,alta,False,0,0.0,3497.97,53023.7,-37.9,-0.0714,0.6765,0.0002,28,9.825822843670806e-05,False
+18->4,,primary,True,129.7,baixa,False,0,0.0,1548.56,20569.6,-31.9,-0.1548,0.7039,0.0013,2,-1.7686195826624076e-16,False
+18->4,,primary,True,129.7,adotada,False,0,0.0,2143.21,28573.1,-43.5,-0.152,0.7014,0.0013,4,0.0,False
+18->4,,primary,True,129.7,alta,False,0,0.0,3831.7,52986.8,-74.8,-0.141,0.6776,0.0013,26,9.952918352994968e-05,False
+19->17,Acesso DF-480,trunk_link,False,138.0,baixa,False,0,0.0,12.48,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+19->17,Acesso DF-480,trunk_link,False,138.0,adotada,False,0,0.0,17.28,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771621756e-09,False
+19->17,Acesso DF-480,trunk_link,False,138.0,alta,False,0,0.0,32.09,53061.6,0.0,0.0,0.6763,0.0,28,9.984030453446014e-05,False
+19->72,Avenida do Sol,tertiary,False,142.7,baixa,False,0,0.0,4.02,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668385896e-16,False
+19->72,Avenida do Sol,tertiary,False,142.7,adotada,False,0,0.0,5.57,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904283488e-09,False
+19->72,Avenida do Sol,tertiary,False,142.7,alta,False,0,0.0,32.24,53061.6,0.0,0.0,0.6763,0.0,28,9.984032508979049e-05,False
+20->17,Estrada Parque Contorno,trunk,True,201.6,baixa,False,0,0.0,1385.98,20555.4,-46.1,-0.2238,0.7035,0.0009,1,9.973978018316859e-05,False
+20->17,Estrada Parque Contorno,trunk,True,201.6,adotada,False,0,0.0,1918.14,28533.1,-83.5,-0.2918,0.7011,0.001,4,0.0,False
+20->17,Estrada Parque Contorno,trunk,True,201.6,alta,False,0,0.0,3427.9,52920.3,-141.3,-0.2663,0.6773,0.001,24,9.706944766179636e-05,False
+20->19,Avenida do Sol,tertiary,False,313.0,baixa,False,0,0.0,3.21,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668385852e-16,False
+20->19,Avenida do Sol,tertiary,False,313.0,adotada,False,0,0.0,4.45,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777155126e-09,False
+20->19,Avenida do Sol,tertiary,False,313.0,alta,False,0,0.0,30.23,53061.6,0.0,0.0,0.6763,0.0,28,9.98403258418172e-05,False
+21->18,Acesso DF-480,trunk_link,True,119.4,baixa,False,0,0.0,641.93,20589.5,-12.0,-0.0582,0.703,0.0004,2,-1.7669108322310377e-16,False
+21->18,Acesso DF-480,trunk_link,True,119.4,adotada,False,0,0.0,888.11,28600.5,-16.1,-0.0563,0.7005,0.0004,4,0.0,False
+21->18,Acesso DF-480,trunk_link,True,119.4,alta,False,0,0.0,1575.36,52989.8,-71.8,-0.1353,0.6771,0.0008,22,9.820515709401583e-05,False
+21->72,,trunk_link,False,42.7,baixa,False,0,0.0,0.4,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668385815e-16,False
+21->72,,trunk_link,False,42.7,adotada,False,0,0.0,0.56,28616.6,0.0,0.0,0.7001,0.0,4,3.10973590428344e-09,False
+21->72,,trunk_link,False,42.7,alta,False,0,0.0,1.01,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376743133e-05,False
+22->23,,primary,True,392.4,baixa,False,0,0.0,1641.29,20544.8,-56.7,-0.2752,0.7058,0.0032,2,0.0,False
+22->23,,primary,True,392.4,adotada,False,0,0.0,2272.13,28538.0,-78.6,-0.2747,0.7034,0.0033,4,3.118301035960747e-09,False
+22->23,,primary,True,392.4,alta,False,0,0.0,4086.48,52832.3,-229.3,-0.4321,0.681,0.0047,30,9.68122428345731e-05,False
+22->101,,tertiary,False,131.1,baixa,False,0,0.0,108.44,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+22->101,,tertiary,False,131.1,adotada,False,0,0.0,150.12,28616.6,0.0,0.0,0.7001,0.0,4,3.109736253367772e-09,False
+22->101,,tertiary,False,131.1,alta,False,0,0.0,268.63,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.983088007524301e-05,False
+25->0,Estrada Parque Contorno,trunk,True,208.5,baixa,False,0,0.0,1492.02,20573.0,-28.5,-0.1383,0.7042,0.0016,2,0.0,False
+25->0,Estrada Parque Contorno,trunk,True,208.5,adotada,False,0,0.0,2064.93,28577.7,-38.9,-0.1359,0.7017,0.0016,4,1.273012143307743e-16,False
+25->0,Estrada Parque Contorno,trunk,True,208.5,alta,False,0,0.0,3714.13,52956.0,-105.6,-0.199,0.6785,0.0022,28,9.940529410270608e-05,False
+25->33,Avenida JK,tertiary,False,230.1,baixa,False,0,0.0,33.81,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764672186453e-16,False
+25->33,Avenida JK,tertiary,False,230.1,adotada,False,0,0.0,47.36,28616.6,0.0,0.0,0.7001,0.0,4,3.0998585437571914e-09,False
+25->33,Avenida JK,tertiary,False,230.1,alta,False,0,0.0,86.53,53061.6,0.0,0.0,0.6763,0.0,28,9.984027370938821e-05,False
+26->13,Estrada Parque Contorno,trunk,False,105.0,baixa,False,0,0.0,787.05,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658788139313665e-16,False
+26->13,Estrada Parque Contorno,trunk,False,105.0,adotada,False,0,0.0,1089.55,28616.4,-0.2,-0.0007,0.7001,0.0,4,3.1097509062309045e-09,False
+26->13,Estrada Parque Contorno,trunk,False,105.0,alta,False,0,0.0,1960.59,53058.9,-2.7,-0.0051,0.6763,0.0,28,9.986735641225017e-05,False
+26->21,Acesso DF-480,trunk_link,False,238.0,baixa,False,0,0.0,635.11,20598.7,-2.8,-0.0136,0.7026,0.0,2,-1.7661216244495233e-16,False
+26->21,Acesso DF-480,trunk_link,False,238.0,adotada,False,0,0.0,878.67,28602.7,-13.9,-0.0486,0.7003,0.0002,4,1.2718994495027456e-16,False
+26->21,Acesso DF-480,trunk_link,False,238.0,alta,False,0,0.0,1558.38,52827.0,-234.6,-0.4421,0.6773,0.001,20,9.870354471231771e-05,False
+27->28,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,14.6,baixa,False,0,0.0,23.77,20601.5,0.0,0.0,0.7026,0.0,2,1.76587646684243e-16,False
+27->28,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,14.6,adotada,False,0,0.0,32.91,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777179913e-09,False
+27->28,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,14.6,alta,False,0,0.0,59.54,53061.6,0.0,0.0,0.6763,0.0,28,9.98403058810589e-05,False
+27->71,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,161.0,baixa,False,0,0.0,8.46,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668388995e-16,False
+27->71,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,161.0,adotada,False,0,0.0,11.71,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771571517e-09,False
+27->71,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,161.0,alta,False,0,0.0,21.06,53061.6,0.0,0.0,0.6763,0.0,28,9.98403037680983e-05,False
+28->3,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,144.2,baixa,False,0,0.0,26.18,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+28->3,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,144.2,adotada,False,0,0.0,36.24,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360319791197e-09,False
+28->3,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,144.2,alta,False,0,0.0,65.53,53061.6,0.0,0.0,0.6763,0.0,28,9.98403474663487e-05,False
+28->27,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,14.6,baixa,False,0,0.0,5.63,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668385856e-16,False
+28->27,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,14.6,adotada,False,0,0.0,7.8,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777155131e-09,False
+28->27,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,14.6,alta,False,0,0.0,14.03,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376757691e-05,False
+29->1,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,81.2,baixa,False,0,0.0,25.78,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+29->1,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,81.2,adotada,False,0,0.0,35.69,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359045412125e-09,False
+29->1,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,81.2,alta,False,0,0.0,64.54,53061.6,0.0,0.0,0.6763,0.0,28,9.984032394176724e-05,False
+29->2,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,45.6,baixa,False,0,0.0,4.02,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+29->2,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,45.6,adotada,False,0,0.0,5.57,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771551198e-09,False
+29->2,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,45.6,alta,False,0,0.0,10.02,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376743615e-05,False
+30->7,,tertiary,False,48.9,baixa,False,0,0.0,299.76,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658798389369446e-16,False
+30->7,,tertiary,False,48.9,adotada,False,0,0.0,414.97,28616.4,-0.2,-0.0007,0.7001,0.0,4,3.109757640455493e-09,False
+30->7,,tertiary,False,48.9,alta,False,0,0.0,743.32,53057.9,-3.7,-0.007,0.6763,0.0,28,9.976593878292434e-05,False
+30->79,Avenida São Francisco,tertiary,False,33.5,baixa,False,0,0.0,89.15,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876478271794e-16,False
+30->79,Avenida São Francisco,tertiary,False,33.5,adotada,False,0,0.0,123.42,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359779802846e-09,False
+30->79,Avenida São Francisco,tertiary,False,33.5,alta,False,0,0.0,221.65,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984063866149563e-05,False
+31->89,Avenida JK,tertiary,False,25.0,baixa,False,0,0.0,27.0,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668520619e-16,False
+31->89,Avenida JK,tertiary,False,25.0,adotada,False,0,0.0,37.38,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359043703327e-09,False
+31->89,Avenida JK,tertiary,False,25.0,alta,False,0,0.0,67.56,53061.6,0.0,0.0,0.6763,0.0,28,9.98403025410333e-05,False
+31->95,Avenida JK,tertiary,False,53.7,baixa,False,0,0.0,22.56,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668509318e-16,False
+31->95,Avenida JK,tertiary,False,53.7,adotada,False,0,0.0,31.78,28616.6,0.0,0.0,0.7001,0.0,4,3.1092435363288843e-09,False
+31->95,Avenida JK,tertiary,False,53.7,alta,False,0,0.0,58.18,53061.6,0.0,0.0,0.6763,0.0,28,9.984030379822989e-05,False
+32->34,Avenida JK,tertiary,False,97.3,baixa,False,0,0.0,25.78,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668785027e-16,False
+32->34,Avenida JK,tertiary,False,97.3,adotada,False,0,0.0,36.24,28616.6,0.0,0.0,0.7001,0.0,4,3.108355036586454e-09,False
+32->34,Avenida JK,tertiary,False,97.3,alta,False,0,0.0,66.53,53061.6,0.0,0.0,0.6763,0.0,28,9.984029946090724e-05,False
+32->35,Avenida JK,tertiary,False,101.3,baixa,False,0,0.0,26.99,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+32->35,Avenida JK,tertiary,False,101.3,adotada,False,0,0.0,37.37,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357775183224e-09,False
+32->35,Avenida JK,tertiary,False,101.3,alta,False,0,0.0,67.87,53061.6,0.0,0.0,0.6763,0.0,28,9.984029324751466e-05,False
+33->25,Avenida JK,tertiary,False,230.1,baixa,False,0,0.0,39.04,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876467697242e-16,False
+33->25,Avenida JK,tertiary,False,230.1,adotada,False,0,0.0,54.05,28616.6,0.0,0.0,0.7001,0.0,4,3.109735782689905e-09,False
+33->25,Avenida JK,tertiary,False,230.1,alta,False,0,0.0,97.87,53061.6,0.0,0.0,0.6763,0.0,28,9.984019443886611e-05,False
+33->35,Avenida JK,tertiary,False,102.8,baixa,False,0,0.0,30.2,20601.5,0.0,0.0,0.7026,0.0,2,1.765876466920373e-16,False
+33->35,Avenida JK,tertiary,False,102.8,adotada,False,0,0.0,42.36,28616.6,0.0,0.0,0.7001,0.0,4,3.1073425868113427e-09,False
+33->35,Avenida JK,tertiary,False,102.8,alta,False,0,0.0,77.54,53061.6,0.0,0.0,0.6763,0.0,28,9.984029641123917e-05,False
+34->32,Avenida JK,tertiary,False,97.3,baixa,False,0,0.0,26.99,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+34->32,Avenida JK,tertiary,False,97.3,adotada,False,0,0.0,37.37,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904569879e-09,False
+34->32,Avenida JK,tertiary,False,97.3,alta,False,0,0.0,67.87,53061.6,0.0,0.0,0.6763,0.0,28,9.984029547139932e-05,False
+34->115,Avenida JK,tertiary,False,8.4,baixa,False,0,0.0,22.56,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+34->115,Avenida JK,tertiary,False,8.4,adotada,False,0,0.0,31.78,28616.6,0.0,0.0,0.7001,0.0,4,3.1096725943837303e-09,False
+34->115,Avenida JK,tertiary,False,8.4,alta,False,0,0.0,58.51,53061.6,0.0,0.0,0.6763,0.0,28,9.984030356830411e-05,False
+35->32,Avenida JK,tertiary,False,101.3,baixa,False,0,0.0,25.78,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+35->32,Avenida JK,tertiary,False,101.3,adotada,False,0,0.0,36.24,28616.6,0.0,0.0,0.7001,0.0,4,3.108284480374732e-09,False
+35->32,Avenida JK,tertiary,False,101.3,alta,False,0,0.0,66.53,53061.6,0.0,0.0,0.6763,0.0,28,9.984029924033931e-05,False
+35->33,Avenida JK,tertiary,False,102.8,baixa,False,0,0.0,32.61,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764669683984e-16,False
+35->33,Avenida JK,tertiary,False,102.8,adotada,False,0,0.0,45.15,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360322485527e-09,False
+35->33,Avenida JK,tertiary,False,102.8,alta,False,0,0.0,81.87,53061.6,0.0,0.0,0.6763,0.0,28,9.984028385063185e-05,False
+36->97,Avenida do Sol,tertiary,False,161.4,baixa,False,0,0.0,68.37,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876474726769e-16,False
+36->97,Avenida do Sol,tertiary,False,161.4,adotada,False,0,0.0,94.65,28616.6,0.0,0.0,0.7001,0.0,4,3.109735955129562e-09,False
+36->97,Avenida do Sol,tertiary,False,161.4,alta,False,0,0.0,169.57,53061.6,0.0,0.0,0.6763,0.0,28,9.984088595195245e-05,False
+36->98,Avenida do Sol,tertiary,False,164.1,baixa,False,0,0.0,32.23,20601.5,0.0,0.0,0.7026,0.0,2,-1.76587646698388e-16,False
+36->98,Avenida do Sol,tertiary,False,164.1,adotada,False,0,0.0,44.62,28616.6,0.0,0.0,0.7001,0.0,4,3.109735778091677e-09,False
+36->98,Avenida do Sol,tertiary,False,164.1,alta,False,0,0.0,81.61,53061.6,0.0,0.0,0.6763,0.0,28,9.984040260505878e-05,False
+36->114,Rua Bolivar 2,tertiary,False,190.7,baixa,False,0,0.0,19.38,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+36->114,Rua Bolivar 2,tertiary,False,190.7,adotada,False,0,0.0,26.28,28616.6,0.0,0.0,0.7001,0.0,4,3.1109094261151236e-09,False
+36->114,Rua Bolivar 2,tertiary,False,190.7,alta,False,0,0.0,45.91,53061.6,0.0,0.0,0.6763,0.0,28,9.984030693223086e-05,False
+37->40,Avenida JK,tertiary,False,76.4,baixa,False,0,0.0,24.18,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668668584e-16,False
+37->40,Avenida JK,tertiary,False,76.4,adotada,False,0,0.0,33.47,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777337374e-09,False
+37->40,Avenida JK,tertiary,False,76.4,alta,False,0,0.0,59.87,53061.6,0.0,0.0,0.6763,0.0,28,9.984030668065093e-05,False
+37->83,Avenida JK,tertiary,False,23.3,baixa,False,0,0.0,14.92,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668392362e-16,False
+37->83,Avenida JK,tertiary,False,23.3,adotada,False,0,0.0,20.66,28616.6,0.0,0.0,0.7001,0.0,4,3.109735650030992e-09,False
+37->83,Avenida JK,tertiary,False,23.3,alta,False,0,0.0,36.5,53061.6,0.0,0.0,0.6763,0.0,28,9.984030397544817e-05,False
+37->90,Rua Bolivar 2,tertiary,False,61.6,baixa,False,0,0.0,8.47,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668387555e-16,False
+37->90,Rua Bolivar 2,tertiary,False,61.6,adotada,False,0,0.0,12.28,28616.6,0.0,0.0,0.7001,0.0,4,3.109715436622912e-09,False
+37->90,Rua Bolivar 2,tertiary,False,61.6,alta,False,0,0.0,22.45,53061.6,0.0,0.0,0.6763,0.0,28,9.984030390251903e-05,False
+38->40,Avenida JK,tertiary,False,100.3,baixa,False,0,0.0,21.35,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+38->40,Avenida JK,tertiary,False,100.3,adotada,False,0,0.0,30.11,28616.6,0.0,0.0,0.7001,0.0,4,3.1090951775821345e-09,False
+38->40,Avenida JK,tertiary,False,100.3,alta,False,0,0.0,54.85,53061.6,0.0,0.0,0.6763,0.0,28,9.984030581118331e-05,False
+38->95,Avenida JK,tertiary,False,50.6,baixa,False,0,0.0,26.19,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668627216e-16,False
+38->95,Avenida JK,tertiary,False,50.6,adotada,False,0,0.0,36.26,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357773107062e-09,False
+38->95,Avenida JK,tertiary,False,50.6,alta,False,0,0.0,65.55,53061.6,0.0,0.0,0.6763,0.0,28,9.984030150054979e-05,False
+39->49,Avenida do Sol,tertiary,False,242.0,baixa,False,0,0.0,37.77,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+39->49,Avenida do Sol,tertiary,False,242.0,adotada,False,0,0.0,52.29,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360362201608e-09,False
+39->49,Avenida do Sol,tertiary,False,242.0,alta,False,0,0.0,93.38,53061.6,0.0,0.0,0.6763,0.0,28,9.98404012856253e-05,False
+39->113,Avenida JK,tertiary,False,41.0,baixa,False,0,0.0,16.11,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668403988e-16,False
+39->113,Avenida JK,tertiary,False,41.0,adotada,False,0,0.0,22.3,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904295154e-09,False
+39->113,Avenida JK,tertiary,False,41.0,alta,False,0,0.0,40.11,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377124831e-05,False
+40->37,Avenida JK,tertiary,False,76.4,baixa,False,0,0.0,19.74,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466847536e-16,False
+40->37,Avenida JK,tertiary,False,76.4,adotada,False,0,0.0,27.88,28616.6,0.0,0.0,0.7001,0.0,4,3.109323881413498e-09,False
+40->37,Avenida JK,tertiary,False,76.4,alta,False,0,0.0,50.51,53061.6,0.0,0.0,0.6763,0.0,28,9.984030633458722e-05,False
+40->38,Avenida JK,tertiary,False,100.3,baixa,False,0,0.0,25.79,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668773771e-16,False
+40->38,Avenida JK,tertiary,False,100.3,adotada,False,0,0.0,35.7,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357774051756e-09,False
+40->38,Avenida JK,tertiary,False,100.3,alta,False,0,0.0,64.21,53061.6,0.0,0.0,0.6763,0.0,28,9.984030384891424e-05,False
+41->69,Rua das Figueiras,tertiary,False,98.5,baixa,False,0,0.0,0.0,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668385815e-16,False
+41->69,Rua das Figueiras,tertiary,False,98.5,adotada,False,0,0.0,0.0,28616.6,0.0,0.0,0.7001,0.0,4,3.10973590428344e-09,False
+41->69,Rua das Figueiras,tertiary,False,98.5,alta,False,0,0.0,0.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376743133e-05,False
+42->43,Rua Bolivar 2,tertiary,False,91.1,baixa,False,0,0.0,6.86,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466838645e-16,False
+42->43,Rua Bolivar 2,tertiary,False,91.1,adotada,False,0,0.0,10.05,28616.6,0.0,0.0,0.7001,0.0,4,3.10972624253052e-09,False
+42->43,Rua Bolivar 2,tertiary,False,91.1,alta,False,0,0.0,18.44,53061.6,0.0,0.0,0.6763,0.0,28,9.984030383197059e-05,False
+42->90,Rua Bolivar 2,tertiary,False,88.1,baixa,False,0,0.0,14.53,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668413499e-16,False
+42->90,Rua Bolivar 2,tertiary,False,88.1,adotada,False,0,0.0,20.11,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771729476e-09,False
+42->90,Rua Bolivar 2,tertiary,False,88.1,alta,False,0,0.0,35.18,53061.6,0.0,0.0,0.6763,0.0,28,9.984030508149294e-05,False
+43->42,Rua Bolivar 2,tertiary,False,91.1,baixa,False,0,0.0,13.72,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668406576e-16,False
+43->42,Rua Bolivar 2,tertiary,False,91.1,adotada,False,0,0.0,18.99,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771684845e-09,False
+43->42,Rua Bolivar 2,tertiary,False,91.1,alta,False,0,0.0,33.16,53061.6,0.0,0.0,0.6763,0.0,28,9.984030480579832e-05,False
+43->44,Rua Bolivar 2,tertiary,False,81.3,baixa,False,0,0.0,8.47,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668388115e-16,False
+43->44,Rua Bolivar 2,tertiary,False,81.3,adotada,False,0,0.0,12.28,28616.6,0.0,0.0,0.7001,0.0,4,3.109708444564949e-09,False
+43->44,Rua Bolivar 2,tertiary,False,81.3,alta,False,0,0.0,22.45,53061.6,0.0,0.0,0.6763,0.0,28,9.98403039464479e-05,False
+44->43,Rua Bolivar 2,tertiary,False,81.3,baixa,False,0,0.0,13.72,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466840471e-16,False
+44->43,Rua Bolivar 2,tertiary,False,81.3,adotada,False,0,0.0,19.0,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771672826e-09,False
+44->43,Rua Bolivar 2,tertiary,False,81.3,alta,False,0,0.0,33.18,53061.6,0.0,0.0,0.6763,0.0,28,9.984030471189219e-05,False
+44->45,Rua Bolivar 2,tertiary,False,15.5,baixa,False,0,0.0,7.26,20601.5,0.0,0.0,0.7026,0.0,2,1.765876466838599e-16,False
+44->45,Rua Bolivar 2,tertiary,False,15.5,adotada,False,0,0.0,10.6,28616.6,0.0,0.0,0.7001,0.0,4,3.109733488845221e-09,False
+44->45,Rua Bolivar 2,tertiary,False,15.5,alta,False,0,0.0,19.43,53061.6,0.0,0.0,0.6763,0.0,28,9.984030378381013e-05,False
+45->44,Rua Bolivar 2,tertiary,False,15.5,baixa,False,0,0.0,11.71,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668387392e-16,False
+45->44,Rua Bolivar 2,tertiary,False,15.5,adotada,False,0,0.0,16.21,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777156118e-09,False
+45->44,Rua Bolivar 2,tertiary,False,15.5,alta,False,0,0.0,28.16,53061.6,0.0,0.0,0.6763,0.0,28,9.984030385825856e-05,False
+45->46,Rua Bolivar 2,tertiary,False,96.2,baixa,False,0,0.0,11.28,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668394564e-16,False
+45->46,Rua Bolivar 2,tertiary,False,96.2,adotada,False,0,0.0,16.16,28616.6,0.0,0.0,0.7001,0.0,4,3.1096607714441685e-09,False
+45->46,Rua Bolivar 2,tertiary,False,96.2,alta,False,0,0.0,29.43,53061.6,0.0,0.0,0.6763,0.0,28,9.984030424624744e-05,False
+46->45,Rua Bolivar 2,tertiary,False,96.2,baixa,False,0,0.0,14.53,20601.5,0.0,0.0,0.7026,0.0,2,1.765876466840978e-16,False
+46->45,Rua Bolivar 2,tertiary,False,96.2,adotada,False,0,0.0,20.12,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359042988887e-09,False
+46->45,Rua Bolivar 2,tertiary,False,96.2,alta,False,0,0.0,35.19,53061.6,0.0,0.0,0.6763,0.0,28,9.984030490451566e-05,False
+46->112,Rua Bolivar 2,tertiary,False,82.5,baixa,False,0,0.0,12.88,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668401232e-16,False
+46->112,Rua Bolivar 2,tertiary,False,82.5,adotada,False,0,0.0,18.38,28616.6,0.0,0.0,0.7001,0.0,4,3.1096225058201952e-09,False
+46->112,Rua Bolivar 2,tertiary,False,82.5,alta,False,0,0.0,33.42,53061.6,0.0,0.0,0.6763,0.0,28,9.984030448745393e-05,False
+47->5,,tertiary,False,31.8,baixa,False,0,0.0,27.34,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466854186e-16,False
+47->5,,tertiary,False,31.8,adotada,False,0,0.0,37.85,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777255688e-09,False
+47->5,,tertiary,False,31.8,alta,False,0,0.0,68.41,53061.6,0.0,0.0,0.6763,0.0,28,9.984030236599503e-05,False
+47->71,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,37.6,baixa,False,0,0.0,55.16,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764675464687e-16,False
+47->71,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,37.6,adotada,False,0,0.0,75.81,28616.6,0.0,0.0,0.7001,0.0,4,3.120188654658639e-09,False
+47->71,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,37.6,alta,False,0,0.0,112.43,53061.6,0.0,0.0,0.6763,0.0,28,9.983991299246345e-05,False
+48->88,Rua Bolivar 2,tertiary,False,102.8,baixa,False,0,0.0,16.51,20601.5,0.0,0.0,0.7026,0.0,2,1.765876466846338e-16,False
+48->88,Rua Bolivar 2,tertiary,False,102.8,adotada,False,0,0.0,23.4,28616.6,0.0,0.0,0.7001,0.0,4,3.1093025238457683e-09,False
+48->88,Rua Bolivar 2,tertiary,False,102.8,alta,False,0,0.0,42.45,53061.6,0.0,0.0,0.6763,0.0,28,9.984030648709157e-05,False
+48->112,Rua Bolivar 2,tertiary,False,8.8,baixa,False,0,0.0,15.34,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668389944e-16,False
+48->112,Rua Bolivar 2,tertiary,False,8.8,adotada,False,0,0.0,21.24,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777157766e-09,False
+48->112,Rua Bolivar 2,tertiary,False,8.8,alta,False,0,0.0,37.21,53061.6,0.0,0.0,0.6763,0.0,28,9.984030395354604e-05,False
+49->39,Avenida do Sol,tertiary,False,242.0,baixa,False,0,0.0,46.19,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764690038866e-16,False
+49->39,Avenida do Sol,tertiary,False,242.0,adotada,False,0,0.0,63.94,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357911123484e-09,False
+49->39,Avenida do Sol,tertiary,False,242.0,alta,False,0,0.0,115.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030831525075e-05,False
+49->51,Avenida do Sol,tertiary,False,87.9,baixa,False,0,0.0,38.98,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+49->51,Avenida do Sol,tertiary,False,87.9,adotada,False,0,0.0,53.96,28616.6,0.0,0.0,0.7001,0.0,4,3.109735779923622e-09,False
+49->51,Avenida do Sol,tertiary,False,87.9,alta,False,0,0.0,96.39,53061.6,0.0,0.0,0.6763,0.0,28,9.984035823888445e-05,False
+50->88,Rua Bolivar 2,tertiary,False,17.6,baixa,False,0,0.0,15.75,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668395089e-16,False
+50->88,Rua Bolivar 2,tertiary,False,17.6,adotada,False,0,0.0,21.25,28616.6,0.0,0.0,0.7001,0.0,4,3.109780399205946e-09,False
+50->88,Rua Bolivar 2,tertiary,False,17.6,alta,False,0,0.0,37.54,53061.6,0.0,0.0,0.6763,0.0,28,9.984030401911311e-05,False
+50->96,Rua Bolivar 2,tertiary,False,16.6,baixa,False,0,0.0,16.91,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+50->96,Rua Bolivar 2,tertiary,False,16.6,adotada,False,0,0.0,23.41,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771651547e-09,False
+50->96,Rua Bolivar 2,tertiary,False,16.6,alta,False,0,0.0,42.1,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377070597e-05,False
+51->49,Avenida do Sol,tertiary,False,87.9,baixa,False,0,0.0,48.6,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764680721144e-16,False
+51->49,Avenida do Sol,tertiary,False,87.9,adotada,False,0,0.0,67.28,28616.6,0.0,0.0,0.7001,0.0,4,3.109735912234616e-09,False
+51->49,Avenida do Sol,tertiary,False,87.9,alta,False,0,0.0,121.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030635823744e-05,False
+51->121,Avenida do Sol,tertiary,False,87.9,baixa,False,0,0.0,37.37,20601.5,0.0,0.0,0.7026,0.0,2,1.765876467103131e-16,False
+51->121,Avenida do Sol,tertiary,False,87.9,adotada,False,0,0.0,51.74,28616.6,0.0,0.0,0.7001,0.0,4,3.109735778860353e-09,False
+51->121,Avenida do Sol,tertiary,False,87.9,alta,False,0,0.0,92.39,53061.6,0.0,0.0,0.6763,0.0,28,9.984033870576352e-05,False
+52->108,Avenida do Sol,tertiary,False,96.9,baixa,False,0,0.0,38.99,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764672839035e-16,False
+52->108,Avenida do Sol,tertiary,False,96.9,adotada,False,0,0.0,53.97,28616.6,0.0,0.0,0.7001,0.0,4,3.1097356528972513e-09,False
+52->108,Avenida do Sol,tertiary,False,96.9,alta,False,0,0.0,96.4,53061.6,0.0,0.0,0.6763,0.0,28,9.984036023531095e-05,False
+52->120,Avenida do Sol,tertiary,False,37.5,baixa,False,0,0.0,50.22,20601.5,0.0,0.0,0.7026,0.0,2,1.765876467438669e-16,False
+52->120,Avenida do Sol,tertiary,False,37.5,adotada,False,0,0.0,69.52,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359081515183e-09,False
+52->120,Avenida do Sol,tertiary,False,37.5,alta,False,0,0.0,125.03,53061.6,0.0,0.0,0.6763,0.0,28,9.98403050278035e-05,False
+53->54,Avenida São Francisco,tertiary,False,47.7,baixa,False,0,0.0,226.24,20601.5,0.0,0.0,0.7026,0.0,2,1.765877378328828e-16,False
+53->54,Avenida São Francisco,tertiary,False,47.7,adotada,False,0,0.0,313.2,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.109741906755272e-09,False
+53->54,Avenida São Francisco,tertiary,False,47.7,alta,False,0,0.0,563.3,53060.5,-1.1,-0.0021,0.6763,0.0,28,9.98422182186986e-05,False
+54->53,Avenida São Francisco,tertiary,False,47.7,baixa,False,0,0.0,181.35,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658768224993363e-16,False
+54->53,Avenida São Francisco,tertiary,False,47.7,adotada,False,0,0.0,251.05,28616.6,0.0,0.0,0.7001,0.0,4,3.109738069694371e-09,False
+54->53,Avenida São Francisco,tertiary,False,47.7,alta,False,0,0.0,451.52,53061.2,-0.4,-0.0008,0.6763,0.0,28,9.984105077200826e-05,False
+54->93,Avenida São Francisco,tertiary,False,102.3,baixa,False,0,0.0,232.68,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658789893094422e-16,False
+54->93,Avenida São Francisco,tertiary,False,102.3,adotada,False,0,0.0,322.11,28616.4,-0.2,-0.0007,0.7001,0.0,4,3.109752036701031e-09,False
+54->93,Avenida São Francisco,tertiary,False,102.3,alta,False,0,0.0,579.32,53058.7,-2.9,-0.0055,0.6763,0.0,28,9.984560202113637e-05,False
+55->79,Avenida São Francisco,tertiary,False,349.1,baixa,False,0,0.0,247.16,20601.4,-0.1,-0.0005,0.7026,0.0,2,-1.7658887060749903e-16,False
+55->79,Avenida São Francisco,tertiary,False,349.1,adotada,False,0,0.0,342.16,28615.9,-0.7,-0.0024,0.7001,0.0,4,3.1098147980977984e-09,False
+55->79,Avenida São Francisco,tertiary,False,349.1,alta,False,0,0.0,615.38,53047.9,-13.7,-0.0258,0.6764,0.0001,28,9.986601644488092e-05,False
+55->93,Avenida São Francisco,tertiary,False,98.8,baixa,False,0,0.0,187.41,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+55->93,Avenida São Francisco,tertiary,False,98.8,adotada,False,0,0.0,259.44,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.109740710464296e-09,False
+55->93,Avenida São Francisco,tertiary,False,98.8,alta,False,0,0.0,466.61,53060.7,-0.9,-0.0017,0.6763,0.0,28,9.984191125709663e-05,False
+56->87,Marginal DF-480,tertiary,False,36.8,baixa,False,0,0.0,51.47,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764673909468e-16,False
+56->87,Marginal DF-480,tertiary,False,36.8,adotada,False,0,0.0,71.25,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357807155702e-09,False
+56->87,Marginal DF-480,tertiary,False,36.8,alta,False,0,0.0,129.84,53061.6,0.0,0.0,0.6763,0.0,28,9.984050381968944e-05,False
+56->91,Marginal DF-480,tertiary,False,123.7,baixa,False,0,0.0,98.84,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658765047935242e-16,False
+56->91,Marginal DF-480,tertiary,False,123.7,adotada,False,0,0.0,136.83,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360218072152e-09,False
+56->91,Marginal DF-480,tertiary,False,123.7,alta,False,0,0.0,245.1,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984320612440856e-05,False
+57->8,,primary,False,3035.7,baixa,False,0,0.0,1164.08,20598.2,-3.3,-0.016,0.7028,0.0002,2,1.7661663199044352e-16,False
+57->8,,primary,False,3035.7,adotada,False,0,0.0,1611.5,28599.4,-17.2,-0.0601,0.7009,0.0008,4,3.1116049445042354e-09,False
+57->8,,primary,False,3035.7,alta,False,0,0.0,2896.96,52741.5,-320.1,-0.6033,0.6842,0.0079,26,9.86856810709981e-05,False
+58->57,,primary,False,76.9,baixa,False,0,0.0,1028.4,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+58->57,,primary,False,76.9,adotada,False,0,0.0,1423.67,28616.3,-0.3,-0.001,0.7001,0.0,4,3.1097635426807893e-09,False
+58->57,,primary,False,76.9,alta,False,0,0.0,2560.51,53056.8,-4.8,-0.009,0.6764,0.0001,28,9.984935160778146e-05,False
+58->75,,tertiary,False,45.4,baixa,False,0,0.0,1.21,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668385815e-16,False
+58->75,,tertiary,False,45.4,adotada,False,0,0.0,1.67,28616.6,0.0,0.0,0.7001,0.0,4,3.10973590428344e-09,False
+58->75,,tertiary,False,45.4,alta,False,0,0.0,3.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376729422e-05,False
+59->74,,tertiary,False,29.1,baixa,False,0,0.0,106.72,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+59->74,,tertiary,False,29.1,adotada,False,0,0.0,147.74,28616.6,0.0,0.0,0.7001,0.0,4,3.1097358557158283e-09,False
+59->74,,tertiary,False,29.1,alta,False,0,0.0,265.71,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984032936561354e-05,False
+60->10,,trunk_link,False,23.1,baixa,False,0,0.0,124.94,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764770371601e-16,False
+60->10,,trunk_link,False,23.1,adotada,False,0,0.0,172.96,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359700220114e-09,False
+60->10,,trunk_link,False,23.1,alta,False,0,0.0,312.07,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.9839712722045e-05,False
+60->62,Estrada Parque Contorno,trunk,True,93.4,baixa,False,0,0.0,1560.27,20531.2,-70.3,-0.3412,0.7035,0.0009,2,-1.7719289497124003e-16,False
+60->62,Estrada Parque Contorno,trunk,True,93.4,adotada,False,0,0.0,2159.96,28519.0,-97.6,-0.3411,0.7011,0.001,4,3.120379726962043e-09,False
+60->62,Estrada Parque Contorno,trunk,True,93.4,alta,False,0,0.0,3884.74,52884.9,-176.7,-0.333,0.6772,0.0009,30,9.671592942042182e-05,False
+61->10,Estrada Parque Contorno,trunk,True,82.6,baixa,False,0,0.0,1331.29,20536.4,-65.1,-0.316,0.7034,0.0008,2,-1.7714782312473526e-16,False
+61->10,Estrada Parque Contorno,trunk,True,82.6,adotada,False,0,0.0,1842.97,28526.2,-90.4,-0.3159,0.7009,0.0008,4,3.1195847201135223e-09,False
+61->10,Estrada Parque Contorno,trunk,True,82.6,alta,False,0,0.0,3314.63,52898.0,-163.6,-0.3083,0.6771,0.0008,30,9.669197513888148e-05,False
+61->62,,trunk_link,False,22.4,baixa,False,0,0.0,75.8,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+61->62,,trunk_link,False,22.4,adotada,False,0,0.0,104.94,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357806459047e-09,False
+61->62,,trunk_link,False,22.4,alta,False,0,0.0,188.74,53061.6,0.0,0.0,0.6763,0.0,28,9.98403049047341e-05,False
+63->102,Estrada Parque Contorno,trunk,True,516.3,baixa,False,0,0.0,1555.78,19633.3,-968.2,-4.6997,0.7164,0.0138,1,7.831842299017672e-05,False
+63->102,Estrada Parque Contorno,trunk,True,516.3,adotada,False,0,0.0,2153.75,27273.3,-1343.3,-4.6941,0.7139,0.0138,2,8.27832459540881e-05,False
+63->102,Estrada Parque Contorno,trunk,True,516.3,alta,False,0,0.0,3874.57,50625.8,-2435.8,-4.5905,0.6901,0.0138,26,9.869996463019838e-05,False
+64->65,,trunk_link,False,253.1,baixa,False,0,0.0,86.76,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764762276937e-16,False
+64->65,,trunk_link,False,253.1,adotada,False,0,0.0,120.1,28616.6,0.0,0.0,0.7001,0.0,4,3.109735837675971e-09,False
+64->65,,trunk_link,False,253.1,alta,False,0,0.0,215.01,53061.6,0.0,0.0,0.6763,0.0,28,9.984111774141453e-05,False
+64->66,Estrada Parque Contorno,trunk,True,282.2,baixa,False,0,0.0,679.91,20590.6,-10.9,-0.0529,0.7028,0.0002,2,0.0,False
+64->66,Estrada Parque Contorno,trunk,True,282.2,adotada,False,0,0.0,953.16,28587.6,-29.0,-0.1013,0.7006,0.0005,4,2.600121964335225e-09,False
+64->66,Estrada Parque Contorno,trunk,True,282.2,alta,False,0,0.0,2318.79,52894.7,-166.9,-0.3145,0.6775,0.0012,24,9.888828904094953e-05,False
+65->14,,primary,True,120.2,baixa,False,0,0.0,1011.29,20581.7,-19.8,-0.0961,0.7036,0.001,2,-1.7675828033214762e-16,False
+65->14,,primary,True,120.2,adotada,False,0,0.0,1399.99,28589.1,-27.5,-0.0961,0.7011,0.001,4,3.112728227378722e-09,False
+65->14,,primary,True,120.2,alta,False,0,0.0,2516.92,53010.9,-50.7,-0.0955,0.6773,0.001,30,9.67903135922882e-05,False
+66->132,Estrada Parque Contorno,trunk,True,29.3,baixa,False,0,0.0,1460.13,20577.4,-24.1,-0.117,0.7029,0.0003,1,9.822698712420516e-05,False
+66->132,Estrada Parque Contorno,trunk,True,29.3,adotada,False,0,0.0,2021.33,28562.9,-53.7,-0.1877,0.7005,0.0004,4,3.1155770361399457e-09,False
+66->132,Estrada Parque Contorno,trunk,True,29.3,alta,False,0,0.0,3636.05,52966.0,-95.6,-0.1802,0.6766,0.0003,28,9.919187648358167e-05,False
+67->66,,trunk_link,False,237.9,baixa,False,0,0.0,760.56,20594.7,-6.8,-0.033,0.7027,0.0001,2,-3.53292294652278e-16,False
+67->66,,trunk_link,False,237.9,adotada,False,0,0.0,1040.95,28584.2,-32.4,-0.1132,0.7005,0.0004,2,3.2193783121516777e-09,False
+67->66,,trunk_link,False,237.9,alta,False,0,0.0,1268.31,52976.7,-84.9,-0.16,0.6763,0.0,16,9.736498209611256e-05,False
+68->12,,trunk_link,False,230.7,baixa,False,0,0.0,46.53,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764671135155e-16,False
+68->12,,trunk_link,False,230.7,adotada,False,0,0.0,64.41,28616.6,0.0,0.0,0.7001,0.0,4,3.109735778927291e-09,False
+68->12,,trunk_link,False,230.7,alta,False,0,0.0,113.16,53061.6,0.0,0.0,0.6763,0.0,28,9.984025210127548e-05,False
+68->73,,trunk_link,False,219.1,baixa,False,0,0.0,666.3,20599.6,-1.9,-0.0092,0.7027,0.0001,2,-1.7660429355393147e-16,False
+68->73,,trunk_link,False,219.1,adotada,False,0,0.0,910.46,28609.0,-7.6,-0.0266,0.7004,0.0003,2,3.216585555951865e-09,False
+68->73,,trunk_link,False,219.1,alta,False,0,0.0,1033.62,53047.8,-13.8,-0.026,0.6765,0.0002,26,9.708242202998751e-05,False
+69->41,Rua das Figueiras,tertiary,False,98.5,baixa,False,0,0.0,0.0,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668385815e-16,False
+69->41,Rua das Figueiras,tertiary,False,98.5,adotada,False,0,0.0,0.0,28616.6,0.0,0.0,0.7001,0.0,4,3.10973590428344e-09,False
+69->41,Rua das Figueiras,tertiary,False,98.5,alta,False,0,0.0,0.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376743133e-05,False
+69->70,Rua das Figueiras,tertiary,False,103.2,baixa,False,0,0.0,17.27,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+69->70,Rua das Figueiras,tertiary,False,103.2,adotada,False,0,0.0,23.91,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359043298012e-09,False
+69->70,Rua das Figueiras,tertiary,False,103.2,alta,False,0,0.0,43.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030378253779e-05,False
+70->10,Rua das Figueiras,tertiary,False,221.5,baixa,False,0,0.0,17.29,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+70->10,Rua das Figueiras,tertiary,False,221.5,adotada,False,0,0.0,23.93,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904404276e-09,False
+70->10,Rua das Figueiras,tertiary,False,221.5,alta,False,0,0.0,43.04,53061.6,0.0,0.0,0.6763,0.0,28,9.984030380680464e-05,False
+70->69,Rua das Figueiras,tertiary,False,103.2,baixa,False,0,0.0,31.3,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+70->69,Rua das Figueiras,tertiary,False,103.2,adotada,False,0,0.0,43.33,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360321790145e-09,False
+70->69,Rua das Figueiras,tertiary,False,103.2,alta,False,0,0.0,77.93,53061.6,0.0,0.0,0.6763,0.0,28,9.984030401742839e-05,False
+71->27,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,161.0,baixa,False,0,0.0,24.17,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+71->27,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,161.0,adotada,False,0,0.0,33.46,28616.6,0.0,0.0,0.7001,0.0,4,3.109736031698568e-09,False
+71->27,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,161.0,alta,False,0,0.0,60.53,53061.6,0.0,0.0,0.6763,0.0,28,9.984032778108533e-05,False
+71->47,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,37.6,baixa,False,0,0.0,26.94,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668635965e-16,False
+71->47,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,37.6,adotada,False,0,0.0,37.29,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904444681e-09,False
+71->47,DF-480 Km 5 1 Pan Bola na Rede,tertiary,False,37.6,alta,False,0,0.0,67.4,53061.6,0.0,0.0,0.6763,0.0,28,9.984030148579582e-05,False
+71->72,Avenida do Sol,tertiary,False,242.4,baixa,False,0,0.0,20.54,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466876121e-16,False
+71->72,Avenida do Sol,tertiary,False,242.4,adotada,False,0,0.0,28.43,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359045254125e-09,False
+71->72,Avenida do Sol,tertiary,False,242.4,alta,False,0,0.0,53.48,53061.6,0.0,0.0,0.6763,0.0,28,9.984033174145881e-05,False
+71->119,Avenida do Sol,tertiary,False,152.5,baixa,False,0,0.0,50.75,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764685269644e-16,False
+71->119,Avenida do Sol,tertiary,False,152.5,adotada,False,0,0.0,69.7,28616.6,0.0,0.0,0.7001,0.0,4,3.136766195680269e-09,False
+71->119,Avenida do Sol,tertiary,False,152.5,alta,False,0,0.0,123.67,53061.6,0.0,0.0,0.6763,0.0,28,9.984045937178679e-05,False
+72->19,Avenida do Sol,tertiary,False,142.7,baixa,False,0,0.0,9.67,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668392187e-16,False
+72->19,Avenida do Sol,tertiary,False,142.7,adotada,False,0,0.0,13.39,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777159212e-09,False
+72->19,Avenida do Sol,tertiary,False,142.7,alta,False,0,0.0,25.09,53061.6,0.0,0.0,0.6763,0.0,28,9.984030436875701e-05,False
+72->71,Avenida do Sol,tertiary,False,242.4,baixa,False,0,0.0,22.91,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764669062453e-16,False
+72->71,Avenida do Sol,tertiary,False,242.4,adotada,False,0,0.0,31.71,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777591256e-09,False
+72->71,Avenida do Sol,tertiary,False,242.4,alta,False,0,0.0,80.6,53061.6,0.0,0.0,0.6763,0.0,28,9.984147577471281e-05,False
+73->67,,trunk_link,False,245.2,baixa,False,0,0.0,639.82,20599.6,-1.9,-0.0092,0.7027,0.0001,2,1.7660396357172338e-16,False
+73->67,,trunk_link,False,245.2,adotada,False,0,0.0,873.81,28609.2,-7.4,-0.0259,0.7003,0.0002,2,3.2165636805516577e-09,False
+73->67,,trunk_link,False,245.2,alta,False,0,0.0,967.7,53049.9,-11.7,-0.022,0.6765,0.0002,26,9.724722323167959e-05,False
+74->57,,tertiary,False,34.9,baixa,False,0,0.0,154.53,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876551679887e-16,False
+74->57,,tertiary,False,34.9,adotada,False,0,0.0,213.93,28616.6,0.0,0.0,0.7001,0.0,4,3.109736324030017e-09,False
+74->57,,tertiary,False,34.9,alta,False,0,0.0,383.4,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.982989672195038e-05,False
+75->59,,tertiary,False,28.8,baixa,False,0,0.0,71.04,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764683614234e-16,False
+75->59,,tertiary,False,28.8,adotada,False,0,0.0,98.35,28616.6,0.0,0.0,0.7001,0.0,4,3.109735786971126e-09,False
+75->59,,tertiary,False,28.8,alta,False,0,0.0,176.89,53061.6,0.0,0.0,0.6763,0.0,28,9.98403069658775e-05,False
+75->74,,tertiary,False,17.7,baixa,False,0,0.0,47.0,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764669505383e-16,False
+75->74,,tertiary,False,17.7,adotada,False,0,0.0,65.07,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357778767612e-09,False
+75->74,,tertiary,False,17.7,alta,False,0,0.0,115.67,53061.6,0.0,0.0,0.6763,0.0,28,9.984026040524311e-05,False
+76->98,Avenida do Sol,tertiary,False,179.6,baixa,False,0,0.0,56.78,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+76->98,Avenida do Sol,tertiary,False,179.6,adotada,False,0,0.0,78.05,28616.6,0.0,0.0,0.7001,0.0,4,3.1471626296516375e-09,False
+76->98,Avenida do Sol,tertiary,False,179.6,alta,False,0,0.0,138.69,53061.6,0.0,0.0,0.6763,0.0,28,9.984052087189528e-05,False
+76->119,Avenida do Sol,tertiary,False,53.0,baixa,False,0,0.0,34.64,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764669161408e-16,False
+76->119,Avenida do Sol,tertiary,False,53.0,adotada,False,0,0.0,47.96,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357776550396e-09,False
+76->119,Avenida do Sol,tertiary,False,53.0,alta,False,0,0.0,87.95,53061.6,0.0,0.0,0.6763,0.0,28,9.98403468759556e-05,False
+77->97,Avenida do Sol,tertiary,False,282.8,baixa,False,0,0.0,36.25,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764672954352e-16,False
+77->97,Avenida do Sol,tertiary,False,282.8,adotada,False,0,0.0,50.18,28616.6,0.0,0.0,0.7001,0.0,4,3.109735907228251e-09,False
+77->97,Avenida do Sol,tertiary,False,282.8,alta,False,0,0.0,91.61,53061.6,0.0,0.0,0.6763,0.0,28,9.984057714543707e-05,False
+77->104,Avenida do Sol,tertiary,False,119.3,baixa,False,0,0.0,54.26,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764692640073e-16,False
+77->104,Avenida do Sol,tertiary,False,119.3,adotada,False,0,0.0,75.11,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359199173875e-09,False
+77->104,Avenida do Sol,tertiary,False,119.3,alta,False,0,0.0,135.09,53061.6,0.0,0.0,0.6763,0.0,28,9.984030886172398e-05,False
+77->105,Marginal DF-480,tertiary,False,135.7,baixa,False,0,0.0,84.02,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764838987763e-16,False
+77->105,Marginal DF-480,tertiary,False,135.7,adotada,False,0,0.0,116.31,28616.6,0.0,0.0,0.7001,0.0,4,3.1097361413793454e-09,False
+77->105,Marginal DF-480,tertiary,False,135.7,alta,False,0,0.0,207.86,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984231668981911e-05,False
+78->86,Marginal DF-480,tertiary,False,124.5,baixa,False,0,0.0,94.02,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876500913047e-16,False
+78->86,Marginal DF-480,tertiary,False,124.5,adotada,False,0,0.0,130.16,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359967942144e-09,False
+78->86,Marginal DF-480,tertiary,False,124.5,alta,False,0,0.0,232.77,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984391077718887e-05,False
+78->105,Marginal DF-480,tertiary,False,239.0,baixa,False,0,0.0,51.5,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764700196305e-16,False
+78->105,Marginal DF-480,tertiary,False,239.0,adotada,False,0,0.0,71.29,28616.6,0.0,0.0,0.7001,0.0,4,3.109735797659687e-09,False
+78->105,Marginal DF-480,tertiary,False,239.0,alta,False,0,0.0,129.58,53061.6,0.0,0.0,0.6763,0.0,28,9.984161024557415e-05,False
+79->30,Avenida São Francisco,tertiary,False,33.5,baixa,False,0,0.0,296.95,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+79->30,Avenida São Francisco,tertiary,False,33.5,adotada,False,0,0.0,411.08,28616.4,-0.2,-0.0007,0.7001,0.0,4,3.1097579858221227e-09,False
+79->30,Avenida São Francisco,tertiary,False,33.5,alta,False,0,0.0,736.33,53057.8,-3.8,-0.0072,0.6763,0.0,28,9.976398671995734e-05,False
+79->55,Avenida São Francisco,tertiary,False,349.1,baixa,False,0,0.0,192.23,20601.5,0.0,0.0,0.7026,0.0,2,-1.765880023757282e-16,False
+79->55,Avenida São Francisco,tertiary,False,349.1,adotada,False,0,0.0,266.12,28616.4,-0.2,-0.0007,0.7001,0.0,4,3.1097587046640006e-09,False
+79->55,Avenida São Francisco,tertiary,False,349.1,alta,False,0,0.0,478.62,53057.6,-4.0,-0.0075,0.6763,0.0,28,9.984777495646632e-05,False
+79->91,Marginal DF-480,tertiary,False,122.8,baixa,False,0,0.0,56.67,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+79->91,Marginal DF-480,tertiary,False,122.8,adotada,False,0,0.0,78.45,28616.6,0.0,0.0,0.7001,0.0,4,3.109735922493727e-09,False
+79->91,Marginal DF-480,tertiary,False,122.8,alta,False,0,0.0,143.12,53061.6,0.0,0.0,0.6763,0.0,28,9.984110075058285e-05,False
+80->100,,tertiary,False,174.9,baixa,False,0,0.0,112.85,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658765550446346e-16,False
+80->100,,tertiary,False,174.9,adotada,False,0,0.0,156.22,28616.6,0.0,0.0,0.7001,0.0,4,3.1097363457187027e-09,False
+80->100,,tertiary,False,174.9,alta,False,0,0.0,279.6,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.982554228250777e-05,False
+82->81,,tertiary_link,False,111.4,baixa,False,0,0.0,192.52,20601.5,0.0,0.0,0.7026,0.0,2,1.7658805754744176e-16,False
+82->81,,tertiary_link,False,111.4,adotada,False,0,0.0,266.51,28616.3,-0.3,-0.001,0.7001,0.0,4,3.1097623881237434e-09,False
+82->81,,tertiary_link,False,111.4,alta,False,0,0.0,479.33,53057.0,-4.6,-0.0087,0.6763,0.0,28,9.984893391721602e-05,False
+82->99,,tertiary,False,40.7,baixa,False,0,0.0,41.35,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764669741765e-16,False
+82->99,,tertiary,False,40.7,adotada,False,0,0.0,57.24,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359051574653e-09,False
+82->99,,tertiary,False,40.7,alta,False,0,0.0,102.95,53061.6,0.0,0.0,0.6763,0.0,28,9.984030405222332e-05,False
+83->37,Avenida JK,tertiary,False,23.3,baixa,False,0,0.0,17.33,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+83->37,Avenida JK,tertiary,False,23.3,adotada,False,0,0.0,23.99,28616.6,0.0,0.0,0.7001,0.0,4,3.10973590429254e-09,False
+83->37,Avenida JK,tertiary,False,23.3,alta,False,0,0.0,43.15,53061.6,0.0,0.0,0.6763,0.0,28,9.98403037702594e-05,False
+83->111,Avenida JK,tertiary,False,14.9,baixa,False,0,0.0,14.92,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+83->111,Avenida JK,tertiary,False,14.9,adotada,False,0,0.0,20.66,28616.6,0.0,0.0,0.7001,0.0,4,3.1097356500291895e-09,False
+83->111,Avenida JK,tertiary,False,14.9,alta,False,0,0.0,36.5,53061.6,0.0,0.0,0.6763,0.0,28,9.984030388655491e-05,False
+84->117,,unclassified,False,195.8,baixa,False,0,0.0,38.23,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764710074424e-16,False
+84->117,,unclassified,False,195.8,adotada,False,0,0.0,52.92,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359311553194e-09,False
+84->117,,unclassified,False,195.8,alta,False,0,0.0,95.18,53061.6,0.0,0.0,0.6763,0.0,28,9.984031252334777e-05,False
+85->116,,unclassified,False,107.4,baixa,False,0,0.0,22.13,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+85->116,,unclassified,False,107.4,adotada,False,0,0.0,30.64,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360321981886e-09,False
+85->116,,unclassified,False,107.4,alta,False,0,0.0,55.11,53061.6,0.0,0.0,0.6763,0.0,28,9.984030402353884e-05,False
+85->117,,unclassified,False,134.2,baixa,False,0,0.0,9.64,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+85->117,,unclassified,False,134.2,adotada,False,0,0.0,13.35,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771701265e-09,False
+85->117,,unclassified,False,134.2,alta,False,0,0.0,24.01,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377232592e-05,False
+86->78,Marginal DF-480,tertiary,False,124.5,baixa,False,0,0.0,52.28,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764688999322e-16,False
+86->78,Marginal DF-480,tertiary,False,124.5,adotada,False,0,0.0,72.37,28616.6,0.0,0.0,0.7001,0.0,4,3.10973591757061e-09,False
+86->78,Marginal DF-480,tertiary,False,124.5,alta,False,0,0.0,131.52,53061.6,0.0,0.0,0.6763,0.0,28,9.984113701610015e-05,False
+86->87,Marginal DF-480,tertiary,False,70.3,baixa,False,0,0.0,95.23,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876483555553e-16,False
+86->87,Marginal DF-480,tertiary,False,70.3,adotada,False,0,0.0,131.83,28616.6,0.0,0.0,0.7001,0.0,4,3.109735884910298e-09,False
+86->87,Marginal DF-480,tertiary,False,70.3,alta,False,0,0.0,236.11,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984162869222665e-05,False
+87->56,Marginal DF-480,tertiary,False,36.8,baixa,False,0,0.0,95.63,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764777137807e-16,False
+87->56,Marginal DF-480,tertiary,False,36.8,adotada,False,0,0.0,132.38,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359743834113e-09,False
+87->56,Marginal DF-480,tertiary,False,36.8,alta,False,0,0.0,237.1,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984116225370075e-05,False
+87->86,Marginal DF-480,tertiary,False,70.3,baixa,False,0,0.0,52.28,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764677723117e-16,False
+87->86,Marginal DF-480,tertiary,False,70.3,adotada,False,0,0.0,72.37,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357831737947e-09,False
+87->86,Marginal DF-480,tertiary,False,70.3,alta,False,0,0.0,131.85,53061.6,0.0,0.0,0.6763,0.0,28,9.984063637019639e-05,False
+88->48,Rua Bolivar 2,tertiary,False,102.8,baixa,False,0,0.0,16.15,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668448418e-16,False
+88->48,Rua Bolivar 2,tertiary,False,102.8,adotada,False,0,0.0,22.36,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359043237913e-09,False
+88->48,Rua Bolivar 2,tertiary,False,102.8,alta,False,0,0.0,39.22,53061.6,0.0,0.0,0.6763,0.0,28,9.984030646345438e-05,False
+88->50,Rua Bolivar 2,tertiary,False,17.6,baixa,False,0,0.0,16.51,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+88->50,Rua Bolivar 2,tertiary,False,17.6,adotada,False,0,0.0,22.85,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359042925223e-09,False
+88->50,Rua Bolivar 2,tertiary,False,17.6,alta,False,0,0.0,41.77,53061.6,0.0,0.0,0.6763,0.0,28,9.984030399867104e-05,False
+89->31,Avenida JK,tertiary,False,25.0,baixa,False,0,0.0,22.15,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668433038e-16,False
+89->31,Avenida JK,tertiary,False,25.0,adotada,False,0,0.0,31.22,28616.6,0.0,0.0,0.7001,0.0,4,3.10954406765921e-09,False
+89->31,Avenida JK,tertiary,False,25.0,alta,False,0,0.0,57.18,53061.6,0.0,0.0,0.6763,0.0,28,9.98403037791612e-05,False
+89->115,Avenida JK,tertiary,False,65.9,baixa,False,0,0.0,26.6,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668676884e-16,False
+89->115,Avenida JK,tertiary,False,65.9,adotada,False,0,0.0,36.82,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357773427227e-09,False
+89->115,Avenida JK,tertiary,False,65.9,alta,False,0,0.0,66.88,53061.6,0.0,0.0,0.6763,0.0,28,9.984029824909154e-05,False
+90->37,Rua Bolivar 2,tertiary,False,61.6,baixa,False,0,0.0,12.91,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668399117e-16,False
+90->37,Rua Bolivar 2,tertiary,False,61.6,adotada,False,0,0.0,17.87,28616.6,0.0,0.0,0.7001,0.0,4,3.109735650035344e-09,False
+90->37,Rua Bolivar 2,tertiary,False,61.6,alta,False,0,0.0,31.15,53061.6,0.0,0.0,0.6763,0.0,28,9.984030447021025e-05,False
+90->42,Rua Bolivar 2,tertiary,False,88.1,baixa,False,0,0.0,8.07,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668387217e-16,False
+90->42,Rua Bolivar 2,tertiary,False,88.1,adotada,False,0,0.0,11.72,28616.6,0.0,0.0,0.7001,0.0,4,3.109718233446025e-09,False
+90->42,Rua Bolivar 2,tertiary,False,88.1,alta,False,0,0.0,21.44,53061.6,0.0,0.0,0.6763,0.0,28,9.98403038834964e-05,False
+91->56,Marginal DF-480,tertiary,False,123.7,baixa,False,0,0.0,54.67,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764686433838e-16,False
+91->56,Marginal DF-480,tertiary,False,123.7,adotada,False,0,0.0,75.68,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357887886e-09,False
+91->56,Marginal DF-480,tertiary,False,123.7,alta,False,0,0.0,137.81,53061.6,0.0,0.0,0.6763,0.0,28,9.984091681784809e-05,False
+91->79,Marginal DF-480,tertiary,False,122.8,baixa,False,0,0.0,100.03,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658765135875533e-16,False
+91->79,Marginal DF-480,tertiary,False,122.8,adotada,False,0,0.0,138.48,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360784922693e-09,False
+91->79,Marginal DF-480,tertiary,False,122.8,alta,False,0,0.0,248.4,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984270111721672e-05,False
+92->116,,unclassified,False,185.3,baixa,False,0,0.0,10.84,20601.5,0.0,0.0,0.7026,0.0,2,1.765876466843746e-16,False
+92->116,,unclassified,False,185.3,adotada,False,0,0.0,15.01,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777188395e-09,False
+92->116,,unclassified,False,185.3,alta,False,0,0.0,27.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377827851e-05,False
+92->118,,unclassified,False,134.2,baixa,False,0,0.0,9.67,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+92->118,,unclassified,False,134.2,adotada,False,0,0.0,13.38,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771706447e-09,False
+92->118,,unclassified,False,134.2,alta,False,0,0.0,24.06,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377249467e-05,False
+93->54,Avenida São Francisco,tertiary,False,102.3,baixa,False,0,0.0,187.39,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+93->54,Avenida São Francisco,tertiary,False,102.3,adotada,False,0,0.0,259.41,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.1097416502745493e-09,False
+93->54,Avenida São Francisco,tertiary,False,102.3,alta,False,0,0.0,466.56,53060.6,-1.0,-0.0019,0.6763,0.0,28,9.984213464408921e-05,False
+93->55,Avenida São Francisco,tertiary,False,98.8,baixa,False,0,0.0,235.09,20601.5,0.0,0.0,0.7026,0.0,2,-1.765878707912566e-16,False
+93->55,Avenida São Francisco,tertiary,False,98.8,adotada,False,0,0.0,325.45,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.1097502228442482e-09,False
+93->55,Avenida São Francisco,tertiary,False,98.8,alta,False,0,0.0,585.33,53059.1,-2.5,-0.0047,0.6763,0.0,28,9.984501094166247e-05,False
+94->120,Avenida do Sol,tertiary,False,44.5,baixa,False,0,0.0,36.97,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466975836e-16,False
+94->120,Avenida do Sol,tertiary,False,44.5,adotada,False,0,0.0,51.18,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359051681608e-09,False
+94->120,Avenida do Sol,tertiary,False,44.5,alta,False,0,0.0,91.39,53061.6,0.0,0.0,0.6763,0.0,28,9.98403220854282e-05,False
+94->121,Avenida do Sol,tertiary,False,24.2,baixa,False,0,0.0,48.2,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876467124106e-16,False
+94->121,Avenida do Sol,tertiary,False,24.2,adotada,False,0,0.0,66.73,28616.6,0.0,0.0,0.7001,0.0,4,3.109735906123888e-09,False
+94->121,Avenida do Sol,tertiary,False,24.2,alta,False,0,0.0,120.02,53061.6,0.0,0.0,0.6763,0.0,28,9.984030436725891e-05,False
+95->31,Avenida JK,tertiary,False,53.7,baixa,False,0,0.0,27.4,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+95->31,Avenida JK,tertiary,False,53.7,adotada,False,0,0.0,37.93,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360316177448e-09,False
+95->31,Avenida JK,tertiary,False,53.7,alta,False,0,0.0,68.55,53061.6,0.0,0.0,0.6763,0.0,28,9.984030090414294e-05,False
+95->38,Avenida JK,tertiary,False,50.6,baixa,False,0,0.0,21.35,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668472434e-16,False
+95->38,Avenida JK,tertiary,False,50.6,adotada,False,0,0.0,30.11,28616.6,0.0,0.0,0.7001,0.0,4,3.109369393354886e-09,False
+95->38,Avenida JK,tertiary,False,50.6,alta,False,0,0.0,55.18,53061.6,0.0,0.0,0.6763,0.0,28,9.984030378920429e-05,False
+96->50,Rua Bolivar 2,tertiary,False,16.6,baixa,False,0,0.0,15.75,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+96->50,Rua Bolivar 2,tertiary,False,16.6,adotada,False,0,0.0,21.26,28616.6,0.0,0.0,0.7001,0.0,4,3.1097797635641953e-09,False
+96->50,Rua Bolivar 2,tertiary,False,16.6,alta,False,0,0.0,36.88,53061.6,0.0,0.0,0.6763,0.0,28,9.9840303882307e-05,False
+96->114,Rua Bolivar 2,tertiary,False,25.3,baixa,False,0,0.0,18.92,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+96->114,Rua Bolivar 2,tertiary,False,25.3,adotada,False,0,0.0,26.19,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777179577e-09,False
+96->114,Rua Bolivar 2,tertiary,False,25.3,alta,False,0,0.0,47.1,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377540531e-05,False
+97->36,Avenida do Sol,tertiary,False,161.4,baixa,False,0,0.0,35.05,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876467126363e-16,False
+97->36,Avenida do Sol,tertiary,False,161.4,adotada,False,0,0.0,48.52,28616.6,0.0,0.0,0.7001,0.0,4,3.109735779010102e-09,False
+97->36,Avenida do Sol,tertiary,False,161.4,alta,False,0,0.0,88.63,53061.6,0.0,0.0,0.6763,0.0,28,9.984048239168003e-05,False
+97->77,Avenida do Sol,tertiary,False,282.8,baixa,False,0,0.0,71.17,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+97->77,Avenida do Sol,tertiary,False,282.8,adotada,False,0,0.0,98.53,28616.6,0.0,0.0,0.7001,0.0,4,3.109735999858586e-09,False
+97->77,Avenida do Sol,tertiary,False,282.8,alta,False,0,0.0,176.55,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984135667259318e-05,False
+98->36,Avenida do Sol,tertiary,False,164.1,baixa,False,0,0.0,57.17,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+98->36,Avenida do Sol,tertiary,False,164.1,adotada,False,0,0.0,78.6,28616.6,0.0,0.0,0.7001,0.0,4,3.1484510760187905e-09,False
+98->36,Avenida do Sol,tertiary,False,164.1,alta,False,0,0.0,139.35,53061.6,0.0,0.0,0.6763,0.0,28,9.984063592270593e-05,False
+98->76,Avenida do Sol,tertiary,False,179.6,baixa,False,0,0.0,32.64,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466997549e-16,False
+98->76,Avenida do Sol,tertiary,False,179.6,adotada,False,0,0.0,45.18,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357781797844e-09,False
+98->76,Avenida do Sol,tertiary,False,179.6,alta,False,0,0.0,82.95,53061.6,0.0,0.0,0.6763,0.0,28,9.984039814440046e-05,False
+99->75,,tertiary,False,219.4,baixa,False,0,0.0,116.44,20601.5,0.0,0.0,0.7026,0.0,2,1.765876596275296e-16,False
+99->75,,tertiary,False,219.4,adotada,False,0,0.0,161.2,28616.6,0.0,0.0,0.7001,0.0,4,3.109736357228965e-09,False
+99->75,,tertiary,False,219.4,alta,False,0,0.0,288.56,53061.4,-0.2,-0.0004,0.6763,0.0,28,9.98192984135124e-05,False
+100->81,,tertiary,False,58.4,baixa,False,0,0.0,40.15,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764670066022e-16,False
+100->81,,tertiary,False,58.4,adotada,False,0,0.0,55.58,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357782381387e-09,False
+100->81,,tertiary,False,58.4,alta,False,0,0.0,99.96,53061.6,0.0,0.0,0.6763,0.0,28,9.984030412018915e-05,False
+100->99,,tertiary_link,False,115.6,baixa,False,0,0.0,71.09,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+100->99,,tertiary_link,False,115.6,adotada,False,0,0.0,98.41,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359743164246e-09,False
+100->99,,tertiary_link,False,115.6,alta,False,0,0.0,175.63,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.983228873477986e-05,False
+101->80,,tertiary,False,46.8,baixa,False,0,0.0,96.39,20601.5,0.0,0.0,0.7026,0.0,2,-1.76587647885334e-16,False
+101->80,,tertiary,False,46.8,adotada,False,0,0.0,133.44,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359817288463e-09,False
+101->80,,tertiary,False,46.8,alta,False,0,0.0,238.63,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.98379582833306e-05,False
+102->126,Estrada Parque Contorno,trunk,True,54.2,baixa,False,0,0.0,1480.95,20559.0,-42.5,-0.2063,0.7033,0.0007,1,9.916871706739153e-05,False
+102->126,Estrada Parque Contorno,trunk,True,54.2,adotada,False,0,0.0,2050.16,28537.5,-79.1,-0.2764,0.7009,0.0008,4,3.1183514248867843e-09,False
+102->126,Estrada Parque Contorno,trunk,True,54.2,alta,False,0,0.0,3688.26,52919.4,-142.2,-0.268,0.6771,0.0008,28,9.946343416060456e-05,False
+102->128,,tertiary,False,66.4,baixa,False,0,0.0,110.51,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658765040895178e-16,False
+102->128,,tertiary,False,66.4,adotada,False,0,0.0,152.98,28616.6,0.0,0.0,0.7001,0.0,4,3.1097361443976365e-09,False
+102->128,,tertiary,False,66.4,alta,False,0,0.0,275.14,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984038200614072e-05,False
+103->126,,tertiary,False,70.0,baixa,False,0,0.0,202.26,20601.5,0.0,0.0,0.7026,0.0,2,1.765877301341945e-16,False
+103->126,,tertiary,False,70.0,adotada,False,0,0.0,280.0,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.1097412833790046e-09,False
+103->126,,tertiary,False,70.0,alta,False,0,0.0,503.59,53060.6,-1.0,-0.0019,0.6763,0.0,28,9.984205651618099e-05,False
+104->77,Avenida do Sol,tertiary,False,119.3,baixa,False,0,0.0,45.83,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+104->77,Avenida do Sol,tertiary,False,119.3,adotada,False,0,0.0,63.45,28616.6,0.0,0.0,0.7001,0.0,4,3.109735786041355e-09,False
+104->77,Avenida do Sol,tertiary,False,119.3,alta,False,0,0.0,113.45,53061.6,0.0,0.0,0.6763,0.0,28,9.984045331869899e-05,False
+104->108,Avenida do Sol,tertiary,False,161.3,baixa,False,0,0.0,53.85,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764699231198e-16,False
+104->108,Avenida do Sol,tertiary,False,161.3,adotada,False,0,0.0,74.55,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359241659286e-09,False
+104->108,Avenida do Sol,tertiary,False,161.3,alta,False,0,0.0,134.08,53061.6,0.0,0.0,0.6763,0.0,28,9.984031024579178e-05,False
+105->77,Marginal DF-480,tertiary,False,135.7,baixa,False,0,0.0,51.9,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764686210186e-16,False
+105->77,Marginal DF-480,tertiary,False,135.7,adotada,False,0,0.0,71.85,28616.6,0.0,0.0,0.7001,0.0,4,3.109735788644437e-09,False
+105->77,Marginal DF-480,tertiary,False,135.7,alta,False,0,0.0,130.59,53061.6,0.0,0.0,0.6763,0.0,28,9.984102979123372e-05,False
+105->78,Marginal DF-480,tertiary,False,239.0,baixa,False,0,0.0,92.44,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658765249647809e-16,False
+105->78,Marginal DF-480,tertiary,False,239.0,adotada,False,0,0.0,127.97,28616.6,0.0,0.0,0.7001,0.0,4,3.1097361518282524e-09,False
+105->78,Marginal DF-480,tertiary,False,239.0,alta,False,0,0.0,228.83,53061.5,-0.1,-0.0002,0.6763,0.0,28,9.984655820088152e-05,False
+106->124,,trunk_link,False,155.0,baixa,False,0,0.0,92.79,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+106->124,,trunk_link,False,155.0,adotada,False,0,0.0,140.39,28616.6,0.0,0.0,0.7001,0.0,4,3.1095896242488548e-09,False
+106->124,,trunk_link,False,155.0,alta,False,0,0.0,856.01,53050.0,-11.6,-0.0219,0.6764,0.0001,28,9.704232638058713e-05,False
+107->118,,unclassified,False,46.2,baixa,False,0,0.0,11.25,20601.5,0.0,0.0,0.7026,0.0,2,1.765876466840128e-16,False
+107->118,,unclassified,False,46.2,adotada,False,0,0.0,15.57,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904293408e-09,False
+107->118,,unclassified,False,46.2,alta,False,0,0.0,28.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377067946e-05,False
+107->125,,unclassified,False,126.1,baixa,False,0,0.0,5.23,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668386756e-16,False
+107->125,,unclassified,False,126.1,adotada,False,0,0.0,7.24,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359042840432e-09,False
+107->125,,unclassified,False,126.1,alta,False,0,0.0,13.02,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376776507e-05,False
+108->52,Avenida do Sol,tertiary,False,96.9,baixa,False,0,0.0,51.03,20601.5,0.0,0.0,0.7026,0.0,2,1.765876468667784e-16,False
+108->52,Avenida do Sol,tertiary,False,96.9,adotada,False,0,0.0,70.64,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359160742174e-09,False
+108->52,Avenida do Sol,tertiary,False,96.9,alta,False,0,0.0,127.05,53061.6,0.0,0.0,0.6763,0.0,28,9.984030760933075e-05,False
+108->104,Avenida do Sol,tertiary,False,161.3,baixa,False,0,0.0,43.41,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+108->104,Avenida do Sol,tertiary,False,161.3,adotada,False,0,0.0,60.09,28616.6,0.0,0.0,0.7001,0.0,4,3.109735784898718e-09,False
+108->104,Avenida do Sol,tertiary,False,161.3,alta,False,0,0.0,107.41,53061.6,0.0,0.0,0.6763,0.0,28,9.984044110960686e-05,False
+109->110,Avenida JK,tertiary,False,69.5,baixa,False,0,0.0,16.12,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668414734e-16,False
+109->110,Avenida JK,tertiary,False,69.5,adotada,False,0,0.0,22.31,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771737433e-09,False
+109->110,Avenida JK,tertiary,False,69.5,alta,False,0,0.0,40.13,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377350439e-05,False
+109->123,Avenida JK,tertiary,False,161.7,baixa,False,0,0.0,16.14,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668439418e-16,False
+109->123,Avenida JK,tertiary,False,161.7,adotada,False,0,0.0,22.34,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359043179895e-09,False
+109->123,Avenida JK,tertiary,False,161.7,alta,False,0,0.0,39.52,53061.6,0.0,0.0,0.6763,0.0,28,9.984030534886569e-05,False
+110->109,Avenida JK,tertiary,False,69.5,baixa,False,0,0.0,15.33,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668405758e-16,False
+110->109,Avenida JK,tertiary,False,69.5,adotada,False,0,0.0,21.22,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771679613e-09,False
+110->109,Avenida JK,tertiary,False,69.5,alta,False,0,0.0,37.5,53061.6,0.0,0.0,0.6763,0.0,28,9.984030438510042e-05,False
+110->111,Avenida JK,tertiary,False,70.0,baixa,False,0,0.0,18.13,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668427587e-16,False
+110->111,Avenida JK,tertiary,False,70.0,adotada,False,0,0.0,25.1,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359043103658e-09,False
+110->111,Avenida JK,tertiary,False,70.0,alta,False,0,0.0,45.14,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377634205e-05,False
+111->83,Avenida JK,tertiary,False,14.9,baixa,False,0,0.0,17.33,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+111->83,Avenida JK,tertiary,False,14.9,adotada,False,0,0.0,23.99,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359042886924e-09,False
+111->83,Avenida JK,tertiary,False,14.9,alta,False,0,0.0,43.15,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376914277e-05,False
+111->110,Avenida JK,tertiary,False,70.0,baixa,False,0,0.0,15.73,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466840484e-16,False
+111->110,Avenida JK,tertiary,False,70.0,adotada,False,0,0.0,21.78,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771673683e-09,False
+111->110,Avenida JK,tertiary,False,70.0,alta,False,0,0.0,38.51,53061.6,0.0,0.0,0.6763,0.0,28,9.984030434212596e-05,False
+112->46,Rua Bolivar 2,tertiary,False,82.5,baixa,False,0,0.0,16.14,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668434448e-16,False
+112->46,Rua Bolivar 2,tertiary,False,82.5,adotada,False,0,0.0,22.35,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904314788e-09,False
+112->46,Rua Bolivar 2,tertiary,False,82.5,alta,False,0,0.0,39.2,53061.6,0.0,0.0,0.6763,0.0,28,9.984030586281794e-05,False
+112->48,Rua Bolivar 2,tertiary,False,8.8,baixa,False,0,0.0,11.67,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+112->48,Rua Bolivar 2,tertiary,False,8.8,adotada,False,0,0.0,16.71,28616.6,0.0,0.0,0.7001,0.0,4,3.109726751044161e-09,False
+112->48,Rua Bolivar 2,tertiary,False,8.8,alta,False,0,0.0,30.42,53061.6,0.0,0.0,0.6763,0.0,28,9.984030382548243e-05,False
+113->39,Avenida JK,tertiary,False,41.0,baixa,False,0,0.0,15.73,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+113->39,Avenida JK,tertiary,False,41.0,adotada,False,0,0.0,21.77,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359042955282e-09,False
+113->39,Avenida JK,tertiary,False,41.0,alta,False,0,0.0,38.49,53061.6,0.0,0.0,0.6763,0.0,28,9.984030433439008e-05,False
+113->122,Avenida JK,tertiary,False,16.3,baixa,False,0,0.0,16.11,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+113->122,Avenida JK,tertiary,False,16.3,adotada,False,0,0.0,22.3,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904287125e-09,False
+113->122,Avenida JK,tertiary,False,16.3,alta,False,0,0.0,40.11,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376863208e-05,False
+114->36,Rua Bolivar 2,tertiary,False,190.7,baixa,False,0,0.0,22.54,20601.5,0.0,0.0,0.7026,0.0,2,1.765876466905024e-16,False
+114->36,Rua Bolivar 2,tertiary,False,190.7,adotada,False,0,0.0,31.2,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359047117188e-09,False
+114->36,Rua Bolivar 2,tertiary,False,190.7,alta,False,0,0.0,56.11,53061.6,0.0,0.0,0.6763,0.0,28,9.984030390698144e-05,False
+114->96,Rua Bolivar 2,tertiary,False,25.3,baixa,False,0,0.0,14.95,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668397177e-16,False
+114->96,Rua Bolivar 2,tertiary,False,25.3,adotada,False,0,0.0,20.14,28616.6,0.0,0.0,0.7001,0.0,4,3.1097931120405858e-09,False
+114->96,Rua Bolivar 2,tertiary,False,25.3,alta,False,0,0.0,34.87,53061.6,0.0,0.0,0.6763,0.0,28,9.984030391623423e-05,False
+115->34,Avenida JK,tertiary,False,8.4,baixa,False,0,0.0,27.0,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+115->34,Avenida JK,tertiary,False,8.4,adotada,False,0,0.0,37.38,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359043083078e-09,False
+115->34,Avenida JK,tertiary,False,8.4,alta,False,0,0.0,67.89,53061.6,0.0,0.0,0.6763,0.0,28,9.984030304738362e-05,False
+115->89,Avenida JK,tertiary,False,65.9,baixa,False,0,0.0,22.56,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668514751e-16,False
+115->89,Avenida JK,tertiary,False,65.9,adotada,False,0,0.0,31.78,28616.6,0.0,0.0,0.7001,0.0,4,3.1092219245157548e-09,False
+115->89,Avenida JK,tertiary,False,65.9,alta,False,0,0.0,58.51,53061.6,0.0,0.0,0.6763,0.0,28,9.984030214240938e-05,False
+116->85,,unclassified,False,107.4,baixa,False,0,0.0,8.84,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+116->85,,unclassified,False,107.4,adotada,False,0,0.0,12.24,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359042904e-09,False
+116->85,,unclassified,False,107.4,alta,False,0,0.0,22.01,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376969926e-05,False
+116->92,,unclassified,False,185.3,baixa,False,0,0.0,20.93,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876466992269e-16,False
+116->92,,unclassified,False,185.3,adotada,False,0,0.0,28.97,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357781457505e-09,False
+116->92,,unclassified,False,185.3,alta,False,0,0.0,52.1,53061.6,0.0,0.0,0.6763,0.0,28,9.984030409022257e-05,False
+117->84,,unclassified,False,195.8,baixa,False,0,0.0,9.24,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668414665e-16,False
+117->84,,unclassified,False,195.8,adotada,False,0,0.0,12.79,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777173701e-09,False
+117->84,,unclassified,False,195.8,alta,False,0,0.0,23.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377349062e-05,False
+117->85,,unclassified,False,134.2,baixa,False,0,0.0,31.0,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+117->85,,unclassified,False,134.2,adotada,False,0,0.0,42.91,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357829098016e-09,False
+117->85,,unclassified,False,134.2,alta,False,0,0.0,77.17,53061.6,0.0,0.0,0.6763,0.0,28,9.984030564267513e-05,False
+118->92,,unclassified,False,134.2,baixa,False,0,0.0,10.45,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668416854e-16,False
+118->92,,unclassified,False,134.2,adotada,False,0,0.0,14.46,28616.6,0.0,0.0,0.7001,0.0,4,3.109735777175112e-09,False
+118->92,,unclassified,False,134.2,alta,False,0,0.0,26.01,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377395024e-05,False
+118->107,,unclassified,False,46.2,baixa,False,0,0.0,9.26,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668392493e-16,False
+118->107,,unclassified,False,46.2,adotada,False,0,0.0,12.82,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771594083e-09,False
+118->107,,unclassified,False,46.2,alta,False,0,0.0,23.06,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376897062e-05,False
+119->71,Avenida do Sol,tertiary,False,152.5,baixa,False,0,0.0,35.45,20601.5,0.0,0.0,0.7026,0.0,2,-1.765876467101568e-16,False
+119->71,Avenida do Sol,tertiary,False,152.5,adotada,False,0,0.0,49.08,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357788502775e-09,False
+119->71,Avenida do Sol,tertiary,False,152.5,alta,False,0,0.0,89.96,53061.6,0.0,0.0,0.6763,0.0,28,9.984044627642019e-05,False
+119->76,Avenida do Sol,tertiary,False,53.0,baixa,False,0,0.0,53.15,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764675448028e-16,False
+119->76,Avenida do Sol,tertiary,False,53.0,adotada,False,0,0.0,73.03,28616.6,0.0,0.0,0.7001,0.0,4,3.1205460123923707e-09,False
+119->76,Avenida do Sol,tertiary,False,53.0,alta,False,0,0.0,129.66,53061.6,0.0,0.0,0.6763,0.0,28,9.984036619636682e-05,False
+120->52,Avenida do Sol,tertiary,False,37.5,baixa,False,0,0.0,37.78,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+120->52,Avenida do Sol,tertiary,False,37.5,adotada,False,0,0.0,52.3,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357780706015e-09,False
+120->52,Avenida do Sol,tertiary,False,37.5,alta,False,0,0.0,93.4,53061.6,0.0,0.0,0.6763,0.0,28,9.98403223309028e-05,False
+120->94,Avenida do Sol,tertiary,False,44.5,baixa,False,0,0.0,49.01,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+120->94,Avenida do Sol,tertiary,False,44.5,adotada,False,0,0.0,67.85,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357809628662e-09,False
+120->94,Avenida do Sol,tertiary,False,44.5,alta,False,0,0.0,122.03,53061.6,0.0,0.0,0.6763,0.0,28,9.984030500814983e-05,False
+121->51,Avenida do Sol,tertiary,False,87.9,baixa,False,0,0.0,49.0,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764679650176e-16,False
+121->51,Avenida do Sol,tertiary,False,87.9,adotada,False,0,0.0,67.84,28616.6,0.0,0.0,0.7001,0.0,4,3.109735784415948e-09,False
+121->51,Avenida do Sol,tertiary,False,87.9,alta,False,0,0.0,122.01,53061.6,0.0,0.0,0.6763,0.0,28,9.984030613329977e-05,False
+121->94,Avenida do Sol,tertiary,False,24.2,baixa,False,0,0.0,37.37,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764669105978e-16,False
+121->94,Avenida do Sol,tertiary,False,24.2,adotada,False,0,0.0,51.74,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359047476436e-09,False
+121->94,Avenida do Sol,tertiary,False,24.2,alta,False,0,0.0,92.39,53061.6,0.0,0.0,0.6763,0.0,28,9.984031327848342e-05,False
+122->113,Avenida JK,tertiary,False,16.3,baixa,False,0,0.0,16.13,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668391894e-16,False
+122->113,Avenida JK,tertiary,False,16.3,adotada,False,0,0.0,22.33,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771590216e-09,False
+122->113,Avenida JK,tertiary,False,16.3,alta,False,0,0.0,39.5,53061.6,0.0,0.0,0.6763,0.0,28,9.98403039464169e-05,False
+122->123,Avenida JK,tertiary,False,44.3,baixa,False,0,0.0,16.11,20601.5,0.0,0.0,0.7026,0.0,2,-1.7658764668399136e-16,False
+122->123,Avenida JK,tertiary,False,44.3,adotada,False,0,0.0,22.3,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904292024e-09,False
+122->123,Avenida JK,tertiary,False,44.3,alta,False,0,0.0,40.11,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377036548e-05,False
+123->109,Avenida JK,tertiary,False,161.7,baixa,False,0,0.0,16.12,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668437354e-16,False
+123->109,Avenida JK,tertiary,False,161.7,adotada,False,0,0.0,22.31,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771883278e-09,False
+123->109,Avenida JK,tertiary,False,161.7,alta,False,0,0.0,40.13,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377825656e-05,False
+123->122,Avenida JK,tertiary,False,44.3,baixa,False,0,0.0,16.94,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+123->122,Avenida JK,tertiary,False,44.3,adotada,False,0,0.0,23.45,28616.6,0.0,0.0,0.7001,0.0,4,3.1097357771660865e-09,False
+123->122,Avenida JK,tertiary,False,44.3,alta,False,0,0.0,41.51,53061.6,0.0,0.0,0.6763,0.0,28,9.98403042477813e-05,False
+124->64,Estrada Parque Contorno,trunk,True,86.2,baixa,False,0,0.0,774.67,20600.0,-1.5,-0.0073,0.7027,0.0001,2,0.0,False
+124->64,Estrada Parque Contorno,trunk,True,86.2,adotada,False,0,0.0,1084.35,28613.3,-3.3,-0.0115,0.7002,0.0001,4,3.0606664712796266e-09,False
+124->64,Estrada Parque Contorno,trunk,True,86.2,alta,False,0,0.0,2553.75,53043.7,-17.9,-0.0337,0.6765,0.0002,28,9.939990699910354e-05,False
+125->107,,unclassified,False,126.1,baixa,False,0,0.0,10.44,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668415264e-16,False
+125->107,,unclassified,False,126.1,adotada,False,0,0.0,14.45,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904302421e-09,False
+125->107,,unclassified,False,126.1,alta,False,0,0.0,25.99,53061.6,0.0,0.0,0.6763,0.0,28,9.984030377361619e-05,False
+126->60,Estrada Parque Contorno,trunk,True,175.1,baixa,False,0,0.0,1695.66,20272.8,-328.7,-1.5955,0.7071,0.0045,1,9.296570762863296e-05,False
+126->60,Estrada Parque Contorno,trunk,True,175.1,adotada,False,0,0.0,2347.39,28161.4,-455.2,-1.5907,0.7046,0.0045,2,9.726773057736339e-05,False
+126->60,Estrada Parque Contorno,trunk,True,175.1,alta,False,0,0.0,4222.83,52211.3,-850.3,-1.6025,0.6808,0.0045,28,9.806263854211413e-05,False
+127->129,CAUB I Chácara 95,tertiary,False,117.4,baixa,False,0,0.0,0.0,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668385815e-16,False
+127->129,CAUB I Chácara 95,tertiary,False,117.4,adotada,False,0,0.0,0.0,28616.6,0.0,0.0,0.7001,0.0,4,3.10973590428344e-09,False
+127->129,CAUB I Chácara 95,tertiary,False,117.4,alta,False,0,0.0,0.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376743133e-05,False
+127->130,,tertiary,False,76.7,baixa,False,0,0.0,209.46,20601.5,0.0,0.0,0.7026,0.0,2,3.531755198210073e-16,False
+127->130,,tertiary,False,76.7,adotada,False,0,0.0,289.97,28616.5,-0.1,-0.0003,0.7001,0.0,4,3.1097432027228054e-09,False
+127->130,,tertiary,False,76.7,alta,False,0,0.0,521.52,53060.3,-1.3,-0.0024,0.6763,0.0,28,9.984268193724728e-05,False
+128->103,,tertiary_link,False,17.6,baixa,False,0,0.0,10.46,20601.5,0.0,0.0,0.7026,0.0,2,-1.76587646683889e-16,False
+128->103,,tertiary_link,False,17.6,adotada,False,0,0.0,14.48,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360314137612e-09,False
+128->103,,tertiary_link,False,17.6,alta,False,0,0.0,26.04,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376794159e-05,False
+128->131,,tertiary,False,12.0,baixa,False,0,0.0,97.22,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764670313527e-16,False
+128->131,,tertiary,False,12.0,adotada,False,0,0.0,134.59,28616.6,0.0,0.0,0.7001,0.0,4,3.109735778397682e-09,False
+128->131,,tertiary,False,12.0,alta,False,0,0.0,242.06,53061.6,0.0,0.0,0.6763,0.0,28,9.984030417217457e-05,False
+129->127,CAUB I Chácara 95,tertiary,False,117.4,baixa,False,0,0.0,0.0,20601.5,0.0,0.0,0.7026,0.0,2,1.7658764668385815e-16,False
+129->127,CAUB I Chácara 95,tertiary,False,117.4,adotada,False,0,0.0,0.0,28616.6,0.0,0.0,0.7001,0.0,4,3.10973590428344e-09,False
+129->127,CAUB I Chácara 95,tertiary,False,117.4,alta,False,0,0.0,0.0,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376743133e-05,False
+130->103,,tertiary,False,12.6,baixa,False,0,0.0,198.63,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+130->103,,tertiary,False,12.6,adotada,False,0,0.0,274.97,28616.6,0.0,0.0,0.7001,0.0,4,3.1097368151930222e-09,False
+130->103,,tertiary,False,12.6,alta,False,0,0.0,494.54,53061.4,-0.2,-0.0004,0.6763,0.0,28,9.984060057827745e-05,False
+130->131,,tertiary_link,False,18.1,baixa,False,0,0.0,10.44,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+130->131,,tertiary_link,False,18.1,adotada,False,0,0.0,14.45,28616.6,0.0,0.0,0.7001,0.0,4,3.109735904285452e-09,False
+130->131,,tertiary_link,False,18.1,alta,False,0,0.0,25.99,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376808704e-05,False
+131->84,,tertiary,False,81.5,baixa,False,0,0.0,108.47,20601.5,0.0,0.0,0.7026,0.0,2,0.0,False
+131->84,,tertiary,False,81.5,adotada,False,0,0.0,150.16,28616.6,0.0,0.0,0.7001,0.0,4,3.1097359194325116e-09,False
+131->84,,tertiary,False,81.5,alta,False,0,0.0,270.07,53061.6,0.0,0.0,0.6763,0.0,28,9.984030870359522e-05,False
+132->133,Estrada Parque Contorno,trunk,True,164.8,baixa,False,0,0.0,1460.92,20277.4,-324.1,-1.5732,0.706,0.0034,1,7.799680525792088e-05,False
+132->133,Estrada Parque Contorno,trunk,True,164.8,adotada,False,0,0.0,2022.43,28167.2,-449.4,-1.5704,0.7035,0.0034,2,8.234928147641369e-05,False
+132->133,Estrada Parque Contorno,trunk,True,164.8,alta,False,0,0.0,3638.03,52233.4,-828.2,-1.5608,0.6797,0.0034,24,9.890013613777373e-05,False
+133->9,,trunk_link,False,28.7,baixa,False,0,0.0,10.46,20601.5,0.0,0.0,0.7026,0.0,2,1.765876466838632e-16,False
+133->9,,trunk_link,False,28.7,adotada,False,0,0.0,14.48,28616.6,0.0,0.0,0.7001,0.0,4,3.1097360314121e-09,False
+133->9,,trunk_link,False,28.7,alta,False,0,0.0,26.04,53061.6,0.0,0.0,0.6763,0.0,28,9.984030376753744e-05,False
+133->63,Estrada Parque Contorno,trunk,True,32.4,baixa,False,0,0.0,1462.51,20554.3,-47.2,-0.2291,0.7035,0.0009,1,9.64849922955696e-05,False
+133->63,Estrada Parque Contorno,trunk,True,32.4,adotada,False,0,0.0,2024.63,28531.5,-85.1,-0.2974,0.7011,0.001,4,3.1190060297192816e-09,False
+133->63,Estrada Parque Contorno,trunk,True,32.4,alta,False,0,0.0,3641.99,52909.4,-152.2,-0.2868,0.6773,0.001,28,9.847359040248248e-05,False
