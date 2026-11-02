@@ -1,57 +1,127 @@
-\documentclass[conference]{IEEEtran}
-\IEEEoverridecommandlockouts
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
-\usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{graphicx}
-\usepackage{textcomp}
+\documentclass[portuguese]{sbc2025}%
+
+%\usepackage{graphicx}% já está incluido na classe
+%\usepackage[utf8]{inputenc} % obsoleto, desnecessário
+
+\usepackage[misc,geometry]{ifsym} 
+\usepackage{hyperref}
+
+%%%%  %\usepackage{fontspec}
+
+%% Os problemas com a classe eram originados por carregarem ambos os
+%% pacotes fontenc e fontspec simultaneamente. Agora a classe detecta
+%% qual engine está em uso e se for o pdflates então carrega o
+%% fontenc. Se forem o xelatex ou lualatex então carrega o
+%% fontspec. Eu particularemnte prefiro o lualatex ou o xetex
+
+
+% \usepackage{fontawesome} %%% incluido na classe. Desnecessário
+% chamá-lo aqui
+
+
+%%%% \usepackage{academicons}
+%%%% outro encrenqueiro que se tornou desnecessario. Deste typeface só
+%%%% se usava o glifo do orcid e o codigo interno bombava.
+%%%% Substitui pelo pacote orcidlink (carregado internamete na classe)
+%%%% e consertei o codigo na classe.
+
+
+%\usepackage{color} % carregada dentro da classe
+%\usepackage{hyperref} % carregada dentro da classe
+
+\usepackage{aas_macros}
+\usepackage[bottom]{footmisc}
+\usepackage{float}
+\usepackage{booktabs}
+
+%\usepackage{supertabular}
+%\usepackage{multicol}
+%\usepackage{multirow}
+%% O pacote tabularray é muito melhor para
+% a criacao de tabela complexas e/ou loooongas; tudo de modo simples.
+%% Torna o uso de multicol e multirow desnecessarios
+
+\usepackage{tabularray}
+
+
+\usepackage{afterpage}
+\usepackage{url}
+\usepackage{pifont}
+
+
+\setcitestyle{square}
+
+
+\definecolor{engtitle}{rgb}{0.5,0.5,0.5}
+\definecolor{orcidlogo}{rgb}{0.37,0.48,0.13}
+\definecolor{unilogo}{rgb}{0.16, 0.26, 0.58}
+\definecolor{maillogo}{rgb}{0.58, 0.16, 0.26}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.0}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+%\hypersetup{colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue}
+
+%%%%%%% IMPORTANT: We disable hyperlinks by default with this line, to avoid the error "\pdfendlink ended up in different nesting level" while writing.
+%\hypersetup{draft}
+
+\category{Artigo de Pesquisa/Research Paper}
+\title[Template SOL Preprints para trabalhos em português]{Otimização de intervenções viárias em malha de Brasília com base no índice de desempenho de velocidade e efeitos sistêmicos}
+%\engtitle{\textcolor{engtitle}{Aprimorando o planejamento viário com grafos e dados reais}}
+
+%THE ORCID IS MANDATORY FOR EACH AUTHOR IN JBCS
+\author[Marcinoni et al. 2026]{
+
+\affil{\textbf{Pedro Marcinoni Varão Ribeiro Vieira da Rosa}
+\\Universidade de Brasília~\ror{02xfp8v59}
+\\\href{mailto:pedroextrer@gmail.com}{\textit{pedroextrer@gmail.com}}}
+
+\affil{\textbf{Davi Brasileiro Gomes}
+\\Universidade de Brasília~\ror{02xfp8v59}
+\\\href{mailto:davi.brasileiro.gomes@gmail.com}{\textit{davi.brasileiro.gomes@gmail.com}}}
+
+\affil{\textbf{Davi Galvão Guerra}
+\\Universidade de Brasília~\ror{02xfp8v59}
+\\\href{mailto:daviguerra27@gmail.com}{\textit{daviguerra27@gmail.com}}}
+
+\affil{\textbf{Leonardo Mileo Moreira Krauss Guimarães}
+\\Universidade de Brasília~\ror{02xfp8v59}
+\\\href{mailto:leonardokrauss3107@gmail.com}{\textit{leonardokrauss3107@gmail.com}}}
+
+\affil{\textbf{Patrícia Araújo de Oliveira}
+\\Universidade de Brasília~\ror{02xfp8v59}
+\\\href{patricia.oliveira@unb.br}{\textit{patricia.oliveira@unb.br}}}
+
+}
+
 
 \begin{document}
 
-\title{Otimização de intervenções viárias em malha de Brasília com base no índice de desempenho de velocidade e efeitos sistêmicos}
-
-\author{
-\IEEEauthorblockN{Pedro Marcinoni Varão Ribeiro Vieira da Rosa}
-\IEEEauthorblockA{\textit{Departamento de Ciência da Computação (CIC)} \\
-\textit{Instituto de Ciências Exatas (IE) -- UnB}\\
-Brasília, DF, Brasil \\
-E-mail: pedroextrer@gmail.com}
-\and
-\IEEEauthorblockN{Davi Brasileiro Gomes}
-\IEEEauthorblockA{\textit{Departamento de Ciência da Computação (CIC)} \\
-\textit{Instituto de Ciências Exatas (IE) -- UnB}\\
-Brasília, DF, Brasil \\
-E-mail: davi.brasileiro.gomes@gmail.com}
-\and
-\IEEEauthorblockN{Davi Galvão Guerra}
-\IEEEauthorblockA{\textit{Departamento de Ciência da Computação (CIC)} \\
-\textit{Instituto de Ciências Exatas (IE) -- UnB}\\
-Brasília, DF, Brasil \\
-E-mail: daviguerra27@gmail.com % CONFIRMAR: o original estava sem o domínio completo
-}
-\and
-\IEEEauthorblockN{Leonardo Mileo Moreira Krauss Guimarães}
-\IEEEauthorblockA{\textit{Departamento de Ciência da Computação (CIC)} \\
-\textit{Instituto de Ciências Exatas (IE) -- UnB}\\
-Brasília, DF, Brasil \\
-E-mail: leonardokrauss3107@gmail.com}
-}
+\begin{frontmatter}
 
 \maketitle
 
-\begin{abstract}
+\begin{abstract-pt}
 O presente artigo se propõe a explorar mecanismos mais abrangentes de planejamento viário na capital brasileira, visando responder às questões: \textit{RQ1 - Como intervenções pontuais na malha viária afetam os tempos de deslocamento na região afetada, bem como o congestionamento observado nas vias adjacentes; RQ2 - Como o mapeamento de infraestrutura viária por meio de grafos direcionados ponderados pode empoderar a compreensão das causas de congestionamento nas rodovias}. A fim de atingir respostas satisfatórias para ambas as perguntas, foi proposta uma análise de métricas de congestionamento para uma amostra da infraestrutura viária brasiliense centrada no Gama. Nessa análise, são simuladas intervenções e suas respectivas alterações no congestionamento, usando algoritmos de centralidade de grafos e de atingimento do Equilíbrio de Wardrop, juntamente com dados públicos e obtidos por Algorithm Programming Interfaces (APIs) de geomapeamento. Consequentemente, o estudo aponta para (ESCREVER AS CONCLUSÕES)
-\end{abstract}
+\end{abstract-pt}
 
-\begin{IEEEkeywords}
+\begin{keywords}
 índice de desempenho de velocidade, congestionamento, teoria dos grafos, equilíbrio de Wardrop, função volume-atraso, paradoxo de Braess, Brasília
-\end{IEEEkeywords}
+\end{keywords}
+
+
+%\begin{license}
+%Published under the Creative Commons Attribution 4.0 International Public License (CC BY 4.0)
+%\end{license}
+
+\end{frontmatter}
+
 
 \section{Introdução}
-À medida que a vida social e a mobilidade se tornam indissociáveis, é natural que os espaços urbanos sejam reorganizados com a mentalidade de reduzir os tempos de deslocamento e de conectar áreas antes remotas. No entanto, considerando que esse planejamento é frequentemente descentralizado, o objetivo principal da infraestrutura viária urbana se perde, e são criados gargalos e entraves no trânsito. Sob essa óptica, a cidade de Brasília pode ser usada como exemplo da crise citada, marcada por um planejamento urbano apressado em virtude da mudança da capital, que terminou por gerar intervenções ineficientes na malha viária. Neste artigo, buscamos responder à duas perguntas principais: \textit{RQ1 - Como intervenções pontuais na malha viária afetam os tempos de deslocamento na região afetada, bem como o congestionamento observado nas vias adjacentes; RQ2 - Como o mapeamento de infraestrutura viária por meio de grafos direcionados ponderados pode empoderar a compreensão das causas de congestionamento nas rodovias}. O objetivo é entender como que o planejamento viário pode ser aperfeiçoado a partir do cruzamento de dados geomapeados e métricas de fluxo de tráfego em grafos enriquecidos, e, de forma mais específica, quais seriam intervenções efetivas na região analisada, e se as métricas de impacto real propostas são adequadas para a análise. Serão demonstradas diferentes métricas de aproveitamento da capacidade viária, a fim de destacar diferentes perspectivas de benefícios e de prejuízos quando o grafo viário é modificado e, consequentemente, os trajetos possíveis e o tempo de deslocamento também são. O artigo, portanto, é dividido nos seguintes tópicos: II. Fundamentação Teórica, III. Metodologia, IV. Resultados e V. Conclusão.
+\label{sec:intro}
 
+À medida que a vida social e a mobilidade se tornam indissociáveis, é natural que os espaços urbanos sejam reorganizados visando reduzir os tempos de deslocamento e conectar áreas antes remotas. No entanto, considerando que esse planejamento é frequentemente descentralizado, o objetivo principal da infraestrutura viária urbana se perde, criando gargalos e entraves no trânsito. Sob essa óptica, a cidade de Brasília pode ser usada como exemplo da crise citada, marcada por um planejamento urbano apressado em virtude da mudança da capital, que terminou por gerar intervenções ineficientes na malha viária. Neste artigo, buscamos responder à duas perguntas principais: \textit{RQ1 - Como intervenções pontuais na malha viária afetam os tempos de deslocamento na região afetada, bem como o congestionamento observado nas vias adjacentes; RQ2 - Como o mapeamento de infraestrutura viária por meio de grafos direcionados ponderados pode empoderar a compreensão das causas de congestionamento nas rodovias}. O objetivo é entender como que o planejamento viário pode ser aperfeiçoado a partir do cruzamento de dados geomapeados e métricas de fluxo de tráfego em grafos enriquecidos. Na prática, queremos analisar quais seriam intervenções efetivas na região analisada, e se as métricas de impacto real propostas são adequadas para esse estudo. Serão demonstradas diferentes métricas de aproveitamento da capacidade viária, a fim de destacar diferentes perspectivas de \textit{trade-offs} quando o grafo viário e, consequentemente, os trajetos possíveis e o tempo de deslocamento são modificados. O artigo, portanto, é dividido nos seguintes tópicos: II. Fundamentação Teórica, III. Metodologia, IV. Resultados e V. Conclusão.
+ 
 \section{Fundamentação Teórica}
 Aqui são explorados conceitos técnicos associados à análise de congestionamento viário, tais como o Paradoxo de Braess, Equilíbrio de Wardrop, Função Volume-Atraso e Indicador de Performance de Velocidade.
 
@@ -62,60 +132,20 @@ O Speed Performance Indicator (SPI) é uma métrica que analisa o desempenho vi�
 O equilíbrio de Wardrop é definido em uma situação onde nenhum motorista pode, individualmente, alterar seu tempo médio de deslocamento na malha ao mudar o trajeto escolhido \cite{wardrop1952}.
 
 \subsection{Função volume-atraso (BPR)}
-A Função Volume-Atraso (VDF) representa a variação do tempo de deslocamento considerando a razão entre volume de veículos e a capacidade viária na malha observada. Matematicamente, é modelada como $t(v) = t_0 . (1 + a(v/c)^b)$, sendo os parâmetros $a$ e $b$ coeficientes de calibração específicos de cada malha \cite{vdf4etapas}. Nesse caso, usamos os valores de referência $a = 0,8 $ e $b = 4,7$, que descrevem, com certa precisão, condições de vias arteriais urbanas \cite{vdf2023}.
+A Função Volume-Atraso (VDF) representa a variação do tempo de deslocamento considerando a razão entre volume de veículos e a capacidade viária na malha observada. Matematicamente, é modelada como $t(v) = t_0 . (1 + a(v/c)^b)$, sendo os parâmetros $a$ e $b$ coeficientes de calibração específicos de cada malha \cite{vdf4etapas}.
 
 \subsection{Paradoxo de Braess}
 Define uma situação na qual adicionar uma nova via em uma malha pode não reduzir o congestionamento \cite{braess2005}, mas sim aumentá-lo e criar novos gargalos.
 
-% =====================================================================
-% SEÇÃO DE METODOLOGIA — pronta para colar no lugar da \section{Metodologia}
-% do template (substitui também todas as subseções-esqueleto antigas).
-%
-% PENDÊNCIAS / CONFERIR ANTES DE SUBMETER
-% 1) Adicione ao thebibliography (chave usada no texto: boeing2017):
-% \bibitem{boeing2017} G. Boeing, ``OSMnx: New methods for acquiring,
-% constructing, analyzing, and visualizing complex street networks,''
-% \textit{Computers, Environment and Urban Systems}, vol. 65,
-% pp. 126--139, 2017.
-% 2) Parâmetros da BPR: aqui o caso-base é a=0,15 e b=4 (BPR, 1964) e
-% a=0,8 e b=4,7 entra na sensibilidade, como no metodologia.md. A
-% subseção "Função volume-atraso" da Fundamentação diz que o artigo
-% USA 0,8/4,7: alinhar os dois trechos.
-% 3) Contagens volumétricas: o metodologia.md ora chama de DER-DF (ficha
-% do dataset, CC-BY), ora de DETRAN. Usei DER-DF; confirmar a fonte.
-% 4) Título, resumo, introdução e a Fundamentação ainda falam em Gama /
-% Águas Claras--Taguatinga--EPTG; a região efetivamente modelada é o
-% trevo EPCT/EPIP/DF-480 (Gama / Ponte Alta Norte).
-% 5) Faltam fixar: critério de via crítica (o texto diz apenas que o K
-% observado orienta a escolha; plano sugere K < 0,7), lista e número
-% de cenários (plano: 15 a 30) e rodar o Frank-Wolfe. O texto está no
-% presente/passado do método; ajuste os tempos verbais ao que estiver
-% de fato executado na entrega.
-% 6) Cortados por espaço (vale levar à Discussão): quatro nós sem região
-% na matriz OD; ausência de calibração na EPIP; janelas de datas
-% (O/D 01--30/07; Traffic Stats 02--31/07) e versões de mapa TomTom
-% (2026.09 e 2025.12) diferentes; 14 arestas com amostra baixa no pico.
-% 7) Tamanho: medido com article/duas colunas/10 pt aproximando o
-% IEEEtran (a classe não estava disponível aqui) e sem hifenização em
-% português: coube em ~1 página. Recompile com o seu template; se
-% passar, troque os \subsection por títulos em linha (\textit{...}).
-%
-% FIGURAS SUGERIDAS (não contam na página)
-% Fig. 1 (abaixo, placeholder): fluxograma do pipeline.
-% Fig. 2: mapa do grafo (134 nós/236 arestas) com arestas coloridas pelo
-% K de pico e os 25 gargalos de capacidade efetiva destacados.
-% Fig. 3 (opcional): barras dos três níveis de demanda (f = 8,82; 12,21;
-% 21,96) mostrando TSTT base e por cenário.
-% =====================================================================
 \section{Metodologia}
 \label{sec:metodologia}
 
 Esta seção apresenta uma descrição sobre a modelagem em grafo da área de estudos selecionada, a obtenção dos dados relacionados ao sistema viário da região, a implementação do algoritmo de alocação de tráfego e a formulação das propostas de intervenções no grafo.
 
 \subsection{Visão geral e área de estudo}
-Adotamos um experimento computacional baseado em alocação estática de tráfego, com a rede modelada como um grafo direcionado e a demanda mantida fixa. No contexto do problema de projeto de rede discreto \cite{leblanc1975dndp}, o nível superior é resolvido por meio de alterações manuais no grafo, enquanto o nível inferior simula o equilíbrio de Wardrop \cite{wardrop1952} via algoritmo de Frank-Wolfe \cite{leblanc1975fw}, com tempos da função BPR \cite{bpr1964} (Fig.~\ref{fig:pipeline}).
+Adotamos um experimento computacional baseado em alocação estática de tráfego, com a rede modelada como um grafo direcionado e a demanda mantida fixa. No contexto do problema de projeto de rede discreto \cite{leblanc1975dndp}, o nível superior é resolvido por meio de alterações manuais no grafo, enquanto o nível inferior simula o equilíbrio de Wardrop \cite{wardrop1952} via algoritmo de Frank-Wolfe \cite{leblanc1975fw}, com tempos da função BPR \cite{bpr1964}.
 
-A região de estudo é o entorno do trevo entre a EPCT (DF-001), a EPIP e a DF-480, no Gama. A rede foi extraída do OpenStreetMap (OSM) com o OSMnx 2.1.1 \cite{boeing2017} em 13/10/2026. Partimos de um subgrafo de 30 nós escolhidos manualmente, mas nele nenhum par origem-destino tinha duas rotas distintas, o que faria o equilíbrio coincidir com uma simples alocação pelo caminho mais curto. Por isso, o grafo foi ampliado de forma determinística, incorporando as vias de classe terciária ou superior contidas na envoltória convexa dos nós originais (com folga de 200~m) e removendo becos sem saída. O resultado tem 134 nós e 236 arestas, e 40,2\% da demanda passa a dispor de ao menos duas rotas competitivas.
+A região de estudo é o entorno do trevo entre a EPCT (DF-001), a EPIP e a DF-480, no Gama. A rede foi extraída do OpenStreetMap (OSM) com o OSMnx 2.1.1 em 13/10/2026. Partimos de um subgrafo de 30 nós escolhidos manualmente, mas nele nenhum par origem-destino tinha duas rotas distintas, o que faria o equilíbrio coincidir com uma simples alocação pelo caminho mais curto. Por isso, o grafo foi ampliado de forma determinística, incorporando as vias de classe terciária ou superior contidas na envoltória convexa dos nós originais (com folga de 200~m) e removendo becos sem saída. O resultado tem 134 nós e 236 arestas, e 40,2\% da demanda passa a dispor de ao menos duas rotas competitivas.
 
 \subsection{Demanda}
 Obtivemos a demanda de trajetórias de GPS através da ferramenta TomTom O/D Analysis, posicionando regiões sobre os 134 nós do grafo e extraindo as viagens de 22 dias úteis de julho de 2026, entre 18h e 19h. Viagens que começam ou terminam fora das regiões são atribuídas à primeira e à última região visitadas. O produto devolve apenas percentuais, mas, por serem múltiplos de $100/N$, foi possível recuperar as contagens absolutas ($N=15.429$ viagens, 86\% delas apenas atravessando a área). Descartadas as viagens intranó e os pares sem caminho (1,6\%), restaram 14.960 viagens em 1.031 pares.
@@ -125,9 +155,9 @@ Como a amostra da TomTom representa só uma fração da frota real de veículos,
 \subsection{Atributos das arestas}
 As velocidades observadas vêm do TomTom Traffic Stats, para os dias úteis de julho de 2026, no pico (18h--19h) e na madrugada (0h--4h). Cada trecho da base da TomTom é associado à aresta com que coincide em posição e sentido, e a velocidade da aresta é a média harmônica das velocidades desses trechos, ponderada pelo comprimento sobreposto. O índice $K$ observado é a razão entre a velocidade de pico e o limite da via \cite{he2016spi}.
 
-O limite de velocidade e o número de faixas foram extraídos do OSM e, quando ausentes, completados a partir da mesma via ou por regras (limite conforme o Código de Trânsito Brasileiro para a classe da via; faixas conforme o padrão da área). Isso ocorreu em 146 limites e 93 faixas, ainda em conferência manual. A capacidade de cada aresta é o número de faixas multiplicado por uma capacidade por faixa típica da literatura brasileira, entre 600 e 1.800 veículos/hora conforme a classe. O tempo em fluxo livre usa a maior entre as velocidades de madrugada e de pico, limitada pelo limite da via, para que perdas presentes mesmo com a via vazia (curvas, conversões) não sejam atribuídas ao volume.
+O limite de velocidade e o número de faixas foram extraídos do OSM e, quando ausentes, completados a partir da mesma via ou por regras (limite conforme o Código de Trânsito Brasileiro para a classe da via \cite{ctb2026}; faixas conforme o padrão da área). Isso ocorreu em 146 limites e 93 faixas, ainda em conferência manual. A capacidade de cada aresta é o número de faixas multiplicado por uma capacidade por faixa típica da literatura brasileira, entre 600 e 1.800 veículos/hora conforme a classe. O tempo em fluxo livre usa a maior entre as velocidades de madrugada e de pico, limitada pelo limite da via, para que perdas presentes mesmo com a via vazia (curvas, conversões) não sejam atribuídas ao volume.
 
-Ainda assim, a função BPR com seus parâmetros clássicos ($a=0{,}15$ e $b=4$) não reproduz a lentidão observada no trevo, onde filas e entrelaçamentos surgem com saturação moderada. Nas 25 arestas de rodovia em que o fluxo estimado supera 30\% da capacidade nominal e o atraso observado excede o previsto, adotamos uma capacidade efetiva, aquela que faz a BPR reproduzir o tempo observado, limitada à nominal. Isso aproxima a situação atual dos dados, mas torna parte da conferência dependente da calibração.
+Ainda assim, a função BPR \cite{bpr1964} com seus parâmetros clássicos ($a=0{,}15$ e $b=4$) não reproduz a lentidão observada no trevo, onde filas e entrelaçamentos surgem com saturação moderada. Nas 25 arestas de rodovia em que o fluxo estimado supera 30\% da capacidade nominal e o atraso observado excede o previsto, adotamos uma capacidade efetiva, aquela que faz a BPR reproduzir o tempo observado, limitada à nominal. Isso aproxima a situação atual dos dados, mas torna parte da conferência dependente da calibração.
 
 \subsection{Alocação, cenários e indicadores}
 O equilíbrio é a solução do problema de Beckmann \cite{beckmann1956}, sujeito à conservação de fluxo em cada par origem-destino:
@@ -135,53 +165,37 @@ O equilíbrio é a solução do problema de Beckmann \cite{beckmann1956}, sujeit
 \min_{\mathbf{x}}\; \sum_{e}\int_{0}^{x_e} t_e(w)\,dw,\quad t_e(x)=t_{0,e}\Big[1+a\Big(\tfrac{x}{c_e}\Big)^{b}\Big].
 \label{eq:beckmann}
 \end{equation}
-O Frank-Wolfe parte da alocação em fluxo livre e, a cada iteração, atualiza os tempos, recalcula os caminhos mínimos e desloca o fluxo em direção a essa alocação, com passo por busca linear, até o \textit{gap} relativo ficar abaixo de $10^{-4}$ ou chegar a 500 iterações. Em cada solução, calculamos o $K_e=v_e/v_{\text{lim},e}$, com $v_e=L_e/t_e$, e o tempo total de viagem do sistema, $\text{TSTT}=\sum_e x_e t_e(x_e)$, e os comparamos com a situação atual.
+O Frank-Wolfe \cite{frank1956} parte da alocação em fluxo livre e, a cada iteração, atualiza os tempos, recalcula os caminhos mínimos e desloca o fluxo em direção a essa alocação, com passo por busca linear, até o \textit{gap} relativo (diferença entre o tempo total que o sistema está gastando e o tempo que gastaria se cada motorista já estivesse no caminho ideal) ficar abaixo de $10^{-4}$ ou chegar a 500 iterações. Em cada solução, calculamos o $K_e=v_e/v_{\text{lim},e}$, com $v_e=L_e/t_e$, e o tempo total de viagem do sistema, $\text{TSTT}=\sum_e x_e t_e(x_e)$, e os comparamos com a situação atual.
 
 Os cenários são cópias do grafo com uma alteração discreta em vias críticas ($K$ baixo no pico e demanda alocada): acréscimo de uma faixa, inversão de sentido ou remoção de arestas, esta como teste do paradoxo de Braess \cite{braess2005}. Há indício de Braess quando o $K$ da via-alvo sobe enquanto o TSTT piora. Como o fator de expansão é a principal incerteza e a BPR é fortemente não linear, toda simulação roda nos três níveis de demanda, e cada conclusão é classificada como robusta (vale nos três), dependente da demanda ou não sustentada. Testamos também a sensibilidade a $a=0{,}8$ e $b=4{,}7$ \cite{vdf2023}, com as capacidades efetivas recalculadas.
 
 \subsection{Limitações do desenho}
 O modelo é estático, não propaga filas entre arestas e não representa semáforos nem rotas por vias locais, excluídas do grafo; como a maioria das viagens só atravessa a área, poucas têm alternativa de rota. A capacidade vem da literatura, não de medições, e não há validação com dados retidos: as contagens calibram o fator de expansão, as passagens observadas pela TomTom vêm da mesma amostra que gerou a matriz e o tempo observado calibra os gargalos.
 
-\begin{figure}[t]
-\centering
-% Substitua o \fbox pelo arquivo real:
-% \includegraphics[width=\columnwidth]{fig_pipeline.pdf}
-\fbox{\parbox{0.9\columnwidth}{\centering\footnotesize
-OSM $\rightarrow$ grafo; TomTom O/D + DER-DF $\rightarrow$ matriz OD ($\times f$);
-Traffic Stats $\rightarrow$ $K$, $v_0$, $t_0$, $c$ $\rightarrow$ Frank-Wolfe (base)
-$\rightarrow$ cenários $\rightarrow$ $\Delta$TSTT, $\Delta K$, $\Delta x$}}
-\caption{Pipeline metodológico (placeholder).}
-\label{fig:pipeline}
-\end{figure}
-
 \section{Resultados}
 
 \subsection{Diagnóstico inicial do K}
 \label{sec:diagnostico_k}
 
-A avaliação do desempenho viário no cenário-base foi realizada por meio do cálculo do K para todas as 236 arestas do grafo mapeado, considerando o horário de pico das 18h às 19h. A Fig.~\ref{fig:k_inicial} ilustra a distribuição espacial do valor de $K$ inicial ao longo da malha estudada.
+A avaliação do desempenho viário no cenário-base foi realizada por meio do cálculo do K para todas as arestas do grafo mapeado, considerando o horário de pico das 18h às 19h. A Fig.~\ref{fig:k_inicial} ilustra a distribuição espacial do valor de $K$ inicial ao longo da malha estudada.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{gama_drive_expanded_k_inicial.png}
-\caption{Grafo da malha viária do Gama (EPCT/EPIP/DF-480): Índice de Desempenho de Velocidade ($K$) inicial no pico das 18h--19h.}
+\includegraphics[width=7cm]{gama_drive_expanded_k_inicial.png}
+\caption{Grafo da malha viária do Gama (EPCT/EPIP/DF-480).}
 \label{fig:k_inicial}
 \end{figure}
 
-A partir do diagnóstico visual e quantitativo, observam-se os seguintes padrões operacionais na malha:
-\begin{itemize}
-    \item \textbf{Rodovias Principais e Tráfego Livre ($K > 0{,}8$):} Os trechos de longa distância com pista dupla mantêm $K$ próximo a $1{,}0$.
-    \item \textbf{Vias Coletoras e Conexões Secundárias ($0{,}4 \leq K \le 0{,}7$):} As vias internas e de interligação secundária apresentam redução moderada da velocidade em relação aos limites regulamentados.
-    \item \textbf{Gargalos Críticos ($K < 0{,}3$):} O gargalo mais severo do sistema concentra-se no nó do trevo de entroncamento entre a EPCT (DF-001), a EPIP e a DF-480, estendendo-se pelas alças de acesso do trevo ($K < 0{,}25$).
-\end{itemize}
+A partir do diagnóstico inicial, identificam-se diferentes padrões operacionais na malha viária: as rodovias principais (caracterizadas por trechos de longa distância com pista dupla) apresentam condições próximas ao tráfego livre, com valores de $K$ superiores a $0{,}8$; as vias coletoras e conexões secundárias (responsáveis pela circulação interna e pela interligação entre diferentes segmentos da rede) apresentam valores de $K$ compreendidos entre $0{,}4$ e $0{,}7$, indicando uma redução moderada da velocidade média em relação aos limites regulamentados; e os gargalos críticos, caracterizados por valores de $K$ inferiores a $0{,}3$ concentram-se principalmente no trevo de entroncamento entre a EPCT (DF-001), a EPIP e a DF-480, com os níveis mais acentuados de comprometimento da circulação observados nas alças de acesso.
 
-\subsection{Convergência do Algoritmo e Validação}
-O algoritmo de Frank-Wolfe foi implementado para resolver o Equilíbrio de Wardrop na rede modelada sob o critério de parada com gap relativo inferior a $10^{-4}$ ou limite de 500 iterações. A Tabela~\ref{tab:convergencia_base} sintetiza a convergência computacional obtida nos três níveis de demanda.
+\subsection{Convergência do Algoritmo e Avaliação de Consistência}
+O algoritmo de Frank-Wolfe foi empregado para obter uma solução aproximada do Equilíbrio de Wardrop na rede viária modelada. A Tabela~\ref{tab:convergencia_base} sintetiza a convergência computacional obtida nos três níveis de demanda no cenário-base.
 
 \begin{table}[htbp]
-\caption{Desempenho de Convergência do Algoritmo de Frank-Wolfe (Caso-Base)}
+\caption{Desempenho de Convergência do Algoritmo de Frank-Wolfe}
 \label{tab:convergencia_base}
 \centering
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lcccc}
 \hline
 \textbf{Nível de Demanda} & \textbf{Fator} & \textbf{Iterações} & \textbf{\textit{Gap} Final} & \textbf{Tempo (s)} \\
@@ -190,43 +204,42 @@ Baixa & 8,82 & 2 & $3,5 \times 10^{-16}$ & 0,21 \\
 Adotada & 12,21 & 4 & $3,1 \times 10^{-9}$ & 0,34 \\
 Alta & 21,96 & 28 & $1,0 \times 10^{-4}$ & 2,23 \\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
-A conferência com os dados reais de tráfego (nível de demanda adotada) demonstrou forte aderência:
-\begin{itemize}
-    \item \textbf{Escolha de Rota:} A correlação entre o fluxo modelado e as passagens TomTom em 40 arestas isoladas atingiu $0,93$, com $GEH$ mediano de $3,48$.
-    \item \textbf{Tempos de Viagem:} Nas 130 arestas não calibradas, a razão mediana entre tempo modelado e observado foi de $0,912$. Na ponderação pelo fluxo total da rede, a razão atinge $0,972$.
-\end{itemize}
+A conferência com os dados reais de tráfego (nível de demanda adotada) demonstrou forte aderência: o fluxo modelado e as passagens TomTom em 40 arestas isoladas atingiu uma correlação de $0,93$, com $GEH$ mediano de $3,48$, e nas 130 arestas não calibradas, a razão mediana entre tempo modelado e observado foi de $0,912$.
 
 \subsection{Desempenho do Sistema e Efeito de Intervenções}
-A Tabela~\ref{tab:indicadores_base} apresenta os principais indicadores do sistema no Caso-Base (situação atual da malha viária).
+A Tabela~\ref{tab:indicadores_base} apresenta os principais indicadores do sistema na situação atual da malha viária.
 
 \begin{table}[htbp]
-\caption{Indicadores Macro do Sistema no Caso-Base}
+\caption{Indicadores Macro do Sistema}
 \label{tab:indicadores_base}
 \centering
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lccc}
 \hline
 \textbf{Indicador} & \textbf{D. Baixa} & \textbf{D. Adotada} & \textbf{D. Alta} \\
 \hline
-Demanda Total (veíc/h) & 6.002,2 & 8.309,2 & 14.944,3 \\
-TSTT (veíc$\cdot$h) & 343,36 & 476,94 & 884,36 \\
+Demanda Total (veículos/h) & 6.002,2 & 8.309,2 & 14.944,3 \\
+TSTT (veículos$\cdot$h) & 343,36 & 476,94 & 884,36 \\
 Velocidade Média (km/h) & 45,20 & 45,05 & 43,68 \\
 Tempo Médio de Viagem (min) & 3,43 & 3,44 & 3,55 \\
 Índice de Fluidez Média ($K_{rede}$) & 0,7026 & 0,7001 & 0,6763 \\
-Arestas Saturadas ($V/C > 1,0$) & 20 & 20 & 26 \\
 Arestas Lentas ($K < 0,5$) & 67 & 67 & 68 \\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
-Para avaliar o comportamento da malha frente a intervenções de capacidade, simulou-se a adição de uma faixa em 5 trechos de gargalo na EPCT sentido Norte. As alterações relativas no Tempo Total de Viagem do Sistema ($\Delta TSTT$), no índice $K_{rede}$ e na quantidade de arestas saturadas ($V/C > 1,0$) são consolidadas na Tabela~\ref{tab:intervencao_faixa}.
+Para avaliar o comportamento da malha frente a intervenções de capacidade, simulou-se a adição de uma faixa em 5 trechos de gargalo na EPCT sentido Norte. As alterações relativas ao cenário-base no TSTT, no índice $K$ e na quantidade de arestas saturadas são consolidadas na Tabela~\ref{tab:intervencao_faixa}.
 
 \begin{table}[htbp]
-\caption{Impacto da Adição de 1 Faixa na EPCT Norte em Relação ao Caso-Base}
+\caption{Impacto da Adição de 1 Faixa na EPCT Norte}
 \label{tab:intervencao_faixa}
 \centering
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lcccc}
 \hline
 \textbf{Demanda} & \textbf{$\Delta$ TSTT (\%)} & \textbf{$K$ Base} & \textbf{$K$ Cenário} & \textbf{Arestas $V/C>1$} \\
@@ -235,21 +248,18 @@ Baixa   & -8,59\% & 0,7026 & 0,7266 & 15 (-5) \\
 Adotada & -8,57\% & 0,7001 & 0,7241 & 15 (-5) \\
 Alta    & -8,32\% & 0,6763 & 0,7003 & 21 (-5) \\
 \hline
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
-O ganho de eficiência no $TSTT$ situou-se de forma consistente na faixa de $8,3\%$ a $8,6\%$ em todas as hipóteses de demanda, indicando a robustez da intervenção frente às incertezas do fator de expansão da amostragem GPS. Além disso, a adição da faixa reduziu diretamente o número de arestas saturadas ($V/C > 1,0$) em 5 trechos nos três cenários de demanda, aliviando os gargalos mais críticos da aproximação do trevo.
+O ganho de eficiência no TSTT situou-se de forma consistente na faixa de $8,3\%$ a $8,6\%$ em todas as hipóteses de demanda. Paralelamente, observou-se um aumento de aproximadamente $0,024$ no $K$ nos três cenários analisados, indicando uma melhoria nas condições gerais de circulação. Além disso, a adição da faixa resultou na redução de cinco arestas saturadas ($V/C > 1,0$) em cada cenário de demanda, evidenciando uma diminuição da quantidade de trechos com fluxo superior à capacidade efetiva considerada no modelo.
 
-\subsection{Redistribuição de Fluxo e Análise do Paradoxo de Braess}
-A ampliação da capacidade nos trechos gargalo da EPCT Norte promoveu um salto expressivo no indicador de fluidez local: na aresta $133 \rightarrow 63$, o índice $K$ subiu de $0,29$ para $0,62$, e na aresta $132 \rightarrow 133$, o acréscimo foi de $+0,221$.
+\subsection{Redistribuição de Fluxos e Avaliação de Efeitos Sistêmicos}
+A ampliação da capacidade nos trechos gargalo da EPCT Norte resultou em aumentos expressivos do índice de fluidez local: na aresta $133 \rightarrow 63$, o índice $K$ subiu de $0,29$ para $0,62$, e na aresta $132 \rightarrow 133$, o acréscimo foi de $+0,221$.
 
-Essa melhoria de nível de serviço atraiu veículos que anteriormente utilizavam vias secundárias para desviar do trevo congestionado. Na demanda adotada, observou-se:
-\begin{itemize}
-    \item Acréscimo de fluxo de até $+6,1$ veíc/h no acesso direto à EPCT Norte (aresta $64 \rightarrow 66$).
-    \item Redução concomitante de fluxo em rotas secundárias paralelas (ex.: arestas $68 \rightarrow 73$ e $73 \rightarrow 67$, com redução de $-2,8$ veíc/h).
-\end{itemize}
+A redução dos custos de deslocamento nos trechos ampliados favoreceu uma redistribuição dos fluxos no novo equilíbrio, com aumento da utilização de determinados acessos à EPCT Norte e redução do fluxo atribuído a rotas alternativas. Na demanda adotada, observou-se um acréscimo de fluxo de até $+6,1$ veículos/h no acesso direto à EFPCT Norte e uma redução concomitante de fluxo em rotas secundárias paralelas.
 
-Neste cenário de expansão de capacidade viária, não foi observado o Paradoxo de Braess. A melhoria local refletiu-se diretamente em uma redução global do tempo do sistema ($\Delta TSTT < 0$) e no aumento da velocidade média global, confirmando que a expansão de infraestrutura nos gargalos críticos do trevo EPCT/EPIP/DF-480 gera benefícios sistêmicos sem induzir gargalos secundários mais severos.
+Não foi identificado um efeito paradoxal associado ao Paradoxo de Braess na intervenção analisada, uma vez que a ampliação de capacidade resultou em redução do tempo total de viagem do sistema. A melhoria local refletiu-se diretamente em uma redução global do tempo do sistema ($\Delta TSTT < 0$) e no aumento do índice de fluidez da rede, confirmando que a expansão de infraestrutura nos gargalos críticos do trevo EPCT/EPIP/DF-480 gera benefícios sistêmicos.
 %\subsection{Efeito das intervenções no K e no TSTT}
 %\textit{[Comparação entre cenários e linha de base.]}
 
@@ -257,70 +267,47 @@ Neste cenário de expansão de capacidade viária, não foi observado o Paradoxo
 %\textit{[Vias que ganham ou perdem fluxo e casos em que a melhoria local piora o sistema.]}
 
 
-\section{Conclusão}
-Este trabalho analisou os impactos de intervenções viárias na região do trevo entre a EPCT, a EPIP e a DF-480, no Gama. Quanto aos efeitos de alterações pontuais na infraestrutura, observou-se que a ampliação da capacidade nos gargalos mais críticos reduz o tempo total de deslocamento de forma consistente em todo o sistema e melhora a fluidez geral da malha. Essa melhoria elimina desvios desnecessários por caminhos secundários e atrai o tráfego de volta às rodovias principais, sem gerar novos pontos de retenção nas vias adjacentes. Em relação ao uso de grafos para a compreensão do trânsito, a representação da rede por meio de nós e conexões alimentados por dados reais de fluxo e velocidade provou ser eficaz para isolar os pontos exatos de saturação. Essa modelagem permite identificar se a lentidão decorre do excesso de veículos ou da limitação física da via, possibilitando prever com precisão como o tráfego se redistribui após uma obra e orientar intervenções urbanas mais eficientes. Como trabalhos futuros, sugere-se a expansão da análise para modelos de simulação contínua e a otimização automatizada de novas propostas de intervenção.
 
+\section{Discussão e Limitações}
+\textit{[Interpretação dos resultados e limitações: escopo rodoviário, matriz OD sintética, cobertura do OSM para faixas, ausência de cortes de rota por vias locais, sensibilidade à capacidade.]}
 
-% Referências do que foi efetivamente realizado até 15/10/2026
-% (grafo, coleta de dados, matriz OD, velocidades, atributos das vias e capacidade efetiva).
-% As referências de etapas ainda não realizadas (Frank-Wolfe, cenários, Braess, NSGA-II,
-% validação em Sioux Falls) estão comentadas no fim, prontas para entrar quando forem feitas.
+\section{Conclusão e Trabalhos Futuros}
+\textit{[Resposta à RQ em um parágrafo e extensões: otimização com NSGA-II, expansão da região e dados de maior granularidade.]}
 
+\begin{declarations}
+
+\begin{contributions}
+PM contribuiu para a definição das etapas de pesquisa, e para a escolha do algoritmo de grafos a ser utilizado nas análises. DB contribuiu para a definição do escopo da análise, e para a criação dos scripts de operacionalização dos dados obtidos. DG e LM conduziram a extração e análise dos dados propriamente dita, sendo responsáveis pela validação das saídas e formatação dos resultados. Todos os autores leram e aprovaram o manuscrito final do artigo.
+\end{contributions}
+
+\begin{interests}
+Os autores declaram que não houve interesses conflitantes na elaboração do presente artigo, tendo o objetivo principal sido alinhado em torno da submissão ao WPOS considerando um problema real observado por cada integrante.
+\end{interests}
+
+\begin{materials}
+Os dados e informações obtidas/analisadas no artigo foram obtidos de um híbrido de fontes públicas e privadas. Na primeira categoria, os dados geográficos foram mapeados com base no dataset de \textbf{\href{https://www.dados.df.gov.br/pt/inicio}{dados viários do Departamento de Estradas e Rodagens}}, bem como no dataset de limites geográficos \textbf{\href{https://geo-df-der.hub.arcgis.com/pages/downloads}{dataset de limites geográficos do ArcGis}}. Vale ressaltar que esses dados foram alimentados à biblioteca \textbf{\href{https://osmnx.readthedocs.io/en/stable/}{OpenStreetMapx 2.1.1}}, usada para obtenção de arquivos enriquecidos manipuláveis para o processamento. Quanto à segunda categoria, destaca-se o uso da \textbf{\href{https://www.tomtom.com/products/traffic-apis/}{API de fluxo viário, e de obtenção da Matriz O/D do TomTom}}, que cobra uma taxa mensal, mas oferece um período de teste gratuito, durante o qual foi feita a análise evidenciada. Além disso, fica registrado o uso do \textbf{\href{https://www.python.org}{Python 3.13}} para os scripts de correlação dos dados, de criação dos grafos e de execução do algoritmo de Frank-Wolfe.
+\end{materials}
+
+\begin{furtherinformation}
+Fica registrado o uso de ferramentas de Inteligência Artificial como suporte para a produção do artigo, especialmente no que tange à seleção, limpeza e formatação dos dados utilizados para a análise. Não obstante, cada etapa da análise teve aprovação manual, e as simulações de intervenção viária foram confirmadas pelos integrantes do grupo.
+
+\end{furtherinformation}
+
+\end{declarations}
+
+\bibliographystyle{apalike-sol}
 \begin{thebibliography}{99}
-
-% ---------------- Fundamentos usados no que já foi feito ----------------
 \bibitem{wardrop1952} J. G. Wardrop, ``Some theoretical aspects of road traffic research,'' \textit{Proc. Institution of Civil Engineers}, Part II, vol. 1, no. 3, pp. 325--378, 1952.
-% usado: equilíbrio do usuário (premissa da estimativa de fluxo atual) e velocidade média no espaço = média harmônica
-
+\bibitem{beckmann1956} M. J. Beckmann, C. B. McGuire, and C. B. Winsten, \textit{Studies in the Economics of Transportation}. New Haven, CT: Yale University Press, 1956.
+\bibitem{frank1956} M. Frank and P. Wolfe, ``An algorithm for quadratic programming,'' \textit{Naval Research Logistics Quarterly}, vol. 3, no. 1--2, pp. 95--110, 1956.
+\bibitem{leblanc1975fw} L. J. LeBlanc, E. K. Morlok, and W. P. Pierskalla, ``An efficient approach to solving the road network equilibrium traffic assignment problem,'' \textit{Transportation Research}, vol. 9, no. 5, pp. 309--318, 1975.
+\bibitem{leblanc1975dndp} L. J. LeBlanc, ``An algorithm for the discrete network design problem,'' \textit{Transportation Science}, vol. 9, no. 3, pp. 183--199, 1975.
 \bibitem{bpr1964} U.S. Bureau of Public Roads, \textit{Traffic Assignment Manual}. Washington, DC: U.S. Dept. of Commerce, 1964.
-% usado: função volume-atraso e calibração da capacidade efetiva nos gargalos
-
-\bibitem{sheffi1985} Y. Sheffi, \textit{Urban Transportation Networks: Equilibrium Analysis with Mathematical Programming Methods}. Englewood Cliffs, NJ: Prentice-Hall, 1985.
-% usado: alocação tudo-ou-nada (estimativa do fluxo atual por aresta)
-
-\bibitem{dijkstra1959} E. W. Dijkstra, ``A note on two problems in connexion with graphs,'' \textit{Numerische Mathematik}, vol. 1, pp. 269--271, 1959.
-% usado: caminhos mínimos
-
+\bibitem{braess2005} D. Braess, A. Nagurney, and T. Wakolbinger, ``On a paradox of traffic planning,'' \textit{Transportation Science}, vol. 39, no. 4, pp. 446--450, 2005.
 \bibitem{he2016spi} F. He, X. Yan, Y. Liu, and L. Ma, ``A traffic congestion assessment method for urban road networks based on speed performance index,'' \textit{Procedia Engineering}, vol. 137, pp. 425--433, 2016.
-% usado: índice K = SPI
-
-% ---------------- Legislação e classificação viária ----------------
-\bibitem{ctb1997} Brasil, ``Lei n.\textordmasculine{} 9.503, de 23 de setembro de 1997. Institui o Código de Trânsito Brasileiro,'' \textit{Diário Oficial da União}, Brasília, DF, 24 set. 1997.
-% usado: arts. 60 e 61 (categoria da via e limite de velocidade sem sinalização)
-
-\bibitem{osmbrasilvias} OpenStreetMap Wiki, ``Brazil/Classificação de vias.'' [Online]. Disponível em: \url{https://wiki.openstreetmap.org/wiki/Brazil/Classifica%C3%A7%C3%A3o_de_vias}. Acesso em: 15 out. 2026.
-% usado: correspondência entre classe do OSM e categoria do CTB
-
-% ---------------- Dados ----------------
-\bibitem{osm} OpenStreetMap contributors, ``OpenStreetMap,'' dados da área do trevo EPCT/EPIP/DF-480 (Gama, DF) obtidos via Overpass API em 13 out. 2026, licença ODbL. [Online]. Disponível em: \url{https://www.openstreetmap.org}.
-
-\bibitem{tomtomod} TomTom International B.V., ``O/D Analysis (flow matrix)'', análise ``Gama Final'' (134 regiões), dias úteis de 1 a 30 jul. 2026, 18:00--19:00. [Online]. Disponível em: \url{https://developer.tomtom.com/od-analysis/documentation/product-information/introduction}. Acesso em: 14 out. 2026.
-
-\bibitem{tomtomts} TomTom International B.V., ``Traffic Stats -- Area Analysis'', jobs 10086419 (18:00--19:00) e 10086478 (00:00--04:00), dias úteis de 2 a 31 jul. 2026. [Online]. Disponível em: \url{https://developer.tomtom.com/traffic-stats/documentation/product-information/introduction}. Acesso em: 15 out. 2026.
-
-\bibitem{derfluxo} Departamento de Estradas de Rodagem do Distrito Federal (DER-DF), ``Dados de Fluxo Veicular -- volume de tráfego por trecho rodoviário (intervalos de 15 min), julho/2026,'' Portal de Dados Abertos do Distrito Federal, licença CC-BY. [Online]. Disponível em: \url{https://www.dados.df.gov.br/pt/dataset#/volume-diario-de-trafego-trechos-rodoviarios}. Acesso em: 15 out. 2026.
-
-\bibitem{dersrdf} Departamento de Estradas de Rodagem do Distrito Federal (DER-DF), ``Sistema Rodoviário do Distrito Federal.'' [Online]. Disponível em: \url{https://www.der.df.gov.br/sistema-rodoviario/}. Acesso em: 15 out. 2026.
-
-\bibitem{derrodovias} Departamento de Estradas de Rodagem do Distrito Federal (DER-DF), ``Rodovias no Distrito Federal'' (camada geoespacial), ArcGIS Online. [Online]. Disponível em: \url{https://www.arcgis.com/home/item.html?id=970d7017c83e4136a69a2622d7cbb5cb}. Acesso em: out. 2026.
-
-\bibitem{geoportaldf} Secretaria de Desenvolvimento Urbano e Habitação do Distrito Federal (SEDUH), ``Geoportal -- limites das Regiões Administrativas.'' [Online]. Disponível em: \url{https://www.geoportal.seduh.df.gov.br}. Acesso em: out. 2026.
-% usado: polígono da RA Gama no grafo original de 30 nós (endereço não verificado daqui: o site não respondeu)
-
-% ---------------- Software ----------------
-\bibitem{boeing2017} G. Boeing, ``OSMnx: New methods for acquiring, constructing, analyzing, and visualizing complex street networks,'' \textit{Computers, Environment and Urban Systems}, vol. 65, pp. 126--139, 2017.
-% versão usada: 2.1.1
-
-\bibitem{hagberg2008} A. A. Hagberg, D. A. Schult, and P. J. Swart, ``Exploring network structure, dynamics, and function using NetworkX,'' in \textit{Proc. 7th Python in Science Conference (SciPy 2008)}, Pasadena, CA, 2008, pp. 11--15.
-% versão usada: 3.5
-
-\bibitem{mckinney2010} W. McKinney, ``Data structures for statistical computing in Python,'' in \textit{Proc. 9th Python in Science Conference (SciPy 2010)}, Austin, TX, 2010, pp. 56--61.
-% pandas, versão usada: 2.3.2
-
-\bibitem{geopandas} K. Jordahl \textit{et al.}, ``GeoPandas: Python tools for geographic data,'' software, versão 1.1.4. [Online]. Disponível em: \url{https://geopandas.org}.
-
-\bibitem{shapely} S. Gillies \textit{et al.}, ``Shapely: manipulation and analysis of geometric objects,'' software, versão 2.1.2. [Online]. Disponível em: \url{https://github.com/shapely/shapely}.
-
+\bibitem{vdf2023} {Y. Pan, Modified volume-delay function based on traffic fundamental diagram}, \textit{J. Transportation Engineering, Part A}, vol. 149, no. 11, 2023.
+\bibitem{vdf4etapas} \textit{[Autoria a completar] A influência da função volume-atraso na avaliação de incerteza para um modelo de quatro etapas}.
+\bibitem[Brasil, 1997]{ctb2026} BRASIL. Lei nº 9.503, de 23 de setembro de 1997. Institui o Código de Trânsito Brasileiro. \textit{Diário Oficial da União},Brasília,DF,1997.Disponível em: <http://www.planalto.gov.br/ccivil\_03/leis/L9503.htm>.
 \end{thebibliography}
 
 \end{document}
