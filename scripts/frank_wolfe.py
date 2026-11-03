@@ -706,8 +706,12 @@ def varredura(G: nx.DiGraph, matriz: dict, alpha: float, beta: float, gap_max: f
             print(f"  varredura: {i}/{len(arestas)} arestas ({time.perf_counter() - inicio:.0f} s)")
     tab = pd.DataFrame(linhas)
 
-    # confirmacao dos candidatos (delta TSTT com o sinal de Braess) com gap bem menor
-    cand = tab[(~tab["desconecta"]) & (sinal * tab["delta_tstt_veic_min"] > 0)]
+    # confirmacao dos candidatos (delta TSTT com o sinal de Braess) com gap bem menor.
+    # Tolerancia: diferencas menores que 2 x gap x TSTT da situacao atual estao no
+    # nivel do erro de convergencia e nao viram candidatas (evita refazer, com
+    # milhares de iteracoes, alteracoes sem efeito real).
+    tol = {n: 2 * gap_max * base_ind[n]["tstt_veic_min"] for n in NIVEIS}
+    cand = tab[(~tab["desconecta"]) & (sinal * tab["delta_tstt_veic_min"] > tab["nivel"].map(tol))]
     confirmados = []
     base_fina = {}
     for n in sorted(set(cand["nivel"])):
@@ -735,6 +739,7 @@ def varredura(G: nx.DiGraph, matriz: dict, alpha: float, beta: float, gap_max: f
         "alteracoes_que_desconectam_pares_od": int(tab.loc[tab["desconecta"], "aresta"].nunique()),
         "alteracoes_avaliadas": int(validas["aresta"].nunique()),
         "candidatos_gap_1e-4": len(cand),
+        "tolerancia_candidato_veic_min": {n: round(v, 2) for n, v in tol.items()},
         "casos_braess_confirmados": [c for c in confirmados if c["braess"]],
         "candidatos_descartados_na_confirmacao": [c for c in confirmados if not c["braess"]],
         "por_nivel": {n: {

@@ -1,6 +1,6 @@
 # Cenários de intervenção e teste do paradoxo de Braess
 
-*Gerado por `scripts/relatorio_cenarios.py` em 02/11/2026, a partir de `resultados/`. Todos os números abaixo são lidos dos arquivos de resultado; para atualizar, rode de novo os comandos da seção 1 e este script.*
+*Gerado por `scripts/relatorio_cenarios.py` em 03/11/2026, a partir de `resultados/`. Todos os números abaixo são lidos dos arquivos de resultado; para atualizar, rode de novo os comandos da seção 1 e este script.*
 
 Este documento registra a etapa de cenários prevista no artigo (`research/main.tex`, "Alocação, cenários e indicadores") e no plano de pesquisa (passo 5: 15 a 30 grafos alterados): acréscimo de faixa, mudança de sentido e remoção de arestas, esta como teste do paradoxo de Braess, nos três níveis de demanda e com a sensibilidade a = 0,8 e b = 4,7.
 
@@ -246,15 +246,15 @@ Classificação: **melhora/piora robusta** = o TSTT muda no mesmo sentido nos tr
 
 | Aresta | Via | Classe | Alteração | Faixas | Capacidade | Gargalo | Fluxo atual (veíc/h) | K observado |
 |---|---|---|---|---|---|---|---|---|
-| 4→5 | primary | primary | +1 faixa | 3 → 4 | 1.809 → 2.412 | sim | 2.063 | 0,66 |
-| 5→6 | primary | primary | +1 faixa | 3 → 4 | 1.924 → 2.565 | sim | 2.071 | 0,75 |
-| 6→7 | primary | primary | +1 faixa | 3 → 4 | 1.774 → 2.365 | sim | 2.008 | 0,65 |
-| 7→22 | primary | primary | +1 faixa | 3 → 4 | 2.056 → 2.741 | sim | 2.413 | 0,72 |
-| 14→18 | primary | primary | +1 faixa | 3 → 4 | 1.072 → 1.429 | sim | 1.248 | 0,68 |
-| 18→4 | primary | primary | +1 faixa | 3 → 4 | 1.883 → 2.511 | sim | 2.143 | 0,65 |
+| 4→5 | sem nome | primary | +1 faixa | 3 → 4 | 1.809 → 2.412 | sim | 2.063 | 0,66 |
+| 5→6 | sem nome | primary | +1 faixa | 3 → 4 | 1.924 → 2.565 | sim | 2.071 | 0,75 |
+| 6→7 | sem nome | primary | +1 faixa | 3 → 4 | 1.774 → 2.365 | sim | 2.008 | 0,65 |
+| 7→22 | sem nome | primary | +1 faixa | 3 → 4 | 2.056 → 2.741 | sim | 2.413 | 0,72 |
+| 14→18 | sem nome | primary | +1 faixa | 3 → 4 | 1.072 → 1.429 | sim | 1.248 | 0,68 |
+| 18→4 | sem nome | primary | +1 faixa | 3 → 4 | 1.883 → 2.511 | sim | 2.143 | 0,65 |
 | 21→18 | Acesso DF-480 | trunk_link | +1 faixa | 1 → 2 | 894 → 1.788 | sim | 888 | 0,57 |
-| 22→23 | primary | primary | +1 faixa | 3 → 4 | 2.256 → 3.008 | sim | 2.272 | 0,78 |
-| 65→14 | primary | primary | +1 faixa | 3 → 4 | 1.188 → 1.584 | sim | 1.400 | 0,70 |
+| 22→23 | sem nome | primary | +1 faixa | 3 → 4 | 2.256 → 3.008 | sim | 2.272 | 0,78 |
+| 65→14 | sem nome | primary | +1 faixa | 3 → 4 | 1.188 → 1.584 | sim | 1.400 | 0,70 |
 
 **Resultados por nível de demanda** (situação atual → cenário):
 
@@ -305,12 +305,12 @@ Classificação: **melhora/piora robusta** = o TSTT muda no mesmo sentido nos tr
 
 | Aresta | Via | Classe | Alteração | Faixas | Capacidade | Gargalo | Fluxo atual (veíc/h) | K observado |
 |---|---|---|---|---|---|---|---|---|
-| 11→63 | trunk_link | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 138 | 0,16 |
+| 11→63 | sem nome | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 138 | 0,16 |
 | 19→17 | Acesso DF-480 | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 17 | 0,17 |
-| 21→72 | trunk_link | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 1 | 0,15 |
-| 60→10 | trunk_link | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 173 | 0,12 |
-| 67→66 | trunk_link | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 1.041 | 0,24 |
-| 133→9 | trunk_link | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 14 | 0,13 |
+| 21→72 | sem nome | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 1 | 0,15 |
+| 60→10 | sem nome | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 173 | 0,12 |
+| 67→66 | sem nome | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 1.041 | 0,24 |
+| 133→9 | sem nome | trunk_link | +1 faixa | 1 → 2 | 1.200 → 2.400 | não | 14 | 0,13 |
 
 **Resultados por nível de demanda** (situação atual → cenário):
 
@@ -521,7 +521,7 @@ Classificação: **melhora/piora robusta** = o TSTT muda no mesmo sentido nos tr
 
 | Aresta | Via | Classe | Alteração | Faixas | Capacidade | Gargalo | Fluxo atual (veíc/h) | K observado |
 |---|---|---|---|---|---|---|---|---|
-| 30→7 | tertiary | tertiary | inversão de sentido | 1 | 900 → 900 | não | 415 | 0,80 |
+| 30→7 | sem nome | tertiary | inversão de sentido | 1 | 900 → 900 | não | 415 | 0,80 |
 
 Na inversão, a aresta nova (v→u) mantém comprimento, limite, faixas e velocidade livre; a calibração de gargalo e os dados observados (que valiam para o outro sentido) são descartados.
 
@@ -656,7 +656,7 @@ Na inversão, a aresta nova (v→u) mantém comprimento, limite, faixas e veloci
 
 | Aresta | Via | Classe | Alteração | Faixas | Capacidade | Gargalo | Fluxo atual (veíc/h) | K observado |
 |---|---|---|---|---|---|---|---|---|
-| 30→7 | tertiary | tertiary | remoção | 1 → — | 900 → — | não | 415 | 0,80 |
+| 30→7 | sem nome | tertiary | remoção | 1 → — | 900 → — | não | 415 | 0,80 |
 
 **Resultados por nível de demanda** (situação atual → cenário):
 
@@ -699,7 +699,7 @@ Na inversão, a aresta nova (v→u) mantém comprimento, limite, faixas e veloci
 
 | Aresta | Via | Classe | Alteração | Faixas | Capacidade | Gargalo | Fluxo atual (veíc/h) | K observado |
 |---|---|---|---|---|---|---|---|---|
-| 11→63 | trunk_link | trunk_link | remoção | 1 → — | 1.200 → — | não | 138 | 0,16 |
+| 11→63 | sem nome | trunk_link | remoção | 1 → — | 1.200 → — | não | 138 | 0,16 |
 
 **Resultados por nível de demanda** (situação atual → cenário):
 
@@ -748,8 +748,18 @@ Comando: `python scripts/frank_wolfe.py --varredura-remocao --varredura-faixa` (
 | varredura_remocao | baixa | 166 | 69 | 0 | 0 | 0,000 | +0,386 | +65,76 |
 | varredura_remocao | adotada | 166 | 69 | 0 | 0 | 0,000 | +0,385 | +98,27 |
 | varredura_remocao | alta | 166 | 69 | 0 | 0 | 0,000 | +0,376 | +678,43 |
+| varredura_remocao_a0.8_b4.7 | baixa | 166 | 69 | 2 | 0 | 0,000 | +0,395 | +159,03 |
+| varredura_remocao_a0.8_b4.7 | adotada | 166 | 69 | 2 | 0 | 0,000 | +0,401 | +603,93 |
+| varredura_remocao_a0.8_b4.7 | alta | 166 | 69 | 2 | 2 | -0,724 | +0,338 | +6.623,56 |
 
-**Convergência nas varreduras:** `varredura_remocao`: 5 de 498 equilíbrios pararam no teto de 500 iterações com gap acima de 10⁻⁴ (maior gap 2.1e-03); servem para ordenar o efeito, e qualquer candidato a Braess é refeito com gap 10⁻⁷.
+**Convergência nas varreduras:** `varredura_remocao`: 5 de 498 equilíbrios pararam no teto de 500 iterações com gap acima de 10⁻⁴ (maior gap 2.1e-03); servem para ordenar o efeito, e qualquer candidato a Braess é refeito com gap 10⁻⁷. `varredura_remocao_a0.8_b4.7`: 15 de 498 equilíbrios pararam no teto de 500 iterações com gap acima de 10⁻⁴ (maior gap 5.4e-03); servem para ordenar o efeito, e qualquer candidato a Braess é refeito com gap 10⁻⁷.
+
+**Casos de Braess confirmados em `varredura_remocao_a0.8_b4.7`:**
+
+| Aresta | Via | Demanda | ΔTSTT confirmado (veíc·min) | ΔTSTT (%) |
+|---|---|---|---|---|
+| 6→30 | tertiary | alta | -507,700 | -0,7255 |
+| 30→79 | Avenida São Francisco | alta | -503,700 | -0,7198 |
 
 **Arestas cujo fechamento mais aumenta o TSTT** (`varredura_remocao`, demanda adotada):
 
@@ -787,6 +797,6 @@ Comando: `python scripts/frank_wolfe.py --varredura-remocao --varredura-faixa` (
 2. **K baixo não é sinônimo de falta de capacidade.** As alças com K observado < 0,25 (F4) e as coletoras Av. São Francisco (F5) e Marginal DF-480 (F6) quase não respondem a uma faixa extra (ΔTSTT de -0,11%, -0,01% e 0,00% na demanda adotada): a lentidão delas vem de geometria, conversões e cruzamentos (já embutidos no tempo de fluxo livre medido de madrugada), não do volume. Isso responde em parte à RQ2: o grafo enriquecido separa a lentidão causada por volume da lentidão estrutural.
 3. **Fechar ou inverter acessos sempre piora o sistema neste recorte.** Fechar o acesso 30→7 à DF-480 (R2) aumenta o TSTT em 8,9%; inverter esse acesso (S2) dá exatamente o mesmo resultado, porque o sentido novo não tem demanda: a inversão equivale a um fechamento. Fechar a alça 11→63 (R3) custa 2,5% e o binário na Marginal DF-480 (S1), 2,3%.
 4. **Há divergência entre K e TSTT, o indício de Braess definido no artigo.** Fechar a alça 21→18 (R1) ou invertê-la (S3) piora o TSTT (+1,53% e +1,54% na demanda adotada), mas o K da rede sobe (+0,0010 e +0,0010). Cerca de 864 veíc/h saem da alça e da DF-480 e passam a usar a Avenida do Sol e a ligação DF-480 Km 5 (19→72, 20→19, 47→5, 71→47, 72→71), vias de limite 40–60 km/h onde se anda a 20–32 km/h. A quilometragem total quase não muda (21.486 → 21.461 veíc·km), mas os trechos aliviados da DF-480 e da EPCT ganham muito K (18→4: 0,65 → 0,79; 20→17: 0,42 → 0,50), enquanto o desvio, por ter limite baixo, perde pouco K mesmo sendo lento em km/h. Como o K é normalizado pelo limite de cada via, ele favorece empurrar tráfego para vias de limite baixo; o TSTT, que mede tempo absoluto, registra a piora. Na demanda alta o sinal do ΔK se inverte. É uma evidência concreta de que uma métrica de fluidez normalizada pelo limite da via (K) pode apontar melhora enquanto o sistema perde tempo, que é a tese central do trabalho.
-5. **O paradoxo de Braess clássico não aparece na rede real.** Nas varreduras, nenhuma alteração de uma aresta reduziu o TSTT ao fechar nem o aumentou ao ampliar (166 fechamentos avaliados por nível nos parâmetros-base; os 69 restantes desconectariam pares OD). Isso é coerente com o predomínio do tráfego de passagem (86% das viagens) e com a pouca escolha de rota (46,5% da demanda com alternativa): para haver Braess, a via alterada precisa atrair viagens que tenham rota alternativa e que gerem atraso para outros. O algoritmo reproduz o paradoxo quando ele existe (rede de Braess de 1968 no `--teste`: o TSTT sobe de 498 para 552 ao abrir a ponte), então a ausência é um resultado do recorte, não uma limitação do método.
+5. **Paradoxo de Braess: ausente com os parâmetros-base, presente em poucos casos sob a sensibilidade.** Com a = 0,15 e b = 4, nenhuma alteração de uma aresta reduziu o TSTT ao fechar ou o aumentou ao ampliar (166 fechamentos avaliados por nível; os 69 restantes desconectariam pares OD). Com a = 0,8 e b = 4,7 (`varredura_remocao_a0.8_b4.7`), houve 2 caso(s) confirmado(s): fechar 6→30 (tertiary) na demanda alta: -0,73% (gap da confirmação 2e-06); fechar 30→79 (Avenida São Francisco) na demanda alta: -0,72% (gap da confirmação 2e-06). Em 6→30 e 30→79 (o mesmo percurso DF-480 → Av. São Francisco), cerca de 200 veíc/h usam o gargalo 5→6 da DF-480 para chegar ao acesso; fechando-o, cerca de 180 veíc/h saem do 5→6 (≈3.700 → 3.500 veíc/h, tempo 2,84 → 2,57 min) e vão para a Av. do Sol e a Marginal DF-480. A economia dos que ficam no gargalo supera o tempo extra dos desviados: é a externalidade clássica do paradoxo. O efeito depende dos parâmetros e da demanda: nos níveis baixo e adotado, e em todos os níveis com os parâmetros-base, os mesmos fechamentos aumentam o TSTT. A raridade do paradoxo é coerente com o predomínio do tráfego de passagem (86% das viagens) e com a pouca escolha de rota (46,5% da demanda com alternativa). O algoritmo reproduz o paradoxo quando ele existe (rede de Braess de 1968 no `--teste`: o TSTT sobe de 498 para 552 ao abrir a ponte).
 6. **Quais vias importam para o sistema.** A varredura de remoção funciona como um mapa de criticidade: fechar 25→0 (EPCT sul, antes do trevo), 133→63 (EPCT norte) ou 14→18 (DF-480) aumenta o TSTT em dezenas de por cento, enquanto a mediana dos fechamentos avaliáveis fica abaixo de 0,4%.
 

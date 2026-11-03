@@ -357,6 +357,31 @@ def mecanismo_r1(d: dict) -> str:
             "o TSTT, que mede tempo absoluto, registra a piora.")
 
 
+def item_braess(varr: dict, vr: dict | None) -> str:
+    """Item 5 da leitura: Braess nas varreduras, separando parametros-base e sensibilidade."""
+    base = [c for n, r in varr.items() if SENS not in n for c in r["casos_braess_confirmados"]]
+    sens = [(n, c) for n, r in varr.items() if SENS in n for c in r["casos_braess_confirmados"]]
+    rodadas_sens = sorted(n for n in varr if SENS in n)
+    txt = ("5. **Paradoxo de Braess: ausente com os parâmetros-base"
+           + (", presente em poucos casos sob a sensibilidade.** " if sens else ".** "))
+    txt += (f"Com a = 0,15 e b = 4, {'nenhuma' if not base else len(base)} alteração de uma aresta reduziu o TSTT ao fechar ou o aumentou ao ampliar"
+            + (f" ({vr['alteracoes_avaliadas']} fechamentos avaliados por nível; os {vr['alteracoes_que_desconectam_pares_od']} restantes desconectariam pares OD)" if vr else "")
+            + ". ")
+    if sens:
+        casos = "; ".join(f"{'fechar' if 'remocao' in n else '+1 faixa em'} {seta(c['aresta'])} ({c['nome'] or c['classe']}) na demanda {c['nivel']}: "
+                          f"{br(c['delta_tstt_pct_confirmado'], 2, True)}% (gap da confirmação {c['gap_confirmacao']:.0e})" for n, c in sens)
+        txt += (f"Com a = 0,8 e b = 4,7 ({', '.join(f'`{n}`' for n in rodadas_sens)}), houve {len(sens)} caso(s) confirmado(s): {casos}. "
+                "Em 6→30 e 30→79 (o mesmo percurso DF-480 → Av. São Francisco), cerca de 200 veíc/h usam o gargalo 5→6 da DF-480 para chegar ao acesso; "
+                "fechando-o, cerca de 180 veíc/h saem do 5→6 (≈3.700 → 3.500 veíc/h, tempo 2,84 → 2,57 min) e vão para a Av. do Sol e a Marginal DF-480. "
+                "A economia dos que ficam no gargalo supera o tempo extra dos desviados: é a externalidade clássica do paradoxo. "
+                "O efeito depende dos parâmetros e da demanda: nos níveis baixo e adotado, e em todos os níveis com os parâmetros-base, os mesmos fechamentos aumentam o TSTT. ")
+    else:
+        txt += "Sob a sensibilidade (a = 0,8 e b = 4,7) também não houve caso confirmado. "
+    txt += ("A raridade do paradoxo é coerente com o predomínio do tráfego de passagem (86% das viagens) e com a pouca escolha de rota (46,5% da demanda com alternativa). "
+            "O algoritmo reproduz o paradoxo quando ele existe (rede de Braess de 1968 no `--teste`: o TSTT sobe de 498 para 552 ao abrir a ponte).")
+    return txt
+
+
 def LEITURA(rodadas: dict, varr: dict, cens: list) -> list[str]:  # noqa: N802
     """Leitura dos resultados: os numeros vem dos arquivos; o texto interpreta."""
     d = {r["cenario"]["codigo"]: r for r in cens}
@@ -368,7 +393,6 @@ def LEITURA(rodadas: dict, varr: dict, cens: list) -> list[str]:  # noqa: N802
     def dk(cod, n="adotada"):
         return d[cod]["niveis"][n]["comparacao_com_base"]["delta_k_rede"] if cod in d else None
 
-    braess = sum(len(r["casos_braess_confirmados"]) for r in varr.values())
     vr = varr.get("varredura_remocao")
     out = ["## 6. Leitura dos resultados", ""]
     out += ["1. **Ampliar os gargalos do corredor é o que mais reduz o tempo total.** "
@@ -391,13 +415,7 @@ def LEITURA(rodadas: dict, varr: dict, cens: list) -> list[str]:  # noqa: N802
             f"mas o K da rede sobe ({br(dk('R1'), 4, True)} e {br(dk('S3'), 4, True)}). {mecanismo_r1(d)} "
             "Na demanda alta o sinal do ΔK se inverte. É uma evidência concreta de que uma métrica de fluidez normalizada pelo limite da via (K) pode apontar melhora "
             "enquanto o sistema perde tempo, que é a tese central do trabalho.",
-            f"5. **O paradoxo de Braess clássico não aparece na rede real.** Nas varreduras, {'nenhuma' if braess == 0 else str(braess)} "
-            f"alteração de uma aresta reduziu o TSTT ao fechar nem o aumentou ao ampliar"
-            + (f" ({vr['alteracoes_avaliadas']} fechamentos avaliados por nível nos parâmetros-base; os {vr['alteracoes_que_desconectam_pares_od']} restantes desconectariam pares OD)" if vr else "")
-            + ". Isso é coerente com o predomínio do tráfego de passagem (86% das viagens) e com a pouca escolha de rota (46,5% da demanda com alternativa): "
-            "para haver Braess, a via alterada precisa atrair viagens que tenham rota alternativa e que gerem atraso para outros. "
-            "O algoritmo reproduz o paradoxo quando ele existe (rede de Braess de 1968 no `--teste`: o TSTT sobe de 498 para 552 ao abrir a ponte), "
-            "então a ausência é um resultado do recorte, não uma limitação do método.",
+            item_braess(varr, vr),
             "6. **Quais vias importam para o sistema.** A varredura de remoção funciona como um mapa de criticidade: fechar 25→0 (EPCT sul, antes do trevo), "
             "133→63 (EPCT norte) ou 14→18 (DF-480) aumenta o TSTT em dezenas de por cento, enquanto a mediana dos fechamentos avaliáveis fica abaixo de 0,4%.",
             ""]
