@@ -61,3 +61,46 @@ As contagens de tráfego calibram a matriz OD. O arquivo tem ~146 MB e não fica
 2. Salvar na raiz do repositório como `flow.csv`.
 
 A versão de abril/2026, usada na primeira calibração, pode ficar ao lado como `flow_abril_2026.csv` (também ignorada pelo git).
+
+## 👥 Autores
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Redondave">
+        <img src="https://github.com/Redondave.png?size=100" width="100px;" alt="Photo of Davi Brasileiro"/>
+        <br />
+        <sub>
+          <b>Davi Brasileiro</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/daviggalvao">
+        <img src="https://github.com/daviggalvao.png?size=100" width="100px;" alt="Photo of Davi Galvão"/>
+        <br />
+        <sub>
+          <b>Davi Galvão</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Leo3107">
+        <img src="https://github.com/Leo3107.png?size=100" width="100px;" alt="Photo of Leonardo Mileo"/>
+        <br />
+        <sub>
+          <b>Leonardo Mileo</b>
+        </sub>
+      </a>
+    </td>
+     <td align="center">
+      <a href="https://github.com/Liferoijrm">
+        <img src="https://github.com/Liferoijrm.png?size=100" width="100px;" alt="Photo of Pedro Marcinoni"/>
+        <br />
+        <sub>
+          <b>Pedro Marcinoni</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
