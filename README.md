@@ -1,63 +1,30 @@
-# Projeto LimpaRuas
+# Urban Traffic Intervention Analysis
 
-Otimização do índice de desempenho de velocidade (K) na malha viária do Gama (DF):
-grafo da região, matriz origem-destino, velocidades observadas e atributos de via
-para a alocação de tráfego por Frank-Wolfe. Plano completo em
-`research/research_plan.md`; próximos passos em
-`research/o_que_falta_fazer_pre_frank_wolfe.md`.
+[![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
 
-## Estrutura
+Optimization of the **Speed Performance Index (K)** in the road network of Gama (Federal District, Brazil). This project integrates regional graph generation, Origin-Destination (OD) matrix creation from floating-car data, observed link speeds, and road physical attributes to model traffic assignment via the **Frank-Wolfe algorithm**.
 
-| Caminho | Conteúdo |
-|---|---|
-| `cache/gama_drive_expanded.graphml` / `.gpkg` | Grafo de estudo: 134 nós, 236 arestas |
-| `cache/gama_drive_expanded_atributos.graphml` | Grafo pronto para o Frank-Wolfe (`t0`, capacidade nominal e efetiva nos gargalos, `v0`, K observado); ler com `nx.read_graphml` |
-| `cache/gama_area_estudo_osm.graphml` | Download do OpenStreetMap da área (fonte do grafo) |
-| `cache/gama_drive_sample_30.graphml` | Grafo de 30 nós original: base dos ids `0`–`29` do grafo de estudo |
-| `cache/gama_drive_expanded_portoes.geojson` | Caixas usadas na análise O/D da TomTom |
-| `Tables/matriz_od_final.json` | Matriz OD nó a nó em veíc/h, com calibração e dados de validação |
-| `Tables/od_tomtom_gama_final_bruto.json` | Resposta da TomTom O/D Analysis ("Gama Final") |
-| `Tables/traffic_stats_gama_julho.json` | TomTom Traffic Stats (job 10086419): velocidades por trecho, julho/2026, dias úteis, 18–19h |
-| `Tables/traffic_stats_gama_madrugada.json` | TomTom Traffic Stats (job 10086478): mesma área e mesmos dias, 00–04h (velocidade livre) |
-| `Tables/velocidades_arestas.csv` | Velocidade observada e K inicial por aresta |
-| `Tables/faixas_limite_arestas.csv` | Faixas por sentido e limite de velocidade por aresta (OSM + CTB) |
-| `cenarios/*.json` | Cenários de intervenção (C0 = `exemplo_faixa_epct_norte.json`, caso da V1; F*, S*, R* gerados por `scripts/gerar_cenarios.py`) |
-| `resultados/varredura_*/` | Varreduras de Braess: cada aresta fechada ou ampliada, uma por vez, nos três níveis |
-| `research/relatorio_cenarios.md` | Relatório da etapa de cenários: alterações exatas e resultados de cada caso |
-| `resultados/<rodada>/` | Saída do Frank-Wolfe: `arestas_<nivel>.csv` e `resumo.json`, para a situação atual (`base`) e cada cenário |
-| `resultados/painel.html` | Painel interativo dos resultados (mapa, indicadores, convergência, comparação) |
-| `resultados/figuras/` | Figuras estáticas para o artigo |
-| `Tables/Roads.csv`, `Tables/trechos_com_coordenadas.csv` | Trechos do DER-DF e sua geometria (localizam os contadores) |
+---
 
-## Scripts
+## 📌 Key Features
 
-```bash
-python scripts/expand_graph.py               # refaz o grafo de estudo (offline, a partir do cache)
-python scripts/build_od_matrix.py --offline  # refaz a matriz OD a partir do bruto salvo
-python scripts/faixas_limite.py              # faixas e limite por aresta
-python scripts/velocidades_traffic_stats.py  # velocidade e K por aresta (usa faixas_limite)
-python scripts/enrich_graph.py               # grafo atribuído: capacidade, t0 e checagens
-python scripts/frank_wolfe.py --teste        # valida o algoritmo em redes com solução conhecida
-python scripts/frank_wolfe.py                # equilíbrio da situação atual nos 3 níveis de demanda
-python scripts/gerar_cenarios.py             # gera cenarios/*.json a partir de critérios sobre o grafo
-python scripts/frank_wolfe.py --todos        # situação atual + todos os cenários
-python scripts/frank_wolfe.py --varredura-remocao --varredura-faixa   # teste de Braess aresta por aresta
-python scripts/frank_wolfe.py --alpha 0.8 --beta 4.7 --todos          # sensibilidade (idem para as varreduras)
-python scripts/visualizar_resultados.py      # gera resultados/painel.html e as figuras
-python scripts/relatorio_cenarios.py         # gera research/relatorio_cenarios.md
-python scripts/mapping.py                    # só se a tabela de trechos do DER mudar
-```
+- **Spatial Graph Construction:** 134-node, 236-edge expanded network generated from OpenStreetMap (OSM) data.
+- **Empirical Calibration:** Origin-Destination matrix calibrated using TomTom Traffic Stats and local DETRAN-DF volume count sensors.
+- **Traffic Assignment Engine:** Custom Frank-Wolfe User Equilibrium (UE) implementation supporting multiple demand levels and BPR link performance functions.
+- **Braess Paradox Scanning:** Systematic single-edge closure and capacity expansion sweeps to detect network performance anomalies.
+- **Interactive Dashboards:** Automated HTML visualizer for spatial flow distributions, convergence metrics, and scenario comparisons.
 
-O `build_od_matrix.py` sem `--offline` baixa a análise de novo e lê a chave da
-variável `TOMTOM_API_KEY`.
+---
 
-Dependências (Python 3.13): `osmnx networkx geopandas shapely pyproj pandas numpy scipy matplotlib requests`.
+## 📁 Repository Structure
 
-## Dados do DETRAN
-
-As contagens de tráfego calibram a matriz OD. O arquivo tem ~146 MB e não fica no git:
-
-1. Baixar o CSV de **julho/2026** (o mesmo mês da TomTom) de [volume diário de tráfego do DETRAN](https://www.dados.df.gov.br/pt/dataset#/volume-diario-de-trafego-trechos-rodoviarios).
-2. Salvar na raiz do repositório como `flow.csv`.
-
-A versão de abril/2026, usada na primeira calibração, pode ficar ao lado como `flow_abril_2026.csv` (também ignorada pelo git).
+```text
+.
+├── cache/                  # Processed network graphs, geojson gates, and spatial caches
+├── Tables/                 # Calibrated OD matrices, TomTom speed stats, and road attributes
+├── cenarios/               # JSON definitions for road intervention scenarios (C0, F*, S*, R*)
+├── scripts/                # Data processing, graph expansion, and assignment scripts
+├── research/               # Methodology plans, logs, and scenario reports
+└── resultados/             # Output files from Frank-Wolfe runs, panel dashboard, and paper figures
