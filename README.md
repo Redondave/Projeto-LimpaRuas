@@ -28,3 +28,48 @@ Optimization of the **Speed Performance Index (K)** in the road network of Gama 
 ├── scripts/                # Data processing, graph expansion, and assignment scripts
 ├── research/               # Methodology plans, logs, and scenario reports
 └── resultados/             # Output files from Frank-Wolfe runs, panel dashboard, and paper figures
+
+```
+
+## 👥 Authors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/daviggalvao">
+        <img src="https://github.com/daviggalvao.png?size=100" width="100px;" alt="Photo of Davi Galvão"/>
+        <br />
+        <sub>
+          <b>Davi Galvão</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Redondave">
+        <img src="https://github.com/Redondave.png?size=100" width="100px;" alt="Photo of Davi Brasileiro"/>
+        <br />
+        <sub>
+          <b>Davi Brasileiro</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Liferoijrm">
+        <img src="https://github.com/Liferoijrm.png?size=100" width="100px;" alt="Photo of Pedro Marcinoni"/>
+        <br />
+        <sub>
+          <b>Pedro Marcinoni</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Leo3107">
+        <img src="https://github.com/Leo3107.png?size=100" width="100px;" alt="Photo of Leonardo Mileo"/>
+        <br />
+        <sub>
+          <b>Leonardo Mileo</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
