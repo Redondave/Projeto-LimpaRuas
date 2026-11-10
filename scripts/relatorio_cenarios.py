@@ -291,7 +291,7 @@ def main() -> None:
           f"*Gerado por `scripts/relatorio_cenarios.py` em {date.today().strftime('%d/%m/%Y')}, a partir de `resultados/`. "
           "Todos os números abaixo são lidos dos arquivos de resultado; para atualizar, rode de novo os comandos da seção 1 e este script.*",
           "",
-          "Este documento registra a etapa de cenários prevista no artigo (`research/main.tex`, \"Alocação, cenários e indicadores\") e no plano de pesquisa "
+          "Este documento registra a etapa de cenários prevista no artigo (`artigo/artigoFinal.tex`, \"Alocação, cenários e indicadores\") e no plano de pesquisa "
           "(passo 5: 15 a 30 grafos alterados): acréscimo de faixa, mudança de sentido e remoção de arestas, esta como teste do paradoxo de Braess, "
           "nos três níveis de demanda e com a sensibilidade a = 0,8 e b = 4,7.",
           "",
@@ -309,7 +309,7 @@ def main() -> None:
           "",
           "**Configuração comum a todos os casos:**",
           "",
-          f"- **Grafo:** `cache/gama_drive_expanded_atributos.graphml` (134 nós, 235 arestas de carro); **matriz OD:** `Tables/matriz_od_final.json` (1.031 pares).",
+          f"- **Grafo:** `dados/grafo/gama_drive_expanded_atributos.graphml` (134 nós, 235 arestas de carro); **matriz OD:** `dados/tabelas/matriz_od_final.json` (1.031 pares).",
           f"- **Níveis de demanda (obrigatórios):** baixa (fator {br(fat['min'])}), adotada ({br(fat['adotado'])}) e alta ({br(fat['max'])}). "
           "A demanda de cada par é `veic_h × fator / 12,21`, e cada nível usa a capacidade efetiva calibrada para o seu fator.",
           "- **Função de atraso:** BPR com a = 0,15 e b = 4 (base) e a = 0,8 e b = 4,7 (sensibilidade; a capacidade efetiva dos gargalos é recalculada e a faixa extra dos cenários é preservada).",

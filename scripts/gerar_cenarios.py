@@ -1,6 +1,6 @@
 """
 Gera os cenarios de intervencao (cenarios/*.json) a partir de criterios sobre o
-grafo atribuido, cobrindo os tipos previstos no artigo (research/main.tex,
+grafo atribuido, cobrindo os tipos previstos no artigo (artigo/artigoFinal.tex,
 "Alocacao, cenarios e indicadores"): acrescimo de faixa, inversao de sentido e
 remocao de arestas (teste de Braess). Cada cenario registra o criterio que
 escolheu as arestas, para o relatorio (research/relatorio_cenarios.md).
@@ -11,7 +11,7 @@ Familias:
     R  remocao / fechamento de acessos que alimentam os gargalos
     B  caso de Braess, se a varredura (frank_wolfe.py --varredura-*) confirmar algum
 
-O cenario C0 (cenarios/exemplo_faixa_epct_norte.json) ja existia e nao e
+O cenario C0 (cenarios/C0_faixa_epct_norte_trevo.json) ja existia e nao e
 gerado aqui. Cenarios que desconectariam algum par OD sao descartados com aviso.
 
 Uso (da raiz do repositorio):

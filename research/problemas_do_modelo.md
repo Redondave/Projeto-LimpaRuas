@@ -101,7 +101,7 @@ Ela nunca passa da capacidade nominal (só reduz). O script confere que, com a c
 | 25→0 | EPCT, sul | 208 m | 2.062 | 1,11 | 3.600 → 2.211 (61%) |
 | 17→26 | EPCT, sul | 70 m | 1.956 | 1,07 | 3.600 → 2.402 (67%) |
 
-Fluxos e capacidades em veículos por hora, por sentido. A lista completa, com os valores para os três fatores de expansão, está em `cache/gama_drive_expanded_atributos_relatorio.json`, campo `gargalos`.
+Fluxos e capacidades em veículos por hora, por sentido. A lista completa, com os valores para os três fatores de expansão, está em `dados/grafo/gama_drive_expanded_atributos_relatorio.json`, campo `gargalos`.
 
 **5. Campos no grafo:**
 

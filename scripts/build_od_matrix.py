@@ -18,7 +18,7 @@ Formato do resultado (analysisVersion 2), cada link e:
 Os valores sao percentuais, mas todos sao multiplos inteiros de 100/N, onde N e
 o numero de viagens da amostra. Isso permite recuperar a contagem absoluta de
 viagens TomTom por par. Para virar veiculos/hora reais, a amostra e expandida
-por um fator calibrado contra os contadores do DETRAN (flow.csv) no mesmo
+por um fator calibrado contra os contadores do DER-DF (dados/der/flow.csv) no mesmo
 horario. Os pontos de calibracao sao encontrados automaticamente (ver
 pontos_de_calibracao), entao o script funciona para qualquer analise nova.
 
@@ -29,8 +29,8 @@ Uso (da raiz do repositorio):
     python scripts/build_od_matrix.py --fator 15  # forca o fator de expansao
 
 Saidas (padrao):
-    Tables/od_tomtom_gama_final_bruto.json   resposta da TomTom (metadados, regioes, links)
-    Tables/matriz_od_final.json              matriz no-a-no em veic/h + calibracao + validacao
+    dados/tomtom/od_tomtom_gama_final_bruto.json   resposta da TomTom (metadados, regioes, links)
+    dados/tabelas/matriz_od_final.json              matriz no-a-no em veic/h + calibracao + validacao
 """
 
 import argparse
@@ -56,13 +56,13 @@ RAIZ = Path(__file__).resolve().parents[1]
 
 # ---------------- CONFIGURACAO ----------------
 ANALISE_ID = "6604531297533426895"          # "Gama Final" no portal TomTom O/D (134 regioes)
-GRAFO = RAIZ / "cache/gama_drive_expanded.graphml"
-AREA_OSM = RAIZ / "cache/gama_area_estudo_osm.graphml"          # geometria real das arestas
+GRAFO = RAIZ / "dados/grafo/gama_drive_expanded.graphml"
+AREA_OSM = RAIZ / "dados/osm/gama_area_estudo_osm.graphml"          # geometria real das arestas
 CRS = "EPSG:31983"                           # SIRGAS 2000 / UTM 23S, o mesmo do grafo
-FLOW = RAIZ / "flow.csv"
-TRECHOS = RAIZ / "Tables/trechos_com_coordenadas.csv"
-BRUTO = RAIZ / "Tables/od_tomtom_gama_final_bruto.json"
-MATRIZ = RAIZ / "Tables/matriz_od_final.json"
+FLOW = RAIZ / "dados/der/flow.csv"            # contagens do DER-DF (fora do git, ver README)
+TRECHOS = RAIZ / "dados/der/trechos_com_coordenadas.csv"
+BRUTO = RAIZ / "dados/tomtom/od_tomtom_gama_final_bruto.json"
+MATRIZ = RAIZ / "dados/tabelas/matriz_od_final.json"
 
 API = "https://api.tomtom.com/origindestination/1/analysis/flowmatrix"
 DIST_MAX_NO_M = 50     # caixa fora da rede: aceita o no mais proximo ate esta distancia
@@ -381,7 +381,7 @@ def main() -> None:
         metodo = (f"mediana dos fatores de {len(cal)} pistas com contador DETRAN "
                   f"({len(pontos)} caixas limpas)")
     else:
-        sys.exit("Nenhum ponto de calibracao encontrado (ou sem flow.csv): rode com --fator.")
+        sys.exit("Nenhum ponto de calibracao encontrado (ou sem dados/der/flow.csv): rode com --fator.")
 
     # grafo para o teste de caminho: sem vias que carro nao usa
     carro = G.copy()

@@ -42,7 +42,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 RAIZ = Path(__file__).resolve().parents[1]
-GRAFO = RAIZ / "cache/gama_drive_expanded_atributos.graphml"
+GRAFO = RAIZ / "dados/grafo/gama_drive_expanded_atributos.graphml"
 RESULTADOS = RAIZ / "resultados"
 FIGURAS = RESULTADOS / "figuras"
 NIVEIS = ["baixa", "adotada", "alta"]

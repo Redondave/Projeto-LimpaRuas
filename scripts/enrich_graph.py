@@ -1,10 +1,10 @@
 """
 Monta o grafo atribuido que o Frank-Wolfe vai ler (Etapas 3b e 4 do
-research/o_que_falta_fazer_pre_frank_wolfe.md).
+research/historico/o_que_falta_fazer_pre_frank_wolfe.md).
 
 Junta, em cada aresta do grafo de estudo:
-  - faixas por sentido e limite de velocidade  (Tables/faixas_limite_arestas.csv)
-  - velocidade no pico e de madrugada, K inicial (Tables/velocidades_arestas.csv)
+  - faixas por sentido e limite de velocidade  (dados/tabelas/faixas_limite_arestas.csv)
+  - velocidade no pico e de madrugada, K inicial (dados/tabelas/velocidades_arestas.csv)
 e calcula:
   - v0_kmh     velocidade livre (Etapa 6):
                  v0 = min(limite, max(v_madrugada, v_pico))
@@ -52,9 +52,9 @@ O ox.load_graphml NAO serve para este arquivo: ele espera todos os atributos
 como texto e quebra nos tipados.
 
 Saidas:
-    cache/gama_drive_expanded_atributos.graphml          grafo para o Frank-Wolfe
-    cache/gama_drive_expanded_atributos_relatorio.json   cobertura, checagens, V/C
-    cache/gama_drive_expanded_k_inicial.png              mapa do K inicial
+    dados/grafo/gama_drive_expanded_atributos.graphml          grafo para o Frank-Wolfe
+    dados/grafo/gama_drive_expanded_atributos_relatorio.json   cobertura, checagens, V/C
+    dados/grafo/gama_drive_expanded_k_inicial.png              mapa do K inicial
 """
 
 import json
@@ -76,13 +76,13 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 RAIZ = Path(__file__).resolve().parents[1]
-GRAFO = RAIZ / "cache/gama_drive_expanded.graphml"
-FAIXAS_LIMITE = RAIZ / "Tables/faixas_limite_arestas.csv"
-VELOCIDADES = RAIZ / "Tables/velocidades_arestas.csv"
-MATRIZ = RAIZ / "Tables/matriz_od_final.json"
-SAIDA = RAIZ / "cache/gama_drive_expanded_atributos.graphml"
-RELATORIO = RAIZ / "cache/gama_drive_expanded_atributos_relatorio.json"
-FIGURA = RAIZ / "cache/gama_drive_expanded_k_inicial.png"
+GRAFO = RAIZ / "dados/grafo/gama_drive_expanded.graphml"
+FAIXAS_LIMITE = RAIZ / "dados/tabelas/faixas_limite_arestas.csv"
+VELOCIDADES = RAIZ / "dados/tabelas/velocidades_arestas.csv"
+MATRIZ = RAIZ / "dados/tabelas/matriz_od_final.json"
+SAIDA = RAIZ / "dados/grafo/gama_drive_expanded_atributos.graphml"
+RELATORIO = RAIZ / "dados/grafo/gama_drive_expanded_atributos_relatorio.json"
+FIGURA = RAIZ / "dados/grafo/gama_drive_expanded_k_inicial.png"
 
 # Capacidade por faixa (veic/h/faixa), faixas do research_plan.md:
 # expressas ~1.800-2.000, arteriais principais ~1.000-1.200, secundarias e locais ~500-900.

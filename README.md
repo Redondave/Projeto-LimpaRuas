@@ -1,66 +1,84 @@
 # Projeto LimpaRuas
 
-Otimização do índice de desempenho de velocidade (K) na malha viária do Gama (DF):
-grafo da região, matriz origem-destino, velocidades observadas e atributos de via
-para a alocação de tráfego por Frank-Wolfe. Plano completo em
-`research/research_plan.md`; próximos passos em
-`research/o_que_falta_fazer_pre_frank_wolfe.md`.
+Otimização de intervenções viárias no trevo entre a EPCT (DF-001), a EPIP e a
+DF-480, no Gama (DF), com base no índice de desempenho de velocidade (K) e nos
+efeitos sistêmicos sobre a rede. A malha é modelada como um grafo direcionado
+(OpenStreetMap), a demanda vem de trajetórias reais (TomTom O/D Analysis,
+expandida com contagens do DER-DF), as velocidades vêm do TomTom Traffic Stats,
+e o equilíbrio de Wardrop é calculado pelo algoritmo de Frank-Wolfe.
+
+O artigo está em [`artigo/artigoFinal.tex`](artigo/artigoFinal.tex) e a
+documentação, em [`research/`](research/README.md).
+
+## Principais resultados
+
+Variação do tempo total de viagem do sistema (TSTT) na demanda adotada, em
+relação à situação atual (detalhes em
+[`research/relatorio_cenarios.md`](research/relatorio_cenarios.md)):
+
+| Cenário | Intervenção | ΔTSTT |
+|---|---|---|
+| C0 | +1 faixa em 5 trechos saturados da EPCT norte | −8,6% |
+| R3 | fechamento da alça de retorno 11→63 | +2,5% |
+| S3 | inversão da alça de acesso à DF-480 | +1,5% (com o K da rede subindo) |
+
+Com os parâmetros de referência da função de atraso, nenhuma via fechada ou
+ampliada produziu o paradoxo de Braess; ele aparece em dois fechamentos apenas
+sob os parâmetros da análise de sensibilidade e demanda alta. O painel
+interativo com todos os 13 cenários está em
+[`resultados/painel.html`](resultados/painel.html) (abrir no navegador).
 
 ## Estrutura
 
-| Caminho | Conteúdo |
-|---|---|
-| `cache/gama_drive_expanded.graphml` / `.gpkg` | Grafo de estudo: 134 nós, 236 arestas |
-| `cache/gama_drive_expanded_atributos.graphml` | Grafo pronto para o Frank-Wolfe (`t0`, capacidade nominal e efetiva nos gargalos, `v0`, K observado); ler com `nx.read_graphml` |
-| `cache/gama_area_estudo_osm.graphml` | Download do OpenStreetMap da área (fonte do grafo) |
-| `cache/gama_drive_sample_30.graphml` | Grafo de 30 nós original: base dos ids `0`–`29` do grafo de estudo |
-| `cache/gama_drive_expanded_portoes.geojson` | Caixas usadas na análise O/D da TomTom |
-| `Tables/matriz_od_final.json` | Matriz OD nó a nó em veíc/h, com calibração e dados de validação |
-| `Tables/od_tomtom_gama_final_bruto.json` | Resposta da TomTom O/D Analysis ("Gama Final") |
-| `Tables/traffic_stats_gama_julho.json` | TomTom Traffic Stats (job 10086419): velocidades por trecho, julho/2026, dias úteis, 18–19h |
-| `Tables/traffic_stats_gama_madrugada.json` | TomTom Traffic Stats (job 10086478): mesma área e mesmos dias, 00–04h (velocidade livre) |
-| `Tables/velocidades_arestas.csv` | Velocidade observada e K inicial por aresta |
-| `Tables/faixas_limite_arestas.csv` | Faixas por sentido e limite de velocidade por aresta (OSM + CTB) |
-| `cenarios/*.json` | Cenários de intervenção (C0 = `exemplo_faixa_epct_norte.json`, caso da V1; F*, S*, R* gerados por `scripts/gerar_cenarios.py`) |
-| `resultados/varredura_*/` | Varreduras de Braess: cada aresta fechada ou ampliada, uma por vez, nos três níveis |
-| `research/relatorio_cenarios.md` | Relatório da etapa de cenários: alterações exatas e resultados de cada caso |
-| `resultados/<rodada>/` | Saída do Frank-Wolfe: `arestas_<nivel>.csv` e `resumo.json`, para a situação atual (`base`) e cada cenário |
-| `resultados/painel.html` | Painel interativo dos resultados (mapa, indicadores, convergência, comparação) |
-| `resultados/figuras/` | Figuras estáticas para o artigo |
-| `Tables/Roads.csv`, `Tables/trechos_com_coordenadas.csv` | Trechos do DER-DF e sua geometria (localizam os contadores) |
-
-## Scripts
-
-```bash
-python scripts/expand_graph.py               # refaz o grafo de estudo (offline, a partir do cache)
-python scripts/build_od_matrix.py --offline  # refaz a matriz OD a partir do bruto salvo
-python scripts/faixas_limite.py              # faixas e limite por aresta
-python scripts/velocidades_traffic_stats.py  # velocidade e K por aresta (usa faixas_limite)
-python scripts/enrich_graph.py               # grafo atribuído: capacidade, t0 e checagens
-python scripts/frank_wolfe.py --teste        # valida o algoritmo em redes com solução conhecida
-python scripts/frank_wolfe.py                # equilíbrio da situação atual nos 3 níveis de demanda
-python scripts/gerar_cenarios.py             # gera cenarios/*.json a partir de critérios sobre o grafo
-python scripts/frank_wolfe.py --todos        # situação atual + todos os cenários
-python scripts/frank_wolfe.py --varredura-remocao --varredura-faixa   # teste de Braess aresta por aresta
-python scripts/frank_wolfe.py --alpha 0.8 --beta 4.7 --todos          # sensibilidade (idem para as varreduras)
-python scripts/visualizar_resultados.py      # gera resultados/painel.html e as figuras
-python scripts/relatorio_cenarios.py         # gera research/relatorio_cenarios.md
-python scripts/mapping.py                    # só se a tabela de trechos do DER mudar
+```
+artigo/        artigo final (LaTeX) e a figura que ele usa
+dados/
+  osm/         download do OpenStreetMap da área de estudo
+  tomtom/      respostas da TomTom: O/D Analysis e Traffic Stats (pico e madrugada)
+  der/         trechos rodoviários do DER-DF e contagens de tráfego (flow.csv, fora do git)
+  grafo/       grafos de estudo; o *_atributos.graphml é o que o Frank-Wolfe usa
+  tabelas/     matriz OD, faixas e limites, velocidades e K por aresta
+cenarios/      cenários de intervenção em JSON (C0, F1–F6, S1–S3, R1–R3)
+resultados/    saídas do Frank-Wolfe por rodada, varreduras de Braess, figuras e painel
+research/      metodologia, relatório de cenários, problemas do modelo e histórico
+scripts/       pipeline em Python
 ```
 
-O `build_od_matrix.py` sem `--offline` baixa a análise de novo e lê a chave da
-variável `TOMTOM_API_KEY`.
+## Como reproduzir
+
+Da raiz do repositório, na ordem:
+
+```bash
+python scripts/expand_graph.py               # grafo de estudo (offline, a partir de dados/osm/)
+python scripts/build_od_matrix.py --offline  # matriz OD (usa dados/der/flow.csv)
+python scripts/faixas_limite.py              # faixas e limite de velocidade por aresta
+python scripts/velocidades_traffic_stats.py  # velocidades de pico e madrugada, K por aresta
+python scripts/enrich_graph.py               # grafo atribuído: capacidade, t0 e checagens
+python scripts/frank_wolfe.py --teste        # valida o algoritmo em redes com solução conhecida
+python scripts/gerar_cenarios.py             # gera cenarios/*.json a partir de critérios sobre o grafo
+python scripts/frank_wolfe.py --todos        # situação atual + todos os cenários, nos 3 níveis de demanda
+python scripts/frank_wolfe.py --alpha 0.8 --beta 4.7 --todos          # sensibilidade da função de atraso
+python scripts/frank_wolfe.py --varredura-remocao --varredura-faixa   # teste de Braess, aresta por aresta (demorado)
+python scripts/visualizar_resultados.py      # resultados/painel.html e resultados/figuras/
+python scripts/relatorio_cenarios.py         # research/relatorio_cenarios.md
+```
+
+`python scripts/mapping.py` só precisa ser rodado se a planilha de trechos do
+DER-DF (`dados/der/Roads.csv`) mudar. O `build_od_matrix.py` sem `--offline`
+baixa a análise da TomTom de novo e lê a chave da variável `TOMTOM_API_KEY`.
 
 Dependências (Python 3.13): `osmnx networkx geopandas shapely pyproj pandas numpy scipy matplotlib requests`.
 
-## Dados do DETRAN
+## Contagens de tráfego do DER-DF
 
-As contagens de tráfego calibram a matriz OD. O arquivo tem ~146 MB e não fica no git:
+As contagens calibram o fator de expansão da matriz OD. O arquivo tem cerca de
+146 MB e não fica no git:
 
-1. Baixar o CSV de **julho/2026** (o mesmo mês da TomTom) de [volume diário de tráfego do DETRAN](https://www.dados.df.gov.br/pt/dataset#/volume-diario-de-trafego-trechos-rodoviarios).
-2. Salvar na raiz do repositório como `flow.csv`.
+1. Baixar o CSV de **julho/2026** (o mesmo mês da TomTom) em [Dados de Fluxo Veicular](https://www.dados.df.gov.br/pt/dataset#/volume-diario-de-trafego-trechos-rodoviarios), no portal de dados abertos do DF.
+2. Salvar como `dados/der/flow.csv`.
 
-A versão de abril/2026, usada na primeira calibração, pode ficar ao lado como `flow_abril_2026.csv` (também ignorada pelo git).
+A versão de abril/2026, usada na primeira calibração, pode ficar ao lado como
+`dados/der/flow_abril_2026.csv` (também ignorada pelo git).
 
 ## 👥 Autores
 

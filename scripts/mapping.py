@@ -3,28 +3,32 @@ Mapeia os trechos de rodovias distritais (CÓDIGO-DO-TRECHO) da planilha do
 DER/DF para coordenadas geográficas (WGS84), usando a camada geoespacial
 oficial "Rodovias no Distrito Federal" publicada no ArcGIS Hub do DER/DF.
 
-Saída: CSV com ponto inicial, final e médio de cada trecho, prontos para
-alimentar chamadas à API da TomTom (que espera lat/lon em WGS84).
+Saída: CSV com ponto inicial, final e médio de cada trecho. O
+scripts/build_od_matrix.py usa essa geometria para localizar, no grafo, os
+contadores de tráfego que calibram o fator de expansão da matriz OD.
 
-Requisitos:
-    pip install pandas requests
+Só precisa ser rodado de novo se a planilha de trechos do DER mudar.
 
-Uso:
-    python mapear_trechos_df.py
+Uso (da raiz do repositório):
+    python scripts/mapping.py
 
-Ajuste as constantes na seção CONFIG antes de rodar.
+Entrada:  dados/der/Roads.csv
+Saídas:   dados/der/trechos_com_coordenadas.csv
+          dados/der/trechos_sem_geometria.csv   (trechos sem geometria na camada)
 """
 
 import re
 import sys
+from pathlib import Path
 
 import pandas as pd
 import requests
 
 # ----------------------------- CONFIG ------------------------------------
 
-# Caminho do CSV de trechos (o que você já enviou)
-CSV_TRECHOS = "Roads.csv"
+# Trechos do DER-DF (planilha do Sistema Rodoviário) e saídas, em dados/der/
+DER = Path(__file__).resolve().parents[1] / "dados/der"
+CSV_TRECHOS = DER / "Roads.csv"
 
 # Item do ArcGIS Hub / ArcGIS Online com a malha rodoviária do DER/DF.
 # Pode ser o ID de qualquer uma das versões (2023, 2025 etc.) — o script
@@ -40,8 +44,8 @@ CAMPO_CODIGO_CANDIDATOS = [
     "COD_SNV", "SIGLA", "TRECHO", "VL_CODIGO", "CD_TRECHO",
 ]
 
-ARQUIVO_SAIDA = "trechos_com_coordenadas.csv"
-ARQUIVO_NAO_CASADOS = "trechos_sem_geometria.csv"
+ARQUIVO_SAIDA = DER / "trechos_com_coordenadas.csv"
+ARQUIVO_NAO_CASADOS = DER / "trechos_sem_geometria.csv"
 
 # ----------------------------- ETAPA 1 ------------------------------------
 # Resolve a URL do FeatureServer a partir do item do ArcGIS (sem "chutar"

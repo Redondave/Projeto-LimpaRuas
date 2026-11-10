@@ -1,6 +1,6 @@
 """
 Faixas por sentido e limite de velocidade de cada aresta do grafo do Gama
-(Etapa 3 do research/o_que_falta_fazer_pre_frank_wolfe.md).
+(Etapa 3 do research/historico/o_que_falta_fazer_pre_frank_wolfe.md).
 
 Ordem de preenchimento, para cada atributo:
   1. OSM: tag da propria aresta (lanes / maxspeed);
@@ -8,7 +8,7 @@ Ordem de preenchimento, para cada atributo:
      tag, e todas concordam -> usa esse valor (trecho da mesma rua sem tag);
   3. regra: limite pelo art. 61 do CTB, com a categoria da via deduzida da
      classe do OSM; faixas por classe (PADRAO_FAIXAS).
-  4. correcao manual (Tables/faixas_limite_correcoes.csv), se existir: tem a
+  4. correcao manual (dados/tabelas/faixas_limite_correcoes.csv), se existir: tem a
      palavra final, para registrar a conferencia feita no Google Maps.
 
 Decisoes de conversao:
@@ -24,7 +24,7 @@ Uso (da raiz do repositorio):
     python scripts/faixas_limite.py
 
 Saida:
-    Tables/faixas_limite_arestas.csv   uma linha por aresta, com a fonte de cada
+    dados/tabelas/faixas_limite_arestas.csv   uma linha por aresta, com a fonte de cada
                                        valor e links do Google Maps para conferir
 """
 
@@ -42,9 +42,9 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 RAIZ = Path(__file__).resolve().parents[1]
-GRAFO = RAIZ / "cache/gama_drive_expanded.graphml"
-CORRECOES = RAIZ / "Tables/faixas_limite_correcoes.csv"
-SAIDA = RAIZ / "Tables/faixas_limite_arestas.csv"
+GRAFO = RAIZ / "dados/grafo/gama_drive_expanded.graphml"
+CORRECOES = RAIZ / "dados/tabelas/faixas_limite_correcoes.csv"
+SAIDA = RAIZ / "dados/tabelas/faixas_limite_arestas.csv"
 CRS = "EPSG:31983"
 
 # Classe do OSM -> categoria de via urbana do CTB (art. 60) e limite do art. 61,

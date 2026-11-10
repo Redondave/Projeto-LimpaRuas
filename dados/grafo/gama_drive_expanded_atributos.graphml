@@ -9123,8 +9123,8 @@
     <data key="d0">EPSG:31983</data>
     <data key="d1">gama_area_estudo_osm.graphml</data>
     <data key="d2">Grafo do Gama atribuido para alocacao de trafego (Frank-Wolfe)</data>
-    <data key="d3">2026-10-15</data>
-    <data key="d4">Tables/matriz_od_final.json</data>
+    <data key="d3">2026-11-10</data>
+    <data key="d4">dados/tabelas/matriz_od_final.json</data>
     <data key="d5">length m; v0_kmh, limite_kmh, vmed_kmh, v_madrugada_kmh km/h; t0_min, t_obs_min min; capacidade_*, fluxo_atual_estimado_veic_h veic/h por sentido</data>
     <data key="d6">capacidade_veic_h = efetiva nos gargalos (gargalo = True, fator adotado), nominal nas demais; capacidade_veic_h_fator_min/_max para os outros fatores de expansao; outros alpha/beta: recalcular com enrich_graph.capacidade_efetiva</data>
     <data key="d7">{"min": 8.82, "adotado": 12.21, "max": 21.96}</data>

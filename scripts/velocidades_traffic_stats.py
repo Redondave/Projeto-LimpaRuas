@@ -1,7 +1,7 @@
 """
 Velocidade observada no pico por aresta do grafo do Gama, a partir do TomTom
 Traffic Stats (Area Analysis), e o K inicial de cada aresta (Etapa 2 do
-research/o_que_falta_fazer_pre_frank_wolfe.md).
+research/historico/o_que_falta_fazer_pre_frank_wolfe.md).
 
 A analise (job 10086419, "Gama") cobre julho/2026, dias uteis, 18:00-19:00 -
 o mesmo periodo e janela da matriz OD. Ela devolve as vias da TomTom dentro do
@@ -24,7 +24,7 @@ ponderada pelo comprimento sobreposto:
 ou seja, a velocidade que reproduz o tempo de percurso somado dos trechos.
 
 K inicial (SPI do research_plan.md) = vmed / limite de velocidade da aresta, com
-o limite de Tables/faixas_limite_arestas.csv (OSM ou CTB art. 61).
+o limite de dados/tabelas/faixas_limite_arestas.csv (OSM ou CTB art. 61).
 
 Velocidade de madrugada (job 10086478, mesmo poligono e mesmos dias, 00:00-04:00):
 mesmo casamento e mesma media harmonica, em colunas proprias (*_madrugada). E a
@@ -34,12 +34,12 @@ Uso (da raiz do repositorio):
     python scripts/velocidades_traffic_stats.py
 
 Entradas:
-    Tables/traffic_stats_gama_julho.json       resultado do job do pico (download do portal/API)
-    Tables/traffic_stats_gama_madrugada.json   resultado do job da madrugada
-    cache/gama_drive_expanded.graphml
-    Tables/faixas_limite_arestas.csv       (scripts/faixas_limite.py)
+    dados/tomtom/traffic_stats_gama_julho.json       resultado do job do pico (download do portal/API)
+    dados/tomtom/traffic_stats_gama_madrugada.json   resultado do job da madrugada
+    dados/grafo/gama_drive_expanded.graphml
+    dados/tabelas/faixas_limite_arestas.csv       (scripts/faixas_limite.py)
 Saida:
-    Tables/velocidades_arestas.csv
+    dados/tabelas/velocidades_arestas.csv
 """
 
 import json
@@ -58,11 +58,11 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 RAIZ = Path(__file__).resolve().parents[1]
-TRAFFIC_STATS = RAIZ / "Tables/traffic_stats_gama_julho.json"
-TRAFFIC_STATS_MADRUGADA = RAIZ / "Tables/traffic_stats_gama_madrugada.json"
-GRAFO = RAIZ / "cache/gama_drive_expanded.graphml"
-FAIXAS_LIMITE = RAIZ / "Tables/faixas_limite_arestas.csv"
-SAIDA = RAIZ / "Tables/velocidades_arestas.csv"
+TRAFFIC_STATS = RAIZ / "dados/tomtom/traffic_stats_gama_julho.json"
+TRAFFIC_STATS_MADRUGADA = RAIZ / "dados/tomtom/traffic_stats_gama_madrugada.json"
+GRAFO = RAIZ / "dados/grafo/gama_drive_expanded.graphml"
+FAIXAS_LIMITE = RAIZ / "dados/tabelas/faixas_limite_arestas.csv"
+SAIDA = RAIZ / "dados/tabelas/velocidades_arestas.csv"
 CRS = "EPSG:31983"
 
 BUFFER_M = 8              # trecho conta para a aresta se correr a ate 8 m dela
