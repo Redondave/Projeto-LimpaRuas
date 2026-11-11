@@ -178,7 +178,7 @@ Também foi rodada uma variante com α=0,8 e β=4,7 (parâmetros mais agressivos
 
 ## 7. O cenário de exemplo: +1 faixa na EPCT sentido norte
 
-Foi rodado **um** cenário-exemplo ([`cenarios/exemplo_faixa_epct_norte.json`](file:///d:/Projetos_UnB/Semestre_6/Projeto-LimpaRuas/cenarios/exemplo_faixa_epct_norte.json)): adicionar 1 faixa em 5 trechos de gargalo da EPCT sentido norte, antes do trevo (arestas 132→133, 133→63, 63→102, 102→126, 126→60). Resultados em [`resultados/exemplo_faixa_epct_norte/`](file:///d:/Projetos_UnB/Semestre_6/Projeto-LimpaRuas/resultados/exemplo_faixa_epct_norte/resumo.json).
+Foi rodado **um** cenário-exemplo ([`cenarios/C0_faixa_epct_norte_trevo.json`](file:///d:/Projetos_UnB/Semestre_6/Projeto-LimpaRuas/cenarios/C0_faixa_epct_norte_trevo.json)): adicionar 1 faixa em 5 trechos de gargalo da EPCT sentido norte, antes do trevo (arestas 132→133, 133→63, 63→102, 102→126, 126→60). Resultados em [`resultados/C0_faixa_epct_norte_trevo/`](file:///d:/Projetos_UnB/Semestre_6/Projeto-LimpaRuas/resultados/C0_faixa_epct_norte_trevo/resumo.json).
 
 ### 7.1 Impacto no tempo total do sistema (TSTT)
 

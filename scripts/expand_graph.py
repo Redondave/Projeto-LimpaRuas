@@ -1,5 +1,5 @@
 """
-Expande o grafo de 30 nos do Gama (cache/gama_drive_sample_30.graphml) para um
+Expande o grafo de 30 nos do Gama (dados/grafo/gama_drive_sample_30.graphml) para um
 recorte com escolha de rota, sem invalidar o que ja usa o grafo antigo.
 
 Por que: no grafo de 30 nos, 25 das 37 arestas sao de mao unica e ha so uma
@@ -9,12 +9,12 @@ EPCT / EPIP / DF-480 existem a pista oposta, as alcas e a malha de vias
 terciarias da Ponte Alta Norte, que formam rotas paralelas.
 
 Fonte: um download do OpenStreetMap so da area de estudo, e nao o
-cache/gama_drive_projected.graphml. Aquele grafo foi recortado pelo limite da
+dados/grafo/gama_drive_projected.graphml. Aquele grafo foi recortado pelo limite da
 RA Gama, e a EPCT corre a 2-12 m dessa divisa: a pista no sentido norte da
 EPCT e o trecho da EPIP depois do trevo ficam do lado de fora e nao existem
 nele. O download e simplificado com os 30 nos atuais forcados como pontas de
 aresta, o que reproduz as 37 arestas atuais identicas (o script confere).
-O resultado fica salvo em cache/ e as proximas execucoes nao usam a rede.
+O resultado fica salvo em dados/osm/ e as proximas execucoes nao usam a rede.
 
 Como o recorte e feito (deterministico, reproduzivel):
   1. poligono = envoltoria convexa dos 30 nos atuais + BUFFER_M metros;
@@ -36,7 +36,7 @@ Uso (da raiz do repositorio):
     python scripts/expand_graph.py --buffer 400
     python scripts/expand_graph.py --baixar      # forca novo download do OSM
 
-Saidas em cache/:
+Saidas em dados/grafo/ (o download do OSM fica em dados/osm/):
     gama_area_estudo_osm.graphml           download do OSM da area (fonte do recorte)
     gama_drive_expanded.graphml            grafo (DiGraph, mesmo formato do de 30 nos)
     gama_drive_expanded.gpkg               camadas nodes/edges (para QGIS)
@@ -65,12 +65,12 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 RAIZ = Path(__file__).resolve().parents[1]
-CACHE = RAIZ / "cache"
-AREA_OSM = CACHE / "gama_area_estudo_osm.graphml"
-GRAFO_ATUAL = CACHE / "gama_drive_sample_30.graphml"
+GRAFOS = RAIZ / "dados/grafo"
+AREA_OSM = RAIZ / "dados/osm/gama_area_estudo_osm.graphml"
+GRAFO_ATUAL = GRAFOS / "gama_drive_sample_30.graphml"
 # matriz da analise "Gama 3" (30 caixas), usada so no diagnostico de rotas que
 # justificou a expansao. Foi removida do repositorio: sem ela o diagnostico e pulado.
-MATRIZ_OD = RAIZ / "Tables/matriz_od_gama3.json"
+MATRIZ_OD = RAIZ / "dados/tabelas/matriz_od_gama3.json"
 NOME = "gama_drive_expanded"
 CRS = "EPSG:31983"
 
@@ -103,7 +103,7 @@ def poligono_base(S: nx.DiGraph, buffer_m: float):
 def baixar_area(S: nx.DiGraph, buffer_m: float) -> None:
     """Baixa a malha 'drive' sem simplificar e simplifica forcando os 30 nos
     atuais como pontas de aresta (node_attrs_include), para nao fundi-los."""
-    ox.settings.use_cache = False          # o cache padrao do OSMnx e ./cache, a pasta do projeto
+    ox.settings.use_cache = False          # nao gravar o cache HTTP do OSMnx (./cache) dentro do projeto
     ox.settings.requests_timeout = 180
     area = gpd.GeoSeries([poligono_base(S, buffer_m + MARGEM_DOWNLOAD_M)], crs=CRS)
     bruto = ox.graph_from_polygon(area.to_crs(4326).iloc[0], network_type="drive",
@@ -344,11 +344,11 @@ def main() -> None:
     lista = portoes(F, G)
     diag = diagnostico(G, S)
 
-    nx.write_graphml(G, CACHE / f"{NOME}.graphml")
-    geopackage(G, CACHE / f"{NOME}.gpkg")
-    (CACHE / f"{NOME}_portoes.geojson").write_text(
+    nx.write_graphml(G, GRAFOS / f"{NOME}.graphml")
+    geopackage(G, GRAFOS / f"{NOME}.gpkg")
+    (GRAFOS / f"{NOME}_portoes.geojson").write_text(
         json.dumps(caixas_geojson(G, lista), ensure_ascii=False), encoding="utf-8")
-    figura(G, set(S.nodes), poligono, lista, CACHE / f"{NOME}.png")
+    figura(G, set(S.nodes), poligono, lista, GRAFOS / f"{NOME}.png")
 
     classes = {}
     for _, _, d in G.edges(data=True):
@@ -375,7 +375,7 @@ def main() -> None:
         "portoes": lista,
         "node_id_mapping": {n: d["original_osmid"] for n, d in G.nodes(data=True)},
     }
-    (CACHE / f"{NOME}_selection.json").write_text(
+    (GRAFOS / f"{NOME}_selection.json").write_text(
         json.dumps(selecao, ensure_ascii=False, indent=1), encoding="utf-8")
 
     principais = sum(p["tipo"] == "principal" for p in lista)
@@ -389,7 +389,7 @@ def main() -> None:
         print(f"Demanda com 2+ rotas distintas: {a['demanda_com_2_ou_mais_rotas']:.0%} -> "
               f"{b['demanda_com_2_ou_mais_rotas']:.0%} | com caminho: "
               f"{a['demanda_com_caminho']:.0%} -> {b['demanda_com_caminho']:.0%}")
-    print(f"Arquivos em {CACHE.relative_to(RAIZ)}/{NOME}*")
+    print(f"Arquivos em {GRAFOS.relative_to(RAIZ)}/{NOME}*")
 
 
 if __name__ == "__main__":

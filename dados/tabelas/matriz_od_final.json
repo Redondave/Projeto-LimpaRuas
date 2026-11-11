@@ -1,5 +1,5 @@
 {
- "descricao": "Matriz OD no-a-no do grafo cache/gama_drive_expanded.graphml, em veiculos/hora no pico de dia util, para alocacao de trafego (Frank-Wolfe).",
+ "descricao": "Matriz OD no-a-no do grafo dados/grafo/gama_drive_expanded.graphml, em veiculos/hora no pico de dia util, para alocacao de trafego (Frank-Wolfe).",
  "unidade": "veiculos/hora",
  "ids_dos_nos": "ids do GraphML (nx.read_graphml devolve strings); *_osmid = no do OpenStreetMap",
  "vias_sem_carro": [
@@ -16,7 +16,7 @@
    "type": "OPEN_DSEG",
    "version": "2026.09.2500"
   },
-  "gerado_em": "2026-10-15T16:48:17"
+  "gerado_em": "2026-11-10T15:43:58"
  },
  "amostra": {
   "viagens_tomtom": 15429,

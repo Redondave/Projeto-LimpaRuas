@@ -83,8 +83,8 @@ if hasattr(sys.stdout, "reconfigure"):
 
 RAIZ = Path(__file__).resolve().parents[1]
 CENARIOS = RAIZ / "cenarios"
-GRAFO = RAIZ / "cache/gama_drive_expanded_atributos.graphml"
-MATRIZ = RAIZ / "Tables/matriz_od_final.json"
+GRAFO = RAIZ / "dados/grafo/gama_drive_expanded_atributos.graphml"
+MATRIZ = RAIZ / "dados/tabelas/matriz_od_final.json"
 RESULTADOS = RAIZ / "resultados"
 
 GAP_MAX = 1e-4            # criterio de parada (metodologia, secao 6.3)

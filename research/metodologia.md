@@ -43,7 +43,7 @@ TomTom Traffic Stats (pico, madrugada) ┴──► v_pico, v_madrugada ──�
 
 ### 2.1 Escolha da área
 
-A área é o entorno do trevo entre a EPCT (DF-001, Estrada Parque Contorno), a EPIP e a DF-480, no limite do Gama com a Ponte Alta Norte. O ponto de partida foi um grafo de 30 nós e 37 arestas (`cache/gama_drive_sample_30.graphml`). Ele foi extraído do grafo da RA Gama, baixado do OSM com o polígono oficial da RA (Geoportal-DF) e projetado em SIRGAS 2000 / UTM 23S (EPSG:31983). Os 30 nós foram escolhidos à mão, priorizando trechos com atributos completos no OSM.
+A área é o entorno do trevo entre a EPCT (DF-001, Estrada Parque Contorno), a EPIP e a DF-480, no limite do Gama com a Ponte Alta Norte. O ponto de partida foi um grafo de 30 nós e 37 arestas (`dados/grafo/gama_drive_sample_30.graphml`). Ele foi extraído do grafo da RA Gama, baixado do OSM com o polígono oficial da RA (Geoportal-DF) e projetado em SIRGAS 2000 / UTM 23S (EPSG:31983). Os 30 nós foram escolhidos à mão, priorizando trechos com atributos completos no OSM.
 
 **Por que o grafo foi expandido:**
 - 25 das 37 arestas eram de mão única e havia só uma pista de cada rodovia;
@@ -52,13 +52,13 @@ A área é o entorno do trevo entre a EPCT (DF-001, Estrada Parque Contorno), a 
 
 ### 2.2 Expansão (`scripts/expand_graph.py`, determinística)
 
-1. **Download.** Rede `drive` do OSM, só da área de estudo (OSMnx 2.1.1, NetworkX 3.5; download de 13/10/2026, salvo em `cache/gama_area_estudo_osm.graphml`). Os 30 nós originais foram forçados como extremidades de aresta na simplificação, o que reproduz as 37 arestas originais sem alteração (o script confere).
+1. **Download.** Rede `drive` do OSM, só da área de estudo (OSMnx 2.1.1, NetworkX 3.5; download de 13/10/2026, salvo em `dados/osm/gama_area_estudo_osm.graphml`). Os 30 nós originais foram forçados como extremidades de aresta na simplificação, o que reproduz as 37 arestas originais sem alteração (o script confere).
 2. **Polígono.** Envoltória convexa dos 30 nós originais, com 200 m de folga.
 3. **Seleção.** Entram as arestas com as duas extremidades dentro do polígono e classe OSM `tertiary` ou superior (`motorway`, `trunk`, `primary`, `secondary`, `tertiary`, as alças `*_link` e `unclassified`). Os 30 nós originais entram sempre.
 4. **Poda.** Remoção iterativa dos nós sem saída (grau 1) a mais de 60 m da borda do polígono, que são becos internos. Os nós perto da borda ficam, porque funcionam como entradas e saídas.
 5. **Conectividade.** Fica a componente fracamente conexa que contém os 30 nós.
 
-**Resultado** (`cache/gama_drive_expanded.graphml`): DiGraph com **134 nós e 236 arestas**. Os nós 0–29 mantêm os ids originais.
+**Resultado** (`dados/grafo/gama_drive_expanded.graphml`): DiGraph com **134 nós e 236 arestas**. Os nós 0–29 mantêm os ids originais.
 
 | Classe OSM | Arestas |
 |---|---|
@@ -90,12 +90,12 @@ O diagnóstico que motivou a expansão usou a matriz preliminar "Gama 3", que s�
 
 | Dado | Fonte / produto | Período e janela | Arquivo |
 |---|---|---|---|
-| Rede viária, faixas, limites | OpenStreetMap (OSMnx) | download de 13/10/2026 | `cache/gama_area_estudo_osm.graphml` |
-| Viagens origem-destino | TomTom O/D Analysis, *flow matrix*, análise "Gama Final" (id 6604531297533426895), mapa OPEN_DSEG 2026.09 | 01–30/07/2026, dias úteis (22), 18:00–19:00 | `Tables/od_tomtom_gama_final_bruto.json` |
-| Velocidade no pico | TomTom Traffic Stats, *Area Analysis*, job 10086419, todas as fontes de sondagem | 02–31/07/2026, dias úteis, 18:00–19:00 | `Tables/traffic_stats_gama_julho.json` |
-| Velocidade de madrugada | TomTom Traffic Stats, job 10086478, mesmo polígono | 02–31/07/2026, dias úteis, 00:00–04:00 | `Tables/traffic_stats_gama_madrugada.json` |
+| Rede viária, faixas, limites | OpenStreetMap (OSMnx) | download de 13/10/2026 | `dados/osm/gama_area_estudo_osm.graphml` |
+| Viagens origem-destino | TomTom O/D Analysis, *flow matrix*, análise "Gama Final" (id 6604531297533426895), mapa OPEN_DSEG 2026.09 | 01–30/07/2026, dias úteis (22), 18:00–19:00 | `dados/tomtom/od_tomtom_gama_final_bruto.json` |
+| Velocidade no pico | TomTom Traffic Stats, *Area Analysis*, job 10086419, todas as fontes de sondagem | 02–31/07/2026, dias úteis, 18:00–19:00 | `dados/tomtom/traffic_stats_gama_julho.json` |
+| Velocidade de madrugada | TomTom Traffic Stats, job 10086478, mesmo polígono | 02–31/07/2026, dias úteis, 00:00–04:00 | `dados/tomtom/traffic_stats_gama_madrugada.json` |
 | Contagens volumétricas | DER-DF, "Dados de Fluxo Veicular" por trecho rodoviário em janelas de 15 min (portal de dados abertos do DF, licença CC-BY); arquivo baixado em 15/10/2026 | julho/2026 | `flow.csv` (146 MB, fora do git) |
-| Geometria dos trechos rodoviários | DER-DF, camada "Rodovias no Distrito Federal" (ArcGIS Hub) | — | `Tables/trechos_com_coordenadas.csv` (gerado por `scripts/mapping.py` a partir de `Tables/Roads.csv`) |
+| Geometria dos trechos rodoviários | DER-DF, camada "Rodovias no Distrito Federal" (ArcGIS Hub) | — | `dados/der/trechos_com_coordenadas.csv` (gerado por `scripts/mapping.py` a partir de `dados/der/Roads.csv`) |
 | Limites legais | CTB, Lei 9.503/1997, arts. 60 e 61 | — | regra codificada em `scripts/faixas_limite.py` |
 
 ### 3.2 Matriz origem-destino (`scripts/build_od_matrix.py`)
@@ -144,7 +144,7 @@ Restam **14.960 viagens alocáveis em 1.031 pares OD**.
 
 A primeira versão foi calibrada com as contagens de abril/2026. Com as de julho, os volumes mudaram entre −6% e +8% e o fator adotado não mudou.
 
-**Demanda:** `q_od = (viagens do par na amostra / 22 dias) × fator`. Com o fator adotado, o total é de **8.309 veíc/h** em 1.031 pares (`Tables/matriz_od_final.json`).
+**Demanda:** `q_od = (viagens do par na amostra / 22 dias) × fator`. Com o fator adotado, o total é de **8.309 veíc/h** em 1.031 pares (`dados/tabelas/matriz_od_final.json`).
 
 O arquivo também guarda, para validação, a passagem observada em cada caixa (`regioes[].passagens_veic_h`; 126 caixas com 100 ou mais passagens na amostra) e as 4 observações do DETRAN.
 
@@ -201,7 +201,7 @@ Na madrugada, 234 das 235 arestas de carro ficaram com dado.
      | unclassified, residential | local | 30 km/h |
 
    - **faixas** pelo padrão das próprias vias da área com a tag: 2 por sentido nas rodovias, 1 nas demais;
-4. correção manual, a partir da conferência no Google Maps (`Tables/faixas_limite_correcoes.csv`).
+4. correção manual, a partir da conferência no Google Maps (`dados/tabelas/faixas_limite_correcoes.csv`).
 
 **Conversões:**
 - `lanes` do OSM conta as duas mãos, então em via de mão dupla faixas por sentido = ⌊lanes/2⌋, com mínimo de 1;
@@ -220,7 +220,7 @@ A TomTom Snap to Roads também foi testada como fonte e descartada: o limite só
 
 ## 4. Atributos das arestas para a alocação [feito; refazer após a conferência manual]
 
-Script: `scripts/enrich_graph.py`. Saída: `cache/gama_drive_expanded_atributos.graphml`, que deve ser lido com `nx.read_graphml`.
+Script: `scripts/enrich_graph.py`. Saída: `dados/grafo/gama_drive_expanded_atributos.graphml`, que deve ser lido com `nx.read_graphml`.
 
 ### 4.1 Capacidade
 
@@ -431,7 +431,7 @@ Cada cenário é reequilibrado com o Frank-Wolfe. A meta é de 15 a 30 cenários
 
 O script recusa um cenário que desconecte algum par OD. A comparação com a situação atual sai nível a nível em `resultados/<cenario>/resumo.json`: ΔTSTT, ΔK da rede e as maiores mudanças de fluxo.
 
-**Cenários rodados [feito em 02/11].** Além do C0 (`cenarios/exemplo_faixa_epct_norte.json`, o caso da V1), `scripts/gerar_cenarios.py` gera 12 cenários por critérios explícitos sobre o grafo:
+**Cenários rodados [feito em 02/11].** Além do C0 (`cenarios/C0_faixa_epct_norte_trevo.json`, o caso da V1), `scripts/gerar_cenarios.py` gera 12 cenários por critérios explícitos sobre o grafo:
 - **F1–F6, faixa adicional:** gargalos da EPCT norte, da EPCT sul e da DF-480; alças com K observado < 0,25; as coletoras Av. São Francisco e Marginal DF-480;
 - **S1–S3, sentido de circulação:** binário na Marginal DF-480; inversão do acesso 30→7; inversão da alça "Acesso DF-480";
 - **R1–R3, fechamento de acessos que alimentam gargalos.**
@@ -495,7 +495,7 @@ Uma conclusão "robusta" sobre um gargalo é, em parte, robusta por construção
 
 ```bash
 python scripts/expand_graph.py               # grafo (offline, a partir do cache do OSM)
-python scripts/build_od_matrix.py --offline  # matriz OD (precisa do flow.csv do DETRAN)
+python scripts/build_od_matrix.py --offline  # matriz OD (precisa de dados/der/flow.csv)
 python scripts/faixas_limite.py              # faixas e limite
 python scripts/velocidades_traffic_stats.py  # velocidades de pico e madrugada, K inicial
 python scripts/enrich_graph.py               # grafo atribuído + checagens

@@ -1,3 +1,5 @@
+> **Documento histórico.** Registra o planejamento de outubro de 2026, antes da implementação do Frank-Wolfe. Os caminhos de arquivo citados (`cache/`, `Tables/`, scripts e coletas removidos) refletem a organização daquela época. A estrutura atual está no `README.md` da raiz; a metodologia vigente, em `research/metodologia.md`.
+
 # O que falta antes do Frank-Wolfe
 
 *Atualizado em 15/10/2026. Escopo: só o que precisa estar pronto **antes** de rodar a alocação. A implementação do Frank-Wolfe, a validação do simulador e os cenários de intervenção ficam para o próximo documento.*

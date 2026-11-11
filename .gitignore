@@ -1,6 +1,9 @@
-# dados do DETRAN (134 MB): baixar do portal, ver README
+# contagens do DER-DF (~146 MB): baixar do portal de dados abertos, ver README
 flow.csv
 Flow.csv
-
-__pycache__/
 flow_*.csv
+
+# arquivos locais de ferramentas
+__pycache__/
+.claude/
+cache/

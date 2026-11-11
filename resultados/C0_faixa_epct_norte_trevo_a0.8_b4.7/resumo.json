@@ -10,9 +10,9 @@
   "gap_relativo": 0.0001,
   "iteracoes": 500
  },
- "rodada": "exemplo_faixa_epct_norte_a0.8_b4.7",
+ "rodada": "C0_faixa_epct_norte_trevo_a0.8_b4.7",
  "cenario": {
-  "nome": "exemplo_faixa_epct_norte",
+  "nome": "C0_faixa_epct_norte_trevo",
   "descricao": "+1 faixa nos 5 gargalos da EPCT sentido norte imediatamente antes do trevo (caso usado na V1 do artigo)",
   "alteracoes": [
    {
@@ -29,7 +29,7 @@
   ],
   "codigo": "C0",
   "familia": "faixa",
-  "criterio": "primeiro cenário do repositório, criado como exemplo de sintaxe: os 5 gargalos da EPCT norte entre 132 e 60 (132→133→63→102→126→60)"
+  "criterio": "os 5 gargalos da EPCT norte imediatamente antes do trevo (132→133→63→102→126→60); foi o primeiro cenário do projeto e é o caso de adição de faixa analisado no artigo"
  },
  "base": "resultados/base_a0.8_b4.7",
  "niveis": {

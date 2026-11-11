@@ -1,8 +1,8 @@
 # Cenários de intervenção e teste do paradoxo de Braess
 
-*Gerado por `scripts/relatorio_cenarios.py` em 03/11/2026, a partir de `resultados/`. Todos os números abaixo são lidos dos arquivos de resultado; para atualizar, rode de novo os comandos da seção 1 e este script.*
+*Gerado por `scripts/relatorio_cenarios.py` em 10/11/2026, a partir de `resultados/`. Todos os números abaixo são lidos dos arquivos de resultado; para atualizar, rode de novo os comandos da seção 1 e este script.*
 
-Este documento registra a etapa de cenários prevista no artigo (`research/main.tex`, "Alocação, cenários e indicadores") e no plano de pesquisa (passo 5: 15 a 30 grafos alterados): acréscimo de faixa, mudança de sentido e remoção de arestas, esta como teste do paradoxo de Braess, nos três níveis de demanda e com a sensibilidade a = 0,8 e b = 4,7.
+Este documento registra a etapa de cenários prevista no artigo (`artigo/artigoFinal.tex`, "Alocação, cenários e indicadores") e no plano de pesquisa (passo 5: 15 a 30 grafos alterados): acréscimo de faixa, mudança de sentido e remoção de arestas, esta como teste do paradoxo de Braess, nos três níveis de demanda e com a sensibilidade a = 0,8 e b = 4,7.
 
 ## 1. Como foi rodado
 
@@ -18,7 +18,7 @@ python scripts/relatorio_cenarios.py                  # este documento
 
 **Configuração comum a todos os casos:**
 
-- **Grafo:** `cache/gama_drive_expanded_atributos.graphml` (134 nós, 235 arestas de carro); **matriz OD:** `Tables/matriz_od_final.json` (1.031 pares).
+- **Grafo:** `dados/grafo/gama_drive_expanded_atributos.graphml` (134 nós, 235 arestas de carro); **matriz OD:** `dados/tabelas/matriz_od_final.json` (1.031 pares).
 - **Níveis de demanda (obrigatórios):** baixa (fator 8,82), adotada (12,21) e alta (21,96). A demanda de cada par é `veic_h × fator / 12,21`, e cada nível usa a capacidade efetiva calibrada para o seu fator.
 - **Função de atraso:** BPR com a = 0,15 e b = 4 (base) e a = 0,8 e b = 4,7 (sensibilidade; a capacidade efetiva dos gargalos é recalculada e a faixa extra dos cenários é preservada).
 - **Parada do Frank-Wolfe:** gap relativo < 10⁻⁴ ou 500 iterações. Todas as rodadas de cenário convergiram ao gap 10⁻⁴. Na sensibilidade com a = 0,8, a rede fica mais congestionada e o Frank-Wolfe converge mais devagar: R1_fechar_alca_acesso_df480_21_18_a0.8_b4.7 (alta: 668 iterações); S3_inverter_alca_acesso_df480_a0.8_b4.7 (alta: 719 iterações) precisaram de mais de 500 iterações e foram rodados com teto de 5.000 (`--iter-max 5000`), mantendo o critério de gap.
@@ -73,9 +73,9 @@ Classificação: **melhora/piora robusta** = o TSTT muda no mesmo sentido nos tr
 
 ### C0 — +1 faixa nos 5 gargalos da EPCT sentido norte imediatamente antes do trevo (caso usado na V1 do artigo)
 
-- **Arquivo:** `cenarios/exemplo_faixa_epct_norte.json` · resultados em `resultados/exemplo_faixa_epct_norte/`
+- **Arquivo:** `cenarios/C0_faixa_epct_norte_trevo.json` · resultados em `resultados/C0_faixa_epct_norte_trevo/`
 - **Família:** faixa
-- **Critério de escolha:** primeiro cenário do repositório, criado como exemplo de sintaxe: os 5 gargalos da EPCT norte entre 132 e 60 (132→133→63→102→126→60)
+- **Critério de escolha:** os 5 gargalos da EPCT norte imediatamente antes do trevo (132→133→63→102→126→60); foi o primeiro cenário do projeto e é o caso de adição de faixa analisado no artigo
 
 **Alterações exatas** (capacidade em veíc/h por sentido, demanda adotada; nos gargalos é a capacidade efetiva):
 
